@@ -7,15 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		653863C99883BB5B15ACCA69 /* Pods_SWiPE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA99A84933CECDE40F287328 /* Pods_SWiPE.framework */; };
 		C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9815290BE50C0028DE17 /* AppDelegate.swift */; };
 		C8FC9818290BE50C0028DE17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9817290BE50C0028DE17 /* SceneDelegate.swift */; };
 		C8FC981D290BE50C0028DE17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8FC981B290BE50C0028DE17 /* Main.storyboard */; };
 		C8FC9820290BE50C0028DE17 /* SWiPE.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C8FC981E290BE50C0028DE17 /* SWiPE.xcdatamodeld */; };
 		C8FC9822290BE50D0028DE17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FC9821290BE50D0028DE17 /* Assets.xcassets */; };
 		C8FC9825290BE50D0028DE17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8FC9823290BE50D0028DE17 /* LaunchScreen.storyboard */; };
+		C8FC985A290CE0CD0028DE17 /* UploadStoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9859290CE0CD0028DE17 /* UploadStoryVC.swift */; };
+		C8FC986D290F65150028DE17 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8FC986C290F65150028DE17 /* GoogleService-Info.plist */; };
+		C8FC986F290F69390028DE17 /* UploadStoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC986E290F69390028DE17 /* UploadStoryProvider.swift */; };
+		C8FC9871290F78020028DE17 /* ConstantsFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9870290F78020028DE17 /* ConstantsFile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05D499648B8F8501A9C04305 /* Pods-SWiPE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWiPE.debug.xcconfig"; path = "Target Support Files/Pods-SWiPE/Pods-SWiPE.debug.xcconfig"; sourceTree = "<group>"; };
+		AA118603100A4148BF1C064B /* Pods-SWiPE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWiPE.release.xcconfig"; path = "Target Support Files/Pods-SWiPE/Pods-SWiPE.release.xcconfig"; sourceTree = "<group>"; };
 		C8FC9812290BE50C0028DE17 /* SWiPE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWiPE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8FC9815290BE50C0028DE17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8FC9817290BE50C0028DE17 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +31,11 @@
 		C8FC9821290BE50D0028DE17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8FC9824290BE50D0028DE17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C8FC9826290BE50D0028DE17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8FC9859290CE0CD0028DE17 /* UploadStoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadStoryVC.swift; sourceTree = "<group>"; };
+		C8FC986C290F65150028DE17 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C8FC986E290F69390028DE17 /* UploadStoryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadStoryProvider.swift; sourceTree = "<group>"; };
+		C8FC9870290F78020028DE17 /* ConstantsFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsFile.swift; sourceTree = "<group>"; };
+		DA99A84933CECDE40F287328 /* Pods_SWiPE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SWiPE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				653863C99883BB5B15ACCA69 /* Pods_SWiPE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +55,8 @@
 			children = (
 				C8FC9814290BE50C0028DE17 /* SWiPE */,
 				C8FC9813290BE50C0028DE17 /* Products */,
+				FAA330530C0F3845AA02211E /* Pods */,
+				DF529098ABBC9AA94E92F1AC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +81,7 @@
 				C8FC9817290BE50C0028DE17 /* SceneDelegate.swift */,
 				C8FC9823290BE50D0028DE17 /* LaunchScreen.storyboard */,
 				C8FC9826290BE50D0028DE17 /* Info.plist */,
+				C8FC986C290F65150028DE17 /* GoogleService-Info.plist */,
 				C8FC981E290BE50C0028DE17 /* SWiPE.xcdatamodeld */,
 			);
 			path = SWiPE;
@@ -82,6 +98,7 @@
 		C8FC9830290BED0F0028DE17 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C8FC9870290F78020028DE17 /* ConstantsFile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -89,6 +106,7 @@
 		C8FC9831290BED300028DE17 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C8FC9859290CE0CD0028DE17 /* UploadStoryVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -111,8 +129,26 @@
 		C8FC9835290BEE290028DE17 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C8FC986E290F69390028DE17 /* UploadStoryProvider.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		DF529098ABBC9AA94E92F1AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DA99A84933CECDE40F287328 /* Pods_SWiPE.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FAA330530C0F3845AA02211E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				05D499648B8F8501A9C04305 /* Pods-SWiPE.debug.xcconfig */,
+				AA118603100A4148BF1C064B /* Pods-SWiPE.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,9 +158,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C8FC9829290BE50D0028DE17 /* Build configuration list for PBXNativeTarget "SWiPE" */;
 			buildPhases = (
+				B80C28F9E395EB63F6B10E55 /* [CP] Check Pods Manifest.lock */,
 				C8FC980E290BE50C0028DE17 /* Sources */,
 				C8FC980F290BE50C0028DE17 /* Frameworks */,
 				C8FC9810290BE50C0028DE17 /* Resources */,
+				A5A75BE323C1C47196DECA41 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -174,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8FC9825290BE50D0028DE17 /* LaunchScreen.storyboard in Resources */,
+				C8FC986D290F65150028DE17 /* GoogleService-Info.plist in Resources */,
 				C8FC9822290BE50D0028DE17 /* Assets.xcassets in Resources */,
 				C8FC981D290BE50C0028DE17 /* Main.storyboard in Resources */,
 			);
@@ -181,14 +220,59 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A5A75BE323C1C47196DECA41 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SWiPE/Pods-SWiPE-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SWiPE/Pods-SWiPE-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SWiPE/Pods-SWiPE-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B80C28F9E395EB63F6B10E55 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SWiPE-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C8FC980E290BE50C0028DE17 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8FC986F290F69390028DE17 /* UploadStoryProvider.swift in Sources */,
 				C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */,
 				C8FC9820290BE50C0028DE17 /* SWiPE.xcdatamodeld in Sources */,
+				C8FC9871290F78020028DE17 /* ConstantsFile.swift in Sources */,
 				C8FC9818290BE50C0028DE17 /* SceneDelegate.swift in Sources */,
+				C8FC985A290CE0CD0028DE17 /* UploadStoryVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +414,7 @@
 		};
 		C8FC982A290BE50D0028DE17 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05D499648B8F8501A9C04305 /* Pods-SWiPE.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -359,6 +444,7 @@
 		};
 		C8FC982B290BE50D0028DE17 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA118603100A4148BF1C064B /* Pods-SWiPE.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
