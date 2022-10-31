@@ -17,6 +17,7 @@
 		C8FC985A290CE0CD0028DE17 /* UploadStoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9859290CE0CD0028DE17 /* UploadStoryVC.swift */; };
 		C8FC986D290F65150028DE17 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8FC986C290F65150028DE17 /* GoogleService-Info.plist */; };
 		C8FC986F290F69390028DE17 /* UploadStoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC986E290F69390028DE17 /* UploadStoryProvider.swift */; };
+		C8FC9871290F78020028DE17 /* ConstantsFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9870290F78020028DE17 /* ConstantsFile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		C8FC9859290CE0CD0028DE17 /* UploadStoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadStoryVC.swift; sourceTree = "<group>"; };
 		C8FC986C290F65150028DE17 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C8FC986E290F69390028DE17 /* UploadStoryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadStoryProvider.swift; sourceTree = "<group>"; };
+		C8FC9870290F78020028DE17 /* ConstantsFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsFile.swift; sourceTree = "<group>"; };
 		DA99A84933CECDE40F287328 /* Pods_SWiPE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SWiPE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -96,6 +98,7 @@
 		C8FC9830290BED0F0028DE17 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C8FC9870290F78020028DE17 /* ConstantsFile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				C8FC986F290F69390028DE17 /* UploadStoryProvider.swift in Sources */,
 				C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */,
 				C8FC9820290BE50C0028DE17 /* SWiPE.xcdatamodeld in Sources */,
+				C8FC9871290F78020028DE17 /* ConstantsFile.swift in Sources */,
 				C8FC9818290BE50C0028DE17 /* SceneDelegate.swift in Sources */,
 				C8FC985A290CE0CD0028DE17 /* UploadStoryVC.swift in Sources */,
 			);
