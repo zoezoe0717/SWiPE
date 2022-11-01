@@ -8,9 +8,9 @@
 import UIKit
 import AVKit
 import PhotosUI
+import Alamofire
 
 class UploadStoryVC: UIViewController {
-
     @IBOutlet weak var uploadButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var chooseButton: UIButton!
@@ -38,30 +38,30 @@ class UploadStoryVC: UIViewController {
     @IBAction func choose(_ sender: Any) {
         var configuration = PHPickerConfiguration()
 
-        let pickerAlertController = UIAlertController(title: "上傳圖片", message: "請選擇要上傳的圖片", preferredStyle: .actionSheet)
-        
-        let fromLibAction = UIAlertAction(title: "照片圖庫", style: .default) { _ in
+        let pickerAlertController = UIAlertController(
+            title: UploadStoryString.uploadImage.rawValue,
+            message: UploadStoryString.chooseUploadImage.rawValue,
+            preferredStyle: .actionSheet
+        )
+        let fromLibAction = UIAlertAction(title: UploadStoryString.photoLibrary.rawValue, style: .default) { _ in
             configuration.selectionLimit = 1
             configuration.filter = .any(of: [.images])
             configuration.preferredAssetRepresentationMode = .current
-            
+
             let picker = PHPickerViewController(configuration: configuration)
             picker.delegate = self
             self.present(picker, animated: true)
         }
-        
-        let fromCameraAction = UIAlertAction(title: "相機", style: .default) { _ in
+        let fromCameraAction = UIAlertAction(title: UploadStoryString.camera.rawValue, style: .default) { _ in
             let imagePicker = UIImagePickerController()
             imagePicker.sourceType = .camera
             imagePicker.delegate = self
             self.present(imagePicker, animated: true)
         }
-        
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: UploadStoryString.cancel.rawValue, style: .cancel) { _ in
             pickerAlertController.dismiss(animated: true)
         }
-        
-        [fromLibAction, fromCameraAction, cancelAction].forEach { pickerAlertController.addAction($0)}
+        [fromLibAction, fromCameraAction, cancelAction].forEach { pickerAlertController.addAction($0) }
         present(pickerAlertController, animated: true, completion: nil)
     }
     
@@ -74,6 +74,7 @@ class UploadStoryVC: UIViewController {
         UploadStoryProvider.shared.uploadPhoto(image: userImage) { result in
             switch result {
             case .success(let url):
+//                UserProvider.shared.addUser(story: "\(url)")
                 print(url)
             case .failure(let error):
                 print(error)
@@ -81,26 +82,17 @@ class UploadStoryVC: UIViewController {
         }
         buttonSwitch(showChoose: true)
     }
-    
 }
 
-//MARK: - PHPickerViewControllerDelegate
+// MARK: - PHPickerViewControllerDelegate
 extension UploadStoryVC: PHPickerViewControllerDelegate {
-    
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
-        
         print(Thread.isMainThread)
-        
         guard let result = results.first else { return }
-        let assetid = result.assetIdentifier
-        
-        print(assetid as Any)
-        
         let provider = result.itemProvider
         let types = provider.registeredTypeIdentifiers
         print("types: \(types)")
-        
         if provider.canLoadObject(ofClass: UIImage.self) {
             self.dealWithImage(result)
         }
@@ -109,8 +101,7 @@ extension UploadStoryVC: PHPickerViewControllerDelegate {
     private func dealWithImage(_ result: PHPickerResult) {
         clearAll()
         let provider = result.itemProvider
-        
-        provider.loadObject(ofClass: UIImage.self) { image, error in
+        provider.loadObject(ofClass: UIImage.self) { image, _ in
             if let image = image as? UIImage {
                 DispatchQueue.main.async {
                     self.userImage = image
@@ -122,20 +113,18 @@ extension UploadStoryVC: PHPickerViewControllerDelegate {
     }
 
     private func clearAll() {
-        if self.children.count > 0 {
-            let avPlayer = self.children[0] as! AVPlayerViewController
+        if !self.children.isEmpty {
+            guard let avPlayer = self.children[0] as? AVPlayerViewController else { return }
             avPlayer.willMove(toParent: nil)
             avPlayer.view.removeFromSuperview()
             avPlayer.removeFromParent()
         }
         self.showStoryView.subviews.forEach { $0.removeFromSuperview() }
     }
-    
 }
 
 extension UploadStoryVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             showStoryView.image = image
             userImage = image
@@ -143,6 +132,4 @@ extension UploadStoryVC: UIImagePickerControllerDelegate, UINavigationController
         }
         dismiss(animated: true)
     }
-    
 }
-
