@@ -1,15 +1,14 @@
 //
 //  StackContainerController.swift
-//  TinderStack
+//  SWiPE
 //
-//  Created by Osama Naeem on 16/03/2019.
-//  Copyright © 2019 NexThings. All rights reserved.
+//  Created by Zoe on 2022/11/1.
 //
 
 import UIKit
 
 
-class StackContainerView: UIView, SwipeCardsDelegate {
+class StackContainerView: UIView {
     var numberOfCardsToShow: Int = 0
     var cardsToBeVisible: Int = 3
     var cardViews: [SwipeCardView] = []
@@ -21,6 +20,7 @@ class StackContainerView: UIView, SwipeCardsDelegate {
     var visibleCards: [SwipeCardView] {
         return subviews as? [SwipeCardView] ?? []
     }
+    
     var dataSource: SwipeCardsDataSource? {
         didSet {
             reloadData()
@@ -76,7 +76,9 @@ class StackContainerView: UIView, SwipeCardsDelegate {
         }
         cardViews = []
     }
-    
+}
+
+extension StackContainerView: SwipeCardsDelegate {
     func swipeDidEnd(on view: SwipeCardView) {
         guard let datasource = dataSource else { return }
         view.removeFromSuperview()

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		653863C99883BB5B15ACCA69 /* Pods_SWiPE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA99A84933CECDE40F287328 /* Pods_SWiPE.framework */; };
+		C8FA65072910F65D0059AD23 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */; };
 		C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9815290BE50C0028DE17 /* AppDelegate.swift */; };
 		C8FC9818290BE50C0028DE17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9817290BE50C0028DE17 /* SceneDelegate.swift */; };
 		C8FC981D290BE50C0028DE17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8FC981B290BE50C0028DE17 /* Main.storyboard */; };
@@ -17,18 +18,18 @@
 		C8FC985A290CE0CD0028DE17 /* UploadStoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9859290CE0CD0028DE17 /* UploadStoryVC.swift */; };
 		C8FC986D290F65150028DE17 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8FC986C290F65150028DE17 /* GoogleService-Info.plist */; };
 		C8FC986F290F69390028DE17 /* UploadStoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC986E290F69390028DE17 /* UploadStoryProvider.swift */; };
-		C8FC9871290F78020028DE17 /* ConstantsFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9870290F78020028DE17 /* ConstantsFile.swift */; };
+		C8FC9871290F78020028DE17 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9870290F78020028DE17 /* Constants.swift */; };
 		C8FC9876290FB9E10028DE17 /* SwipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9875290FB9E10028DE17 /* SwipeCardView.swift */; };
 		C8FC9878290FB9E80028DE17 /* StackContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9877290FB9E80028DE17 /* StackContainerView.swift */; };
-		C8FC987A290FBAB50028DE17 /* CardsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9879290FBAB50028DE17 /* CardsDataModel.swift */; };
 		C8FC987E290FC0350028DE17 /* MatchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC987D290FC0350028DE17 /* MatchVC.swift */; };
-		C8FC9881290FD2C50028DE17 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9880290FD2C50028DE17 /* UserProvider.swift */; };
 		C8FC98832910AD830028DE17 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC98822910AD830028DE17 /* User.swift */; };
+		C8FC98892910C7B50028DE17 /* FireBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC98882910C7B50028DE17 /* FireBaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		05D499648B8F8501A9C04305 /* Pods-SWiPE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWiPE.debug.xcconfig"; path = "Target Support Files/Pods-SWiPE/Pods-SWiPE.debug.xcconfig"; sourceTree = "<group>"; };
 		AA118603100A4148BF1C064B /* Pods-SWiPE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWiPE.release.xcconfig"; path = "Target Support Files/Pods-SWiPE/Pods-SWiPE.release.xcconfig"; sourceTree = "<group>"; };
+		C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		C8FC9812290BE50C0028DE17 /* SWiPE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWiPE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8FC9815290BE50C0028DE17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8FC9817290BE50C0028DE17 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,13 +41,12 @@
 		C8FC9859290CE0CD0028DE17 /* UploadStoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadStoryVC.swift; sourceTree = "<group>"; };
 		C8FC986C290F65150028DE17 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C8FC986E290F69390028DE17 /* UploadStoryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadStoryProvider.swift; sourceTree = "<group>"; };
-		C8FC9870290F78020028DE17 /* ConstantsFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsFile.swift; sourceTree = "<group>"; };
+		C8FC9870290F78020028DE17 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C8FC9875290FB9E10028DE17 /* SwipeCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeCardView.swift; sourceTree = "<group>"; };
 		C8FC9877290FB9E80028DE17 /* StackContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackContainerView.swift; sourceTree = "<group>"; };
-		C8FC9879290FBAB50028DE17 /* CardsDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsDataModel.swift; sourceTree = "<group>"; };
 		C8FC987D290FC0350028DE17 /* MatchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchVC.swift; sourceTree = "<group>"; };
-		C8FC9880290FD2C50028DE17 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		C8FC98822910AD830028DE17 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C8FC98882910C7B50028DE17 /* FireBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseManager.swift; sourceTree = "<group>"; };
 		DA99A84933CECDE40F287328 /* Pods_SWiPE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SWiPE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -62,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C8FA65052910F6190059AD23 /* Third Party Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */,
+			);
+			path = "Third Party Wrapper";
+			sourceTree = "<group>";
+		};
 		C8FC9809290BE50C0028DE17 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +91,8 @@
 		C8FC9814290BE50C0028DE17 /* SWiPE */ = {
 			isa = PBXGroup;
 			children = (
+				C8FA65052910F6190059AD23 /* Third Party Wrapper */,
+				C8FC988A2910E6070028DE17 /* Network */,
 				C8FC9830290BED0F0028DE17 /* Models */,
 				C8FC982E290BECF40028DE17 /* Views */,
 				C8FC9831290BED300028DE17 /* Controllers */,
@@ -110,10 +120,8 @@
 		C8FC9830290BED0F0028DE17 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C8FC98862910B25F0028DE17 /* Upload Story */,
-				C8FC98842910ADBA0028DE17 /* User */,
-				C8FC98852910B2330028DE17 /* Constant */,
-				C8FC9879290FBAB50028DE17 /* CardsDataModel.swift */,
+				C8FC98822910AD830028DE17 /* User.swift */,
+				C8FC9870290F78020028DE17 /* Constants.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -151,29 +159,13 @@
 			path = Match;
 			sourceTree = "<group>";
 		};
-		C8FC98842910ADBA0028DE17 /* User */ = {
+		C8FC988A2910E6070028DE17 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				C8FC98822910AD830028DE17 /* User.swift */,
-				C8FC9880290FD2C50028DE17 /* UserProvider.swift */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
-		C8FC98852910B2330028DE17 /* Constant */ = {
-			isa = PBXGroup;
-			children = (
-				C8FC9870290F78020028DE17 /* ConstantsFile.swift */,
-			);
-			path = Constant;
-			sourceTree = "<group>";
-		};
-		C8FC98862910B25F0028DE17 /* Upload Story */ = {
-			isa = PBXGroup;
-			children = (
+				C8FC98882910C7B50028DE17 /* FireBaseManager.swift */,
 				C8FC986E290F69390028DE17 /* UploadStoryProvider.swift */,
 			);
-			path = "Upload Story";
+			path = Network;
 			sourceTree = "<group>";
 		};
 		DF529098ABBC9AA94E92F1AC /* Frameworks */ = {
@@ -328,13 +320,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8FC986F290F69390028DE17 /* UploadStoryProvider.swift in Sources */,
-				C8FC9881290FD2C50028DE17 /* UserProvider.swift in Sources */,
 				C8FC987E290FC0350028DE17 /* MatchVC.swift in Sources */,
 				C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */,
 				C8FC9820290BE50C0028DE17 /* SWiPE.xcdatamodeld in Sources */,
-				C8FC987A290FBAB50028DE17 /* CardsDataModel.swift in Sources */,
+				C8FA65072910F65D0059AD23 /* KingFisherWrapper.swift in Sources */,
 				C8FC9876290FB9E10028DE17 /* SwipeCardView.swift in Sources */,
-				C8FC9871290F78020028DE17 /* ConstantsFile.swift in Sources */,
+				C8FC98892910C7B50028DE17 /* FireBaseManager.swift in Sources */,
+				C8FC9871290F78020028DE17 /* Constants.swift in Sources */,
 				C8FC98832910AD830028DE17 /* User.swift in Sources */,
 				C8FC9818290BE50C0028DE17 /* SceneDelegate.swift in Sources */,
 				C8FC985A290CE0CD0028DE17 /* UploadStoryVC.swift in Sources */,
