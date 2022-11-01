@@ -18,6 +18,12 @@
 		C8FC986D290F65150028DE17 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8FC986C290F65150028DE17 /* GoogleService-Info.plist */; };
 		C8FC986F290F69390028DE17 /* UploadStoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC986E290F69390028DE17 /* UploadStoryProvider.swift */; };
 		C8FC9871290F78020028DE17 /* ConstantsFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9870290F78020028DE17 /* ConstantsFile.swift */; };
+		C8FC9876290FB9E10028DE17 /* SwipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9875290FB9E10028DE17 /* SwipeCardView.swift */; };
+		C8FC9878290FB9E80028DE17 /* StackContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9877290FB9E80028DE17 /* StackContainerView.swift */; };
+		C8FC987A290FBAB50028DE17 /* CardsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9879290FBAB50028DE17 /* CardsDataModel.swift */; };
+		C8FC987E290FC0350028DE17 /* MatchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC987D290FC0350028DE17 /* MatchVC.swift */; };
+		C8FC9881290FD2C50028DE17 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9880290FD2C50028DE17 /* UserProvider.swift */; };
+		C8FC98832910AD830028DE17 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC98822910AD830028DE17 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +41,12 @@
 		C8FC986C290F65150028DE17 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C8FC986E290F69390028DE17 /* UploadStoryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadStoryProvider.swift; sourceTree = "<group>"; };
 		C8FC9870290F78020028DE17 /* ConstantsFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsFile.swift; sourceTree = "<group>"; };
+		C8FC9875290FB9E10028DE17 /* SwipeCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeCardView.swift; sourceTree = "<group>"; };
+		C8FC9877290FB9E80028DE17 /* StackContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackContainerView.swift; sourceTree = "<group>"; };
+		C8FC9879290FBAB50028DE17 /* CardsDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsDataModel.swift; sourceTree = "<group>"; };
+		C8FC987D290FC0350028DE17 /* MatchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchVC.swift; sourceTree = "<group>"; };
+		C8FC9880290FD2C50028DE17 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
+		C8FC98822910AD830028DE17 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DA99A84933CECDE40F287328 /* Pods_SWiPE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SWiPE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -75,7 +87,6 @@
 				C8FC982E290BECF40028DE17 /* Views */,
 				C8FC9831290BED300028DE17 /* Controllers */,
 				C8FC9834290BEE130028DE17 /* Extensions */,
-				C8FC9835290BEE290028DE17 /* Services */,
 				C8FC9833290BEDF10028DE17 /* Resources */,
 				C8FC9815290BE50C0028DE17 /* AppDelegate.swift */,
 				C8FC9817290BE50C0028DE17 /* SceneDelegate.swift */,
@@ -90,6 +101,7 @@
 		C8FC982E290BECF40028DE17 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C8FC987F290FC62B0028DE17 /* Match */,
 				C8FC981B290BE50C0028DE17 /* Main.storyboard */,
 			);
 			path = Views;
@@ -98,7 +110,10 @@
 		C8FC9830290BED0F0028DE17 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C8FC9870290F78020028DE17 /* ConstantsFile.swift */,
+				C8FC98862910B25F0028DE17 /* Upload Story */,
+				C8FC98842910ADBA0028DE17 /* User */,
+				C8FC98852910B2330028DE17 /* Constant */,
+				C8FC9879290FBAB50028DE17 /* CardsDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -107,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				C8FC9859290CE0CD0028DE17 /* UploadStoryVC.swift */,
+				C8FC987D290FC0350028DE17 /* MatchVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -126,12 +142,38 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		C8FC9835290BEE290028DE17 /* Services */ = {
+		C8FC987F290FC62B0028DE17 /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				C8FC9875290FB9E10028DE17 /* SwipeCardView.swift */,
+				C8FC9877290FB9E80028DE17 /* StackContainerView.swift */,
+			);
+			path = Match;
+			sourceTree = "<group>";
+		};
+		C8FC98842910ADBA0028DE17 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				C8FC98822910AD830028DE17 /* User.swift */,
+				C8FC9880290FD2C50028DE17 /* UserProvider.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		C8FC98852910B2330028DE17 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				C8FC9870290F78020028DE17 /* ConstantsFile.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		C8FC98862910B25F0028DE17 /* Upload Story */ = {
 			isa = PBXGroup;
 			children = (
 				C8FC986E290F69390028DE17 /* UploadStoryProvider.swift */,
 			);
-			path = Services;
+			path = "Upload Story";
 			sourceTree = "<group>";
 		};
 		DF529098ABBC9AA94E92F1AC /* Frameworks */ = {
@@ -163,6 +205,7 @@
 				C8FC980F290BE50C0028DE17 /* Frameworks */,
 				C8FC9810290BE50C0028DE17 /* Resources */,
 				A5A75BE323C1C47196DECA41 /* [CP] Embed Pods Frameworks */,
+				C8FC9874290FA98C0028DE17 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -260,6 +303,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C8FC9874290FA98C0028DE17 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -268,11 +328,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8FC986F290F69390028DE17 /* UploadStoryProvider.swift in Sources */,
+				C8FC9881290FD2C50028DE17 /* UserProvider.swift in Sources */,
+				C8FC987E290FC0350028DE17 /* MatchVC.swift in Sources */,
 				C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */,
 				C8FC9820290BE50C0028DE17 /* SWiPE.xcdatamodeld in Sources */,
+				C8FC987A290FBAB50028DE17 /* CardsDataModel.swift in Sources */,
+				C8FC9876290FB9E10028DE17 /* SwipeCardView.swift in Sources */,
 				C8FC9871290F78020028DE17 /* ConstantsFile.swift in Sources */,
+				C8FC98832910AD830028DE17 /* User.swift in Sources */,
 				C8FC9818290BE50C0028DE17 /* SceneDelegate.swift in Sources */,
 				C8FC985A290CE0CD0028DE17 /* UploadStoryVC.swift in Sources */,
+				C8FC9878290FB9E80028DE17 /* StackContainerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
