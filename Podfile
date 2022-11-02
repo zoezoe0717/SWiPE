@@ -10,4 +10,7 @@ target 'SWiPE' do
   pod 'SwiftLint'
   pod 'Firebase/Storage'
   pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
+  pod 'Kingfisher', '~> 7.0'
 end
