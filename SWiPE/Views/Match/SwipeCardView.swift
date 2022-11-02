@@ -7,14 +7,9 @@
 
 import UIKit
 
-protocol SwipeCardsDataSource {
-    func numberOfCardsToShow() -> Int
-    func card(at index: Int) -> SwipeCardView
-    func emptyView() -> UIView?
-}
-
 protocol SwipeCardsDelegate: AnyObject {
     func swipeDidEnd(on view: SwipeCardView)
+    func swipeMatched(toMatch: Bool)
 }
 
 class SwipeCardView: UIView {
@@ -137,14 +132,19 @@ class SwipeCardView: UIView {
         switch sender.state {
         case .ended:
             if (card.center.x) > 400 {
+                delegate?.swipeMatched(toMatch: true)
                 delegate?.swipeDidEnd(on: card)
                 UIView.animate(withDuration: 0.2) {
-                    card.center = CGPoint(x: centerOfParentContainer.x + point.x + 200, y: centerOfParentContainer.y + point.y + 75)
+                    card.center = CGPoint(
+                        x: centerOfParentContainer.x + point.x + 200,
+                        y: centerOfParentContainer.y + point.y + 75
+                    )
                     card.alpha = 0
                     self.layoutIfNeeded()
                 }
                 return
             } else if card.center.x < -65 {
+                delegate?.swipeMatched(toMatch: false)
                 delegate?.swipeDidEnd(on: card)
                 UIView.animate(withDuration: 0.2) {
                     card.center = CGPoint(

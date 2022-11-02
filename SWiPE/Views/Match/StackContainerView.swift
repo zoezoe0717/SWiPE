@@ -7,12 +7,22 @@
 
 import UIKit
 
+protocol StackContainerViewDataSource {
+    func numberOfCardsToShow() -> Int
+    func card(at index: Int) -> SwipeCardView
+    func emptyView() -> UIView?
+}
+
+protocol StackContainerViewDelegate: AnyObject {
+    func swipeMatched(toMatch: Bool, index: Int)
+}
 
 class StackContainerView: UIView {
     var numberOfCardsToShow: Int = 0
     var cardsToBeVisible: Int = 3
     var cardViews: [SwipeCardView] = []
     var remainingcards: Int = 0
+    lazy var index = 0
     
     let horizontalInset: CGFloat = 10.0
     let verticalInset: CGFloat = 10.0
@@ -21,11 +31,13 @@ class StackContainerView: UIView {
         return subviews as? [SwipeCardView] ?? []
     }
     
-    var dataSource: SwipeCardsDataSource? {
+    var dataSource: StackContainerViewDataSource? {
         didSet {
             reloadData()
         }
     }
+    
+    weak var delegate: StackContainerViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -79,6 +91,11 @@ class StackContainerView: UIView {
 }
 
 extension StackContainerView: SwipeCardsDelegate {
+    func swipeMatched(toMatch: Bool) {
+        delegate?.swipeMatched(toMatch: toMatch, index: index)
+        index += 1
+    }
+    
     func swipeDidEnd(on view: SwipeCardView) {
         guard let datasource = dataSource else { return }
         view.removeFromSuperview()
