@@ -10,12 +10,13 @@ import CoreLocation
 
 class MatchVC: UIViewController {
     var markUserData = User(
-        id: "",
-        name: "dd",
+        id: "Ag80YvzaES169R2INMnK",
+        name: "Zoe",
         email: "123@gmail.com",
-        latitude: 0, longitude: 0,
+        latitude: 0,
+        longitude: 0,
         age: 20,
-        story: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvzOVdmAqzlXyEpx1FigbXo8YwLr8BrGqVVQ&usqp=CAU",
+        story: "https://i.imgur.com/4Vc3NZR.png",
         createdTime: 0,
         index: 0
     )
@@ -27,7 +28,13 @@ class MatchVC: UIViewController {
             stackContainer?.reloadData()
         }
     }
-    var stackContainer: StackContainerView?
+    
+    var stackContainer: StackContainerView? {
+        didSet {
+            stackContainer?.delegate = self
+            stackContainer?.dataSource = self
+        }
+    }
     
     override func loadView() {
         view = UIView()
@@ -54,8 +61,7 @@ class MatchVC: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        stackContainer?.dataSource = self
-        add(with: &markUserData)
+//        add(with: &markUserData)
     }
     
     private func fetchData() {
@@ -75,7 +81,7 @@ class MatchVC: UIViewController {
             case .success(let message):
                 print(message)
             case .failure(let error):
-                print(error)
+                print("DEBUG: \(error)")
             }
         }
     }
@@ -87,8 +93,30 @@ class MatchVC: UIViewController {
             switch result {
             case .success(let success):
                 print("Success: update location \(success)")
-            case .failure(let failure):
-                print("DEBUG: \(failure)")
+            case .failure(let error):
+                print("DEBUG: \(error)")
+            }
+        }
+    }
+    
+    private func searchID(user: User, netizen: User) {
+        FireBaseManager.shared.searchUser(user: user, netizen: netizen) { result in
+            switch result {
+            case .success(let success):
+                print(success)
+            case .failure(let error):
+                print("DEBUG: \(error)")
+            }
+        }
+    }
+    
+    private func serachBeLike(user: User, netizen: User) {
+        FireBaseManager.shared.searchBeLike(user: user, netizen: netizen) { result in
+            switch result {
+            case .success(let success):
+                print(success)
+            case .failure(let error):
+                print("DEBUG: \(error)")
             }
         }
     }
@@ -124,7 +152,7 @@ class MatchVC: UIViewController {
 //    }
 }
 // MARK: Swipe Card
-extension MatchVC: SwipeCardsDataSource {
+extension MatchVC: StackContainerViewDataSource {
     func numberOfCardsToShow() -> Int {
         return matchData?.count ?? 0
     }
@@ -139,6 +167,18 @@ extension MatchVC: SwipeCardsDataSource {
         return nil
     }
 }
+// MARK: Pairing judgment for left and right swipe
+extension MatchVC: StackContainerViewDelegate {
+    func swipeMatched(toMatch: Bool, index: Int) {
+        guard let matchData = matchData else { return }
+        if toMatch {
+            self.searchID(user: markUserData, netizen: matchData[index])
+        } else {
+            self.serachBeLike(user: markUserData, netizen: matchData[index])
+        }
+    }
+}
+
 // MARK: Location
 extension MatchVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -147,7 +187,7 @@ extension MatchVC: CLLocationManagerDelegate {
             locationManager.stopUpdatingHeading()
         }
         print("\(location.coordinate.latitude)+ \(location.coordinate.longitude)")
-        self.updateLocation(lat: location.coordinate.latitude, lon: location.coordinate.longitude)
+//        self.updateLocation(lat: location.coordinate.latitude, lon: location.coordinate.longitude)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
