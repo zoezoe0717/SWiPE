@@ -10,10 +10,10 @@ import FirebaseFirestore
 
 class FireBaseManager {
     static let shared = FireBaseManager()
-    
+
     lazy var db = Firestore.firestore()
     
-    func fetchUser(completion: @escaping (Result<[User], Error>) -> Void) {
+    func getUser(completion: @escaping (Result<[User], Error>) -> Void) {
         db.collection("Users").getDocuments { snapshot, error in
             if let error = error {
                 completion(.failure(error))
@@ -29,19 +29,28 @@ class FireBaseManager {
         }
     }
     
-    func addUser(story: String) {
+    func addUser(user: inout User, completion: @escaping (Result<String, Error>) -> Void) {
         let document = db.collection("Users").document()
-        let userData = User(
-            id: document.documentID,
-            name: "Zoe",
-            email: "12345678@gmail.com",
-            story: story
-        )
+        user.id = document.documentID
+        user.createdTime = Date().millisecondsSince1970
+        
+        document.setData(user.toDict) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success("Success"))
+            }
+        }
+    }
     
-        do {
-            try db.collection("Users").document(document.documentID).setData(from: userData)
-        } catch {
-            print(error)
+    func updateLocation(user: User, completion: @escaping (Result<String, Error>) -> Void) {
+        let document = db.collection("Users").document(user.id)
+        document.updateData(["latitude": user.latitude, "longitude": user.longitude]) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success("Update Success"))
+            }
         }
     }
 }

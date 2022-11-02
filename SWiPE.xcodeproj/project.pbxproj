@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		653863C99883BB5B15ACCA69 /* Pods_SWiPE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA99A84933CECDE40F287328 /* Pods_SWiPE.framework */; };
 		C8FA65072910F65D0059AD23 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */; };
+		C8FA652C291212530059AD23 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA652B291212530059AD23 /* Date+Ext.swift */; };
 		C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9815290BE50C0028DE17 /* AppDelegate.swift */; };
 		C8FC9818290BE50C0028DE17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9817290BE50C0028DE17 /* SceneDelegate.swift */; };
 		C8FC981D290BE50C0028DE17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8FC981B290BE50C0028DE17 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		05D499648B8F8501A9C04305 /* Pods-SWiPE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWiPE.debug.xcconfig"; path = "Target Support Files/Pods-SWiPE/Pods-SWiPE.debug.xcconfig"; sourceTree = "<group>"; };
 		AA118603100A4148BF1C064B /* Pods-SWiPE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWiPE.release.xcconfig"; path = "Target Support Files/Pods-SWiPE/Pods-SWiPE.release.xcconfig"; sourceTree = "<group>"; };
 		C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
+		C8FA652B291212530059AD23 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		C8FC9812290BE50C0028DE17 /* SWiPE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWiPE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8FC9815290BE50C0028DE17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8FC9817290BE50C0028DE17 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		C8FC9834290BEE130028DE17 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C8FA652B291212530059AD23 /* Date+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 			files = (
 				C8FC986F290F69390028DE17 /* UploadStoryProvider.swift in Sources */,
 				C8FC987E290FC0350028DE17 /* MatchVC.swift in Sources */,
+				C8FA652C291212530059AD23 /* Date+Ext.swift in Sources */,
 				C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */,
 				C8FC9820290BE50C0028DE17 /* SWiPE.xcdatamodeld in Sources */,
 				C8FA65072910F65D0059AD23 /* KingFisherWrapper.swift in Sources */,
