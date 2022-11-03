@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		653863C99883BB5B15ACCA69 /* Pods_SWiPE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA99A84933CECDE40F287328 /* Pods_SWiPE.framework */; };
+		C88946792913589F009A5BF3 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88946782913589F009A5BF3 /* ChatManager.swift */; };
+		C889467D29135AAF009A5BF3 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889467C29135AAF009A5BF3 /* ChatVC.swift */; };
+		C889468029135B28009A5BF3 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889467F29135B28009A5BF3 /* ChatCell.swift */; };
+		C8894682291390DD009A5BF3 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8894681291390DD009A5BF3 /* ChatRoom.swift */; };
 		C8FA65072910F65D0059AD23 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */; };
 		C8FA652C291212530059AD23 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA652B291212530059AD23 /* Date+Ext.swift */; };
 		C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9815290BE50C0028DE17 /* AppDelegate.swift */; };
@@ -30,6 +34,10 @@
 /* Begin PBXFileReference section */
 		05D499648B8F8501A9C04305 /* Pods-SWiPE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWiPE.debug.xcconfig"; path = "Target Support Files/Pods-SWiPE/Pods-SWiPE.debug.xcconfig"; sourceTree = "<group>"; };
 		AA118603100A4148BF1C064B /* Pods-SWiPE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWiPE.release.xcconfig"; path = "Target Support Files/Pods-SWiPE/Pods-SWiPE.release.xcconfig"; sourceTree = "<group>"; };
+		C88946782913589F009A5BF3 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		C889467C29135AAF009A5BF3 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		C889467F29135B28009A5BF3 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		C8894681291390DD009A5BF3 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		C8FA652B291212530059AD23 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		C8FC9812290BE50C0028DE17 /* SWiPE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWiPE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +72,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C889467E29135AF8009A5BF3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C889467F29135B28009A5BF3 /* ChatCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		C8FA65052910F6190059AD23 /* Third Party Wrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +129,7 @@
 		C8FC982E290BECF40028DE17 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C889467E29135AF8009A5BF3 /* Cell */,
 				C8FC987F290FC62B0028DE17 /* Match */,
 				C8FC981B290BE50C0028DE17 /* Main.storyboard */,
 			);
@@ -124,6 +141,7 @@
 			children = (
 				C8FC98822910AD830028DE17 /* User.swift */,
 				C8FC9870290F78020028DE17 /* Constants.swift */,
+				C8894681291390DD009A5BF3 /* ChatRoom.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -133,6 +151,7 @@
 			children = (
 				C8FC9859290CE0CD0028DE17 /* UploadStoryVC.swift */,
 				C8FC987D290FC0350028DE17 /* MatchVC.swift */,
+				C889467C29135AAF009A5BF3 /* ChatVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -167,6 +186,7 @@
 			children = (
 				C8FC98882910C7B50028DE17 /* FireBaseManager.swift */,
 				C8FC986E290F69390028DE17 /* UploadStoryProvider.swift */,
+				C88946782913589F009A5BF3 /* ChatManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -324,6 +344,7 @@
 			files = (
 				C8FC986F290F69390028DE17 /* UploadStoryProvider.swift in Sources */,
 				C8FC987E290FC0350028DE17 /* MatchVC.swift in Sources */,
+				C8894682291390DD009A5BF3 /* ChatRoom.swift in Sources */,
 				C8FA652C291212530059AD23 /* Date+Ext.swift in Sources */,
 				C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */,
 				C8FC9820290BE50C0028DE17 /* SWiPE.xcdatamodeld in Sources */,
@@ -331,8 +352,11 @@
 				C8FC9876290FB9E10028DE17 /* SwipeCardView.swift in Sources */,
 				C8FC98892910C7B50028DE17 /* FireBaseManager.swift in Sources */,
 				C8FC9871290F78020028DE17 /* Constants.swift in Sources */,
+				C889468029135B28009A5BF3 /* ChatCell.swift in Sources */,
+				C889467D29135AAF009A5BF3 /* ChatVC.swift in Sources */,
 				C8FC98832910AD830028DE17 /* User.swift in Sources */,
 				C8FC9818290BE50C0028DE17 /* SceneDelegate.swift in Sources */,
+				C88946792913589F009A5BF3 /* ChatManager.swift in Sources */,
 				C8FC985A290CE0CD0028DE17 /* UploadStoryVC.swift in Sources */,
 				C8FC9878290FB9E80028DE17 /* StackContainerView.swift in Sources */,
 			);
