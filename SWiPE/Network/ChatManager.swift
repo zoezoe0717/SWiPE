@@ -12,7 +12,7 @@ class ChatManager {
     static let shared = ChatManager()
     
     lazy var db = Firestore.firestore()
-    let markID = "2C43U55qfP8l0x4lPUCl"
+    let markID = "0yGhN9uuEyI7ouJiDwzN"
     
     func getFriendList(completion: @escaping (Result<[User], Error>) -> Void) {
         db.collection("Users").document(markID).collection("FriendList").getDocuments { snapshot, error in
@@ -46,43 +46,53 @@ class ChatManager {
         var chatId: [ChatRoomID] = []
         var friendData: [User] = []
 
-        db.collection("Users").document("2C43U55qfP8l0x4lPUCl").collection("ChatRoomID").getDocuments { snapshot, error in
+        db.collection("Users").document(markID).collection("ChatRoomID").getDocuments { snapshot, error in
             if let error = error {
                 print(error)
             } else {
                 guard let snapshot = snapshot else { return }
                 let chatRoomID = snapshot.documents.compactMap { try? $0.data(as: ChatRoomID.self) }
                 chatId.append(contentsOf: chatRoomID)
+                
                 chatRoomID.forEach { room in
+                    self.db.collection("ChatRoom").order(by: "lastUpdated", descending: true).whereField("id", isEqualTo: room.id).getDocuments { snapshot, error in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            guard let snapshot = snapshot else { return }
+                            let chatRoomId = snapshot.documents.compactMap { try? $0.data(as: ChatRoomID.self) }
+                            chatId.append(contentsOf: chatRoomId)
+                        }
+                    }
                     self.db.collection("ChatRoom")
                         .document(room.id)
                         .collection("Members")
                         .whereField("id", isNotEqualTo: self.markID)
                         .getDocuments { snapshot, error in
-                        if let error = error {
-                            print(error)
-                        } else {
-                            guard let snapshot = snapshot else { return }
-                            let friendId = snapshot.documents.compactMap { try? $0.data(as: ChatRoomID.self) }
-                            friendId.forEach { data in
-                                self.db
-                                    .collection("Users")
-                                    .whereField("id", isEqualTo: data.id)
-                                    .getDocuments { snapshot, error in
-                                    if let error = error {
-                                        completion(.failure(error))
-                                    } else {
-                                        guard let snapshot = snapshot else { return }
-                                        let friend = snapshot.documents.compactMap { snapshot in
-                                            try? snapshot.data(as: User.self)
+                            if let error = error {
+                                print(error)
+                            } else {
+                                guard let snapshot = snapshot else { return }
+                                let friendId = snapshot.documents.compactMap { try? $0.data(as: ChatRoomID.self) }
+                                friendId.forEach { data in
+                                    self.db
+                                        .collection("Users")
+                                        .whereField("id", isEqualTo: data.id)
+                                        .getDocuments { snapshot, error in
+                                        if let error = error {
+                                            completion(.failure(error))
+                                        } else {
+                                            guard let snapshot = snapshot else { return }
+                                            let friend = snapshot.documents.compactMap { snapshot in
+                                                try? snapshot.data(as: User.self)
+                                            }
+                                            friendData.append(contentsOf: friend)
+                                            completion(.success((friendData, chatId)))
                                         }
-                                        friendData.append(contentsOf: friend)
-                                        completion(.success((friendData, chatId)))
                                     }
                                 }
                             }
                         }
-                    }
                 }
             }
         }

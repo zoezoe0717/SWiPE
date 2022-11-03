@@ -12,6 +12,7 @@
 		C889467D29135AAF009A5BF3 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889467C29135AAF009A5BF3 /* ChatVC.swift */; };
 		C889468029135B28009A5BF3 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889467F29135B28009A5BF3 /* ChatCell.swift */; };
 		C8894682291390DD009A5BF3 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8894681291390DD009A5BF3 /* ChatRoom.swift */; };
+		C88946862913CCB1009A5BF3 /* ChatRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88946852913CCB1009A5BF3 /* ChatRoomVC.swift */; };
 		C8FA65072910F65D0059AD23 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */; };
 		C8FA652C291212530059AD23 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA652B291212530059AD23 /* Date+Ext.swift */; };
 		C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9815290BE50C0028DE17 /* AppDelegate.swift */; };
@@ -38,6 +39,7 @@
 		C889467C29135AAF009A5BF3 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		C889467F29135B28009A5BF3 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		C8894681291390DD009A5BF3 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		C88946852913CCB1009A5BF3 /* ChatRoomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomVC.swift; sourceTree = "<group>"; };
 		C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		C8FA652B291212530059AD23 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		C8FC9812290BE50C0028DE17 /* SWiPE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWiPE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +82,30 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		C88946832913CC7F009A5BF3 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				C889467C29135AAF009A5BF3 /* ChatVC.swift */,
+				C88946852913CCB1009A5BF3 /* ChatRoomVC.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		C88946842913CC8E009A5BF3 /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				C8FC987D290FC0350028DE17 /* MatchVC.swift */,
+			);
+			path = Match;
+			sourceTree = "<group>";
+		};
+		C889468729140C59009A5BF3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		C8FA65052910F6190059AD23 /* Third Party Wrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +135,7 @@
 		C8FC9814290BE50C0028DE17 /* SWiPE */ = {
 			isa = PBXGroup;
 			children = (
+				C889468729140C59009A5BF3 /* Services */,
 				C8FA65052910F6190059AD23 /* Third Party Wrapper */,
 				C8FC988A2910E6070028DE17 /* Network */,
 				C8FC9830290BED0F0028DE17 /* Models */,
@@ -149,9 +176,9 @@
 		C8FC9831290BED300028DE17 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C88946842913CC8E009A5BF3 /* Match */,
+				C88946832913CC7F009A5BF3 /* Chat */,
 				C8FC9859290CE0CD0028DE17 /* UploadStoryVC.swift */,
-				C8FC987D290FC0350028DE17 /* MatchVC.swift */,
-				C889467C29135AAF009A5BF3 /* ChatVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -349,6 +376,7 @@
 				C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */,
 				C8FC9820290BE50C0028DE17 /* SWiPE.xcdatamodeld in Sources */,
 				C8FA65072910F65D0059AD23 /* KingFisherWrapper.swift in Sources */,
+				C88946862913CCB1009A5BF3 /* ChatRoomVC.swift in Sources */,
 				C8FC9876290FB9E10028DE17 /* SwipeCardView.swift in Sources */,
 				C8FC98892910C7B50028DE17 /* FireBaseManager.swift in Sources */,
 				C8FC9871290F78020028DE17 /* Constants.swift in Sources */,
