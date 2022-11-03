@@ -69,7 +69,17 @@ class FireBaseManager {
                 completion(.success("Search Success"))
                 if findID {
                     self.addFriendList(user: user, netizen: netizen)
+                    self.addFriendList(user: netizen, netizen: user)
                     self.deleteUser(user: user, netizen: netizen)
+                    
+                    ChatManager.shared.addChatRoom(user: user, netizen: netizen) { result in
+                        switch result {
+                        case .success(let success):
+                            print(success)
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
                 } else {
                     self.addBeLike(user: user, netizen: netizen)
                 }
@@ -108,7 +118,7 @@ class FireBaseManager {
     func addFriendList(user: User, netizen: User) {
         let document = db.collection("Users").document(user.id).collection("FriendList").document(netizen.id)
         
-        document.setData(["id": user.id]) { error in
+        document.setData(["id": netizen.id]) { error in
             if let error = error {
                 print(error)
             } else {
