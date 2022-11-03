@@ -10,7 +10,7 @@ import CoreLocation
 
 class MatchVC: UIViewController {
     var markUserData = User(
-        id: "2C43U55qfP8l0x4lPUCl",
+        id: "0yGhN9uuEyI7ouJiDwzN",
         name: "Zoe",
         email: "123@gmail.com",
         latitude: 0,
@@ -38,7 +38,7 @@ class MatchVC: UIViewController {
     
     override func loadView() {
         view = UIView()
-        view.backgroundColor = .black
+        view.backgroundColor = .white
         stackContainer = StackContainerView()
         guard let stackContainer = stackContainer else { return }
         view.addSubview(stackContainer)
@@ -63,15 +63,45 @@ class MatchVC: UIViewController {
         super.viewDidLoad()
 //        add(with: &markUserData)
     }
+     
+    private func configureStackContainer() {
+        guard let stackContainer = stackContainer else { return }
+        stackContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        stackContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        stackContainer.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        stackContainer.heightAnchor.constraint(equalToConstant: 600).isActive = true
+    }
     
+    //    func convertLocation(lat latitude: CLLocationDegrees, lon longitude: CLLocationDegrees) {
+//        let geocoder = CLGeocoder()
+//        let loc = CLLocation(latitude: latitude, longitude: longitude)
+//
+//        let locale = Locale(identifier: "zh_TW")
+//        geocoder.reverseGeocodeLocation(loc, preferredLocale: locale) {
+//            placemarks, error in
+//            if let error = error {
+//                print(error)
+//            } else {
+//                guard let placemarks = placemarks else { return }
+//
+//                if !placemarks.isEmpty {
+//                    guard let country = placemarks.first?.country,
+//                          let locality = placemarks.first?.locality else {
+//                        return
+//                    }
+//                }
+//            }
+//        }
+//    }
+}
+// MARK: Firebase
+extension MatchVC {
     private func fetchData() {
-        FireBaseManager.shared.getUser { [weak self] result in
-            switch result {
-            case .success(let users):
-                self?.matchData = users
-            case .failure(let error):
-                print(error)
-            }
+        let query = FirestoreEndpoint.users.ref
+        FireBaseManager.shared.getDocument(query: query) { [weak self] (users: [User]) in
+            guard let `self` = self else { return }
+            
+            self.matchData = users
         }
     }
     
@@ -120,37 +150,8 @@ class MatchVC: UIViewController {
             }
         }
     }
-     
-    private func configureStackContainer() {
-        guard let stackContainer = stackContainer else { return }
-        stackContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        stackContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        stackContainer.widthAnchor.constraint(equalToConstant: 350).isActive = true
-        stackContainer.heightAnchor.constraint(equalToConstant: 600).isActive = true
-    }
-    
-//    func convertLocation(lat latitude: CLLocationDegrees, lon longitude: CLLocationDegrees) {
-//        let geocoder = CLGeocoder()
-//        let loc = CLLocation(latitude: latitude, longitude: longitude)
-//
-//        let locale = Locale(identifier: "zh_TW")
-//        geocoder.reverseGeocodeLocation(loc, preferredLocale: locale) {
-//            placemarks, error in
-//            if let error = error {
-//                print(error)
-//            } else {
-//                guard let placemarks = placemarks else { return }
-//
-//                if !placemarks.isEmpty {
-//                    guard let country = placemarks.first?.country,
-//                          let locality = placemarks.first?.locality else {
-//                        return
-//                    }
-//                }
-//            }
-//        }
-//    }
 }
+
 // MARK: Swipe Card
 extension MatchVC: StackContainerViewDataSource {
     func numberOfCardsToShow() -> Int {

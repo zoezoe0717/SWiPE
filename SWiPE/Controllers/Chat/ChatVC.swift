@@ -38,7 +38,6 @@ class ChatVC: UIViewController {
             case let .success((friend, roomId)):
                 self.friendList = friend
                 self.roomId = roomId
-                print(roomId)
             case .failure(let error):
                 print(error)
             }
@@ -61,6 +60,7 @@ extension ChatVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(friendList[indexPath.item].id)
+        print("\(friendList[indexPath.item].id)")
+        print("\(roomId[indexPath.item].id)")
     }
 }
