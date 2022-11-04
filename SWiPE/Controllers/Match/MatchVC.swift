@@ -10,7 +10,7 @@ import CoreLocation
 
 class MatchVC: UIViewController {
     var mockUserData = User(
-        id: "2jkxzG2lvlS9L5bIzdZn",
+        id: ChatManager.mockId,
         name: "Zoe",
         email: "123@gmail.com",
         latitude: 0,
