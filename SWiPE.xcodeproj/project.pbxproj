@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		653863C99883BB5B15ACCA69 /* Pods_SWiPE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA99A84933CECDE40F287328 /* Pods_SWiPE.framework */; };
+		C8573D0B29150CB00095601B /* OwnTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8573D0929150CB00095601B /* OwnTextCell.swift */; };
+		C8573D0C29150CB00095601B /* OwnTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8573D0A29150CB00095601B /* OwnTextCell.xib */; };
+		C8573D11291516B40095601B /* FriendTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8573D0F291516B40095601B /* FriendTextCell.swift */; };
+		C8573D12291516B40095601B /* FriendTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8573D10291516B40095601B /* FriendTextCell.xib */; };
 		C88946792913589F009A5BF3 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88946782913589F009A5BF3 /* ChatManager.swift */; };
 		C889467D29135AAF009A5BF3 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889467C29135AAF009A5BF3 /* ChatVC.swift */; };
 		C889468029135B28009A5BF3 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889467F29135B28009A5BF3 /* ChatCell.swift */; };
@@ -38,6 +42,10 @@
 /* Begin PBXFileReference section */
 		05D499648B8F8501A9C04305 /* Pods-SWiPE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWiPE.debug.xcconfig"; path = "Target Support Files/Pods-SWiPE/Pods-SWiPE.debug.xcconfig"; sourceTree = "<group>"; };
 		AA118603100A4148BF1C064B /* Pods-SWiPE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWiPE.release.xcconfig"; path = "Target Support Files/Pods-SWiPE/Pods-SWiPE.release.xcconfig"; sourceTree = "<group>"; };
+		C8573D0929150CB00095601B /* OwnTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnTextCell.swift; sourceTree = "<group>"; };
+		C8573D0A29150CB00095601B /* OwnTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OwnTextCell.xib; sourceTree = "<group>"; };
+		C8573D0F291516B40095601B /* FriendTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTextCell.swift; sourceTree = "<group>"; };
+		C8573D10291516B40095601B /* FriendTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendTextCell.xib; sourceTree = "<group>"; };
 		C88946782913589F009A5BF3 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		C889467C29135AAF009A5BF3 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		C889467F29135B28009A5BF3 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
@@ -80,10 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C889467E29135AF8009A5BF3 /* Cell */ = {
+		C869195529150A99003E5A9A /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				C889467F29135B28009A5BF3 /* ChatCell.swift */,
+				C8573D0929150CB00095601B /* OwnTextCell.swift */,
+				C8573D0A29150CB00095601B /* OwnTextCell.xib */,
+				C8573D0F291516B40095601B /* FriendTextCell.swift */,
+				C8573D10291516B40095601B /* FriendTextCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -178,8 +190,8 @@
 		C8FC982E290BECF40028DE17 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C869195529150A99003E5A9A /* Cell */,
 				C88D50E22914E3A00022D31B /* Chat */,
-				C889467E29135AF8009A5BF3 /* Cell */,
 				C8FC987F290FC62B0028DE17 /* Match */,
 				C8FC981B290BE50C0028DE17 /* Main.storyboard */,
 			);
@@ -321,6 +333,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8573D12291516B40095601B /* FriendTextCell.xib in Resources */,
+				C8573D0C29150CB00095601B /* OwnTextCell.xib in Resources */,
 				C89B179E2914E3EE002BF20D /* Chat.storyboard in Resources */,
 				C8FC9825290BE50D0028DE17 /* LaunchScreen.storyboard in Resources */,
 				C88D50E12914E3780022D31B /* Match.storyboard in Resources */,
@@ -401,6 +415,7 @@
 				C8894682291390DD009A5BF3 /* ChatRoom.swift in Sources */,
 				C889468B2914BB37009A5BF3 /* ProfileVC.swift in Sources */,
 				C8FA652C291212530059AD23 /* Date+Ext.swift in Sources */,
+				C8573D0B29150CB00095601B /* OwnTextCell.swift in Sources */,
 				C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */,
 				C8FC9820290BE50C0028DE17 /* SWiPE.xcdatamodeld in Sources */,
 				C8FA65072910F65D0059AD23 /* KingFisherWrapper.swift in Sources */,
@@ -412,6 +427,7 @@
 				C889467D29135AAF009A5BF3 /* ChatVC.swift in Sources */,
 				C8FC98832910AD830028DE17 /* User.swift in Sources */,
 				C8FC9818290BE50C0028DE17 /* SceneDelegate.swift in Sources */,
+				C8573D11291516B40095601B /* FriendTextCell.swift in Sources */,
 				C88946792913589F009A5BF3 /* ChatManager.swift in Sources */,
 				C8FC985A290CE0CD0028DE17 /* UploadStoryVC.swift in Sources */,
 				C8FC9878290FB9E80028DE17 /* StackContainerView.swift in Sources */,

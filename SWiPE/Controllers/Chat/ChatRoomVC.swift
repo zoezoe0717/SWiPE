@@ -8,19 +8,28 @@
 import UIKit
 
 class ChatRoomVC: UIViewController {
-    var mockMessage = Message(
-        senderId: "",
-        messageId: "",
-        message: "Hooo",
-        createdTime: 0,
-        type: ""
-    )
+    @IBOutlet weak var messageTextField: UITextField!
+    @IBOutlet weak var chatRoomTableView: UITableView! {
+        didSet {
+            chatRoomTableView.delegate = self
+            chatRoomTableView.dataSource = self
+            chatRoomTableView.register(UINib(nibName: "\(OwnTextCell.self)", bundle: nil), forCellReuseIdentifier: "\(OwnTextCell.self)")
+            chatRoomTableView.register(UINib(nibName: "\(FriendTextCell.self)", bundle: nil), forCellReuseIdentifier: "\(FriendTextCell.self)")
+        }
+    }
+    
     var id = ""
-    var message: [Message] = []
+    var message: [Message] = [] {
+        didSet {
+            chatRoomTableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
-//        navigationController?.navigationBar.isHidden = true
+        addListener()
+        chatRoomTableView.transform = CGAffineTransform(rotationAngle: .pi)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,9 +52,8 @@ class ChatRoomVC: UIViewController {
         }
     }
     
-    
-    @IBAction func sendMessage(_ sender: Any) {
-        ChatManager.shared.addMessage(id: id, message: &mockMessage) { result in
+    private func pushMessage( message: inout Message) {
+        ChatManager.shared.addMessage(id: id, message: &message) { result in
             switch result {
             case .success(let string):
                 print(string)
@@ -53,5 +61,63 @@ class ChatRoomVC: UIViewController {
                 print(error)
             }
         }
+    }
+    
+    private func addListener() {
+        ChatManager.shared.addListener(id: id) { result in
+            switch result {
+            case .success(let message):
+                self.message = message
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    @IBAction func sendMessage(_ sender: Any) {
+        var mockMessage = Message(
+            senderId: "",
+            messageId: "",
+            message: "",
+            createdTime: 0,
+            type: ""
+        )
+        
+        if let text = messageTextField.text {
+            if text.isEmpty {
+                print("輸入為空")
+            } else {
+                mockMessage.message = text
+                pushMessage(message: &mockMessage)
+            }
+        }
+        
+        messageTextField.text = nil
+    }
+}
+
+extension ChatRoomVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        message.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var messageCell = UITableViewCell()
+        if message[indexPath.item].senderId == ChatManager.mockId {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(OwnTextCell.self)", for: indexPath) as? OwnTextCell else {
+                fatalError("DEBUG: Can not create OwnTextCell")
+            }
+            cell.setText(message: message[indexPath.item])
+            messageCell = cell
+            
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(FriendTextCell.self)", for: indexPath) as? FriendTextCell else {
+                fatalError("DEBUG: Can not create OwnTextCell")
+            }
+            cell.setText(message: message[indexPath.item])
+            messageCell = cell
+        }
+        
+        return messageCell
     }
 }

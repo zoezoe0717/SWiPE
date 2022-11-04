@@ -16,11 +16,31 @@ class ChatManager {
     static let shared = ChatManager()
     
     lazy var db = Firestore.firestore()
-    let mockId = "2jkxzG2lvlS9L5bIzdZn"
     
-    func addMessage (id: String, message: inout Message, completion: @escaping (Result<String, Error>) -> Void) {
+    static let mockId = "L3gBeb91hnXjvUOKF4Gz"
+    
+    func getMember(roomId: String) {
+    }
+    
+    func addListener(id: String, completion: @escaping(Result<[Message], Error>) -> Void) {
+        let document = FirestoreEndpoint.messages(id).ref.order(by: "createdTime", descending: true)
+        document.addSnapshotListener { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                guard let snapshot = snapshot else { return }
+                
+                let message = snapshot.documents.compactMap { snapshot in
+                    try? snapshot.data(as: Message.self)
+                }
+                completion(.success(message))
+            }
+        }
+    }
+    
+    func addMessage(id: String, message: inout Message, completion: @escaping (Result<String, Error>) -> Void) {
         let document = FirestoreEndpoint.messages(id).ref.document()
-        message.senderId = mockId
+        message.senderId = ChatManager.mockId
         message.messageId = document.documentID
         message.createdTime = Date().millisecondsSince1970
         message.type = MessageType.text.rawValue
@@ -55,7 +75,7 @@ class ChatManager {
     
     func addChatRoom(user: User, netizen: User, completion: @escaping (Result<String, Error>) -> Void) {
         let document = FirestoreEndpoint.chatRooms.ref.document()
-        document.setData(["lastUpdated": Date().millisecondsSince1970]) { error in
+        document.setData(["lastUpdated": Date().millisecondsSince1970, "id": document.documentID]) { error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -87,7 +107,7 @@ class ChatManager {
         var chatId: [ChatRoomID] = []
         var friendData: [User] = []
         
-        db.collection("Users").document(mockId).collection("ChatRoomID").getDocuments { snapshot, error in
+        db.collection("Users").document(ChatManager.mockId).collection("ChatRoomID").getDocuments { snapshot, error in
             if let error = error {
                 print(error)
             } else {
@@ -108,7 +128,7 @@ class ChatManager {
                     self.db.collection("ChatRoom")
                         .document(room.id)
                         .collection("Members")
-                        .whereField("id", isNotEqualTo: self.mockId)
+                        .whereField("id", isNotEqualTo: ChatManager.mockId)
                         .getDocuments { snapshot, error in
                             if let error = error {
                                 print(error)

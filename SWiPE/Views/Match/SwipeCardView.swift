@@ -126,7 +126,7 @@ class SwipeCardView: UIView {
         let centerOfParentContainer = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
         card.center = CGPoint(x: centerOfParentContainer.x + point.x, y: centerOfParentContainer.y + point.y)
 
-        let distanceFromCenter = ((UIScreen.main.bounds.width / 2) - card.center.x)
+        let _ = ((UIScreen.main.bounds.width / 2) - card.center.x)
         divisor = ((UIScreen.main.bounds.width / 2) / 0.61)
 
         switch sender.state {

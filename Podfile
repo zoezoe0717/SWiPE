@@ -13,4 +13,6 @@ target 'SWiPE' do
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
   pod 'Kingfisher', '~> 7.0'
+  pod 'IQKeyboardManagerSwift'
+
 end
