@@ -9,8 +9,8 @@ import UIKit
 import CoreLocation
 
 class MatchVC: UIViewController {
-    var markUserData = User(
-        id: "0yGhN9uuEyI7ouJiDwzN",
+    var mockUserData = User(
+        id: "2jkxzG2lvlS9L5bIzdZn",
         name: "Zoe",
         email: "123@gmail.com",
         latitude: 0,
@@ -61,7 +61,7 @@ class MatchVC: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
-//        add(with: &markUserData)
+//        add(with: &mockUserData)
     }
      
     private func configureStackContainer() {
@@ -117,9 +117,9 @@ extension MatchVC {
     }
     
     private func updateLocation(lat latitude: CLLocationDegrees, lon longitude: CLLocationDegrees) {
-        markUserData.longitude = longitude
-        markUserData.latitude = latitude
-        FireBaseManager.shared.updateLocation(user: markUserData) { result in
+        mockUserData.longitude = longitude
+        mockUserData.latitude = latitude
+        FireBaseManager.shared.updateLocation(user: mockUserData) { result in
             switch result {
             case .success(let success):
                 print("Success: update location \(success)")
@@ -173,9 +173,9 @@ extension MatchVC: StackContainerViewDelegate {
     func swipeMatched(toMatch: Bool, index: Int) {
         guard let matchData = matchData else { return }
         if toMatch {
-            self.searchID(user: markUserData, netizen: matchData[index])
+            self.searchID(user: mockUserData, netizen: matchData[index])
         } else {
-            self.serachBeLike(user: markUserData, netizen: matchData[index])
+            self.serachBeLike(user: mockUserData, netizen: matchData[index])
         }
     }
 }

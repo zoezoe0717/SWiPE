@@ -33,7 +33,7 @@ class ChatVC: UIViewController {
     }
     
     private func getFriendList() {
-        ChatManager.shared.getChatRoom { result in
+        ChatManager.shared.getChat { result in
             switch result {
             case let .success((friend, roomId)):
                 self.friendList = friend
@@ -60,7 +60,9 @@ extension ChatVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(friendList[indexPath.item].id)")
-        print("\(roomId[indexPath.item].id)")
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "\(ChatRoomVC.self)") as? ChatRoomVC {
+            controller.id = roomId[indexPath.item].id
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }

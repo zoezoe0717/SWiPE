@@ -143,7 +143,7 @@ class SwipeCardView: UIView {
                     self.layoutIfNeeded()
                 }
                 return
-            } else if card.center.x < -65 {
+            } else if card.center.x < -40 {
                 delegate?.swipeMatched(toMatch: false)
                 delegate?.swipeDidEnd(on: card)
                 UIView.animate(withDuration: 0.2) {

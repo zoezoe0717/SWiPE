@@ -11,7 +11,8 @@ import FirebaseFirestore
 enum FirestoreEndpoint {
     case users
     case chatRooms
-    
+    case messages(String)
+
     var ref: CollectionReference {
         let firestore = Firestore.firestore()
         switch self {
@@ -19,6 +20,8 @@ enum FirestoreEndpoint {
             return firestore.collection("Users")
         case .chatRooms:
             return firestore.collection("ChatRoom")
+        case .messages(let id):
+            return firestore.collection("ChatRoom").document(id).collection("Message")
         }
     }
 }
@@ -46,7 +49,7 @@ class FireBaseManager {
         }
         return models
     }
-    
+        
     func getDocument<T: Decodable>(query: Query, completion: @escaping ([T]) -> Void) {
         query.getDocuments { [weak self] snapshot, error in
             guard let `self` = self else { return }
@@ -63,7 +66,7 @@ class FireBaseManager {
             if let error = error {
                 completion(.failure(error))
             } else {
-                completion(.success("Success"))
+                completion(.success("Success add user"))
             }
         }
     }
