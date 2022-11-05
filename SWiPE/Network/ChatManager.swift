@@ -17,7 +17,7 @@ class ChatManager {
     
     lazy var db = Firestore.firestore()
     
-    static let mockId = "L3gBeb91hnXjvUOKF4Gz"
+    static let mockId = "FVaDDQXL8EIjC05tuwAT"
     
     func getMember(roomId: String) {
     }
@@ -71,6 +71,21 @@ class ChatManager {
                 completion(.success("Success: updated lastUpdated"))
             }
         }
+        
+        document.collection("Members").getDocuments { snapshot, error in
+            guard let snapshot = snapshot else { return }
+            snapshot.documents.compactMap { member in
+                guard let memberId = try? member.data(as: FriendID.self) else { return }
+                
+                FirestoreEndpoint.users.ref.document(memberId.id).collection("ChatRoomID").document(id).updateData(["lastUpdated": Date().millisecondsSince1970]) { error in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        completion(.success("Success add chatroomID"))
+                    }
+                }
+            }
+        }
     }
     
     func addChatRoom(user: User, netizen: User, completion: @escaping (Result<String, Error>) -> Void) {
@@ -93,7 +108,7 @@ class ChatManager {
             }
             
             let chatRoomID = db.collection("Users").document(id).collection("ChatRoomID")
-            chatRoomID.document(document.documentID).setData(["id": document.documentID]) { error in
+            chatRoomID.document(document.documentID).setData(["id": document.documentID, "lastUpdated": Date().millisecondsSince1970]) { error in
                 if let error = error {
                     completion(.failure(error))
                 } else {
@@ -104,56 +119,27 @@ class ChatManager {
     }
     
     func getChat(completion: @escaping (Result<([User], [ChatRoomID]), Error>) -> Void) {
-        var chatId: [ChatRoomID] = []
-        var friendData: [User] = []
+        var friendDatas: [User] = []
+        var chatRoomIds: [ChatRoomID] = []
         
-        db.collection("Users").document(ChatManager.mockId).collection("ChatRoomID").getDocuments { snapshot, error in
-            if let error = error {
-                print(error)
-            } else {
-                guard let snapshot = snapshot else { return }
-                let chatRoomID = snapshot.documents.compactMap { try? $0.data(as: ChatRoomID.self) }
-                chatId.append(contentsOf: chatRoomID)
-                
-                chatRoomID.forEach { room in
-                    self.db.collection("ChatRoom").order(by: "lastUpdated", descending: true).whereField("id", isEqualTo: room.id).getDocuments { snapshot, error in
-                        if let error = error {
-                            print(error)
-                        } else {
+        let document = FirestoreEndpoint.users.ref.document(ChatManager.mockId).collection("ChatRoomID")
+        document.order(by: "lastUpdated", descending: true).getDocuments { snapshot, _ in
+            guard let snapshot = snapshot else { return }
+            
+            snapshot.documents.compactMap { roomId in
+                guard let room = try? roomId.data(as: ChatRoomID.self) else { return }
+                chatRoomIds.append(room)
+                FirestoreEndpoint.chatRooms.ref.document(room.id).collection("Members").whereField("id", isNotEqualTo: ChatManager.mockId).getDocuments { snapshot, _ in
+                    guard let snapshot = snapshot else { return }
+                    snapshot.documents.compactMap { friendId in
+                        guard let friend = try? friendId.data(as: FriendID.self) else { return }
+                        FirestoreEndpoint.users.ref.document(friend.id).getDocument { snapshot, _ in
                             guard let snapshot = snapshot else { return }
-                            let chatRoomId = snapshot.documents.compactMap { try? $0.data(as: ChatRoomID.self) }
-                            chatId.append(contentsOf: chatRoomId)
+                            guard let friendData = try? snapshot.data(as: User.self) else { return }
+                            friendDatas.append(friendData)
+                            completion(.success(([friendData], [room])))
                         }
                     }
-                    self.db.collection("ChatRoom")
-                        .document(room.id)
-                        .collection("Members")
-                        .whereField("id", isNotEqualTo: ChatManager.mockId)
-                        .getDocuments { snapshot, error in
-                            if let error = error {
-                                print(error)
-                            } else {
-                                guard let snapshot = snapshot else { return }
-                                let friendId = snapshot.documents.compactMap { try? $0.data(as: ChatRoomID.self) }
-                                friendId.forEach { data in
-                                    self.db
-                                        .collection("Users")
-                                        .whereField("id", isEqualTo: data.id)
-                                        .getDocuments { snapshot, error in
-                                            if let error = error {
-                                                completion(.failure(error))
-                                            } else {
-                                                guard let snapshot = snapshot else { return }
-                                                let friend = snapshot.documents.compactMap { snapshot in
-                                                    try? snapshot.data(as: User.self)
-                                                }
-                                                friendData.append(contentsOf: friend)
-                                                completion(.success((friendData, chatId)))
-                                            }
-                                        }
-                                }
-                            }
-                        }
                 }
             }
         }

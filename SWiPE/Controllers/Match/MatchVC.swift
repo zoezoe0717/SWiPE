@@ -61,7 +61,6 @@ class MatchVC: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
-//        add(with: &mockUserData)
     }
      
     private func configureStackContainer() {
@@ -97,7 +96,7 @@ class MatchVC: UIViewController {
 // MARK: Firebase
 extension MatchVC {
     private func fetchData() {
-        let query = FirestoreEndpoint.users.ref
+        let query = FirestoreEndpoint.users.ref.whereField("id", isNotEqualTo: ChatManager.mockId)
         FireBaseManager.shared.getDocument(query: query) { [weak self] (users: [User]) in
             guard let `self` = self else { return }
             

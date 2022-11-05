@@ -40,3 +40,7 @@ struct Message: Codable {
 struct ChatRoomID: Codable {
     let id: String
 }
+
+struct FriendID: Codable {
+    let id: String
+}
