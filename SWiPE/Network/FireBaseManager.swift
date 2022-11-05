@@ -10,6 +10,7 @@ import FirebaseFirestore
 
 enum FirestoreEndpoint {
     case users
+    case chatRoomID(String)
     case chatRooms
     case messages(String)
 
@@ -18,8 +19,13 @@ enum FirestoreEndpoint {
         switch self {
         case .users:
             return firestore.collection("Users")
+            
+        case .chatRoomID(let id):
+            return firestore.collection("Users").document(id).collection("ChatRoomID")
+            
         case .chatRooms:
             return firestore.collection("ChatRoom")
+            
         case .messages(let id):
             return firestore.collection("ChatRoom").document(id).collection("Message")
         }

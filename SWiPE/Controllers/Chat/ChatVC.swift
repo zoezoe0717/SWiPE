@@ -11,9 +11,10 @@ class ChatVC: UIViewController {
     var friendList: [User] = [] {
         didSet {
             chatTableView.reloadData()
+            print("===\(friendList)")
         }
     }
-    
+    var friendId: [FriendID] = []
     var roomId: [ChatRoomID] = []
     
     @IBOutlet weak var chatTableView: UITableView! {
@@ -33,11 +34,14 @@ class ChatVC: UIViewController {
     }
     
     private func getFriendList() {
+        self.roomId = []
+        self.friendList = []
         ChatManager.shared.getChat { result in
             switch result {
             case let .success((friend, roomId)):
-                self.friendList = friend
-                self.roomId = roomId
+                self.roomId.append(contentsOf: roomId)
+                self.friendList.append(contentsOf: friend)
+
             case .failure(let error):
                 print(error)
             }
