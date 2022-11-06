@@ -88,6 +88,17 @@ class FireBaseManager {
         }
     }
     
+    func updateStory(user: User) {
+        let document = db.collection("Users").document(user.id)
+        document.updateData(["story": user.story]) { error in
+            if let error = error {
+                print(error)
+            } else {
+                print("Update Success")
+            }
+        }
+    }
+    
     func searchUser(user: User, netizen: User, completion: @escaping (Result<String, Error>) -> Void) {
         var findID = false
         let document = db.collection("Users").document(user.id).collection("BeLiked")
