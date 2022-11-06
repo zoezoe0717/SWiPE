@@ -11,9 +11,9 @@ class ChatVC: UIViewController {
     var friendList: [User] = [] {
         didSet {
             chatTableView.reloadData()
-            print("===\(friendList)")
         }
     }
+    
     var friendId: [FriendID] = []
     var roomId: [ChatRoomID] = []
     
@@ -58,14 +58,14 @@ extension ChatVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(ChatCell.self)", for: indexPath) as? ChatCell else {
             fatalError("DEBUG: Can not create ChatCell")
         }
-        
         cell.setUI(friend: friendList[indexPath.item])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let controller = storyboard?.instantiateViewController(withIdentifier: "\(ChatRoomVC.self)") as? ChatRoomVC {
-            controller.id = roomId[indexPath.item].id
+            let id = roomId[indexPath.item].id
+            controller.id = id
             navigationController?.pushViewController(controller, animated: true)
         }
     }

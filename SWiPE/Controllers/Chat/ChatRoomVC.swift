@@ -25,6 +25,17 @@ class ChatRoomVC: UIViewController {
         }
     }
     
+    var friendData: User? {
+        didSet {
+            chatRoomTableView.reloadData()
+        }
+    }
+    var userData: User? {
+        didSet {
+            chatRoomTableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
@@ -35,6 +46,7 @@ class ChatRoomVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getMessage()
+        getMemberData(id: id)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -48,7 +60,6 @@ class ChatRoomVC: UIViewController {
         FireBaseManager.shared.getDocument(query: query) { [weak self] (message: [Message]) in
             guard let `self` = self else { return }
             self.message = message
-            print(self.message.count)
         }
     }
     
@@ -70,6 +81,16 @@ class ChatRoomVC: UIViewController {
                 self.message = message
             case .failure(let error):
                 print(error)
+            }
+        }
+    }
+    
+    private func getMemberData(id: String) {
+        ChatManager.shared.getMember(roomId: id) { member in
+            if member.id == ChatManager.mockId {
+                self.userData = member
+            } else {
+                self.friendData = member
             }
         }
     }
@@ -108,13 +129,15 @@ extension ChatRoomVC: UITableViewDelegate, UITableViewDataSource {
                 fatalError("DEBUG: Can not create OwnTextCell")
             }
             cell.setText(message: message[indexPath.item])
+            cell.userImage.loadImage(userData?.story)
             messageCell = cell
-            
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(FriendTextCell.self)", for: indexPath) as? FriendTextCell else {
                 fatalError("DEBUG: Can not create OwnTextCell")
             }
+            
             cell.setText(message: message[indexPath.item])
+            cell.friendImageView.loadImage(friendData?.story)
             messageCell = cell
         }
         

@@ -62,6 +62,7 @@ class UploadStoryVC: UIViewController {
             pickerAlertController.dismiss(animated: true)
         }
         [fromLibAction, fromCameraAction, cancelAction].forEach { pickerAlertController.addAction($0) }
+        
         present(pickerAlertController, animated: true, completion: nil)
     }
     
@@ -74,13 +75,19 @@ class UploadStoryVC: UIViewController {
         UploadStoryProvider.shared.uploadPhoto(image: userImage) { result in
             switch result {
             case .success(let url):
-//                UserProvider.shared.addUser(story: "\(url)")
-                print(url)
+                AddDataVC.newUser.story = "\(url)"
+                FireBaseManager.shared.updateStory(user: AddDataVC.newUser)
+                
             case .failure(let error):
                 print(error)
             }
         }
         buttonSwitch(showChoose: true)
+        
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "MainTableBar") {
+            controller.modalPresentationStyle = .fullScreen
+            present(controller, animated: true)
+        }
     }
 }
 

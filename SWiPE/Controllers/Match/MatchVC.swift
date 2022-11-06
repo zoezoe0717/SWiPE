@@ -9,17 +9,17 @@ import UIKit
 import CoreLocation
 
 class MatchVC: UIViewController {
-    var mockUserData = User(
-        id: ChatManager.mockId,
-        name: "Zoe",
-        email: "123@gmail.com",
-        latitude: 0,
-        longitude: 0,
-        age: 20,
-        story: "https://i.imgur.com/4Vc3NZR.png",
-        createdTime: 0,
-        index: 0
-    )
+//    var mockUserData = User(
+//        id: ChatManager.mockId,
+//        name: "Zoe",
+//        email: "123@gmail.com",
+//        latitude: 0,
+//        longitude: 0,
+//        age: 20,
+//        story: "https://i.imgur.com/4Vc3NZR.png",
+//        createdTime: 0,
+//        index: 0
+//    )
     
     private let locationManager = CLLocationManager()
 
@@ -115,19 +115,6 @@ extension MatchVC {
         }
     }
     
-    private func updateLocation(lat latitude: CLLocationDegrees, lon longitude: CLLocationDegrees) {
-        mockUserData.longitude = longitude
-        mockUserData.latitude = latitude
-        FireBaseManager.shared.updateLocation(user: mockUserData) { result in
-            switch result {
-            case .success(let success):
-                print("Success: update location \(success)")
-            case .failure(let error):
-                print("DEBUG: \(error)")
-            }
-        }
-    }
-    
     private func searchID(user: User, netizen: User) {
         FireBaseManager.shared.searchUser(user: user, netizen: netizen) { result in
             switch result {
@@ -172,9 +159,9 @@ extension MatchVC: StackContainerViewDelegate {
     func swipeMatched(toMatch: Bool, index: Int) {
         guard let matchData = matchData else { return }
         if toMatch {
-            self.searchID(user: mockUserData, netizen: matchData[index])
+            self.searchID(user: AddDataVC.newUser, netizen: matchData[index])
         } else {
-            self.serachBeLike(user: mockUserData, netizen: matchData[index])
+            self.serachBeLike(user: AddDataVC.newUser, netizen: matchData[index])
         }
     }
 }

@@ -17,9 +17,25 @@ class ChatManager {
     
     lazy var db = Firestore.firestore()
     
-    static let mockId = "FVaDDQXL8EIjC05tuwAT"
+    static let mockId = AddDataVC.newUser.id
     
-    func getMember(roomId: String) {
+    func getMember(roomId: String, completion: @escaping(User) -> Void) {
+        FirestoreEndpoint.chatRooms.ref.document(roomId).collection("Members").getDocuments { snapshot, _ in
+            guard let snapshot = snapshot else { return }
+            let memberId = snapshot.documents.compactMap({ try? $0.data(as: FriendID.self) })
+
+            memberId.forEach { member in
+                FirestoreEndpoint.users.ref.document(member.id).getDocument { snapshot, error in
+                    guard let snapshot = snapshot else { return }
+                    guard let memberData = try? snapshot.data(as: User.self) else { return }
+                    if memberData.id == ChatManager.mockId {
+                        completion(memberData)
+                    } else {
+                        completion(memberData)
+                    }
+                }
+            }
+        }
     }
     
     func addListener(id: String, completion: @escaping(Result<[Message], Error>) -> Void) {
