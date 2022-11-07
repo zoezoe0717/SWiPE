@@ -9,17 +9,17 @@ import UIKit
 import CoreLocation
 
 class MatchVC: UIViewController {
-//    var mockUserData = User(
-//        id: ChatManager.mockId,
-//        name: "Zoe",
-//        email: "123@gmail.com",
-//        latitude: 0,
-//        longitude: 0,
-//        age: 20,
-//        story: "https://i.imgur.com/4Vc3NZR.png",
-//        createdTime: 0,
-//        index: 0
-//    )
+    var mockUserData = User(
+        id: ChatManager.mockId,
+        name: "Zoe",
+        email: "123@gmail.com",
+        latitude: 0,
+        longitude: 0,
+        age: 20,
+        story: "https://i.imgur.com/4Vc3NZR.png",
+        createdTime: 0,
+        index: 0
+    )
     
     private let locationManager = CLLocationManager()
 
@@ -61,6 +61,7 @@ class MatchVC: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
+//        add(with: &mockUserData)a
     }
      
     private func configureStackContainer() {
