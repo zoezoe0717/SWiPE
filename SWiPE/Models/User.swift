@@ -18,9 +18,6 @@ struct User: Codable {
     var story: String
     var createdTime: Int64
     var index: Int
-//    let beLike: [String]
-//    let friendList: [String]
-//    let chatRoom: ChatRoom
     
     var toDict: [String: Any] {
         return [
@@ -37,10 +34,6 @@ struct User: Codable {
     }
 }
 
-struct ChatRoom: Codable {
-    let senderId: String
-    let messageId: String
-    let message: String
-    let time: Double
-    let type: String
+struct FriendListID: Codable {
+    let id: String
 }
