@@ -8,24 +8,58 @@
 import Foundation
 import FirebaseFirestore
 
+enum FirestoreEndpoint {
+    case users
+    case chatRoomID(String)
+    case chatRooms
+    case messages(String)
+
+    var ref: CollectionReference {
+        let firestore = Firestore.firestore()
+        switch self {
+        case .users:
+            return firestore.collection("Users")
+            
+        case .chatRoomID(let id):
+            return firestore.collection("Users").document(id).collection("ChatRoomID")
+            
+        case .chatRooms:
+            return firestore.collection("ChatRoom")
+            
+        case .messages(let id):
+            return firestore.collection("ChatRoom").document(id).collection("Message")
+        }
+    }
+}
+
 class FireBaseManager {
     static let shared = FireBaseManager()
     
     lazy var db = Firestore.firestore()
     
-    func getUser(completion: @escaping (Result<[User], Error>) -> Void) {
-        db.collection("Users").getDocuments { snapshot, error in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                guard let snapshot = snapshot else { return }
-                
-                let user = snapshot.documents.compactMap { snapshot in
-                    try? snapshot.data(as: User.self)
-                }
-                
-                completion(.success(user))
+    private func parseDocument<T: Decodable>(snapshot: QuerySnapshot?, error: Error?) -> [T] {
+        guard let snapshot = snapshot else {
+            let error = error?.localizedDescription ?? ""
+            print("DEBUG: \(error)")
+            return []
+        }
+        
+        var models: [T] = []
+        snapshot.documents.forEach { document in
+            do {
+                let item = try document.data(as: T.self)
+                models.append(item)
+            } catch {
+                print("DEBUG: Error decoding \(T.self)")
             }
+        }
+        return models
+    }
+        
+    func getDocument<T: Decodable>(query: Query, completion: @escaping ([T]) -> Void) {
+        query.getDocuments { [weak self] snapshot, error in
+            guard let `self` = self else { return }
+            completion(self.parseDocument(snapshot: snapshot, error: error))
         }
     }
     
@@ -38,7 +72,7 @@ class FireBaseManager {
             if let error = error {
                 completion(.failure(error))
             } else {
-                completion(.success("Success"))
+                completion(.success("Success add user"))
             }
         }
     }
@@ -50,6 +84,17 @@ class FireBaseManager {
                 completion(.failure(error))
             } else {
                 completion(.success("Update Success"))
+            }
+        }
+    }
+    
+    func updateStory(user: User) {
+        let document = db.collection("Users").document(user.id)
+        document.updateData(["story": user.story]) { error in
+            if let error = error {
+                print(error)
+            } else {
+                print("Update Success")
             }
         }
     }
@@ -69,7 +114,17 @@ class FireBaseManager {
                 completion(.success("Search Success"))
                 if findID {
                     self.addFriendList(user: user, netizen: netizen)
+                    self.addFriendList(user: netizen, netizen: user)
                     self.deleteUser(user: user, netizen: netizen)
+                    
+                    ChatManager.shared.addChatRoom(user: user, netizen: netizen) { result in
+                        switch result {
+                        case .success(let success):
+                            print(success)
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
                 } else {
                     self.addBeLike(user: user, netizen: netizen)
                 }
@@ -108,7 +163,7 @@ class FireBaseManager {
     func addFriendList(user: User, netizen: User) {
         let document = db.collection("Users").document(user.id).collection("FriendList").document(netizen.id)
         
-        document.setData(["id": user.id]) { error in
+        document.setData(["id": netizen.id]) { error in
             if let error = error {
                 print(error)
             } else {
