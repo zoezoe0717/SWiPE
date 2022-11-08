@@ -7,10 +7,6 @@
 
 import Foundation
 
-struct ChatRoom: Codable {
-    var lastUpdated: Double
-}
-
 struct Message: Codable {
     var senderId: String
     var messageId: String
@@ -37,10 +33,11 @@ struct Message: Codable {
     }
 }
 
-struct ChatRoomID: Codable {
+struct ChatRoom: Codable {
     let id: String
+    let lastUpdated: Int64
 }
 
-struct FriendID: Codable {
+struct Id: Codable {
     let id: String
 }

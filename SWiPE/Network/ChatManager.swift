@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseCore
 import FirebaseFirestore
 
 enum MessageType: String {
@@ -22,7 +23,7 @@ class ChatManager {
     func getMember(roomId: String, completion: @escaping(User) -> Void) {
         FirestoreEndpoint.chatRooms.ref.document(roomId).collection("Members").getDocuments { snapshot, _ in
             guard let snapshot = snapshot else { return }
-            let memberId = snapshot.documents.compactMap({ try? $0.data(as: FriendID.self) })
+            let memberId = snapshot.documents.compactMap({ try? $0.data(as: Id.self) })
 
             memberId.forEach { member in
                 FirestoreEndpoint.users.ref.document(member.id).getDocument { snapshot, error in
@@ -87,21 +88,6 @@ class ChatManager {
                 completion(.success("Success: updated lastUpdated"))
             }
         }
-        
-        document.collection("Members").getDocuments { snapshot, error in
-            guard let snapshot = snapshot else { return }
-            snapshot.documents.compactMap { member in
-                guard let memberId = try? member.data(as: FriendID.self) else { return }
-                
-                FirestoreEndpoint.users.ref.document(memberId.id).collection("ChatRoomID").document(id).updateData(["lastUpdated": Date().millisecondsSince1970]) { error in
-                    if let error = error {
-                        completion(.failure(error))
-                    } else {
-                        completion(.success("Success add chatroomID"))
-                    }
-                }
-            }
-        }
     }
     
     func addChatRoom(user: User, netizen: User, completion: @escaping (Result<String, Error>) -> Void) {
@@ -124,7 +110,7 @@ class ChatManager {
             }
             
             let chatRoomID = db.collection("Users").document(id).collection("ChatRoomID")
-            chatRoomID.document(document.documentID).setData(["id": document.documentID, "lastUpdated": Date().millisecondsSince1970]) { error in
+            chatRoomID.document(document.documentID).setData(["id": document.documentID]) { error in
                 if let error = error {
                     completion(.failure(error))
                 } else {
@@ -134,30 +120,105 @@ class ChatManager {
         }
     }
     
-    func getChat(completion: @escaping (Result<([User], [ChatRoomID]), Error>) -> Void) {
-        var friendDatas: [User] = []
-        var chatRoomIds: [ChatRoomID] = []
-        
-        let document = FirestoreEndpoint.users.ref.document(ChatManager.mockId).collection("ChatRoomID")
-        document.order(by: "lastUpdated", descending: true).getDocuments { snapshot, _ in
-            guard let snapshot = snapshot else { return }
-            
-            snapshot.documents.compactMap { roomId in
-                guard let room = try? roomId.data(as: ChatRoomID.self) else { return }
-                chatRoomIds.append(room)
-                FirestoreEndpoint.chatRooms.ref.document(room.id).collection("Members").whereField("id", isNotEqualTo: ChatManager.mockId).getDocuments { snapshot, _ in
+    func getFriendData(roomIds: [ChatRoom], completion: @escaping (Result<User, Error>) -> Void) {
+        roomIds.forEach { room in
+            let query = FirestoreEndpoint.chatRooms.ref.document(room.id).collection("Members").whereField("id", isNotEqualTo: ChatManager.mockId)
+            query.getDocuments { snapshot, error in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
                     guard let snapshot = snapshot else { return }
-                    snapshot.documents.compactMap { friendId in
-                        guard let friend = try? friendId.data(as: FriendID.self) else { return }
-                        FirestoreEndpoint.users.ref.document(friend.id).getDocument { snapshot, _ in
+                    snapshot.documents.forEach { friendId in
+                        guard let friendId = try? friendId.data(as: Id.self) else { return }
+                        FirestoreEndpoint.users.ref.document(friendId.id).getDocument { snapshot, _ in
                             guard let snapshot = snapshot else { return }
                             guard let friendData = try? snapshot.data(as: User.self) else { return }
-                            friendDatas.append(friendData)
-                            completion(.success(([friendData], [room])))
+                            completion(.success(friendData))
+                            print("---FF\(friendData)")
                         }
                     }
                 }
             }
         }
     }
+    
+    func getChat(completion: @escaping (Result<[ChatRoom], Error>) -> Void) {
+        var roomDatas: [ChatRoom] = []
+        let document = FirestoreEndpoint.users.ref.document(ChatManager.mockId).collection("ChatRoomID")
+        
+        document.getDocuments { snapshot, _ in
+            guard let snapshot = snapshot else { return }
+            let count = snapshot.count
+            snapshot.documents.forEach { roomId in
+                guard let room = try? roomId.data(as: Id.self) else { return }
+                FirestoreEndpoint.chatRooms.ref.document(room.id).getDocument { snapshot, _ in
+                    guard let snapshot = snapshot else { return }
+                    guard let room = try? snapshot.data(as: ChatRoom.self) else { return }
+                    roomDatas.append(room)
+                    if roomDatas.count == count {
+                        completion(.success(roomDatas))
+                    }
+                }
+            }
+        }
+    }
 }
+
+//var friendDatas: [User] = []
+//var chatRoomIds: [ChatRoomID] = [] {
+//    didSet {
+//        chatRoomIds.sort(by: { $0.lastUpdated! > $1.lastUpdated! })
+//            FirestoreEndpoint.chatRooms.ref.document(chatRoomIds[0].id).collection("Members").whereField("id", isNotEqualTo: ChatManager.mockId).getDocuments { snapshot, _ in
+//                    guard let snapshot = snapshot else { return }
+//                    snapshot.documents.compactMap { friendId in
+//                        guard let friend = try? friendId.data(as: FriendID.self) else { return }
+//                        FirestoreEndpoint.users.ref.document(friend.id).getDocument { snapshot, _ in
+//                            guard let snapshot = snapshot else { return }
+//                            guard let friendData = try? snapshot.data(as: User.self) else { return }
+//                            completion(.success(([friendData], chatRoomIds)))
+//                        }
+//                    }
+//                }
+//        }
+//}
+//
+//let document = FirestoreEndpoint.users.ref.document(ChatManager.mockId).collection("ChatRoomID")
+//document.getDocuments { snapshot, _ in
+//    guard let snapshot = snapshot else { return }
+//
+//    snapshot.documents.compactMap { roomId in
+//        guard let room = try? roomId.data(as: ChatRoomID.self) else { return }
+//        FirestoreEndpoint.chatRooms.ref.document(room.id).getDocument { snapshot, _ in
+//            guard let snapshot = snapshot else { return }
+//            guard let lastdTime = try? snapshot.data(as: ChatRoomID.self) else { return }
+//            chatRoomIds.append(lastdTime)
+//        }
+//    }
+//}
+//}
+
+
+//var friendDatas: [User] = []
+//var chatRoomIds: [ChatRoomID] = []
+//
+//let document = FirestoreEndpoint.users.ref.document(ChatManager.mockId).collection("ChatRoomID")
+//document.getDocuments { snapshot, _ in
+//    guard let snapshot = snapshot else { return }
+//
+//    snapshot.documents.compactMap { roomId in
+//        guard let room = try? roomId.data(as: ChatRoomID.self) else { return }
+//        chatRoomIds.append(room)
+//        FirestoreEndpoint.chatRooms.ref.document(room.id).collection("Members").whereField("id", isNotEqualTo: ChatManager.mockId).getDocuments { snapshot, _ in
+//            guard let snapshot = snapshot else { return }
+//            snapshot.documents.compactMap { friendId in
+//                guard let friend = try? friendId.data(as: FriendID.self) else { return }
+//                FirestoreEndpoint.users.ref.document(friend.id).getDocument { snapshot, _ in
+//                    guard let snapshot = snapshot else { return }
+//                    guard let friendData = try? snapshot.data(as: User.self) else { return }
+//                    friendDatas.append(friendData)
+//                    completion(.success(([friendData], [room])))
+//                }
+//            }
+//        }
+//    }
+//}
