@@ -134,7 +134,6 @@ class ChatManager {
                             guard let snapshot = snapshot else { return }
                             guard let friendData = try? snapshot.data(as: User.self) else { return }
                             completion(.success(friendData))
-                            print("---FF\(friendData)")
                         }
                     }
                 }
@@ -163,62 +162,3 @@ class ChatManager {
         }
     }
 }
-
-//var friendDatas: [User] = []
-//var chatRoomIds: [ChatRoomID] = [] {
-//    didSet {
-//        chatRoomIds.sort(by: { $0.lastUpdated! > $1.lastUpdated! })
-//            FirestoreEndpoint.chatRooms.ref.document(chatRoomIds[0].id).collection("Members").whereField("id", isNotEqualTo: ChatManager.mockId).getDocuments { snapshot, _ in
-//                    guard let snapshot = snapshot else { return }
-//                    snapshot.documents.compactMap { friendId in
-//                        guard let friend = try? friendId.data(as: FriendID.self) else { return }
-//                        FirestoreEndpoint.users.ref.document(friend.id).getDocument { snapshot, _ in
-//                            guard let snapshot = snapshot else { return }
-//                            guard let friendData = try? snapshot.data(as: User.self) else { return }
-//                            completion(.success(([friendData], chatRoomIds)))
-//                        }
-//                    }
-//                }
-//        }
-//}
-//
-//let document = FirestoreEndpoint.users.ref.document(ChatManager.mockId).collection("ChatRoomID")
-//document.getDocuments { snapshot, _ in
-//    guard let snapshot = snapshot else { return }
-//
-//    snapshot.documents.compactMap { roomId in
-//        guard let room = try? roomId.data(as: ChatRoomID.self) else { return }
-//        FirestoreEndpoint.chatRooms.ref.document(room.id).getDocument { snapshot, _ in
-//            guard let snapshot = snapshot else { return }
-//            guard let lastdTime = try? snapshot.data(as: ChatRoomID.self) else { return }
-//            chatRoomIds.append(lastdTime)
-//        }
-//    }
-//}
-//}
-
-
-//var friendDatas: [User] = []
-//var chatRoomIds: [ChatRoomID] = []
-//
-//let document = FirestoreEndpoint.users.ref.document(ChatManager.mockId).collection("ChatRoomID")
-//document.getDocuments { snapshot, _ in
-//    guard let snapshot = snapshot else { return }
-//
-//    snapshot.documents.compactMap { roomId in
-//        guard let room = try? roomId.data(as: ChatRoomID.self) else { return }
-//        chatRoomIds.append(room)
-//        FirestoreEndpoint.chatRooms.ref.document(room.id).collection("Members").whereField("id", isNotEqualTo: ChatManager.mockId).getDocuments { snapshot, _ in
-//            guard let snapshot = snapshot else { return }
-//            snapshot.documents.compactMap { friendId in
-//                guard let friend = try? friendId.data(as: FriendID.self) else { return }
-//                FirestoreEndpoint.users.ref.document(friend.id).getDocument { snapshot, _ in
-//                    guard let snapshot = snapshot else { return }
-//                    guard let friendData = try? snapshot.data(as: User.self) else { return }
-//                    friendDatas.append(friendData)
-//                    completion(.success(([friendData], [room])))
-//                }
-//            }
-//        }
-//    }
-//}
