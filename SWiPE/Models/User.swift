@@ -16,6 +16,7 @@ struct User: Codable {
     var longitude: Double
     var age: Int
     var story: String
+    var video: String
     var createdTime: Int64
     var index: Int
     
@@ -28,6 +29,7 @@ struct User: Codable {
             "longitude": latitude as Any,
             "age": age as Any,
             "story": story as Any,
+            "video": video as Any,
             "createdTime": createdTime as Any,
             "index": index as Any
         ]

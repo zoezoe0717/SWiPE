@@ -94,6 +94,7 @@ extension StackContainerView: SwipeCardsDelegate {
     func swipeMatched(toMatch: Bool) {
         delegate?.swipeMatched(toMatch: toMatch, index: index)
         index += 1
+        print("===\(index)")
     }
     
     func swipeDidEnd(on view: SwipeCardView) {
