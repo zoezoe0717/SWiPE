@@ -63,7 +63,7 @@ class ChatRoomVC: UIViewController {
         }
     }
     
-    private func pushMessage( message: inout Message) {
+    private func pushMessage(message: inout Message) {
         ChatManager.shared.addMessage(id: id, message: &message) { result in
             switch result {
             case .success(let string):

@@ -14,8 +14,8 @@ class ChatVC: UIViewController {
         }
     }
     
-    var friendId: [FriendID] = []
-    var roomId: [ChatRoomID] = []
+    var friendId: [Id] = []
+    var roomId: [ChatRoom] = []
     
     @IBOutlet weak var chatTableView: UITableView! {
         didSet {
@@ -30,18 +30,34 @@ class ChatVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getFriendList()
+        getRoomId()
     }
     
-    private func getFriendList() {
+    private func getRoomId() {
         self.roomId = []
         self.friendList = []
         ChatManager.shared.getChat { result in
             switch result {
-            case let .success((friend, roomId)):
-                self.roomId.append(contentsOf: roomId)
-                self.friendList.append(contentsOf: friend)
+            case .success(let id):
+                self.roomId = id
+                print("---B\(self.roomId)")
+                self.roomId.sort(by: { $0.lastUpdated > $1.lastUpdated })
+                print("---A\(self.roomId)")
+                self.getFriendID(roomIds: self.roomId)
 
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func getFriendID(roomIds: [ChatRoom]) {
+        self.friendList = []
+        ChatManager.shared.getFriendData(roomIds: roomIds) { result in
+            switch result {
+            case .success(let friends):
+                print("---C\(friends)")
+                self.friendList.append(friends)
             case .failure(let error):
                 print(error)
             }
