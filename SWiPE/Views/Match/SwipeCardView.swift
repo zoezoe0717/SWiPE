@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 protocol SwipeCardsDelegate: AnyObject {
     func swipeDidEnd(on view: SwipeCardView)
@@ -13,6 +14,15 @@ protocol SwipeCardsDelegate: AnyObject {
 }
 
 class SwipeCardView: UIView {
+    lazy var player = AVPlayer()
+
+    lazy private var playerLayer: AVPlayerLayer = {
+        let layer = AVPlayerLayer(player: self.player)
+        layer.videoGravity = .resizeAspectFill
+//         layer.needsDisplayOnBoundsChange = true
+         return layer
+    }()
+    
     lazy private var swipeView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 15
@@ -44,7 +54,7 @@ class SwipeCardView: UIView {
         label.font = UIFont.systemFont(ofSize: 18)
         return label
     }()
-
+    
     weak var delegate: SwipeCardsDelegate?
 
     var divisor: CGFloat = 0
@@ -54,6 +64,7 @@ class SwipeCardView: UIView {
         didSet {
             imageView.loadImage(dataSource?.story)
             label.text = dataSource?.name
+            playUrl(url: dataSource?.video)
         }
     }
 
@@ -62,6 +73,13 @@ class SwipeCardView: UIView {
         setConstraint()
         addPanGestureOnCards()
         configureTapGesture()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageView.layer.addSublayer(playerLayer)
+        playerLayer.frame = self.bounds
+        playerLayer.videoRect
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -99,7 +117,7 @@ class SwipeCardView: UIView {
             imageView.leftAnchor.constraint(equalTo: swipeView.leftAnchor),
             imageView.rightAnchor.constraint(equalTo: swipeView.rightAnchor)
         ])
-
+        
         // MARK: NameLabel
         swipeView.addSubview(label)
         NSLayoutConstraint.activate([
@@ -108,6 +126,14 @@ class SwipeCardView: UIView {
             label.bottomAnchor.constraint(equalTo: swipeView.bottomAnchor),
             label.heightAnchor.constraint(equalToConstant: 85)
         ])
+    }
+    
+    private func playUrl(url: String?) {
+        guard let urlString = url,
+              let url = URL(string: urlString) else { return }
+        let item = AVPlayerItem(url: url)
+        player.replaceCurrentItem(with: item)
+        player.play()
     }
 
     func configureTapGesture() {

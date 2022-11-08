@@ -17,6 +17,7 @@ class MatchVC: UIViewController {
         longitude: 0,
         age: 20,
         story: "https://i.imgur.com/4Vc3NZR.png",
+        video: "https://i.imgur.com/1NLECXT.mp4",
         createdTime: 0,
         index: 0
     )
@@ -48,6 +49,7 @@ class MatchVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         fetchData()
     }
     
