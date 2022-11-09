@@ -9,8 +9,7 @@ import UIKit
 import CoreLocation
 
 class AddDataVC: UIViewController {
-
-    static var newUser = User(id: "N7vGHwNdqCGTb0B1gkhA", name: "", email: "", latitude: 0, longitude: 0, age: 0, story: "", video: "", createdTime: 0, index: 0)
+    static var newUser = User(id: "A8Im211OPC5hHpWGDuSd", name: "", email: "", latitude: 0, longitude: 0, age: 0, story: "", video: "", createdTime: 0, index: 0)
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var ageField: UITextField!

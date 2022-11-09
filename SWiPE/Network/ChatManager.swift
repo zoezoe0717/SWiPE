@@ -121,21 +121,28 @@ class ChatManager {
     }
     
     func getFriendData(roomIds: [ChatRoom], completion: @escaping (Result<User, Error>) -> Void) {
+        let queue = DispatchQueue(label: "queue", qos: .background, attributes: .concurrent)
+        let semaphore = DispatchSemaphore(value: 1)
+        print("===\()")
         roomIds.forEach { room in
-            let query = FirestoreEndpoint.chatRooms.ref.document(room.id).collection("Members").whereField("id", isNotEqualTo: ChatManager.mockId)
-            query.getDocuments { snapshot, error in
-                if let error = error {
-                    completion(.failure(error))
-                } else {
-                    guard let snapshot = snapshot else { return }
-                    snapshot.documents.forEach { friendId in
-                        guard let friendId = try? friendId.data(as: Id.self) else { return }
-                        FirestoreEndpoint.users.ref.document(friendId.id).getDocument { snapshot, _ in
-                            guard let snapshot = snapshot else { return }
-                            guard let friendData = try? snapshot.data(as: User.self) else { return }
-                            completion(.success(friendData))
+            queue.async {
+                semaphore.wait()
+                let query = FirestoreEndpoint.chatRooms.ref.document(room.id).collection("Members").whereField("id", isNotEqualTo: ChatManager.mockId)
+                query.getDocuments { snapshot, error in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        guard let snapshot = snapshot else { return }
+                        snapshot.documents.forEach { friendId in
+                            guard let friendId = try? friendId.data(as: Id.self) else { return }
+                            FirestoreEndpoint.users.ref.document(friendId.id).getDocument { snapshot, _ in
+                                guard let snapshot = snapshot else { return }
+                                guard let friendData = try? snapshot.data(as: User.self) else { return }
+                                completion(.success(friendData))
+                            }
                         }
                     }
+                    semaphore.signal()
                 }
             }
         }
@@ -144,7 +151,6 @@ class ChatManager {
     func getChat(completion: @escaping (Result<[ChatRoom], Error>) -> Void) {
         var roomDatas: [ChatRoom] = []
         let document = FirestoreEndpoint.users.ref.document(ChatManager.mockId).collection("ChatRoomID")
-        
         document.getDocuments { snapshot, _ in
             guard let snapshot = snapshot else { return }
             let count = snapshot.count
