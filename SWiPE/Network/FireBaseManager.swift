@@ -10,9 +10,18 @@ import FirebaseFirestore
 
 enum FirestoreEndpoint {
     case users
-    case chatRoomID(String)
+    
+    case usersChatRoomID(String)
+    
+    case usersBeLiked(String)
+    
+    case usersFriendList(String)
+    
     case chatRooms
-    case messages(String)
+    
+    case chatRoomsMessages(String)
+    
+    case chatRoomsMembers(String)
 
     var ref: CollectionReference {
         let firestore = Firestore.firestore()
@@ -20,23 +29,30 @@ enum FirestoreEndpoint {
         case .users:
             return firestore.collection("Users")
             
-        case .chatRoomID(let id):
+        case .usersChatRoomID(let id):
             return firestore.collection("Users").document(id).collection("ChatRoomID")
+            
+        case .usersBeLiked(let id):
+            return firestore.collection("Users").document(id).collection("BeLiked")
+            
+        case .usersFriendList(let id):
+            return firestore.collection("Users").document(id).collection("FriendList")
             
         case .chatRooms:
             return firestore.collection("ChatRoom")
             
-        case .messages(let id):
+        case .chatRoomsMessages(let id):
             return firestore.collection("ChatRoom").document(id).collection("Message")
+            
+        case .chatRoomsMembers(let id):
+            return firestore.collection("ChatRoom").document(id).collection("Members")
         }
     }
 }
 
 class FireBaseManager {
     static let shared = FireBaseManager()
-    
-    lazy var db = Firestore.firestore()
-    
+        
     private func parseDocument<T: Decodable>(snapshot: QuerySnapshot?, error: Error?) -> [T] {
         guard let snapshot = snapshot else {
             let error = error?.localizedDescription ?? ""
@@ -64,7 +80,7 @@ class FireBaseManager {
     }
     
     func addUser(user: inout User, completion: @escaping (Result<String, Error>) -> Void) {
-        let document = db.collection("Users").document()
+        let document = FirestoreEndpoint.users.ref.document()
         user.id = document.documentID
         user.createdTime = Date().millisecondsSince1970
         
@@ -78,7 +94,7 @@ class FireBaseManager {
     }
     
     func updateLocation(user: User, completion: @escaping (Result<String, Error>) -> Void) {
-        let document = db.collection("Users").document(user.id)
+        let document = FirestoreEndpoint.users.ref.document(user.id)
         document.updateData(["latitude": user.latitude, "longitude": user.longitude]) { error in
             if let error = error {
                 completion(.failure(error))
@@ -89,7 +105,7 @@ class FireBaseManager {
     }
     
     func updateStory(user: User) {
-        let document = db.collection("Users").document(user.id)
+        let document = FirestoreEndpoint.users.ref.document(user.id)
         document.updateData(["story": user.story]) { error in
             if let error = error {
                 print(error)
@@ -101,7 +117,7 @@ class FireBaseManager {
     
     func searchUser(user: User, netizen: User, completion: @escaping (Result<String, Error>) -> Void) {
         var findID = false
-        let document = db.collection("Users").document(user.id).collection("BeLiked")
+        let document = FirestoreEndpoint.usersBeLiked(user.id).ref
         
         document.whereField("id", isEqualTo: netizen.id).getDocuments { snapshot, error in
             if let error = error {
@@ -133,7 +149,7 @@ class FireBaseManager {
     }
     
     func searchBeLike(user: User, netizen: User, completion: @escaping (Result<String, Error>) -> Void) {
-        let document = db.collection("Users").document(user.id).collection("BeLiked")
+        let document = FirestoreEndpoint.usersBeLiked(user.id).ref
         
         document.whereField("id", isEqualTo: netizen.id).getDocuments { snapshot, error in
             if let error = error {
@@ -149,7 +165,7 @@ class FireBaseManager {
     }
     
     func addBeLike(user: User, netizen: User) {
-        let document = db.collection("Users").document(netizen.id).collection("BeLiked").document(user.id)
+        let document = FirestoreEndpoint.usersBeLiked(netizen.id).ref.document(user.id)
         
         document.setData(["id": user.id]) { error in
             if let error = error {
@@ -161,7 +177,7 @@ class FireBaseManager {
     }
     
     func addFriendList(user: User, netizen: User) {
-        let document = db.collection("Users").document(user.id).collection("FriendList").document(netizen.id)
+        let document = FirestoreEndpoint.usersFriendList(user.id).ref.document(netizen.id)
         
         document.setData(["id": netizen.id]) { error in
             if let error = error {
@@ -173,7 +189,8 @@ class FireBaseManager {
     }
     
     func deleteUser(user: User, netizen: User) {
-        db.collection("Users").document(user.id).collection("BeLiked").document(netizen.id).delete() { error in
+        let document = FirestoreEndpoint.usersBeLiked(user.id).ref.document(netizen.id)
+        document.delete { error in
             if let error = error {
                 print(error)
             } else {
