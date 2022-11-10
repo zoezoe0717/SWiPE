@@ -10,6 +10,7 @@ import UIKit
 class FriendTextCell: UITableViewCell {
     @IBOutlet weak var friendImageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var timeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,5 +23,6 @@ class FriendTextCell: UITableViewCell {
     
     func setText(message: Message) {
         textView.text = message.message
+        timeLabel.text = Date.dateFormatter.string(from: Date(milliseconds: message.createdTime))
     }
 }

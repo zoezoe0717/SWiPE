@@ -20,7 +20,7 @@
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cjg-z9-OgC">
                         <rect key="frame" x="155" y="10" width="260" height="150"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="XtI-DF-kgu">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="XtI-DF-kgu">
                                 <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="LaJ-f8-mje"/>
@@ -36,17 +36,27 @@
                             </imageView>
                         </subviews>
                     </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAk-Se-cRj">
+                        <rect key="frame" x="114" y="145.66666666666666" width="31" height="14.333333333333343"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Cjg-z9-OgC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="EBn-Bu-EtR"/>
                     <constraint firstAttribute="bottom" secondItem="Cjg-z9-OgC" secondAttribute="bottom" constant="10" id="WDk-oM-uLE"/>
                     <constraint firstItem="Cjg-z9-OgC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="XCB-Ip-QMO"/>
+                    <constraint firstItem="BAk-Se-cRj" firstAttribute="bottom" secondItem="XtI-DF-kgu" secondAttribute="bottom" id="lGF-Ao-Mxd"/>
+                    <constraint firstItem="BAk-Se-cRj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="nX0-AT-3tY"/>
+                    <constraint firstItem="Cjg-z9-OgC" firstAttribute="leading" secondItem="BAk-Se-cRj" secondAttribute="trailing" constant="10" id="rUu-Ou-j44"/>
                     <constraint firstAttribute="trailing" secondItem="Cjg-z9-OgC" secondAttribute="trailing" constant="10" id="re6-NQ-06i"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="messageImage" destination="XtI-DF-kgu" id="7fn-Vq-o2Y"/>
+                <outlet property="timeLabel" destination="BAk-Se-cRj" id="Nin-gt-hEh"/>
                 <outlet property="userImage" destination="RAa-pT-y10" id="lBQ-JK-u6P"/>
             </connections>
             <point key="canvasLocation" x="211.53846153846152" y="31.635071090047393"/>
