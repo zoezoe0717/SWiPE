@@ -19,7 +19,7 @@ extension Date {
     static var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         
-        formatter.dateFormat = "yyyy.MM.dd HH:mm"
+        formatter.dateFormat = "HH:mm"
         
         return formatter
     }
