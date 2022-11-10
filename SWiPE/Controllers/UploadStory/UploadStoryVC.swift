@@ -95,11 +95,9 @@ class UploadStoryVC: UIViewController {
 extension UploadStoryVC: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
-        print(Thread.isMainThread)
         guard let result = results.first else { return }
         let provider = result.itemProvider
-        let types = provider.registeredTypeIdentifiers
-        print("types: \(types)")
+        _ = provider.registeredTypeIdentifiers
         if provider.canLoadObject(ofClass: UIImage.self) {
             self.dealWithImage(result)
         }

@@ -17,7 +17,7 @@ protocol SwipeCardsDelegate: AnyObject {
 class SwipeCardView: UIView {
 //    lazy var player = AVPlayer()
 //
-    lazy private var playerLayer: AVPlayerLayer = {
+    lazy var playerLayer: AVPlayerLayer = {
         let layer = AVPlayerLayer(player: queuePlayer)
         layer.videoGravity = .resizeAspectFill
         return layer

@@ -1,16 +1,15 @@
 //
-//  FriendTextCell.swift
+//  OwnImageCell.swift
 //  SWiPE
 //
-//  Created by Zoe on 2022/11/4.
+//  Created by Zoe on 2022/11/9.
 //
 
 import UIKit
 
-class FriendTextCell: UITableViewCell {
-
-    @IBOutlet weak var friendImageView: UIImageView!
-    @IBOutlet weak var textView: UITextView!
+class OwnImageCell: UITableViewCell {
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var messageImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,7 +20,7 @@ class FriendTextCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setText(message: Message) {
-        textView.text = message.message
+    func setup(message: Message) {
+        messageImage.loadImage(message.message)
     }
 }
