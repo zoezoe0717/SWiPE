@@ -9,6 +9,8 @@ import UIKit
 import YPImagePicker
 
 class UploadVideoVC: UIViewController {
+    @IBOutlet weak var videoView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setCamera()

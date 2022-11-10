@@ -8,31 +8,7 @@
 import UIKit
 import YPImagePicker
 
-class UploadPhotoVC: UIViewController {
-    lazy private var createButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("點我新增頭像", for: .normal)
-        button.backgroundColor = .gray
-        button.addTarget(self, action: #selector(openCamera), for: .touchUpInside)
-        return button
-    }()
-    
-    lazy private var pushButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("確定", for: .normal)
-        button.backgroundColor = .gray
-        button.addTarget(self, action: #selector(pushImage), for: .touchUpInside)
-        return button
-    }()
-    
-    lazy private var cancelButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("重新選擇", for: .normal)
-        button.backgroundColor = .gray
-        button.addTarget(self, action: #selector(openCamera), for: .touchUpInside)
-        return button
-    }()
-    
+class UploadPhotoVC: UploadVC {
     @IBOutlet weak var profileImagePhoto: UIImageView!
     
     override func viewDidLoad() {
@@ -65,19 +41,7 @@ class UploadPhotoVC: UIViewController {
         ])
     }
     
-    private func buttonSwitch(hasImage: Bool) {
-        if hasImage {
-            createButton.isHidden = true
-            pushButton.isHidden = false
-            cancelButton.isHidden = false
-        } else {
-            createButton.isHidden = false
-            pushButton.isHidden = true
-            cancelButton.isHidden = true
-        }
-    }
-    
-    private func createCamera() {
+    override func createCamera() {
         let picker = YPImagePicker()
         picker.didFinishPicking { [unowned picker] items, _ in
             if let photo = items.singlePhoto {
@@ -89,13 +53,5 @@ class UploadPhotoVC: UIViewController {
             picker.dismiss(animated: true)
         }
         present(picker, animated: true)
-    }
-
-    @objc func openCamera() {
-        createCamera()
-    }
-        
-    @objc private func pushImage() {
-        print("上傳")
     }
 }
