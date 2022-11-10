@@ -89,27 +89,27 @@
                                 <rect key="frame" x="0.0" y="764" width="390" height="80"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5dn-Sd-cKb">
-                                        <rect key="frame" x="85" y="8" width="297" height="34"/>
+                                        <rect key="frame" x="85" y="8" width="255" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZhA-si-k9K">
+                                        <rect key="frame" x="11" y="9" width="55" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="photo.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="openAlbum:" destination="gvp-da-foI" eventType="touchUpInside" id="RqC-cw-PqV"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OI6-oo-qhV">
-                                        <rect key="frame" x="340" y="7" width="50" height="35"/>
+                                        <rect key="frame" x="340" y="8" width="50" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="paperplane.circle.fill" catalog="system"/>
                                         <connections>
                                             <action selector="sendMessage:" destination="gvp-da-foI" eventType="touchUpInside" id="S8g-d9-X6v"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6C-fi-Ze6">
-                                        <rect key="frame" x="8" y="7" width="44" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="photo.artframe" catalog="system"/>
-                                        <connections>
-                                            <action selector="openAlbum:" destination="gvp-da-foI" eventType="touchUpInside" id="AOm-Be-OAe"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -166,7 +166,7 @@
     </scenes>
     <resources>
         <image name="paperplane.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="photo.artframe" catalog="system" width="128" height="93"/>
+        <image name="photo.fill" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
