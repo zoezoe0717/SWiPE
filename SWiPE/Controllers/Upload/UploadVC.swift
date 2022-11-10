@@ -6,13 +6,11 @@
 //
 
 import UIKit
-import YPImagePicker
 
 class UploadVC: UIViewController {
-
     lazy var createButton: UIButton = {
         let button = UIButton()
-        button.setTitle("點我新增頭像", for: .normal)
+        button.setTitle("點我新增", for: .normal)
         button.backgroundColor = .gray
         button.addTarget(self, action: #selector(openCamera), for: .touchUpInside)
         return button
@@ -51,7 +49,6 @@ class UploadVC: UIViewController {
     }
     
     public func createCamera() {
-        print("createCamera")
     }
 
     @objc public func openCamera() {
