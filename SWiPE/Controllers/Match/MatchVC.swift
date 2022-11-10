@@ -37,6 +37,11 @@ class MatchVC: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        add(with: &mockUserData)
+    }
+    
     override func loadView() {
         view = UIView()
         view.backgroundColor = .white
@@ -49,7 +54,6 @@ class MatchVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         fetchData()
     }
     
@@ -60,10 +64,10 @@ class MatchVC: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
- 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        add(with: &mockUserData)
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("===SSSS")
     }
      
     private func configureStackContainer() {

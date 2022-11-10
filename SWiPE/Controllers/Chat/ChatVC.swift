@@ -40,9 +40,7 @@ class ChatVC: UIViewController {
             switch result {
             case .success(let id):
                 self.roomId = id
-                print("---B\(self.roomId)")
                 self.roomId.sort(by: { $0.lastUpdated > $1.lastUpdated })
-                print("---A\(self.roomId)")
                 self.getFriendID(roomIds: self.roomId)
 
             case .failure(let error):

@@ -9,7 +9,6 @@ import Foundation
 import AVFoundation
 
 class PlayerManager: NSObject {
-    
     static let share = PlayerManager()
     
     lazy var player = AVPlayer()
