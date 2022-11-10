@@ -14,5 +14,5 @@ target 'SWiPE' do
   pod 'FirebaseFirestoreSwift'
   pod 'Kingfisher', '~> 7.0'
   pod 'IQKeyboardManagerSwift'
-
+  pod 'YPImagePicker'
 end
