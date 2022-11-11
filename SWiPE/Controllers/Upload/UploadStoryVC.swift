@@ -76,7 +76,7 @@ class UploadStoryVC: UIViewController {
             switch result {
             case .success(let url):
                 AddDataVC.newUser.story = "\(url)"
-                FireBaseManager.shared.updateStory(user: AddDataVC.newUser)
+                FireBaseManager.shared.updateUserData(user: AddDataVC.newUser, data: ["story": "\(url)"])
                 
             case .failure(let error):
                 print(error)
