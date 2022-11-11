@@ -20,11 +20,16 @@ class ProfileVC: UIViewController {
             
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUI()
         getUser()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    private func setUI() {
+        view.backgroundColor = CustomColor.base.color
     }
     
     private func getUser() {

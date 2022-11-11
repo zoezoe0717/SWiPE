@@ -26,11 +26,16 @@ class ChatVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getRoomId()
+    }
+    
+    private func setUI() {
+        view.backgroundColor = CustomColor.base.color
     }
     
     private func getRoomId() {

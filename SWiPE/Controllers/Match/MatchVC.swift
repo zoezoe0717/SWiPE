@@ -44,7 +44,7 @@ class MatchVC: UIViewController {
     
     override func loadView() {
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = CustomColor.base.color
         stackContainer = StackContainerView()
         guard let stackContainer = stackContainer else { return }
         view.addSubview(stackContainer)

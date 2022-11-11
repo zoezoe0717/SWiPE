@@ -60,7 +60,6 @@ class UploadPhotoVC: UploadVC {
                 present(controller, animated: true)
             }
         } else {
-            print("===Diss")
             dismiss(animated: true)
         }
     }
