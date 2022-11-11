@@ -104,9 +104,20 @@ class FireBaseManager {
         }
     }
     
-    func updateStory(user: User) {
+//    func updateStory(user: User) {
+//        let document = FirestoreEndpoint.users.ref.document(user.id)
+//        document.updateData(["story": user.story]) { error in
+//            if let error = error {
+//                print(error)
+//            } else {
+//                print("Update Success")
+//            }
+//        }
+//    }
+    
+    func updateUserData(user: User, data: [String: String]) {
         let document = FirestoreEndpoint.users.ref.document(user.id)
-        document.updateData(["story": user.story]) { error in
+        document.updateData(data) { error in
             if let error = error {
                 print(error)
             } else {

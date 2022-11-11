@@ -41,13 +41,27 @@ class UploadPhotoVC: UploadVC {
         ])
     }
     
+    override func uploadData() {
+        if let image = profileImagePhoto.image {
+            UploadStoryProvider.shared.uploadPhoto(image: image) { result in
+                switch result {
+                case .success(let url):
+                    AddDataVC.newUser.story = "\(url)"
+                    FireBaseManager.shared.updateUserData(user: AddDataVC.newUser, data: ["story": "\(url)"])
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+        }
+    }
+    
     override func createCamera() {
         let picker = YPImagePicker()
         picker.didFinishPicking { [unowned picker] items, _ in
             if let photo = items.singlePhoto {
-                DispatchQueue.main.async { [self] in
-                    self.profileImagePhoto.image = photo.image
-                    self.buttonSwitch(hasImage: true)
+                DispatchQueue.main.async { [weak self] in
+                    self?.profileImagePhoto.image = photo.image
+                    self?.buttonSwitch(hasImage: true)
                 }
             }
             picker.dismiss(animated: true)
