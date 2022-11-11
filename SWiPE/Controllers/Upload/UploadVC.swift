@@ -8,6 +8,8 @@
 import UIKit
 
 class UploadVC: UIViewController {
+    lazy var isNewUser = true
+    
     lazy var createButton: UIButton = {
         let button = UIButton()
         button.setTitle("點我新增", for: .normal)
