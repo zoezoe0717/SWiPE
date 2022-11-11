@@ -6,11 +6,15 @@
 //
 
 import Foundation
+import UIKit
 
-enum UploadStoryString: String {
-    case uploadImage = "上傳圖片"
-    case chooseUploadImage = "請選擇要上傳的圖片"
-    case photoLibrary = "照片圖庫"
-    case camera = "相機"
-    case cancel = "取消"
+enum CustomColor {
+    case base
+    
+    var color: UIColor {
+        switch self {
+        case .base:
+            return UIColor(named: "baseColor") ?? .systemGray6
+        }
+    }
 }
