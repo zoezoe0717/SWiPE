@@ -67,7 +67,6 @@ class MatchVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("===SSSS")
     }
      
     private func configureStackContainer() {

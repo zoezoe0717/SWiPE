@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q3Z-aw-0m6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bZE-eR-N8H">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -69,7 +69,7 @@
         <!--Upload PhotoVC-->
         <scene sceneID="T3g-Sa-LWe">
             <objects>
-                <viewController id="d9r-VR-q56" customClass="UploadPhotoVC" customModule="SWiPE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UploadPhotoVC" id="d9r-VR-q56" customClass="UploadPhotoVC" customModule="SWiPE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gx7-o7-KAu">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -201,6 +201,7 @@
                     <connections>
                         <segue destination="jFg-N8-FcE" kind="relationship" relationship="viewControllers" id="XFr-jf-MTw"/>
                         <segue destination="xfd-lL-fbo" kind="relationship" relationship="viewControllers" id="Qfc-fy-PxF"/>
+                        <segue destination="gUU-zj-afv" kind="relationship" relationship="viewControllers" id="3u8-d8-jTh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LsO-6s-yNa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -210,7 +211,7 @@
         <!--Upload VideoVC-->
         <scene sceneID="5h1-X2-aCh">
             <objects>
-                <viewController id="q3Z-aw-0m6" customClass="UploadVideoVC" customModule="SWiPE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UploadVideoVC" id="q3Z-aw-0m6" customClass="UploadVideoVC" customModule="SWiPE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hV1-3e-N9l">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -258,6 +259,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7hd-Ou-kNQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1445" y="-181"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="d8P-GO-cCm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="gUU-zj-afv" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="XqJ-NO-TQN"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TSZ-x8-v2O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-17" y="-215"/>
         </scene>
     </scenes>
     <resources>
