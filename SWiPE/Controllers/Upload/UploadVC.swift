@@ -20,7 +20,7 @@ class UploadVC: UIViewController {
         let button = UIButton()
         button.setTitle("確定", for: .normal)
         button.backgroundColor = .gray
-        button.addTarget(self, action: #selector(pushImage), for: .touchUpInside)
+        button.addTarget(self, action: #selector(uploadData), for: .touchUpInside)
         return button
     }()
     
@@ -55,7 +55,7 @@ class UploadVC: UIViewController {
         createCamera()
     }
         
-    @objc public func pushImage() {
+    @objc public func uploadData() {
         print("上傳")
     }
 }

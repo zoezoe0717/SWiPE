@@ -22,6 +22,8 @@ class UploadVideoVC: UploadVC {
     private var playerLooper: AVPlayerLooper?
     private var queuePlayer: AVQueuePlayer?
     
+    private var videoUrl: URL?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -59,6 +61,7 @@ class UploadVideoVC: UploadVC {
     }
     
     private func createVideo(url: URL) {
+        videoUrl = url
         let asset = AVAsset(url: url)
         let item = AVPlayerItem(asset: asset)
         queuePlayer = AVQueuePlayer(playerItem: item)
@@ -79,6 +82,20 @@ class UploadVideoVC: UploadVC {
             queuePlayer.remove(items[0])
         }
     }
+    
+    override func uploadData() {
+        if let videoUrl = videoUrl {
+            UploadStoryProvider.shared.uploadVideo(url: videoUrl) { result in
+                switch result {
+                case .success(let url):
+                    AddDataVC.newUser.video = "\(url)"
+                    FireBaseManager.shared.updateUserData(user: AddDataVC.newUser, data: ["video": "\(url)"])
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+        }
+    }
         
     override func createCamera() {
         queuePlayer?.pause()
@@ -95,8 +112,6 @@ class UploadVideoVC: UploadVC {
             self.queuePlayer?.play()
             
             if let video = items.singleVideo {
-                print(video.fromCamera)
-                print(video.url)
                 DispatchQueue.main.async {
                     self.videoView.isHidden = false
                     self.createVideo(url: video.url)
