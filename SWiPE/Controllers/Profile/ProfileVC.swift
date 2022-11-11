@@ -56,6 +56,7 @@ class ProfileVC: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
         if let controller = storyboard.instantiateViewController(withIdentifier: "\(UploadPhotoVC.self)") as? UploadPhotoVC {
+            controller.isNewUser = false
             present(controller, animated: true)
         }
     }
@@ -64,6 +65,7 @@ class ProfileVC: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
         if let controller = storyboard.instantiateViewController(withIdentifier: "\(UploadVideoVC.self)") as? UploadVideoVC {
+            controller.isNewUser = false
             present(controller, animated: true)
         }
     }

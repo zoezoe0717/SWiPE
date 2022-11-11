@@ -40,7 +40,7 @@ class AddDataVC: UIViewController {
         
         add(with: &AddDataVC.newUser)
         
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "\(UploadStoryVC.self)") as? UploadStoryVC {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "\(UploadPhotoVC.self)") as? UploadPhotoVC {
             controller.modalPresentationStyle = .fullScreen
             present(controller, animated: true)
         }
