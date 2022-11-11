@@ -8,31 +8,7 @@
 import UIKit
 import YPImagePicker
 
-class UploadPhotoVC: UIViewController {
-    lazy private var createButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("點我新增頭像", for: .normal)
-        button.backgroundColor = .gray
-        button.addTarget(self, action: #selector(openCamera), for: .touchUpInside)
-        return button
-    }()
-    
-    lazy private var pushButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("確定", for: .normal)
-        button.backgroundColor = .gray
-        button.addTarget(self, action: #selector(pushImage), for: .touchUpInside)
-        return button
-    }()
-    
-    lazy private var cancelButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("重新選擇", for: .normal)
-        button.backgroundColor = .gray
-        button.addTarget(self, action: #selector(openCamera), for: .touchUpInside)
-        return button
-    }()
-    
+class UploadPhotoVC: UploadVC {
     @IBOutlet weak var profileImagePhoto: UIImageView!
     
     override func viewDidLoad() {
@@ -65,37 +41,31 @@ class UploadPhotoVC: UIViewController {
         ])
     }
     
-    private func buttonSwitch(hasImage: Bool) {
-        if hasImage {
-            createButton.isHidden = true
-            pushButton.isHidden = false
-            cancelButton.isHidden = false
-        } else {
-            createButton.isHidden = false
-            pushButton.isHidden = true
-            cancelButton.isHidden = true
+    override func uploadData() {
+        if let image = profileImagePhoto.image {
+            UploadStoryProvider.shared.uploadPhoto(image: image) { result in
+                switch result {
+                case .success(let url):
+                    AddDataVC.newUser.story = "\(url)"
+                    FireBaseManager.shared.updateUserData(user: AddDataVC.newUser, data: ["story": "\(url)"])
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
         }
     }
     
-    private func createCamera() {
+    override func createCamera() {
         let picker = YPImagePicker()
         picker.didFinishPicking { [unowned picker] items, _ in
             if let photo = items.singlePhoto {
-                DispatchQueue.main.async { [self] in
-                    self.profileImagePhoto.image = photo.image
-                    self.buttonSwitch(hasImage: true)
+                DispatchQueue.main.async { [weak self] in
+                    self?.profileImagePhoto.image = photo.image
+                    self?.buttonSwitch(hasImage: true)
                 }
             }
             picker.dismiss(animated: true)
         }
         present(picker, animated: true)
-    }
-
-    @objc func openCamera() {
-        createCamera()
-    }
-        
-    @objc private func pushImage() {
-        print("上傳")
     }
 }

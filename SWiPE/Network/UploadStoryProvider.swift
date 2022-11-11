@@ -24,4 +24,25 @@ class UploadStoryProvider {
                 }
             }
     }
+    
+    func uploadVideo(url: URL, completion: @escaping (Result<URL, Error>) -> Void) {
+        let videoName = NSUUID().uuidString
+        let fileReference = Storage.storage().reference().child("\(videoName).mov")
+        
+        fileReference.putFile(from: url, metadata: nil) { _, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                fileReference.downloadURL { url, error in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        if let url = url {
+                            completion(.success(url))
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
