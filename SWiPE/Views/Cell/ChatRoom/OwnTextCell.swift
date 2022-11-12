@@ -1,5 +1,5 @@
 //
-//  FriendTextCell.swift
+//  OwnTextCell.swift
 //  SWiPE
 //
 //  Created by Zoe on 2022/11/4.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class FriendTextCell: UITableViewCell {
-
-    @IBOutlet weak var friendImageView: UIImageView!
+class OwnTextCell: UITableViewCell {
+    @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var timeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,5 +23,6 @@ class FriendTextCell: UITableViewCell {
     
     func setText(message: Message) {
         textView.text = message.message
+        timeLabel.text = Date.dateFormatter.string(from: Date.init(milliseconds: message.createdTime))
     }
 }

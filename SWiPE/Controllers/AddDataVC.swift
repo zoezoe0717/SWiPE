@@ -9,8 +9,7 @@ import UIKit
 import CoreLocation
 
 class AddDataVC: UIViewController {
-
-    static var newUser = User(id: "3uStqAQuVge9DkKoDneb ", name: "", email: "", latitude: 0, longitude: 0, age: 0, story: "", createdTime: 0, index: 0)
+    static var newUser = User(id: "5P2cWW6UffQ2nWTdl192", name: "", email: "", latitude: 0, longitude: 0, age: 0, story: "", video: "", introduction: "", createdTime: 0, index: 0)
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var ageField: UITextField!
@@ -41,7 +40,7 @@ class AddDataVC: UIViewController {
         
         add(with: &AddDataVC.newUser)
         
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "\(UploadStoryVC.self)") as? UploadStoryVC {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "\(UploadPhotoVC.self)") as? UploadPhotoVC {
             controller.modalPresentationStyle = .fullScreen
             present(controller, animated: true)
         }

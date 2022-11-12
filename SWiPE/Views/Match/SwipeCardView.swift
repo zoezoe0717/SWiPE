@@ -6,13 +6,26 @@
 //
 
 import UIKit
+import AVFoundation
 
 protocol SwipeCardsDelegate: AnyObject {
     func swipeDidEnd(on view: SwipeCardView)
     func swipeMatched(toMatch: Bool)
+    func playerControl(removeCard: Bool)
 }
 
 class SwipeCardView: UIView {
+//    lazy var player = AVPlayer()
+//
+    lazy var playerLayer: AVPlayerLayer = {
+        let layer = AVPlayerLayer(player: queuePlayer)
+        layer.videoGravity = .resizeAspectFill
+        return layer
+    }()
+    
+    private var playerLooper: AVPlayerLooper!
+    var queuePlayer: AVQueuePlayer!
+    
     lazy private var swipeView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 15
@@ -32,19 +45,35 @@ class SwipeCardView: UIView {
     
     lazy private var imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.backgroundColor = .white
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
 
-    lazy private var label: UILabel = {
+    lazy private var nameLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .white
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont.systemFont(ofSize: 40)
         return label
     }()
-
+    
+    lazy private var ageLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 25)
+        return label
+    }()
+    
+    lazy private var introductionLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 15)
+        return label
+    }()
+    
     weak var delegate: SwipeCardsDelegate?
 
     var divisor: CGFloat = 0
@@ -52,8 +81,11 @@ class SwipeCardView: UIView {
     
     var dataSource: User? {
         didSet {
-            imageView.loadImage(dataSource?.story)
-            label.text = dataSource?.name
+            guard let dataSource = dataSource else { return }
+            nameLabel.text = dataSource.name
+            ageLabel.text = "\(dataSource.age)"
+            introductionLabel.text = dataSource.introduction
+            playUrl(url: dataSource.video)
         }
     }
 
@@ -63,14 +95,24 @@ class SwipeCardView: UIView {
         addPanGestureOnCards()
         configureTapGesture()
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageView.layer.addSublayer(playerLayer)
+        playerLayer.frame = self.bounds
+    }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     private func setConstraint() {
-        [shadowView, swipeView, label, imageView].forEach { subView in
+        [shadowView, swipeView, imageView].forEach { subView in
             subView.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        [nameLabel, ageLabel, introductionLabel].forEach { label in
+            label.translatesAutoresizingMaskIntoConstraints = false
         }
         
         // MARK: ShadowView
@@ -99,15 +141,37 @@ class SwipeCardView: UIView {
             imageView.leftAnchor.constraint(equalTo: swipeView.leftAnchor),
             imageView.rightAnchor.constraint(equalTo: swipeView.rightAnchor)
         ])
-
+        
         // MARK: NameLabel
-        swipeView.addSubview(label)
+        swipeView.addSubview(nameLabel)
         NSLayoutConstraint.activate([
-            label.leftAnchor.constraint(equalTo: swipeView.leftAnchor),
-            label.rightAnchor.constraint(equalTo: swipeView.rightAnchor),
-            label.bottomAnchor.constraint(equalTo: swipeView.bottomAnchor),
-            label.heightAnchor.constraint(equalToConstant: 85)
+            nameLabel.leftAnchor.constraint(equalTo: swipeView.leftAnchor, constant: 20),
+            nameLabel.bottomAnchor.constraint(equalTo: swipeView.bottomAnchor, constant: -60)
         ])
+        
+        // MARK: AgeLabel
+        swipeView.addSubview(ageLabel)
+        NSLayoutConstraint.activate([
+            ageLabel.leftAnchor.constraint(equalTo: nameLabel.rightAnchor, constant: 10),
+            ageLabel.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor)
+        ])
+        
+        // MARK: IntroductionLabel
+        swipeView.addSubview(introductionLabel)
+        NSLayoutConstraint.activate([
+            introductionLabel.leftAnchor.constraint(equalTo: swipeView.leftAnchor, constant: 20),
+            introductionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5)
+        ])
+    }
+    
+    private func playUrl(url: String?) {
+        guard let urlString = url,
+              let url = URL(string: urlString) else { return }
+        let asset = AVAsset(url: url)
+        let item = AVPlayerItem(asset: asset)
+        
+        queuePlayer = AVQueuePlayer(playerItem: item)
+        playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: item)
     }
 
     func configureTapGesture() {
@@ -128,7 +192,7 @@ class SwipeCardView: UIView {
 
         let _ = ((UIScreen.main.bounds.width / 2) - card.center.x)
         divisor = ((UIScreen.main.bounds.width / 2) / 0.61)
-
+        
         switch sender.state {
         case .ended:
             if (card.center.x) > 400 {
@@ -143,7 +207,7 @@ class SwipeCardView: UIView {
                     self.layoutIfNeeded()
                 }
                 return
-            } else if card.center.x < -40 {
+            } else if card.center.x < -35 {
                 delegate?.swipeMatched(toMatch: false)
                 delegate?.swipeDidEnd(on: card)
                 UIView.animate(withDuration: 0.2) {
@@ -156,6 +220,7 @@ class SwipeCardView: UIView {
                 }
                 return
             }
+            delegate?.playerControl(removeCard: true)
             UIView.animate(withDuration: 0.2) {
                 card.transform = .identity
                 card.center = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
@@ -164,7 +229,12 @@ class SwipeCardView: UIView {
         case .changed:
             let rotation = tan(point.x / (self.frame.width * 2.0))
             card.transform = CGAffineTransform(rotationAngle: rotation)
-
+            
+            if (card.center.x) > 300 {
+                delegate?.playerControl(removeCard: false)
+            } else if (card.center.x) < 70 {
+                delegate?.playerControl(removeCard: false)
+            }
         default:
             break
         }
