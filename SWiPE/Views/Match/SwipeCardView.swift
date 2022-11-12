@@ -45,16 +45,32 @@ class SwipeCardView: UIView {
     
     lazy private var imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.backgroundColor = .white
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
 
-    lazy private var label: UILabel = {
+    lazy private var nameLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .white
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont.systemFont(ofSize: 40)
+        return label
+    }()
+    
+    lazy private var ageLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 25)
+        return label
+    }()
+    
+    lazy private var introductionLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()
     
@@ -65,9 +81,11 @@ class SwipeCardView: UIView {
     
     var dataSource: User? {
         didSet {
-            imageView.loadImage(dataSource?.story)
-            label.text = dataSource?.name
-            playUrl(url: dataSource?.video)
+            guard let dataSource = dataSource else { return }
+            nameLabel.text = dataSource.name
+            ageLabel.text = "\(dataSource.age)"
+            introductionLabel.text = dataSource.introduction
+            playUrl(url: dataSource.video)
         }
     }
 
@@ -89,8 +107,12 @@ class SwipeCardView: UIView {
     }
     
     private func setConstraint() {
-        [shadowView, swipeView, label, imageView].forEach { subView in
+        [shadowView, swipeView, imageView].forEach { subView in
             subView.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        [nameLabel, ageLabel, introductionLabel].forEach { label in
+            label.translatesAutoresizingMaskIntoConstraints = false
         }
         
         // MARK: ShadowView
@@ -121,12 +143,24 @@ class SwipeCardView: UIView {
         ])
         
         // MARK: NameLabel
-        swipeView.addSubview(label)
+        swipeView.addSubview(nameLabel)
         NSLayoutConstraint.activate([
-            label.leftAnchor.constraint(equalTo: swipeView.leftAnchor),
-            label.rightAnchor.constraint(equalTo: swipeView.rightAnchor),
-            label.bottomAnchor.constraint(equalTo: swipeView.bottomAnchor),
-            label.heightAnchor.constraint(equalToConstant: 85)
+            nameLabel.leftAnchor.constraint(equalTo: swipeView.leftAnchor, constant: 20),
+            nameLabel.bottomAnchor.constraint(equalTo: swipeView.bottomAnchor, constant: -60)
+        ])
+        
+        // MARK: AgeLabel
+        swipeView.addSubview(ageLabel)
+        NSLayoutConstraint.activate([
+            ageLabel.leftAnchor.constraint(equalTo: nameLabel.rightAnchor, constant: 10),
+            ageLabel.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor)
+        ])
+        
+        // MARK: IntroductionLabel
+        swipeView.addSubview(introductionLabel)
+        NSLayoutConstraint.activate([
+            introductionLabel.leftAnchor.constraint(equalTo: swipeView.leftAnchor, constant: 20),
+            introductionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5)
         ])
     }
     
