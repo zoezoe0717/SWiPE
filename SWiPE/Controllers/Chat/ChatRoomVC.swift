@@ -45,6 +45,7 @@ class ChatRoomVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
+        setUI()
         addListener()
         chatRoomTableView.transform = CGAffineTransform(rotationAngle: .pi)
     }
@@ -58,6 +59,10 @@ class ChatRoomVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    private func setUI() {
+        view.backgroundColor = CustomColor.base.color
     }
     
     private func getMessage() {
@@ -187,7 +192,7 @@ extension ChatRoomVC: UITableViewDelegate, UITableViewDataSource {
                 }
                 
                 cell.setup(message: message[indexPath.item])
-                cell.userImage.loadImage(userData?.story)
+                cell.userImage.loadImage(friendData?.story)
                 messageCell = cell
             }
         }

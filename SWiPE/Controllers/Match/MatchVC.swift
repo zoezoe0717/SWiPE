@@ -18,6 +18,7 @@ class MatchVC: UIViewController {
         age: 20,
         story: "https://i.imgur.com/4Vc3NZR.png",
         video: "https://i.imgur.com/1NLECXT.mp4",
+        introduction: "嘻嘻嘻嘻嘻嘻",
         createdTime: 0,
         index: 0
     )
@@ -44,7 +45,7 @@ class MatchVC: UIViewController {
     
     override func loadView() {
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = CustomColor.base.color
         stackContainer = StackContainerView()
         guard let stackContainer = stackContainer else { return }
         view.addSubview(stackContainer)
@@ -67,7 +68,6 @@ class MatchVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("===SSSS")
     }
      
     private func configureStackContainer() {

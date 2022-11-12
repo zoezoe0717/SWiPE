@@ -10,7 +10,7 @@ import YPImagePicker
 
 class UploadPhotoVC: UploadVC {
     @IBOutlet weak var profileImagePhoto: UIImageView!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -52,6 +52,15 @@ class UploadPhotoVC: UploadVC {
                     print(failure)
                 }
             }
+        }
+        
+        if isNewUser {
+            if let controller = storyboard?.instantiateViewController(withIdentifier: "\(UploadVideoVC.self)") as? UploadVideoVC {
+                controller.modalPresentationStyle = .fullScreen
+                present(controller, animated: true)
+            }
+        } else {
+            dismiss(animated: true)
         }
     }
     
