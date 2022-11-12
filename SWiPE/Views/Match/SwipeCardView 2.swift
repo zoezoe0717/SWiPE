@@ -49,12 +49,6 @@ class SwipeCardView: UIView {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
-    
-    lazy private var activityView: UIActivityIndicatorView = {
-        let activity = UIActivityIndicatorView()
-        activity.startAnimating()
-        return activity
-    }()
 
     lazy private var nameLabel: UILabel = {
         let label = UILabel()
@@ -113,7 +107,7 @@ class SwipeCardView: UIView {
     }
     
     private func setConstraint() {
-        [shadowView, swipeView, imageView, activityView].forEach { subView in
+        [shadowView, swipeView, imageView].forEach { subView in
             subView.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -148,13 +142,6 @@ class SwipeCardView: UIView {
             imageView.rightAnchor.constraint(equalTo: swipeView.rightAnchor)
         ])
         
-        // MARK: ActivityView
-        swipeView.addSubview(activityView)
-        NSLayoutConstraint.activate([
-            activityView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
-            activityView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
-        ])
-        
         // MARK: NameLabel
         swipeView.addSubview(nameLabel)
         NSLayoutConstraint.activate([
@@ -179,7 +166,7 @@ class SwipeCardView: UIView {
     
     private func playUrl(url: String?) {
         guard let urlString = url,
-            let url = URL(string: urlString) else { return }
+              let url = URL(string: urlString) else { return }
         let asset = AVAsset(url: url)
         let item = AVPlayerItem(asset: asset)
         
@@ -203,7 +190,7 @@ class SwipeCardView: UIView {
         let centerOfParentContainer = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
         card.center = CGPoint(x: centerOfParentContainer.x + point.x, y: centerOfParentContainer.y + point.y)
 
-        _ = ((UIScreen.main.bounds.width / 2) - card.center.x)
+        let _ = ((UIScreen.main.bounds.width / 2) - card.center.x)
         divisor = ((UIScreen.main.bounds.width / 2) / 0.61)
         
         switch sender.state {
