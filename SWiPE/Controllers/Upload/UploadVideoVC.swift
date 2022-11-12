@@ -95,6 +95,15 @@ class UploadVideoVC: UploadVC {
                 }
             }
         }
+        
+        if isNewUser {
+            if let controller = storyboard?.instantiateViewController(withIdentifier: "MainTableBar") {
+                controller.modalPresentationStyle = .fullScreen
+                present(controller, animated: true)
+            }
+        } else {
+            dismiss(animated: true)
+        }
     }
         
     override func createCamera() {

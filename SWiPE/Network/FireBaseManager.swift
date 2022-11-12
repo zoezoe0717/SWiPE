@@ -79,16 +79,15 @@ class FireBaseManager {
         }
     }
     
-    func addUser(user: inout User, completion: @escaping (Result<String, Error>) -> Void) {
-        let document = FirestoreEndpoint.users.ref.document()
-        user.id = document.documentID
-        user.createdTime = Date().millisecondsSince1970
-        
-        document.setData(user.toDict) { error in
+    func getUser(completion: @escaping (Result<User?, Error>) -> Void ) {
+        let document = FirestoreEndpoint.users.ref.document(ChatManager.mockId)
+        document.addSnapshotListener { snapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
-                completion(.success("Success add user"))
+                guard let snapshot = snapshot else { return }
+                let user = try? snapshot.data(as: User.self)
+                completion(.success(user))
             }
         }
     }
@@ -171,6 +170,20 @@ class FireBaseManager {
                     self.deleteUser(user: user, netizen: netizen)
                 }
                 completion(.success("Search Success"))
+            }
+        }
+    }
+    
+    func addUser(user: inout User, completion: @escaping (Result<String, Error>) -> Void) {
+        let document = FirestoreEndpoint.users.ref.document()
+        user.id = document.documentID
+        user.createdTime = Date().millisecondsSince1970
+        
+        document.setData(user.toDict) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success("Success add user"))
             }
         }
     }
