@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 class ChatRoomVC: UIViewController {
     @IBOutlet weak var messageTextField: UITextField!
@@ -15,10 +16,15 @@ class ChatRoomVC: UIViewController {
             chatRoomTableView.dataSource = self
             chatRoomTableView.register(UINib(nibName: "\(OwnTextCell.self)", bundle: nil), forCellReuseIdentifier: "\(OwnTextCell.self)")
             chatRoomTableView.register(UINib(nibName: "\(FriendTextCell.self)", bundle: nil), forCellReuseIdentifier: "\(FriendTextCell.self)")
+            chatRoomTableView.register(UINib(nibName: "\(OwnImageCell.self)", bundle: nil), forCellReuseIdentifier: "\(OwnImageCell.self)")
+            chatRoomTableView.register(UINib(nibName: "\(FriendImageCell.self)", bundle: nil), forCellReuseIdentifier: "\(FriendImageCell.self)")
         }
     }
     
     var id = ""
+    
+    var messageImage: UIImage?
+
     var message: [Message] = [] {
         didSet {
             chatRoomTableView.reloadData()
@@ -39,6 +45,7 @@ class ChatRoomVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
+        setUI()
         addListener()
         chatRoomTableView.transform = CGAffineTransform(rotationAngle: .pi)
     }
@@ -54,8 +61,12 @@ class ChatRoomVC: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    private func setUI() {
+        view.backgroundColor = CustomColor.base.color
+    }
+    
     private func getMessage() {
-        let query = FirestoreEndpoint.messages(id).ref.order(by: "createdTime", descending: true)
+        let query = FirestoreEndpoint.chatRoomsMessages(id).ref.order(by: "createdTime", descending: true)
         
         FireBaseManager.shared.getDocument(query: query) { [weak self] (message: [Message]) in
             guard let `self` = self else { return }
@@ -63,7 +74,7 @@ class ChatRoomVC: UIViewController {
         }
     }
     
-    private func pushMessage( message: inout Message) {
+    private func pushMessage(message: inout Message) {
         ChatManager.shared.addMessage(id: id, message: &message) { result in
             switch result {
             case .success(let string):
@@ -95,13 +106,25 @@ class ChatRoomVC: UIViewController {
         }
     }
     
+    private func sendImageMessage() {
+        guard let messageImage = messageImage else { return }
+        ChatManager.shared.addImageMessage(id: id, image: messageImage) { result in
+            switch result {
+            case .success(let success):
+                print(success)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     @IBAction func sendMessage(_ sender: Any) {
         var mockMessage = Message(
             senderId: "",
             messageId: "",
             message: "",
             createdTime: 0,
-            type: ""
+            type: MessageType.text.rawValue
         )
         
         if let text = messageTextField.text {
@@ -112,8 +135,19 @@ class ChatRoomVC: UIViewController {
                 pushMessage(message: &mockMessage)
             }
         }
-        
+    
         messageTextField.text = nil
+    }
+    
+    @IBAction func openAlbum(_ sender: Any) {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1
+        configuration.filter = .any(of: [.images, .videos])
+        configuration.preferredAssetRepresentationMode = .current
+        
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        self.present(picker, animated: true)
     }
 }
 
@@ -124,23 +158,85 @@ extension ChatRoomVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var messageCell = UITableViewCell()
-        if message[indexPath.item].senderId == ChatManager.mockId {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(OwnTextCell.self)", for: indexPath) as? OwnTextCell else {
-                fatalError("DEBUG: Can not create OwnTextCell")
+        let isUser = message[indexPath.item].senderId == ChatManager.mockId
+        let isText = message[indexPath.item].type == MessageType.text.rawValue
+
+        if isUser {
+            if isText {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(OwnTextCell.self)", for: indexPath) as? OwnTextCell else {
+                    fatalError("DEBUG: Can not create OwnTextCell")
+                }
+                cell.setText(message: message[indexPath.item])
+                cell.userImage.loadImage(userData?.story)
+                messageCell = cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(OwnImageCell.self)", for: indexPath) as? OwnImageCell else {
+                    fatalError("DEBUG: Can not create OwnTextCell")
+                }
+                cell.setup(message: message[indexPath.item])
+                cell.userImage.loadImage(userData?.story)
+                messageCell = cell
             }
-            cell.setText(message: message[indexPath.item])
-            cell.userImage.loadImage(userData?.story)
-            messageCell = cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(FriendTextCell.self)", for: indexPath) as? FriendTextCell else {
-                fatalError("DEBUG: Can not create OwnTextCell")
+            if isText {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(FriendTextCell.self)", for: indexPath) as? FriendTextCell else {
+                    fatalError("DEBUG: Can not create FriendTextCell")
+                }
+                
+                cell.setText(message: message[indexPath.item])
+                cell.friendImageView.loadImage(friendData?.story)
+                messageCell = cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(FriendImageCell.self)", for: indexPath) as? FriendImageCell else {
+                    fatalError("DEBUG: Can not create FriendTextCell")
+                }
+                
+                cell.setup(message: message[indexPath.item])
+                cell.userImage.loadImage(friendData?.story)
+                messageCell = cell
             }
-            
-            cell.setText(message: message[indexPath.item])
-            cell.friendImageView.loadImage(friendData?.story)
-            messageCell = cell
         }
         
         return messageCell
+    }
+}
+
+extension ChatRoomVC: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        guard let result = results.first else { return }
+        let provider = result.itemProvider
+        
+        if provider.canLoadObject(ofClass: UIImage.self) {
+            self.dealWithImage(result)
+        } else if provider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
+            self.dealWithVideo(result)
+        }
+    }
+    
+    private func dealWithImage(_ result: PHPickerResult) {
+        let provider = result.itemProvider
+        provider.loadObject(ofClass: UIImage.self) { image, _ in
+            if let image = image as? UIImage {
+                DispatchQueue.main.async {
+                    self.messageImage = image
+                    self.sendImageMessage()
+                }
+            }
+        }
+    }
+    
+    private func dealWithVideo(_ result: PHPickerResult) {
+        let movie = UTType.movie.identifier
+        let provider = result.itemProvider
+        
+        provider.loadFileRepresentation(forTypeIdentifier: movie) { url, error in
+            if let error = error {
+                print(error)
+            } else {
+                guard let url = url as? NSURL else { return }
+                print("===\(url)")
+            }
+        }
     }
 }

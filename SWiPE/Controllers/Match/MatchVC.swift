@@ -17,6 +17,8 @@ class MatchVC: UIViewController {
         longitude: 0,
         age: 20,
         story: "https://i.imgur.com/4Vc3NZR.png",
+        video: "https://i.imgur.com/1NLECXT.mp4",
+        introduction: "嘻嘻嘻嘻嘻嘻",
         createdTime: 0,
         index: 0
     )
@@ -36,9 +38,14 @@ class MatchVC: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        add(with: &mockUserData)
+    }
+    
     override func loadView() {
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = CustomColor.base.color
         stackContainer = StackContainerView()
         guard let stackContainer = stackContainer else { return }
         view.addSubview(stackContainer)
@@ -58,10 +65,9 @@ class MatchVC: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
- 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        add(with: &mockUserData)a
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
      
     private func configureStackContainer() {
