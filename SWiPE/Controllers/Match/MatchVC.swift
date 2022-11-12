@@ -18,6 +18,7 @@ class MatchVC: UIViewController {
         age: 20,
         story: "https://i.imgur.com/4Vc3NZR.png",
         video: "https://i.imgur.com/1NLECXT.mp4",
+        introduction: "嘻嘻嘻嘻嘻嘻",
         createdTime: 0,
         index: 0
     )
