@@ -15,8 +15,6 @@ protocol SwipeCardsDelegate: AnyObject {
 }
 
 class SwipeCardView: UIView {
-//    lazy var player = AVPlayer()
-//
     lazy var playerLayer: AVPlayerLayer = {
         let layer = AVPlayerLayer(player: queuePlayer)
         layer.videoGravity = .resizeAspectFill
@@ -56,6 +54,12 @@ class SwipeCardView: UIView {
         activity.startAnimating()
         return activity
     }()
+    
+//    lazy private var loadingView: LottieAnimationView = {
+//        if let view = LottieAnimationView(name: "CardLoding") {
+//
+//        }
+//    }()
 
     lazy private var nameLabel: UILabel = {
         let label = UILabel()
