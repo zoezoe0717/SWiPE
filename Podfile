@@ -15,4 +15,5 @@ target 'SWiPE' do
   pod 'Kingfisher', '~> 7.0'
   pod 'IQKeyboardManagerSwift'
   pod 'YPImagePicker'
+  pod 'lottie-ios'
 end
