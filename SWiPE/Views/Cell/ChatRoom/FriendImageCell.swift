@@ -15,6 +15,7 @@ class FriendImageCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentView.transform = CGAffineTransform(rotationAngle: .pi)
+        messageImage.layer.cornerRadius = 20
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

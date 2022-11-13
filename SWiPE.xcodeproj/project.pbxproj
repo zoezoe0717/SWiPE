@@ -127,6 +127,7 @@
 		C88946842913CC8E009A5BF3 /* Match */ = {
 			isa = PBXGroup;
 			children = (
+				C8FC9877290FB9E80028DE17 /* StackContainerView.swift */,
 				C8FC987D290FC0350028DE17 /* MatchVC.swift */,
 			);
 			path = Match;
@@ -283,7 +284,6 @@
 			children = (
 				C88D50DF2914E3780022D31B /* Match.storyboard */,
 				C8FC9875290FB9E10028DE17 /* SwipeCardView.swift */,
-				C8FC9877290FB9E80028DE17 /* StackContainerView.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
