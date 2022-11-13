@@ -59,7 +59,6 @@ class ChatVC: UIViewController {
         ChatManager.shared.getFriendData(roomIds: roomIds) { result in
             switch result {
             case .success(let friends):
-                print("---C\(friends)")
                 self.friendList.append(friends)
             case .failure(let error):
                 print(error)

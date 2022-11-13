@@ -24,6 +24,7 @@ class SwipeCardView: UIView {
     }()
     
     private var playerLooper: AVPlayerLooper!
+
     var queuePlayer: AVQueuePlayer!
     
     lazy private var swipeView: UIView = {
@@ -149,7 +150,7 @@ class SwipeCardView: UIView {
         ])
         
         // MARK: ActivityView
-        swipeView.addSubview(activityView)
+        imageView.addSubview(activityView)
         NSLayoutConstraint.activate([
             activityView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
             activityView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
