@@ -61,7 +61,8 @@ class StackContainerView: UIView {
         layoutIfNeeded()
         numberOfCardsToShow = datasource.numberOfCardsToShow()
         remainingcards = numberOfCardsToShow
-        
+        index = 0
+                
         for i in 0..<min(numberOfCardsToShow, cardsToBeVisible) {
             addCardView(cardView: datasource.card(at: i), atIndex: i )
         }

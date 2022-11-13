@@ -131,10 +131,10 @@
             </objects>
             <point key="canvasLocation" x="-495.38461538461536" y="-1610.9004739336492"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Swipe Tab Bar Controller-->
         <scene sceneID="FQX-1K-DgW">
             <objects>
-                <tabBarController storyboardIdentifier="MainTableBar" automaticallyAdjustsScrollViewInsets="NO" id="bZE-eR-N8H" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="SwipeTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="bZE-eR-N8H" customClass="SwipeTabBarController" customModule="SWiPE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="a92-n7-HdM">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -197,7 +197,7 @@
         <scene sceneID="GHj-7E-k2t">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="MatchVC" storyboardName="Match" referencedIdentifier="MatchVC" id="jFg-N8-FcE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="dgN-pe-1IM"/>
+                    <tabBarItem key="tabBarItem" title="" id="dgN-pe-1IM"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7hd-Ou-kNQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

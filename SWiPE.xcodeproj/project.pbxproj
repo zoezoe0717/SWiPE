@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		653863C99883BB5B15ACCA69 /* Pods_SWiPE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA99A84933CECDE40F287328 /* Pods_SWiPE.framework */; };
+		C851F4A32920BC8600813E31 /* SwipeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C851F4A22920BC8600813E31 /* SwipeTabBarController.swift */; };
 		C8573D0B29150CB00095601B /* OwnTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8573D0929150CB00095601B /* OwnTextCell.swift */; };
 		C8573D0C29150CB00095601B /* OwnTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8573D0A29150CB00095601B /* OwnTextCell.xib */; };
 		C8573D11291516B40095601B /* FriendTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8573D0F291516B40095601B /* FriendTextCell.swift */; };
@@ -50,6 +51,7 @@
 /* Begin PBXFileReference section */
 		05D499648B8F8501A9C04305 /* Pods-SWiPE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWiPE.debug.xcconfig"; path = "Target Support Files/Pods-SWiPE/Pods-SWiPE.debug.xcconfig"; sourceTree = "<group>"; };
 		AA118603100A4148BF1C064B /* Pods-SWiPE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWiPE.release.xcconfig"; path = "Target Support Files/Pods-SWiPE/Pods-SWiPE.release.xcconfig"; sourceTree = "<group>"; };
+		C851F4A22920BC8600813E31 /* SwipeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTabBarController.swift; sourceTree = "<group>"; };
 		C8573D0929150CB00095601B /* OwnTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnTextCell.swift; sourceTree = "<group>"; };
 		C8573D0A29150CB00095601B /* OwnTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OwnTextCell.xib; sourceTree = "<group>"; };
 		C8573D0F291516B40095601B /* FriendTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTextCell.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				C88946842913CC8E009A5BF3 /* Match */,
 				C88946832913CC7F009A5BF3 /* Chat */,
 				C8573D132916E75B0095601B /* AddDataVC.swift */,
+				C851F4A22920BC8600813E31 /* SwipeTabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				C8573D11291516B40095601B /* FriendTextCell.swift in Sources */,
 				C8E845FD291B915B00180758 /* FriendImageCell.swift in Sources */,
 				C8E845F9291B914A00180758 /* OwnImageCell.swift in Sources */,
+				C851F4A32920BC8600813E31 /* SwipeTabBarController.swift in Sources */,
 				C88946792913589F009A5BF3 /* ChatManager.swift in Sources */,
 				C8FC9878290FB9E80028DE17 /* StackContainerView.swift in Sources */,
 				C8C77BF0291CFADA00A1675D /* UploadVC.swift in Sources */,

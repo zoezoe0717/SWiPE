@@ -59,11 +59,11 @@
             </objects>
             <point key="canvasLocation" x="909.16030534351137" y="-215.49295774647888"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="wUl-mq-5Jr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AbZ-ZJ-Utv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="snc-Uu-doV"/>
+                    <tabBarItem key="tabBarItem" title="" image="profile" id="snc-Uu-doV"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dMd-jj-2rx">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -80,6 +80,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="profile" width="33.333332061767578" height="33.333332061767578"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
