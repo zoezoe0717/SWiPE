@@ -24,6 +24,8 @@ class MatchVC: UIViewController {
     )
     
     private let locationManager = CLLocationManager()
+    
+    private var fullScreen: CGSize?
 
     private var matchData: [User]? {
         didSet {
@@ -40,7 +42,8 @@ class MatchVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        add(with: &mockUserData)
+        fullScreen = UIScreen.main.bounds.size
+        configureStackContainer()
     }
     
     override func loadView() {
@@ -49,7 +52,6 @@ class MatchVC: UIViewController {
         stackContainer = StackContainerView()
         guard let stackContainer = stackContainer else { return }
         view.addSubview(stackContainer)
-        configureStackContainer()
         stackContainer.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -71,11 +73,13 @@ class MatchVC: UIViewController {
     }
      
     private func configureStackContainer() {
-        guard let stackContainer = stackContainer else { return }
+        guard let stackContainer = stackContainer,
+              let fullScreen = fullScreen else { return }
+
         stackContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        stackContainer.widthAnchor.constraint(equalToConstant: 350).isActive = true
-        stackContainer.heightAnchor.constraint(equalToConstant: 600).isActive = true
+        stackContainer.widthAnchor.constraint(equalToConstant: fullScreen.width * 0.95).isActive = true
+        stackContainer.heightAnchor.constraint(equalToConstant: fullScreen.height * 0.75).isActive = true
     }
     
     //    func convertLocation(lat latitude: CLLocationDegrees, lon longitude: CLLocationDegrees) {
