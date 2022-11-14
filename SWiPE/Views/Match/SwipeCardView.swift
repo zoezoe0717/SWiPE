@@ -213,7 +213,7 @@ class SwipeCardView: UIView {
         
         switch sender.state {
         case .ended:
-            if (card.center.x) > 400 {
+            if (card.center.x) > 320 {
                 delegate?.swipeMatched(toMatch: true)
                 delegate?.swipeDidEnd(on: card)
                 UIView.animate(withDuration: 0.2) {
@@ -225,7 +225,7 @@ class SwipeCardView: UIView {
                     self.layoutIfNeeded()
                 }
                 return
-            } else if card.center.x < -35 {
+            } else if card.center.x < 90 {
                 delegate?.swipeMatched(toMatch: false)
                 delegate?.swipeDidEnd(on: card)
                 UIView.animate(withDuration: 0.2) {
@@ -245,12 +245,12 @@ class SwipeCardView: UIView {
                 self.layoutIfNeeded()
             }
         case .changed:
-            let rotation = tan(point.x / (self.frame.width * 2.0))
+            let rotation = tan(point.x / (self.frame.width * 2.5))
             card.transform = CGAffineTransform(rotationAngle: rotation)
             
             if (card.center.x) > 300 {
                 delegate?.playerControl(removeCard: false)
-            } else if (card.center.x) < 70 {
+            } else if (card.center.x) < 100 {
                 delegate?.playerControl(removeCard: false)
             }
         default:
