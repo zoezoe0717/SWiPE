@@ -9,7 +9,12 @@ import UIKit
 import PhotosUI
 
 class ChatRoomVC: UIViewController {
-    @IBOutlet weak var messageTextField: UITextField!
+    @IBOutlet weak var inputMessageBaseView: UIView!
+    
+    @IBOutlet weak var messageInputView: UIView!
+    
+    @IBOutlet weak var messageTextView: UITextView!
+    
     @IBOutlet weak var chatRoomTableView: UITableView! {
         didSet {
             chatRoomTableView.delegate = self
@@ -63,6 +68,12 @@ class ChatRoomVC: UIViewController {
     
     private func setUI() {
         view.backgroundColor = CustomColor.base.color
+        messageInputView.layer.cornerRadius = messageInputView.bounds.width * 0.06
+        
+        chatRoomTableView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        chatRoomTableView.layer.cornerRadius = 50
+        
+        inputMessageBaseView.backgroundColor = CustomColor.tabBar.color
     }
     
     private func getMessage() {
@@ -127,7 +138,7 @@ class ChatRoomVC: UIViewController {
             type: MessageType.text.rawValue
         )
         
-        if let text = messageTextField.text {
+        if let text = messageTextView.text {
             if text.isEmpty {
                 print("輸入為空")
             } else {
@@ -136,7 +147,7 @@ class ChatRoomVC: UIViewController {
             }
         }
     
-        messageTextField.text = nil
+        messageTextView.text = nil
     }
     
     @IBAction func openAlbum(_ sender: Any) {
