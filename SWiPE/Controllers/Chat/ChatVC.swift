@@ -84,6 +84,7 @@ extension ChatVC: UITableViewDelegate, UITableViewDataSource {
         if let controller = storyboard?.instantiateViewController(withIdentifier: "\(ChatRoomVC.self)") as? ChatRoomVC {
             let id = roomId[indexPath.item].id
             controller.id = id
+            controller.navigationController?.isNavigationBarHidden = true
             navigationController?.pushViewController(controller, animated: true)
         }
     }

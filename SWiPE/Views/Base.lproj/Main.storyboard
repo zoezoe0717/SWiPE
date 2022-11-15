@@ -187,7 +187,7 @@
         <scene sceneID="TzS-hn-fEE">
             <objects>
                 <viewControllerPlaceholder storyboardName="Chat" id="xfd-lL-fbo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="xxi-CM-Wxm"/>
+                    <tabBarItem key="tabBarItem" title="" image="chat-bubble" id="xxi-CM-Wxm"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="whh-0R-vl8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -215,6 +215,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chat-bubble" width="33.333332061767578" height="33.333332061767578"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
