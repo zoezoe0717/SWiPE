@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import Lottie
 
 protocol SwipeCardsDelegate: AnyObject {
     func swipeDidEnd(on view: SwipeCardView)
@@ -18,17 +19,19 @@ class SwipeCardView: UIView {
     lazy var playerLayer: AVPlayerLayer = {
         let layer = AVPlayerLayer(player: queuePlayer)
         layer.videoGravity = .resizeAspectFill
+        
         return layer
     }()
     
-    private var playerLooper: AVPlayerLooper!
+    private var playerLooper: AVPlayerLooper?
 
-    var queuePlayer: AVQueuePlayer!
+    var queuePlayer: AVQueuePlayer?
     
     lazy private var swipeView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 15
         view.clipsToBounds = true
+        
         return view
     }()
     
@@ -39,6 +42,7 @@ class SwipeCardView: UIView {
         view.layer.shadowOffset = CGSize(width: 0, height: 0)
         view.layer.shadowOpacity = 0.8
         view.layer.shadowRadius = 4.0
+        
         return view
     }()
     
@@ -46,26 +50,25 @@ class SwipeCardView: UIView {
         let imageView = UIImageView()
         imageView.backgroundColor = .white
         imageView.contentMode = .scaleAspectFill
+        
         return imageView
     }()
     
-    lazy private var activityView: UIActivityIndicatorView = {
-        let activity = UIActivityIndicatorView()
-        activity.startAnimating()
-        return activity
+    lazy private var loadingView: LottieAnimationView = {
+        let view = LottieAnimationView(name: "CardLoding")
+        view.loopMode = .loop
+        view.animationSpeed = 0.8
+        view.play()
+        
+        return view
     }()
-    
-//    lazy private var loadingView: LottieAnimationView = {
-//        if let view = LottieAnimationView(name: "CardLoding") {
-//
-//        }
-//    }()
 
     lazy private var nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 40)
+        
         return label
     }()
     
@@ -74,6 +77,7 @@ class SwipeCardView: UIView {
         label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 25)
+        
         return label
     }()
     
@@ -82,6 +86,7 @@ class SwipeCardView: UIView {
         label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 15)
+        
         return label
     }()
     
@@ -118,7 +123,7 @@ class SwipeCardView: UIView {
     }
     
     private func setConstraint() {
-        [shadowView, swipeView, imageView, activityView].forEach { subView in
+        [shadowView, swipeView, imageView, loadingView].forEach { subView in
             subView.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -153,11 +158,13 @@ class SwipeCardView: UIView {
             imageView.rightAnchor.constraint(equalTo: swipeView.rightAnchor)
         ])
         
-        // MARK: ActivityView
-        imageView.addSubview(activityView)
+        // MARK: LodingView
+        imageView.addSubview(loadingView)
         NSLayoutConstraint.activate([
-            activityView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
-            activityView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
+            loadingView.centerXAnchor.constraint(equalTo: swipeView.centerXAnchor),
+            loadingView.centerYAnchor.constraint(equalTo: swipeView.centerYAnchor),
+            loadingView.heightAnchor.constraint(equalTo: swipeView.heightAnchor, multiplier: 0.5),
+            loadingView.widthAnchor.constraint(equalTo: swipeView.heightAnchor, multiplier: 0.5)
         ])
         
         // MARK: NameLabel
@@ -189,6 +196,9 @@ class SwipeCardView: UIView {
         let item = AVPlayerItem(asset: asset)
         
         queuePlayer = AVQueuePlayer(playerItem: item)
+        
+        guard let queuePlayer = queuePlayer else { return }
+        
         playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: item)
     }
 

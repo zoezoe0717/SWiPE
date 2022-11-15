@@ -24,7 +24,8 @@ class StackContainerView: UIView {
     var cardsToBeVisible: Int = 3
     var cardViews: [SwipeCardView] = [] {
         didSet {
-            cardViews.first?.queuePlayer.play()
+            guard let queuePlayer = cardViews.first?.queuePlayer else { return }
+            queuePlayer.play()
         }
     }
     lazy var index = 0
@@ -91,6 +92,8 @@ class StackContainerView: UIView {
     private func removeAllCardViews() {
         for cardView in visibleCards {
             cardView.removeFromSuperview()
+            cardView.queuePlayer?.removeAllItems()
+            cardView.playerLayer.removeFromSuperlayer()
         }
         cardViews = []
     }
@@ -101,12 +104,12 @@ extension StackContainerView: SwipeCardsDelegate {
         let i = numberOfCardsToShow - remainingcards - 2
 
         if removeCard {
-            cardViews[i].queuePlayer.pause()
-            cardViews[i].queuePlayer.seek(to: .zero)
+            cardViews[i].queuePlayer?.pause()
+            cardViews[i].queuePlayer?.seek(to: .zero)
             return
         }
         
-        cardViews[i].queuePlayer.play()
+        cardViews[i].queuePlayer?.play()
     }
     
     func swipeMatched(toMatch: Bool) {
@@ -117,7 +120,7 @@ extension StackContainerView: SwipeCardsDelegate {
     func swipeDidEnd(on view: SwipeCardView) {
         guard let datasource = dataSource else { return }
         view.removeFromSuperview()
-        view.queuePlayer.removeAllItems()
+        view.queuePlayer?.removeAllItems()
         view.playerLayer.removeFromSuperlayer()
 
         if remainingcards > 0 {
