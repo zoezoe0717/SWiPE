@@ -19,11 +19,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gc5-0c-Kd1">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="150"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="422"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="DL7-f4-P1G"/>
-                                </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GhK-1X-g7y">
                                 <rect key="frame" x="0.0" y="96" width="390" height="665"/>
@@ -84,6 +81,7 @@
                             <constraint firstItem="Gc5-0c-Kd1" firstAttribute="top" secondItem="6MX-lZ-JCu" secondAttribute="top" id="Feb-ZC-MBM"/>
                             <constraint firstItem="Gc5-0c-Kd1" firstAttribute="leading" secondItem="6MX-lZ-JCu" secondAttribute="leading" id="J9c-KL-Xaj"/>
                             <constraint firstItem="w5U-4a-7tM" firstAttribute="bottom" secondItem="GhK-1X-g7y" secondAttribute="bottom" id="TGH-xO-gv3"/>
+                            <constraint firstItem="Gc5-0c-Kd1" firstAttribute="height" secondItem="6MX-lZ-JCu" secondAttribute="height" multiplier="0.5" id="VUE-FL-S9v"/>
                             <constraint firstItem="GhK-1X-g7y" firstAttribute="leading" secondItem="w5U-4a-7tM" secondAttribute="leading" id="ffk-ZK-Sid"/>
                             <constraint firstItem="D3P-W0-5tx" firstAttribute="centerX" secondItem="6MX-lZ-JCu" secondAttribute="centerX" id="rO5-Hd-cnl"/>
                         </constraints>
@@ -177,7 +175,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIi-oC-7hN">
-                                <rect key="frame" x="221" y="78" width="0.0" height="0.0"/>
+                                <rect key="frame" x="195" y="63" width="0.0" height="0.0"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <nil key="highlightedColor"/>
@@ -186,11 +184,11 @@
                         <viewLayoutGuide key="safeArea" id="l5C-VL-Xoi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="l5C-VL-Xoi" firstAttribute="trailing" secondItem="hIi-oC-7hN" secondAttribute="trailing" constant="169" id="20R-Wr-Vid"/>
-                            <constraint firstItem="hIi-oC-7hN" firstAttribute="centerY" secondItem="evR-AB-3yg" secondAttribute="centerY" id="2Z8-d5-VwK"/>
                             <constraint firstItem="S1o-Uu-7VE" firstAttribute="height" secondItem="QKN-2n-zcz" secondAttribute="height" multiplier="0.2" id="5L3-qN-aQX"/>
                             <constraint firstAttribute="trailing" secondItem="S1o-Uu-7VE" secondAttribute="trailing" id="Daj-a2-rHG"/>
                             <constraint firstItem="liO-hn-iuo" firstAttribute="trailing" secondItem="l5C-VL-Xoi" secondAttribute="trailing" id="Ddl-Qt-6Oh"/>
+                            <constraint firstItem="hIi-oC-7hN" firstAttribute="centerX" secondItem="QKN-2n-zcz" secondAttribute="centerX" id="HI1-NE-bBh"/>
+                            <constraint firstItem="hIi-oC-7hN" firstAttribute="top" secondItem="l5C-VL-Xoi" secondAttribute="top" constant="16" id="Ztv-nF-j9D"/>
                             <constraint firstItem="S1o-Uu-7VE" firstAttribute="leading" secondItem="QKN-2n-zcz" secondAttribute="leading" id="eoq-yv-Vuu"/>
                             <constraint firstItem="liO-hn-iuo" firstAttribute="leading" secondItem="l5C-VL-Xoi" secondAttribute="leading" id="gg0-a1-5fg"/>
                             <constraint firstItem="liO-hn-iuo" firstAttribute="top" secondItem="evR-AB-3yg" secondAttribute="bottom" constant="5" id="h6L-za-R96"/>
