@@ -9,6 +9,10 @@ import UIKit
 import PhotosUI
 
 class ChatRoomVC: UIViewController {
+    @IBOutlet weak var friendLabel: UILabel!
+    
+    @IBOutlet weak var backButton: UIButton!
+    
     @IBOutlet weak var inputMessageBaseView: UIView!
     
     @IBOutlet weak var messageInputView: UIView!
@@ -38,6 +42,7 @@ class ChatRoomVC: UIViewController {
     
     var friendData: User? {
         didSet {
+            friendLabel.text = friendData?.name
             chatRoomTableView.reloadData()
         }
     }
@@ -67,13 +72,14 @@ class ChatRoomVC: UIViewController {
     }
     
     private func setUI() {
-        view.backgroundColor = CustomColor.base.color
         messageInputView.layer.cornerRadius = messageInputView.bounds.width * 0.06
         
         chatRoomTableView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         chatRoomTableView.layer.cornerRadius = 50
         
         inputMessageBaseView.backgroundColor = CustomColor.tabBar.color
+        
+        backButton.tintColor = CustomColor.tabBar.color
     }
     
     private func getMessage() {
@@ -127,6 +133,10 @@ class ChatRoomVC: UIViewController {
                 print(error)
             }
         }
+    }
+    
+    @IBAction func backChatPage(_ sender: Any) {
+        dismiss(animated: true)
     }
     
     @IBAction func sendMessage(_ sender: Any) {

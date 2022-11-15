@@ -23,3 +23,7 @@ enum CustomColor {
         }
     }
 }
+
+enum ChatVCString: String {
+    case title = "Message"
+}
