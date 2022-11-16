@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--SignVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SignVC" id="Y6W-OH-hqX" customClass="SignVC" customModule="SWiPE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6we-hf-zdO">
+                                <rect key="frame" x="0.0" y="553.66666666666663" width="240" height="128"/>
+                                <color key="backgroundColor" name="TabBarColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WHC-bN-tAb">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="553.66666666666663"/>
+                                <color key="backgroundColor" name="TabBarColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1HR-nq-j1y">
+                                <rect key="frame" x="0.0" y="553.66666666666663" width="393" height="298.33333333333337"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="歡迎來到SWiPE請登入您的帳號" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZb-l9-EBw">
+                                        <rect key="frame" x="25" y="50" width="309" height="26.333333333333329"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fiq-aB-PkZ">
+                                        <rect key="frame" x="25" y="126.33333333333337" width="343" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="3sU-vL-9QF"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="登入">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81a-YU-dc7">
+                                        <rect key="frame" x="281.33333333333331" y="201.33333333333337" width="86.666666666666686" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="建立帳號？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j58-X3-CPA">
+                                                <rect key="frame" x="0.0" y="0.0" width="86.666666666666671" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" name="BaseColor"/>
+                                <constraints>
+                                    <constraint firstItem="81a-YU-dc7" firstAttribute="trailing" secondItem="fiq-aB-PkZ" secondAttribute="trailing" id="5Q2-RU-IuE"/>
+                                    <constraint firstAttribute="trailing" secondItem="fiq-aB-PkZ" secondAttribute="trailing" constant="25" id="E4z-L3-YGc"/>
+                                    <constraint firstItem="fiq-aB-PkZ" firstAttribute="top" secondItem="GZb-l9-EBw" secondAttribute="bottom" constant="50" id="Jks-9U-OFm"/>
+                                    <constraint firstItem="j58-X3-CPA" firstAttribute="height" secondItem="fiq-aB-PkZ" secondAttribute="height" id="O1K-tL-SLm"/>
+                                    <constraint firstItem="fiq-aB-PkZ" firstAttribute="centerX" secondItem="1HR-nq-j1y" secondAttribute="centerX" id="iM2-q8-z9X"/>
+                                    <constraint firstItem="GZb-l9-EBw" firstAttribute="leading" secondItem="1HR-nq-j1y" secondAttribute="leading" constant="25" id="l5W-h8-UMG"/>
+                                    <constraint firstItem="GZb-l9-EBw" firstAttribute="top" secondItem="1HR-nq-j1y" secondAttribute="top" constant="50" id="qlW-cU-bkF"/>
+                                    <constraint firstItem="81a-YU-dc7" firstAttribute="top" secondItem="fiq-aB-PkZ" secondAttribute="bottom" constant="25" id="uzg-4F-bTW"/>
+                                    <constraint firstItem="fiq-aB-PkZ" firstAttribute="leading" secondItem="1HR-nq-j1y" secondAttribute="leading" constant="25" id="xxU-E8-xeC"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" name="BaseColor"/>
+                        <constraints>
+                            <constraint firstItem="6we-hf-zdO" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.610687" id="0Ik-IS-0Fl"/>
+                            <constraint firstItem="1HR-nq-j1y" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="HZJ-Px-il0"/>
+                            <constraint firstAttribute="bottom" secondItem="1HR-nq-j1y" secondAttribute="bottom" id="LHO-D6-OYA"/>
+                            <constraint firstItem="WHC-bN-tAb" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="PEL-iN-xVT"/>
+                            <constraint firstItem="6we-hf-zdO" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.150235" id="Qnz-La-mcu"/>
+                            <constraint firstItem="1HR-nq-j1y" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="V5t-Vc-vNs"/>
+                            <constraint firstItem="6we-hf-zdO" firstAttribute="top" secondItem="WHC-bN-tAb" secondAttribute="bottom" id="c4O-GS-Yeq"/>
+                            <constraint firstItem="WHC-bN-tAb" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="cRO-1j-1Yt"/>
+                            <constraint firstItem="1HR-nq-j1y" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.35" id="epY-l6-UQZ"/>
+                            <constraint firstItem="WHC-bN-tAb" firstAttribute="bottom" secondItem="1HR-nq-j1y" secondAttribute="top" id="rPU-6w-3Z2"/>
+                            <constraint firstItem="WHC-bN-tAb" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ulh-8T-0O7"/>
+                            <constraint firstItem="6we-hf-zdO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="yTn-cV-yOA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="dJk-zr-BZS"/>
+                    <connections>
+                        <outlet property="bottomBackgroundView" destination="1HR-nq-j1y" id="yS4-9x-RQm"/>
+                        <outlet property="loginButton" destination="fiq-aB-PkZ" id="h6Z-ZX-7yr"/>
+                        <outlet property="signupLabel" destination="j58-X3-CPA" id="0Jd-DO-9c1"/>
+                        <outlet property="signupStackView" destination="81a-YU-dc7" id="Te1-jj-xjK"/>
+                        <outlet property="topBackgroundView" destination="WHC-bN-tAb" id="Llz-6x-ZGe"/>
+                        <outlet property="welcomeLabel" destination="GZb-l9-EBw" id="OOJ-Lw-ApJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1052.6717557251909" y="-27.464788732394368"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8oP-fg-zVk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dO7-rw-Cn6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sc4-R0-0tI">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="L64-9H-wlh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kbe-Gw-mjX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="130.53435114503816" y="-27.464788732394368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="BaseColor">
+            <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TabBarColor">
+            <color red="0.125" green="0.17599999904632568" blue="0.2669999897480011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -74,4 +74,13 @@ class ProfileVC: UIViewController {
             present(controller, animated: true)
         }
     }
+    
+    @IBAction func testSign(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Sign", bundle: nil)
+        
+        if let controller = storyboard.instantiateViewController(withIdentifier: "\(SignVC.self)") as? SignVC {
+            controller.modalPresentationStyle = .fullScreen
+            present(controller, animated: true)
+        }
+    }
 }
