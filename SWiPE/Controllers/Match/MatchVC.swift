@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import Lottie
 
 class MatchVC: UIViewController {
     var mockUserData = User(
@@ -22,6 +23,14 @@ class MatchVC: UIViewController {
         createdTime: 0,
         index: 0
     )
+    
+    lazy private var matchAnimationView: LottieAnimationView = {
+        let view = LottieAnimationView(name: LottieString.match.rawValue)
+
+        view.contentMode = .scaleAspectFill
+        view.isHidden = true
+        return view
+    }()
     
     private let locationManager = CLLocationManager()
     
@@ -44,6 +53,8 @@ class MatchVC: UIViewController {
         super.viewDidLoad()
         fullScreen = UIScreen.main.bounds.size
         configureStackContainer()
+        setAnimation()
+//        add(with: &mockUserData)
     }
     
     override func loadView() {
@@ -74,13 +85,33 @@ class MatchVC: UIViewController {
      
     private func configureStackContainer() {
         guard let stackContainer = stackContainer,
-              let fullScreen = fullScreen else { return }
+            let fullScreen = fullScreen else { return }
 
         stackContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         stackContainer.widthAnchor.constraint(equalToConstant: fullScreen.width * 0.95).isActive = true
         stackContainer.heightAnchor.constraint(equalToConstant: fullScreen.height * 0.75).isActive = true
     }
+    
+    private func setAnimation() {
+        view.addSubview(matchAnimationView)
+        matchAnimationView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            matchAnimationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            matchAnimationView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            matchAnimationView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            matchAnimationView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+        ])
+    }
+    
+    private func playMatchAnimation(_ isMatch: Bool) {
+        if isMatch {
+            matchAnimationView.isHidden = false
+            matchAnimationView.play { _ in self.matchAnimationView.isHidden = true }
+        }
+    }
+    
     
     //    func convertLocation(lat latitude: CLLocationDegrees, lon longitude: CLLocationDegrees) {
 //        let geocoder = CLGeocoder()
@@ -129,8 +160,8 @@ extension MatchVC {
     private func searchID(user: User, netizen: User) {
         FireBaseManager.shared.searchUser(user: user, netizen: netizen) { result in
             switch result {
-            case .success(let success):
-                print(success)
+            case .success(let isMatch):
+                self.playMatchAnimation(isMatch)
             case .failure(let error):
                 print("DEBUG: \(error)")
             }

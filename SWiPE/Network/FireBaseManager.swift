@@ -125,7 +125,7 @@ class FireBaseManager {
         }
     }
     
-    func searchUser(user: User, netizen: User, completion: @escaping (Result<String, Error>) -> Void) {
+    func searchUser(user: User, netizen: User, completion: @escaping (Result<Bool, Error>) -> Void) {
         var findID = false
         let document = FirestoreEndpoint.usersBeLiked(user.id).ref
         
@@ -134,10 +134,13 @@ class FireBaseManager {
                 completion(.failure(error))
             } else {
                 guard let snapshot = snapshot else { return }
+                
                 for _ in snapshot.documents {
                     findID = true
                 }
-                completion(.success("Search Success"))
+                
+                completion(.success(findID))
+                
                 if findID {
                     self.addFriendList(user: user, netizen: netizen)
                     self.addFriendList(user: netizen, netizen: user)
