@@ -36,6 +36,7 @@ class UploadVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = CustomColor.base.color
     }
     
     public func buttonSwitch(hasImage: Bool) {

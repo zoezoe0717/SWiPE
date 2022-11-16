@@ -8,6 +8,10 @@
 import UIKit
 
 class ChatVC: UIViewController {
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var titleBackgroundView: UIView!
+    
     var friendList: [User] = [] {
         didSet {
             chatTableView.reloadData()
@@ -36,6 +40,12 @@ class ChatVC: UIViewController {
     
     private func setUI() {
         view.backgroundColor = CustomColor.base.color
+        
+        titleBackgroundView.backgroundColor = CustomColor.tabBar.color
+        titleLabel.text = ChatVCString.title.rawValue
+        
+        chatTableView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        chatTableView.layer.cornerRadius = 50
     }
     
     private func getRoomId() {
@@ -59,7 +69,6 @@ class ChatVC: UIViewController {
         ChatManager.shared.getFriendData(roomIds: roomIds) { result in
             switch result {
             case .success(let friends):
-                print("---C\(friends)")
                 self.friendList.append(friends)
             case .failure(let error):
                 print(error)
@@ -85,7 +94,8 @@ extension ChatVC: UITableViewDelegate, UITableViewDataSource {
         if let controller = storyboard?.instantiateViewController(withIdentifier: "\(ChatRoomVC.self)") as? ChatRoomVC {
             let id = roomId[indexPath.item].id
             controller.id = id
-            navigationController?.pushViewController(controller, animated: true)
+            controller.modalPresentationStyle = .fullScreen
+            present(controller, animated: true)
         }
     }
 }

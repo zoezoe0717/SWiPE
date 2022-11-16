@@ -13,6 +13,8 @@ class ChatCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        avatarImageView.layer.cornerRadius = 30
+        nameLabel.textColor = CustomColor.tabBar.color
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
