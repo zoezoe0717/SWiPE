@@ -55,12 +55,30 @@ class SwipeCardView: UIView {
     }()
     
     lazy private var loadingView: LottieAnimationView = {
-        let view = LottieAnimationView(name: "CardLoding")
+        let view = LottieAnimationView(name: LottieString.cardLoding.rawValue)
         view.loopMode = .loop
         view.animationSpeed = 0.8
         view.play()
         
         return view
+    }()
+    
+    lazy private var likeImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "success")
+        imageView.alpha = 0
+        
+        return imageView
+    }()
+    
+    lazy private var missImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "close")
+        imageView.alpha = 0
+        
+        return imageView
     }()
 
     lazy private var nameLabel: UILabel = {
@@ -123,7 +141,7 @@ class SwipeCardView: UIView {
     }
     
     private func setConstraint() {
-        [shadowView, swipeView, imageView, loadingView].forEach { subView in
+        [shadowView, swipeView, imageView, loadingView, likeImageView, missImageView].forEach { subView in
             subView.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -167,6 +185,19 @@ class SwipeCardView: UIView {
             loadingView.widthAnchor.constraint(equalTo: swipeView.heightAnchor, multiplier: 0.5)
         ])
         
+        // MARK: LikeImagView & MissImageView
+        [likeImageView, missImageView].forEach { view in
+            swipeView.addSubview(view)
+            NSLayoutConstraint.activate([
+                view.heightAnchor.constraint(equalTo: swipeView.widthAnchor, multiplier: 0.25),
+                view.widthAnchor.constraint(equalTo: swipeView.widthAnchor, multiplier: 0.25),
+                view.topAnchor.constraint(equalTo: swipeView.topAnchor, constant: 10)
+            ])
+        }
+        
+        likeImageView.leftAnchor.constraint(equalTo: swipeView.leftAnchor, constant: 10).isActive = true
+        missImageView.rightAnchor.constraint(equalTo: swipeView.rightAnchor, constant: -10).isActive = true
+        
         // MARK: NameLabel
         swipeView.addSubview(nameLabel)
         NSLayoutConstraint.activate([
@@ -187,6 +218,12 @@ class SwipeCardView: UIView {
             introductionLabel.leftAnchor.constraint(equalTo: swipeView.leftAnchor, constant: 20),
             introductionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5)
         ])
+    }
+    
+    private func fadeInAndOutAnimate(imageView: UIImageView, alpha: CGFloat) {
+        UIView.animate(withDuration: 0.5) {
+            imageView.alpha = alpha
+        }
     }
     
     private func playUrl(url: String?) {
@@ -223,6 +260,8 @@ class SwipeCardView: UIView {
         
         switch sender.state {
         case .ended:
+            [likeImageView, missImageView].forEach({ fadeInAndOutAnimate(imageView: $0, alpha: 0) })
+
             if (card.center.x) > 320 {
                 delegate?.swipeMatched(toMatch: true)
                 delegate?.swipeDidEnd(on: card)
@@ -258,10 +297,18 @@ class SwipeCardView: UIView {
             let rotation = tan(point.x / (self.frame.width * 2.5))
             card.transform = CGAffineTransform(rotationAngle: rotation)
             
-            if (card.center.x) > 300 {
+            let wasDeleted = (card.center.x > 300) || (card.center.x < 100)
+            let isCloseToMiss = card.center.x < 130
+            let isCloseToLike = card.center.x > 220
+            
+            if wasDeleted {
                 delegate?.playerControl(removeCard: false)
-            } else if (card.center.x) < 100 {
-                delegate?.playerControl(removeCard: false)
+            } else if isCloseToLike {
+                fadeInAndOutAnimate(imageView: likeImageView, alpha: 1)
+            } else if isCloseToMiss {
+                fadeInAndOutAnimate(imageView: missImageView, alpha: 1)
+            } else {
+                [likeImageView, missImageView].forEach({ fadeInAndOutAnimate(imageView: $0, alpha: 0) })
             }
         default:
             break
