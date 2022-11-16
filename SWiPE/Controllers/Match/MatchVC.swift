@@ -201,6 +201,7 @@ extension MatchVC: StackContainerViewDelegate {
     func swipeMatched(toMatch: Bool, index: Int) {
         guard let matchData = matchData else { return }
         if toMatch {
+//            self.playMatchAnimation(true)
             self.searchID(user: AddDataVC.newUser, netizen: matchData[index])
         } else {
             self.serachBeLike(user: AddDataVC.newUser, netizen: matchData[index])
