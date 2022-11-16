@@ -11,15 +11,24 @@ import UIKit
 enum CustomColor {
     case base
     
-    case cardBottomColor
+    case tabBar
         
     var color: UIColor {
         switch self {
         case .base:
-            return UIColor(named: "baseColor") ?? .systemGray6
+            return UIColor(named: "BaseColor") ?? .systemGray6
             
-        case .cardBottomColor:
-            return UIColor(named: "cardBottomColor") ?? .systemGray6
+        case .tabBar:
+            return UIColor(named: "TabBarColor") ?? .systemRed
         }
     }
+}
+
+enum ChatVCString: String {
+    case title = "Message"
+}
+
+enum LottieString: String {
+    case cardLoding = "CardLoding"
+    case match = "Match"
 }

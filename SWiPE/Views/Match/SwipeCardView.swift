@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import Lottie
 
 protocol SwipeCardsDelegate: AnyObject {
     func swipeDidEnd(on view: SwipeCardView)
@@ -15,21 +16,22 @@ protocol SwipeCardsDelegate: AnyObject {
 }
 
 class SwipeCardView: UIView {
-//    lazy var player = AVPlayer()
-//
     lazy var playerLayer: AVPlayerLayer = {
         let layer = AVPlayerLayer(player: queuePlayer)
         layer.videoGravity = .resizeAspectFill
+        
         return layer
     }()
     
-    private var playerLooper: AVPlayerLooper!
-    var queuePlayer: AVQueuePlayer!
+    private var playerLooper: AVPlayerLooper?
+
+    var queuePlayer: AVQueuePlayer?
     
     lazy private var swipeView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 15
         view.clipsToBounds = true
+        
         return view
     }()
     
@@ -40,6 +42,7 @@ class SwipeCardView: UIView {
         view.layer.shadowOffset = CGSize(width: 0, height: 0)
         view.layer.shadowOpacity = 0.8
         view.layer.shadowRadius = 4.0
+        
         return view
     }()
     
@@ -47,6 +50,34 @@ class SwipeCardView: UIView {
         let imageView = UIImageView()
         imageView.backgroundColor = .white
         imageView.contentMode = .scaleAspectFill
+        
+        return imageView
+    }()
+    
+    lazy private var loadingView: LottieAnimationView = {
+        let view = LottieAnimationView(name: LottieString.cardLoding.rawValue)
+        view.loopMode = .loop
+        view.animationSpeed = 0.8
+        view.play()
+        
+        return view
+    }()
+    
+    lazy private var likeImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "success")
+        imageView.alpha = 0
+        
+        return imageView
+    }()
+    
+    lazy private var missImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "close")
+        imageView.alpha = 0
+        
         return imageView
     }()
 
@@ -55,6 +86,7 @@ class SwipeCardView: UIView {
         label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 40)
+        
         return label
     }()
     
@@ -63,6 +95,7 @@ class SwipeCardView: UIView {
         label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 25)
+        
         return label
     }()
     
@@ -71,6 +104,7 @@ class SwipeCardView: UIView {
         label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 15)
+        
         return label
     }()
     
@@ -107,7 +141,7 @@ class SwipeCardView: UIView {
     }
     
     private func setConstraint() {
-        [shadowView, swipeView, imageView].forEach { subView in
+        [shadowView, swipeView, imageView, loadingView, likeImageView, missImageView].forEach { subView in
             subView.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -142,6 +176,28 @@ class SwipeCardView: UIView {
             imageView.rightAnchor.constraint(equalTo: swipeView.rightAnchor)
         ])
         
+        // MARK: LodingView
+        imageView.addSubview(loadingView)
+        NSLayoutConstraint.activate([
+            loadingView.centerXAnchor.constraint(equalTo: swipeView.centerXAnchor),
+            loadingView.centerYAnchor.constraint(equalTo: swipeView.centerYAnchor),
+            loadingView.heightAnchor.constraint(equalTo: swipeView.heightAnchor, multiplier: 0.5),
+            loadingView.widthAnchor.constraint(equalTo: swipeView.heightAnchor, multiplier: 0.5)
+        ])
+        
+        // MARK: LikeImagView & MissImageView
+        [likeImageView, missImageView].forEach { view in
+            swipeView.addSubview(view)
+            NSLayoutConstraint.activate([
+                view.heightAnchor.constraint(equalTo: swipeView.widthAnchor, multiplier: 0.25),
+                view.widthAnchor.constraint(equalTo: swipeView.widthAnchor, multiplier: 0.25),
+                view.topAnchor.constraint(equalTo: swipeView.topAnchor, constant: 10)
+            ])
+        }
+        
+        likeImageView.leftAnchor.constraint(equalTo: swipeView.leftAnchor, constant: 10).isActive = true
+        missImageView.rightAnchor.constraint(equalTo: swipeView.rightAnchor, constant: -10).isActive = true
+        
         // MARK: NameLabel
         swipeView.addSubview(nameLabel)
         NSLayoutConstraint.activate([
@@ -164,13 +220,22 @@ class SwipeCardView: UIView {
         ])
     }
     
+    private func fadeInAndOutAnimate(imageView: UIImageView, alpha: CGFloat) {
+        UIView.animate(withDuration: 0.5) {
+            imageView.alpha = alpha
+        }
+    }
+    
     private func playUrl(url: String?) {
         guard let urlString = url,
-              let url = URL(string: urlString) else { return }
+            let url = URL(string: urlString) else { return }
         let asset = AVAsset(url: url)
         let item = AVPlayerItem(asset: asset)
         
         queuePlayer = AVQueuePlayer(playerItem: item)
+        
+        guard let queuePlayer = queuePlayer else { return }
+        
         playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: item)
     }
 
@@ -190,12 +255,14 @@ class SwipeCardView: UIView {
         let centerOfParentContainer = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
         card.center = CGPoint(x: centerOfParentContainer.x + point.x, y: centerOfParentContainer.y + point.y)
 
-        let _ = ((UIScreen.main.bounds.width / 2) - card.center.x)
+        _ = ((UIScreen.main.bounds.width / 2) - card.center.x)
         divisor = ((UIScreen.main.bounds.width / 2) / 0.61)
         
         switch sender.state {
         case .ended:
-            if (card.center.x) > 400 {
+            [likeImageView, missImageView].forEach({ fadeInAndOutAnimate(imageView: $0, alpha: 0) })
+
+            if (card.center.x) > 320 {
                 delegate?.swipeMatched(toMatch: true)
                 delegate?.swipeDidEnd(on: card)
                 UIView.animate(withDuration: 0.2) {
@@ -207,7 +274,7 @@ class SwipeCardView: UIView {
                     self.layoutIfNeeded()
                 }
                 return
-            } else if card.center.x < -35 {
+            } else if card.center.x < 90 {
                 delegate?.swipeMatched(toMatch: false)
                 delegate?.swipeDidEnd(on: card)
                 UIView.animate(withDuration: 0.2) {
@@ -227,13 +294,21 @@ class SwipeCardView: UIView {
                 self.layoutIfNeeded()
             }
         case .changed:
-            let rotation = tan(point.x / (self.frame.width * 2.0))
+            let rotation = tan(point.x / (self.frame.width * 2.5))
             card.transform = CGAffineTransform(rotationAngle: rotation)
             
-            if (card.center.x) > 300 {
+            let wasDeleted = (card.center.x > 300) || (card.center.x < 100)
+            let isCloseToMiss = card.center.x < 130
+            let isCloseToLike = card.center.x > 220
+            
+            if wasDeleted {
                 delegate?.playerControl(removeCard: false)
-            } else if (card.center.x) < 70 {
-                delegate?.playerControl(removeCard: false)
+            } else if isCloseToLike {
+                fadeInAndOutAnimate(imageView: likeImageView, alpha: 1)
+            } else if isCloseToMiss {
+                fadeInAndOutAnimate(imageView: missImageView, alpha: 1)
+            } else {
+                [likeImageView, missImageView].forEach({ fadeInAndOutAnimate(imageView: $0, alpha: 0) })
             }
         default:
             break
