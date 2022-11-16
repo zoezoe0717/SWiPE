@@ -27,3 +27,8 @@ enum CustomColor {
 enum ChatVCString: String {
     case title = "Message"
 }
+
+enum LottieString: String {
+    case cardLoding = "CardLoding"
+    case match = "Match"
+}
