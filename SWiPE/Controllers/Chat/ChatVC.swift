@@ -41,7 +41,7 @@ class ChatVC: UIViewController {
     private func setUI() {
         view.backgroundColor = CustomColor.base.color
         
-        titleBackgroundView.backgroundColor = CustomColor.tabBar.color
+        titleBackgroundView.backgroundColor = CustomColor.main.color
         titleLabel.text = ChatVCString.title.rawValue
         
         chatTableView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
