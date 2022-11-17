@@ -10,6 +10,6 @@ import UIKit
 class SwipeTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBar.tintColor = CustomColor.tabBar.color
+        self.tabBar.tintColor = CustomColor.main.color
     }
 }

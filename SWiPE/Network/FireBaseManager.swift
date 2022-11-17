@@ -129,12 +129,13 @@ class FireBaseManager {
         var findID = false
         let document = FirestoreEndpoint.usersBeLiked(user.id).ref
         
-        document.whereField("id", isEqualTo: netizen.id).getDocuments { snapshot, error in
+        document.whereField("id", isEqualTo: netizen.id).getDocuments { [weak self] snapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
-                guard let snapshot = snapshot else { return }
-                
+                guard let snapshot = snapshot,
+                      let `self` = self else { return }
+
                 for _ in snapshot.documents {
                     findID = true
                 }
@@ -164,13 +165,13 @@ class FireBaseManager {
     func searchBeLike(user: User, netizen: User, completion: @escaping (Result<String, Error>) -> Void) {
         let document = FirestoreEndpoint.usersBeLiked(user.id).ref
         
-        document.whereField("id", isEqualTo: netizen.id).getDocuments { snapshot, error in
+        document.whereField("id", isEqualTo: netizen.id).getDocuments { [weak self] snapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
                 guard let snapshot = snapshot else { return }
                 for _ in snapshot.documents {
-                    self.deleteUser(user: user, netizen: netizen)
+                    self?.deleteUser(user: user, netizen: netizen)
                 }
                 completion(.success("Search Success"))
             }

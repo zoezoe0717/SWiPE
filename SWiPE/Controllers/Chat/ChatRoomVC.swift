@@ -77,9 +77,9 @@ class ChatRoomVC: UIViewController {
         chatRoomTableView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         chatRoomTableView.layer.cornerRadius = 50
         
-        inputMessageBaseView.backgroundColor = CustomColor.tabBar.color
+        inputMessageBaseView.backgroundColor = CustomColor.main.color
         
-        backButton.tintColor = CustomColor.tabBar.color
+        backButton.tintColor = CustomColor.main.color
     }
     
     private func getMessage() {

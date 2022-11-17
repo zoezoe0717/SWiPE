@@ -11,15 +11,15 @@ import UIKit
 enum CustomColor {
     case base
     
-    case tabBar
+    case main
         
     var color: UIColor {
         switch self {
         case .base:
             return UIColor(named: "BaseColor") ?? .systemGray6
             
-        case .tabBar:
-            return UIColor(named: "TabBarColor") ?? .systemRed
+        case .main:
+            return UIColor(named: "MainColor") ?? .systemRed
         }
     }
 }
@@ -37,6 +37,7 @@ enum SignVCString: String {
 enum LottieString: String {
     case cardLoding = "CardLoding"
     case match = "Match"
-    case signCat = "SignCat"
+    case signSheep = "SignSheep"
     case arrow = "Arrow"
+    case backArrow = "BackArrow"
 }
