@@ -12,11 +12,11 @@ class SwipeTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.tintColor = CustomColor.main.color
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print(error)
-        }
+//        do {
+//            try Auth.auth().signOut()
+//        } catch {
+//            print(error)
+//        }
         loginJudgment()
     }
     

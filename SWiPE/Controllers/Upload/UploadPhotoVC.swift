@@ -41,6 +41,12 @@ class UploadPhotoVC: UploadVC {
         ])
     }
     
+    private func updateFirstIndex() {
+        FireBaseManager.shared.getFirstIndex { index in
+            FireBaseManager.shared.updateUserData(user: SignVC.userData, data: ["index": index])
+        }
+    }
+    
     override func uploadData() {
         if let image = profileImagePhoto.image {
             UploadStoryProvider.shared.uploadPhoto(image: image) { result in
@@ -55,6 +61,7 @@ class UploadPhotoVC: UploadVC {
         }
         
         if isNewUser {
+            updateFirstIndex()
             if let controller = storyboard?.instantiateViewController(withIdentifier: "\(UploadVideoVC.self)") as? UploadVideoVC {
                 controller.modalPresentationStyle = .fullScreen
                 present(controller, animated: true)
