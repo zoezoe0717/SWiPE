@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 import YPImagePicker
 
 class ProfileVC: UIViewController {
@@ -48,8 +49,8 @@ class ProfileVC: UIViewController {
             UploadStoryProvider.shared.uploadPhoto(image: image) { result in
                 switch result {
                 case .success(let url):
-                    AddDataVC.newUser.story = "\(url)"
-                    FireBaseManager.shared.updateUserData(user: AddDataVC.newUser, data: ["story": "\(url)"])
+                    SignVC.userData.story = "\(url)"
+                    FireBaseManager.shared.updateUserData(user: SignVC.userData, data: ["story": "\(url)"])
                 case .failure(let failure):
                     print(failure)
                 }
@@ -76,11 +77,10 @@ class ProfileVC: UIViewController {
     }
     
     @IBAction func testSign(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Sign", bundle: nil)
-        
-        if let controller = storyboard.instantiateViewController(withIdentifier: "\(SignVC.self)") as? SignVC {
-            controller.modalPresentationStyle = .fullScreen
-            present(controller, animated: true)
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print(error)
         }
     }
 }

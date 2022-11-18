@@ -17,4 +17,5 @@ target 'SWiPE' do
   pod 'IQKeyboardManagerSwift'
   pod 'YPImagePicker'
   pod 'lottie-ios'
+  pod 'KeychainSwift', '~> 20.0'
 end
