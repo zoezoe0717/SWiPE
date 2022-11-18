@@ -194,9 +194,18 @@ class FireBaseManager {
         }
     }
     
+    func getFirstIndex(completion: @escaping (String) -> Void) {
+        let getIndex = FirestoreEndpoint.users.ref
+        getIndex.order(by: "createdTime", descending: false).limit(to: 1).getDocuments { snapshot, _ in
+            guard let snapshot = snapshot else { return }
+            if let data = try? snapshot.documents[0].data(as: User.self) {
+                completion(data.id)
+            }
+        }
+    }
+    
     func addUser(user: inout User, completion: @escaping (Result<String, Error>) -> Void) {
         let document = FirestoreEndpoint.users.ref.document(user.id)
-//        user.id = document.documentID
         user.createdTime = Date().millisecondsSince1970
         
         document.setData(user.toDict) { error in

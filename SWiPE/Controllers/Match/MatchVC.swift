@@ -21,7 +21,7 @@ class MatchVC: UIViewController {
         video: "https://i.imgur.com/1NLECXT.mp4",
         introduction: "嘻嘻嘻嘻嘻嘻",
         createdTime: 0,
-        index: 0
+        index: ""
     )
     
     lazy private var matchAnimationView: LottieAnimationView = {

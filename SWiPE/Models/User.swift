@@ -19,7 +19,7 @@ struct User: Codable {
     var video: String
     var introduction: String
     var createdTime: Int64
-    var index: Int
+    var index: String
     
     var toDict: [String: Any] {
         return [
