@@ -113,7 +113,7 @@ class FireBaseManager {
 //            }
 //        }
 //    }
-    
+        
     func updateUserData(user: User, data: [String: String]) {
         let document = FirestoreEndpoint.users.ref.document(user.id)
         document.updateData(data) { error in
@@ -125,20 +125,37 @@ class FireBaseManager {
         }
     }
     
-    func searchUser(user: User, netizen: User, completion: @escaping (Result<Bool, Error>) -> Void) {
-        var findID = false
-        let document = FirestoreEndpoint.usersBeLiked(user.id).ref
+    func searchUserDocument(uid: String, completion: @escaping (Result<User?, Error>) -> Void) {
+        let document = FirestoreEndpoint.users.ref.document(uid)
         
-        document.whereField("id", isEqualTo: netizen.id).getDocuments { snapshot, error in
+        document.getDocument { snapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
                 guard let snapshot = snapshot else { return }
-                
+                if let user = try? snapshot.data(as: User.self) {
+                    completion(.success(user))
+                } else {
+                    completion(.success(nil))
+                }
+            }
+        }
+    }
+    
+    func searchUser(user: User, netizen: User, completion: @escaping (Result<Bool, Error>) -> Void) {
+        var findID = false
+        let document = FirestoreEndpoint.usersBeLiked(user.id).ref
+        
+        document.whereField("id", isEqualTo: netizen.id).getDocuments { [weak self] snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                guard let snapshot = snapshot,
+                      let `self` = self else { return }
+
                 for _ in snapshot.documents {
                     findID = true
                 }
-                
                 completion(.success(findID))
                 
                 if findID {
@@ -164,13 +181,13 @@ class FireBaseManager {
     func searchBeLike(user: User, netizen: User, completion: @escaping (Result<String, Error>) -> Void) {
         let document = FirestoreEndpoint.usersBeLiked(user.id).ref
         
-        document.whereField("id", isEqualTo: netizen.id).getDocuments { snapshot, error in
+        document.whereField("id", isEqualTo: netizen.id).getDocuments { [weak self] snapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
                 guard let snapshot = snapshot else { return }
                 for _ in snapshot.documents {
-                    self.deleteUser(user: user, netizen: netizen)
+                    self?.deleteUser(user: user, netizen: netizen)
                 }
                 completion(.success("Search Success"))
             }
@@ -178,8 +195,8 @@ class FireBaseManager {
     }
     
     func addUser(user: inout User, completion: @escaping (Result<String, Error>) -> Void) {
-        let document = FirestoreEndpoint.users.ref.document()
-        user.id = document.documentID
+        let document = FirestoreEndpoint.users.ref.document(user.id)
+//        user.id = document.documentID
         user.createdTime = Date().millisecondsSince1970
         
         document.setData(user.toDict) { error in

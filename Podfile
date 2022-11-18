@@ -11,9 +11,11 @@ target 'SWiPE' do
   pod 'Firebase/Storage'
   pod 'Firebase/Database'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Auth'
   pod 'FirebaseFirestoreSwift'
   pod 'Kingfisher', '~> 7.0'
   pod 'IQKeyboardManagerSwift'
   pod 'YPImagePicker'
   pod 'lottie-ios'
+  pod 'KeychainSwift', '~> 20.0'
 end
