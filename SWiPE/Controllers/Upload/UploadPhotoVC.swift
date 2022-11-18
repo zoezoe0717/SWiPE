@@ -46,8 +46,8 @@ class UploadPhotoVC: UploadVC {
             UploadStoryProvider.shared.uploadPhoto(image: image) { result in
                 switch result {
                 case .success(let url):
-                    AddDataVC.newUser.story = "\(url)"
-                    FireBaseManager.shared.updateUserData(user: AddDataVC.newUser, data: ["story": "\(url)"])
+                    SignVC.userData.story = "\(url)"
+                    FireBaseManager.shared.updateUserData(user: SignVC.userData, data: ["story": "\(url)"])
                 case .failure(let failure):
                     print(failure)
                 }

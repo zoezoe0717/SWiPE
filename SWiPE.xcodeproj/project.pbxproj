@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		653863C99883BB5B15ACCA69 /* Pods_SWiPE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA99A84933CECDE40F287328 /* Pods_SWiPE.framework */; };
 		C844D299292496EF00BBB098 /* Match.json in Resources */ = {isa = PBXBuildFile; fileRef = C844D298292496EF00BBB098 /* Match.json */; };
-		C844D29B292498A000BBB098 /* CardLoding.json in Resources */ = {isa = PBXBuildFile; fileRef = C844D29A292498A000BBB098 /* CardLoding.json */; };
 		C851F4A32920BC8600813E31 /* SwipeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C851F4A22920BC8600813E31 /* SwipeTabBarController.swift */; };
 		C8573D0B29150CB00095601B /* OwnTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8573D0929150CB00095601B /* OwnTextCell.swift */; };
 		C8573D0C29150CB00095601B /* OwnTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8573D0A29150CB00095601B /* OwnTextCell.xib */; };
@@ -50,13 +49,21 @@
 		C8FC987E290FC0350028DE17 /* MatchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC987D290FC0350028DE17 /* MatchVC.swift */; };
 		C8FC98832910AD830028DE17 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC98822910AD830028DE17 /* User.swift */; };
 		C8FC98892910C7B50028DE17 /* FireBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC98882910C7B50028DE17 /* FireBaseManager.swift */; };
+		C8FDC8BD2924D13C006FF1E6 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FDC8BC2924D13C006FF1E6 /* SignUpVC.swift */; };
+		C8FDC8BF2924D153006FF1E6 /* Sign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8BE2924D153006FF1E6 /* Sign.storyboard */; };
+		C8FDC8C12924D1F7006FF1E6 /* SignVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FDC8C02924D1F7006FF1E6 /* SignVC.swift */; };
+		C8FDC8C32924D7A7006FF1E6 /* SignCat.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8C22924D7A7006FF1E6 /* SignCat.json */; };
+		C8FDC8C72924ED63006FF1E6 /* Arrow.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8C62924ED63006FF1E6 /* Arrow.json */; };
+		C8FDC8C929253A3D006FF1E6 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FDC8C829253A3D006FF1E6 /* SignInVC.swift */; };
+		C8FDC8CB29261767006FF1E6 /* CardLoding.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8CA29261767006FF1E6 /* CardLoding.json */; };
+		C8FDC8CD292619D1006FF1E6 /* SignSheep.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8CC292619D1006FF1E6 /* SignSheep.json */; };
+		C8FDC8CF29261F35006FF1E6 /* BackArrow.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8CE29261F35006FF1E6 /* BackArrow.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		05D499648B8F8501A9C04305 /* Pods-SWiPE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWiPE.debug.xcconfig"; path = "Target Support Files/Pods-SWiPE/Pods-SWiPE.debug.xcconfig"; sourceTree = "<group>"; };
 		AA118603100A4148BF1C064B /* Pods-SWiPE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWiPE.release.xcconfig"; path = "Target Support Files/Pods-SWiPE/Pods-SWiPE.release.xcconfig"; sourceTree = "<group>"; };
 		C844D298292496EF00BBB098 /* Match.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Match.json; sourceTree = "<group>"; };
-		C844D29A292498A000BBB098 /* CardLoding.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CardLoding.json; sourceTree = "<group>"; };
 		C851F4A22920BC8600813E31 /* SwipeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTabBarController.swift; sourceTree = "<group>"; };
 		C8573D0929150CB00095601B /* OwnTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnTextCell.swift; sourceTree = "<group>"; };
 		C8573D0A29150CB00095601B /* OwnTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OwnTextCell.xib; sourceTree = "<group>"; };
@@ -99,6 +106,16 @@
 		C8FC987D290FC0350028DE17 /* MatchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchVC.swift; sourceTree = "<group>"; };
 		C8FC98822910AD830028DE17 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C8FC98882910C7B50028DE17 /* FireBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseManager.swift; sourceTree = "<group>"; };
+		C8FDC8BC2924D13C006FF1E6 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		C8FDC8BE2924D153006FF1E6 /* Sign.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sign.storyboard; sourceTree = "<group>"; };
+		C8FDC8C02924D1F7006FF1E6 /* SignVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignVC.swift; sourceTree = "<group>"; };
+		C8FDC8C22924D7A7006FF1E6 /* SignCat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SignCat.json; sourceTree = "<group>"; };
+		C8FDC8C62924ED63006FF1E6 /* Arrow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Arrow.json; sourceTree = "<group>"; };
+		C8FDC8C829253A3D006FF1E6 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		C8FDC8CA29261767006FF1E6 /* CardLoding.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CardLoding.json; sourceTree = "<group>"; };
+		C8FDC8CC292619D1006FF1E6 /* SignSheep.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SignSheep.json; sourceTree = "<group>"; };
+		C8FDC8CE29261F35006FF1E6 /* BackArrow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BackArrow.json; sourceTree = "<group>"; };
+		C8FDC8D0292649CC006FF1E6 /* SWiPE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SWiPE.entitlements; sourceTree = "<group>"; };
 		DA99A84933CECDE40F287328 /* Pods_SWiPE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SWiPE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -114,13 +131,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C851F4A429212DBA00813E31 /* Json */ = {
+		C851F4A429212DBA00813E31 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				C844D29A292498A000BBB098 /* CardLoding.json */,
+				C8FDC8CE29261F35006FF1E6 /* BackArrow.json */,
+				C8FDC8CC292619D1006FF1E6 /* SignSheep.json */,
+				C8FDC8C62924ED63006FF1E6 /* Arrow.json */,
+				C8FDC8C22924D7A7006FF1E6 /* SignCat.json */,
 				C844D298292496EF00BBB098 /* Match.json */,
+				C8FDC8CA29261767006FF1E6 /* CardLoding.json */,
 			);
-			path = Json;
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 		C869195529150A99003E5A9A /* Cell */ = {
@@ -229,6 +250,7 @@
 		C8FC9814290BE50C0028DE17 /* SWiPE */ = {
 			isa = PBXGroup;
 			children = (
+				C8FDC8D0292649CC006FF1E6 /* SWiPE.entitlements */,
 				C8FA65052910F6190059AD23 /* Third Party Wrapper */,
 				C8FC988A2910E6070028DE17 /* Network */,
 				C8FC9830290BED0F0028DE17 /* Models */,
@@ -249,6 +271,7 @@
 		C8FC982E290BECF40028DE17 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C8FDC8BB2924D11F006FF1E6 /* Sign */,
 				C8C77BBB291C936B00A1675D /* Profile */,
 				C869195529150A99003E5A9A /* Cell */,
 				C88D50E22914E3A00022D31B /* Chat */,
@@ -271,6 +294,7 @@
 		C8FC9831290BED300028DE17 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C8FDC8BA2924D115006FF1E6 /* Sign */,
 				C8A18A5D2914BDF600CB7C9C /* Upload */,
 				C889468C2914BB45009A5BF3 /* Profile */,
 				C88946842913CC8E009A5BF3 /* Match */,
@@ -284,7 +308,7 @@
 		C8FC9833290BEDF10028DE17 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C851F4A429212DBA00813E31 /* Json */,
+				C851F4A429212DBA00813E31 /* Lottie */,
 				C8FC9821290BE50D0028DE17 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -316,6 +340,24 @@
 				C88946782913589F009A5BF3 /* ChatManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		C8FDC8BA2924D115006FF1E6 /* Sign */ = {
+			isa = PBXGroup;
+			children = (
+				C8FDC8BC2924D13C006FF1E6 /* SignUpVC.swift */,
+				C8FDC8C02924D1F7006FF1E6 /* SignVC.swift */,
+				C8FDC8C829253A3D006FF1E6 /* SignInVC.swift */,
+			);
+			path = Sign;
+			sourceTree = "<group>";
+		};
+		C8FDC8BB2924D11F006FF1E6 /* Sign */ = {
+			isa = PBXGroup;
+			children = (
+				C8FDC8BE2924D153006FF1E6 /* Sign.storyboard */,
+			);
+			path = Sign;
 			sourceTree = "<group>";
 		};
 		DF529098ABBC9AA94E92F1AC /* Frameworks */ = {
@@ -396,8 +438,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8FDC8CB29261767006FF1E6 /* CardLoding.json in Resources */,
 				C8573D12291516B40095601B /* FriendTextCell.xib in Resources */,
-				C844D29B292498A000BBB098 /* CardLoding.json in Resources */,
 				C8C77BF3291E217500A1675D /* Profile.storyboard in Resources */,
 				C8573D0C29150CB00095601B /* OwnTextCell.xib in Resources */,
 				C89B179E2914E3EE002BF20D /* Chat.storyboard in Resources */,
@@ -406,9 +448,14 @@
 				C8A4E02429226B4A0027F998 /* GrowTextViewCell.xib in Resources */,
 				C88D50E12914E3780022D31B /* Match.storyboard in Resources */,
 				C8FC986D290F65150028DE17 /* GoogleService-Info.plist in Resources */,
+				C8FDC8C72924ED63006FF1E6 /* Arrow.json in Resources */,
 				C8E845FA291B914A00180758 /* OwnImageCell.xib in Resources */,
+				C8FDC8CF29261F35006FF1E6 /* BackArrow.json in Resources */,
+				C8FDC8CD292619D1006FF1E6 /* SignSheep.json in Resources */,
+				C8FDC8C32924D7A7006FF1E6 /* SignCat.json in Resources */,
 				C8E845FE291B915B00180758 /* FriendImageCell.xib in Resources */,
 				C8FC9822290BE50D0028DE17 /* Assets.xcassets in Resources */,
+				C8FDC8BF2924D153006FF1E6 /* Sign.storyboard in Resources */,
 				C8FC981D290BE50C0028DE17 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,8 +545,11 @@
 				C8FC9871290F78020028DE17 /* Constants.swift in Sources */,
 				C889468029135B28009A5BF3 /* ChatCell.swift in Sources */,
 				C889467D29135AAF009A5BF3 /* ChatVC.swift in Sources */,
+				C8FDC8C12924D1F7006FF1E6 /* SignVC.swift in Sources */,
 				C8FC98832910AD830028DE17 /* User.swift in Sources */,
+				C8FDC8C929253A3D006FF1E6 /* SignInVC.swift in Sources */,
 				C8FC9818290BE50C0028DE17 /* SceneDelegate.swift in Sources */,
+				C8FDC8BD2924D13C006FF1E6 /* SignUpVC.swift in Sources */,
 				C8573D11291516B40095601B /* FriendTextCell.swift in Sources */,
 				C8E845FD291B915B00180758 /* FriendImageCell.swift in Sources */,
 				C8E845F9291B914A00180758 /* OwnImageCell.swift in Sources */,
@@ -668,6 +718,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SWiPE/SWiPE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FHH82V8NXD;
@@ -702,6 +753,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SWiPE/SWiPE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FHH82V8NXD;
