@@ -74,9 +74,9 @@ class MatchVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+//        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+//        locationManager.requestWhenInUseAuthorization()
+//        locationManager.startUpdatingLocation()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -202,9 +202,9 @@ extension MatchVC: StackContainerViewDelegate {
         guard let matchData = matchData else { return }
         if toMatch {
 //            self.playMatchAnimation(true)
-            self.searchID(user: AddDataVC.newUser, netizen: matchData[index])
+            self.searchID(user: SignVC.userData, netizen: matchData[index])
         } else {
-            self.serachBeLike(user: AddDataVC.newUser, netizen: matchData[index])
+            self.serachBeLike(user: SignVC.userData, netizen: matchData[index])
         }
     }
 }

@@ -12,6 +12,8 @@ import FirebaseAuth
 import AuthenticationServices
 
 class SignVC: UIViewController {
+    static var userData = User(id: "HXyhZpz0HXgk1w3Fgi57Y7qfkbf1", name: "", email: "", latitude: 0, longitude: 0, age: 0, story: "", video: "", introduction: "", createdTime: 0, index: 0)
+    
     @IBOutlet weak var topBackgroundView: UIView!
     @IBOutlet weak var bottomBackgroundView: UIView!
     @IBOutlet weak var welcomeLabel: UILabel!
@@ -49,7 +51,6 @@ class SignVC: UIViewController {
         setBackgroundView()
         setConstraints()
         setUI()
-        getFirebaseUserInfo()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -200,40 +201,74 @@ extension SignVC: ASAuthorizationControllerPresentationContextProviding {
 extension SignVC {
     // MARK: 透過 Credential 與 Firebase Auth 串接
     func firebaseSignInWithApple(credential: AuthCredential) {
-        Auth.auth().signIn(with: credential) { authResult, error in
+        Auth.auth().signIn(with: credential) { [weak self] _, error in
             guard error == nil else { return }
-            print("===EE\(authResult)")
             print("登入成功！")
+            self?.getFirebaseUserInfo()
         }
     }
     
     // MARK: Firebase 取得登入使用者的資訊
     func getFirebaseUserInfo() {
         let currentUser = Auth.auth().currentUser
-        guard let user = currentUser else {
+        guard let currentUser = currentUser else {
             fatalError("Can not find user information")
         }
-        let uid = user.uid
-        let email = user.email
-        
-        print("===\(uid)")
-        print("===A\(email)")        
+        SignVC.userData.id = currentUser.uid
+        signUpJudgment(uid: currentUser.uid)
     }
     
-    func checkAppleIDCredentialState(userID: String) {
-        ASAuthorizationAppleIDProvider().getCredentialState(forUserID: userID) { credentialState, error in
-            switch credentialState {
-            case .authorized:
-                print("使用者已授權！")
-            case .revoked:
-                print("使用者憑證已被註銷")
-            case .notFound:
-                print("使用者尚未使用過 Apple ID 登入")
-            case .transferred:
-                print("請與開發者團隊進行聯繫，以利進行使用者遷移")
-            default:
-                break
+    private func signUpJudgment(uid: String) {
+        FireBaseManager.shared.searchUserDocument(uid: uid) { [weak self] result in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .success(let user):
+                if let user = user {
+                    self.userDataCheck(user: user)
+                } else {
+                    self.presentSignUpVC()
+                }
+            case .failure(let error):
+                print(error)
             }
+        }
+    }
+    
+    private func userDataCheck(user: User) {
+        if user.name.isEmpty || user.age == 0 {
+            presentSignUpVC()
+        } else if user.story.isEmpty {
+            presentUploadPhoto()
+        } else if user.video.isEmpty {
+            presentUploadVideo()
+        } else {
+            dismiss(animated: true)
+        }
+    }
+        
+    private func presentSignUpVC() {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "\(SignUpVC.self)") as? SignUpVC {
+            controller.modalPresentationStyle = .fullScreen
+            present(controller, animated: true)
+        }
+    }
+    
+    private func presentUploadPhoto() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let controller = storyboard.instantiateViewController(
+            withIdentifier: "\(UploadPhotoVC.self)") as? UploadPhotoVC {
+            controller.modalPresentationStyle = .fullScreen
+            present(controller, animated: true)
+        }
+    }
+    
+    private func presentUploadVideo() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let controller = storyboard.instantiateViewController(
+            withIdentifier: "\(UploadVideoVC.self)") as? UploadVideoVC {
+            controller.modalPresentationStyle = .fullScreen
+            present(controller, animated: true)
         }
     }
 }

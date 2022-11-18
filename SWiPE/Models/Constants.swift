@@ -7,6 +7,21 @@
 
 import Foundation
 import UIKit
+import KeychainSwift
+import FirebaseAuth
+
+struct UserUid {
+    static var share = UserUid()
+    
+    let keychain = KeychainSwift()
+    
+    func getUid() -> String {
+        guard let currentUser = Auth.auth().currentUser else { return "" }
+        keychain.set(currentUser.uid, forKey: "UID")
+        
+        return keychain.get("UID") ?? ""
+    }
+}
 
 enum CustomColor {
     case base

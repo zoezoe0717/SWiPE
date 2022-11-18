@@ -42,10 +42,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iTp-SW-vJO">
-                                <rect key="frame" x="159" y="151" width="75" height="35"/>
+                                <rect key="frame" x="167" y="151" width="59" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="登出"/>
                                 <connections>
                                     <action selector="testSign:" destination="w7P-BU-96T" eventType="touchUpInside" id="y8g-gd-Kdr"/>
                                 </connections>

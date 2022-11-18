@@ -113,7 +113,7 @@ class FireBaseManager {
 //            }
 //        }
 //    }
-    
+        
     func updateUserData(user: User, data: [String: String]) {
         let document = FirestoreEndpoint.users.ref.document(user.id)
         document.updateData(data) { error in
@@ -121,6 +121,23 @@ class FireBaseManager {
                 print(error)
             } else {
                 print("Update Success")
+            }
+        }
+    }
+    
+    func searchUserDocument(uid: String, completion: @escaping (Result<User?, Error>) -> Void) {
+        let document = FirestoreEndpoint.users.ref.document(uid)
+        
+        document.getDocument { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                guard let snapshot = snapshot else { return }
+                if let user = try? snapshot.data(as: User.self) {
+                    completion(.success(user))
+                } else {
+                    completion(.success(nil))
+                }
             }
         }
     }
@@ -139,7 +156,6 @@ class FireBaseManager {
                 for _ in snapshot.documents {
                     findID = true
                 }
-                
                 completion(.success(findID))
                 
                 if findID {
@@ -179,8 +195,8 @@ class FireBaseManager {
     }
     
     func addUser(user: inout User, completion: @escaping (Result<String, Error>) -> Void) {
-        let document = FirestoreEndpoint.users.ref.document()
-        user.id = document.documentID
+        let document = FirestoreEndpoint.users.ref.document(user.id)
+//        user.id = document.documentID
         user.createdTime = Date().millisecondsSince1970
         
         document.setData(user.toDict) { error in

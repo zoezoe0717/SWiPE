@@ -88,8 +88,8 @@ class UploadVideoVC: UploadVC {
             UploadStoryProvider.shared.uploadVideo(url: videoUrl) { result in
                 switch result {
                 case .success(let url):
-                    AddDataVC.newUser.video = "\(url)"
-                    FireBaseManager.shared.updateUserData(user: AddDataVC.newUser, data: ["video": "\(url)"])
+                    SignVC.userData.video = "\(url)"
+                    FireBaseManager.shared.updateUserData(user: SignVC.userData, data: ["video": "\(url)"])
                 case .failure(let failure):
                     print(failure)
                 }
@@ -97,10 +97,7 @@ class UploadVideoVC: UploadVC {
         }
         
         if isNewUser {
-            if let controller = storyboard?.instantiateViewController(withIdentifier: "MainTableBar") {
-                controller.modalPresentationStyle = .fullScreen
-                present(controller, animated: true)
-            }
+            self.view.window?.rootViewController?.dismiss(animated: true)
         } else {
             dismiss(animated: true)
         }
