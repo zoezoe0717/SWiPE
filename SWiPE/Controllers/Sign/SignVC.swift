@@ -59,6 +59,7 @@ class SignVC: UIViewController {
     }
     
     private func setUI() {
+        welcomeLabel.textColor = CustomColor.text.color
         welcomeLabel.text = SignVCString.welcome.rawValue
     }
     

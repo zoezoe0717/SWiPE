@@ -23,8 +23,6 @@
 		C889468B2914BB37009A5BF3 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889468A2914BB37009A5BF3 /* ProfileVC.swift */; };
 		C88D50E12914E3780022D31B /* Match.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C88D50DF2914E3780022D31B /* Match.storyboard */; };
 		C89B179E2914E3EE002BF20D /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C89B179D2914E3EE002BF20D /* Chat.storyboard */; };
-		C8A4E02329226B4A0027F998 /* GrowTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A4E02129226B4A0027F998 /* GrowTextViewCell.swift */; };
-		C8A4E02429226B4A0027F998 /* GrowTextViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A4E02229226B4A0027F998 /* GrowTextViewCell.xib */; };
 		C8C77BEA291CE21F00A1675D /* UploadVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BE9291CE21F00A1675D /* UploadVideoVC.swift */; };
 		C8C77BEC291CE8DA00A1675D /* UploadPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BEB291CE8DA00A1675D /* UploadPhotoVC.swift */; };
 		C8C77BF0291CFADA00A1675D /* UploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BEF291CFADA00A1675D /* UploadVC.swift */; };
@@ -79,8 +77,6 @@
 		C889468A2914BB37009A5BF3 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		C88D50E02914E3780022D31B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Match.storyboard; sourceTree = "<group>"; };
 		C89B179D2914E3EE002BF20D /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
-		C8A4E02129226B4A0027F998 /* GrowTextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowTextViewCell.swift; sourceTree = "<group>"; };
-		C8A4E02229226B4A0027F998 /* GrowTextViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GrowTextViewCell.xib; sourceTree = "<group>"; };
 		C8C77BE9291CE21F00A1675D /* UploadVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVideoVC.swift; sourceTree = "<group>"; };
 		C8C77BEB291CE8DA00A1675D /* UploadPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoVC.swift; sourceTree = "<group>"; };
 		C8C77BEF291CFADA00A1675D /* UploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVC.swift; sourceTree = "<group>"; };
@@ -217,8 +213,6 @@
 				C8E845F8291B914A00180758 /* OwnImageCell.xib */,
 				C8E845FB291B915B00180758 /* FriendImageCell.swift */,
 				C8E845FC291B915B00180758 /* FriendImageCell.xib */,
-				C8A4E02129226B4A0027F998 /* GrowTextViewCell.swift */,
-				C8A4E02229226B4A0027F998 /* GrowTextViewCell.xib */,
 			);
 			path = ChatRoom;
 			sourceTree = "<group>";
@@ -448,7 +442,6 @@
 				C89B179E2914E3EE002BF20D /* Chat.storyboard in Resources */,
 				C844D299292496EF00BBB098 /* Match.json in Resources */,
 				C8FC9825290BE50D0028DE17 /* LaunchScreen.storyboard in Resources */,
-				C8A4E02429226B4A0027F998 /* GrowTextViewCell.xib in Resources */,
 				C88D50E12914E3780022D31B /* Match.storyboard in Resources */,
 				C8FC986D290F65150028DE17 /* GoogleService-Info.plist in Resources */,
 				C8FDC8C72924ED63006FF1E6 /* Arrow.json in Resources */,
@@ -533,7 +526,6 @@
 				C8C77BEC291CE8DA00A1675D /* UploadPhotoVC.swift in Sources */,
 				C8C77BEA291CE21F00A1675D /* UploadVideoVC.swift in Sources */,
 				C8FC987E290FC0350028DE17 /* MatchVC.swift in Sources */,
-				C8A4E02329226B4A0027F998 /* GrowTextViewCell.swift in Sources */,
 				C8894682291390DD009A5BF3 /* ChatRoom.swift in Sources */,
 				C889468B2914BB37009A5BF3 /* ProfileVC.swift in Sources */,
 				C8573D142916E75B0095601B /* AddDataVC.swift in Sources */,
@@ -742,7 +734,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SWiPE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -777,7 +769,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SWiPE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
