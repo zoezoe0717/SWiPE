@@ -58,6 +58,7 @@
 		C8FDC8CB29261767006FF1E6 /* CardLoding.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8CA29261767006FF1E6 /* CardLoding.json */; };
 		C8FDC8CD292619D1006FF1E6 /* SignSheep.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8CC292619D1006FF1E6 /* SignSheep.json */; };
 		C8FDC8CF29261F35006FF1E6 /* BackArrow.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8CE29261F35006FF1E6 /* BackArrow.json */; };
+		C8FDC8D42928C675006FF1E6 /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FDC8D32928C675006FF1E6 /* MockUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,7 @@
 		C8FDC8CC292619D1006FF1E6 /* SignSheep.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SignSheep.json; sourceTree = "<group>"; };
 		C8FDC8CE29261F35006FF1E6 /* BackArrow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BackArrow.json; sourceTree = "<group>"; };
 		C8FDC8D0292649CC006FF1E6 /* SWiPE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SWiPE.entitlements; sourceTree = "<group>"; };
+		C8FDC8D32928C675006FF1E6 /* MockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUser.swift; sourceTree = "<group>"; };
 		DA99A84933CECDE40F287328 /* Pods_SWiPE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SWiPE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -287,6 +289,7 @@
 				C8FC9870290F78020028DE17 /* Constants.swift */,
 				C8FC98822910AD830028DE17 /* User.swift */,
 				C8894681291390DD009A5BF3 /* ChatRoom.swift */,
+				C8FDC8D32928C675006FF1E6 /* MockUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				C8FC98892910C7B50028DE17 /* FireBaseManager.swift in Sources */,
 				C8FC9871290F78020028DE17 /* Constants.swift in Sources */,
 				C889468029135B28009A5BF3 /* ChatCell.swift in Sources */,
+				C8FDC8D42928C675006FF1E6 /* MockUser.swift in Sources */,
 				C889467D29135AAF009A5BF3 /* ChatVC.swift in Sources */,
 				C8FDC8C12924D1F7006FF1E6 /* SignVC.swift in Sources */,
 				C8FC98832910AD830028DE17 /* User.swift in Sources */,
