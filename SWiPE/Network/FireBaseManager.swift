@@ -81,7 +81,7 @@ class FireBaseManager {
     
     func getUser(completion: @escaping (Result<User?, Error>) -> Void ) {
         let document = FirestoreEndpoint.users.ref.document(ChatManager.mockId)
-        document.addSnapshotListener { snapshot, error in
+        document.getDocument { snapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -90,6 +90,21 @@ class FireBaseManager {
                 completion(.success(user))
             }
         }
+    }
+    
+    func getMatchListener(dbName: String, completion: @escaping (Result<[User], Error>) -> Void) {
+        FirestoreEndpoint.users.ref.document(dbName).getDocument(completion: { [weak self] document, error in
+            guard let document = document else {
+                print(error.debugDescription)
+                return
+            }
+            
+            let matchData = FirestoreEndpoint.users.ref.order(by: "createdTime", descending: false).start(afterDocument: document).limit(to: 5)
+            
+            self?.getDocument(query: matchData) { (user: [User]) in
+                completion(.success(user))
+            }
+        })
     }
     
     func updateLocation(user: User, completion: @escaping (Result<String, Error>) -> Void) {
@@ -114,7 +129,7 @@ class FireBaseManager {
 //        }
 //    }
         
-    func updateUserData(user: User, data: [String: String]) {
+    func updateUserData<T>(user: User, data: [String: T]) {
         let document = FirestoreEndpoint.users.ref.document(user.id)
         document.updateData(data) { error in
             if let error = error {
@@ -194,9 +209,20 @@ class FireBaseManager {
         }
     }
     
+    func getFirstIndex(completion: @escaping (String) -> Void) {
+        let getIndex = FirestoreEndpoint.users.ref
+        getIndex.order(by: "createdTime", descending: false).limit(to: 1).getDocuments { snapshot, _ in
+            guard let snapshot = snapshot else { return }
+            if let data = try? snapshot.documents[0].data(as: User.self) {
+                completion(data.id)
+            }
+        }
+    }
+    
     func addUser(user: inout User, completion: @escaping (Result<String, Error>) -> Void) {
-        let document = FirestoreEndpoint.users.ref.document(user.id)
+//        let document = FirestoreEndpoint.users.ref.document()
 //        user.id = document.documentID
+        let document = FirestoreEndpoint.users.ref.document(user.id)
         user.createdTime = Date().millisecondsSince1970
         
         document.setData(user.toDict) { error in

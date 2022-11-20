@@ -12,20 +12,23 @@ class SwipeTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.tintColor = CustomColor.main.color
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print(error)
-        }
+//        do {
+//            try Auth.auth().signOut()
+//        } catch {
+//            print(error)
+//        }
+//        UserUid.share.keychain.set("", forKey: "UID")
+
+
         loginJudgment()
     }
     
     private func loginJudgment() {
-        Auth.auth().addStateDidChangeListener { _, user in
+        Auth.auth().addStateDidChangeListener { [weak self] _, user in
             if let user = user {
                 print("\(user.uid) login")
             } else {
-                self.presentSignPage()
+                self?.presentSignPage()
             }
         }
     }

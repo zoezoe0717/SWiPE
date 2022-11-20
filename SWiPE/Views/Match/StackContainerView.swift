@@ -122,7 +122,6 @@ extension StackContainerView: SwipeCardsDelegate {
         view.removeFromSuperview()
         view.queuePlayer?.removeAllItems()
         view.playerLayer.removeFromSuperlayer()
-
         if remainingcards > 0 {
             let newIndex = datasource.numberOfCardsToShow() - remainingcards
             addCardView(cardView: datasource.card(at: newIndex), atIndex: 2)
