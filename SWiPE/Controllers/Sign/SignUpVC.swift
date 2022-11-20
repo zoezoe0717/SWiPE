@@ -91,7 +91,6 @@ class SignUpVC: UIViewController {
         
         SignVC.userData.name = name
         SignVC.userData.age = Int(age) ?? 0
-        
         addNewUser(with: &SignVC.userData)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
