@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Bubble left (2).png",
+      "filename" : "Bubble left (3).png",
       "idiom" : "universal",
       "resizing" : {
         "cap-insets" : {
@@ -20,7 +20,7 @@
       "scale" : "1x"
     },
     {
-      "filename" : "Bubble left (2)@2x.png",
+      "filename" : "Bubble left (3)@2x.png",
       "idiom" : "universal",
       "resizing" : {
         "cap-insets" : {
@@ -39,7 +39,7 @@
       "scale" : "2x"
     },
     {
-      "filename" : "Bubble left (2)@3x.png",
+      "filename" : "Bubble left (3)@3x.png",
       "idiom" : "universal",
       "resizing" : {
         "cap-insets" : {

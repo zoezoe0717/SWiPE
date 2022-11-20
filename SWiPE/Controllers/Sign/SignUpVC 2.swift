@@ -13,7 +13,6 @@ import AuthenticationServices
 
 
 class SignUpVC: UIViewController {
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var topBackgroundView: UIView!
     @IBOutlet weak var bottomBackgroundView: UIView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -35,7 +34,7 @@ class SignUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundView()
-        setUI()
+        setButton()
     }
     
     private func setBackgroundView() {
@@ -45,21 +44,7 @@ class SignUpVC: UIViewController {
         [topBackgroundView, bottomBackgroundView].forEach { $0?.layer.cornerRadius = 60 }
     }
     
-    private func setUI() {
-        titleLabel.textColor = CustomColor.text.color
-        
-        [nameTextField, ageTextField].forEach { textField in
-            textField?.backgroundColor = CustomColor.base.color
-            textField?.textColor = CustomColor.text.color
-        }
-        
-        nextPageButton.backgroundColor = CustomColor.secondary.color
-        nextPageButton.layer.borderColor = CustomColor.text.color.cgColor
-        nextPageButton.layer.borderWidth = 3
-        nextPageButton.layer.cornerRadius = 20
-        nextPageButton.setTitle("下一步", for: .normal)
-        nextPageButton.tintColor = CustomColor.text.color
-        
+    private func setButton() {
         [arrowAnimationView].forEach { button in
             view.addSubview(button)
             button.translatesAutoresizingMaskIntoConstraints = false

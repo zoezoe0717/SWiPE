@@ -9,6 +9,7 @@ import UIKit
 import YPImagePicker
 
 class UploadPhotoVC: UploadVC {
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var profileImagePhoto: UIImageView!
         
     override func viewDidLoad() {
@@ -17,6 +18,13 @@ class UploadPhotoVC: UploadVC {
     }
     
     private func setUI() {
+        titleLabel.textColor = CustomColor.text.color
+        
+        profileImagePhoto.isHidden = true
+        profileImagePhoto.layer.cornerRadius = 20
+        profileImagePhoto.layer.borderColor = CustomColor.text.color.cgColor
+        profileImagePhoto.layer.borderWidth = 3
+        
         [createButton, pushButton, cancelButton].forEach { sub in
             view.addSubview(sub)
             sub.translatesAutoresizingMaskIntoConstraints = false
@@ -27,7 +35,9 @@ class UploadPhotoVC: UploadVC {
         NSLayoutConstraint.activate([
             createButton.topAnchor.constraint(equalTo: profileImagePhoto.bottomAnchor, constant: 40),
             createButton.centerXAnchor.constraint(equalTo: profileImagePhoto.centerXAnchor),
-            createButton.heightAnchor.constraint(equalToConstant: 40),
+            createButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            createButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            createButton.heightAnchor.constraint(equalToConstant: 60),
 
             pushButton.topAnchor.constraint(equalTo: profileImagePhoto.bottomAnchor, constant: 40),
             pushButton.rightAnchor.constraint(equalTo: profileImagePhoto.rightAnchor),
@@ -77,6 +87,7 @@ class UploadPhotoVC: UploadVC {
             if let photo = items.singlePhoto {
                 DispatchQueue.main.async { [weak self] in
                     self?.profileImagePhoto.image = photo.image
+                    self?.profileImagePhoto.isHidden = false
                     self?.buttonSwitch(hasImage: true)
                 }
             }
