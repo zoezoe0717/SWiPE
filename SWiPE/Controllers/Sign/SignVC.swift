@@ -12,7 +12,7 @@ import FirebaseAuth
 import AuthenticationServices
 
 class SignVC: UIViewController {
-    static var userData = User(id: "HXyhZpz0HXgk1w3Fgi57Y7qfkbf1", name: "", email: "", latitude: 0, longitude: 0, age: 0, story: "", video: "", introduction: "", createdTime: 0, index: "")
+    static var userData = User(id: UserUid.share.getUid(), name: "", email: "", latitude: 0, longitude: 0, age: 0, story: "", video: "", introduction: "", createdTime: 0, index: "")
     
     @IBOutlet weak var topBackgroundView: UIView!
     @IBOutlet weak var bottomBackgroundView: UIView!

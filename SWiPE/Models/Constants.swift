@@ -18,7 +18,7 @@ struct UserUid {
     func getUid() -> String {
         guard let currentUser = Auth.auth().currentUser else { return "" }
         keychain.set(currentUser.uid, forKey: "UID")
-        
+
         return keychain.get("UID") ?? ""
     }
 }

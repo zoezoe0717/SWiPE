@@ -8,6 +8,7 @@
 import UIKit
 import CoreLocation
 import Lottie
+import FirebaseAuth
 
 class MatchVC: UIViewController {
     var mockUserData = User(
@@ -54,7 +55,7 @@ class MatchVC: UIViewController {
         fullScreen = UIScreen.main.bounds.size
         configureStackContainer()
         setAnimation()
-//        add(with: &mockUserData)
+//        addMockData()
     }
     
     override func loadView() {
@@ -68,7 +69,9 @@ class MatchVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchData()
+        if !UserUid.share.getUid().isEmpty {
+            fetchData()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -82,13 +85,19 @@ class MatchVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
+    
+    private func addMockData() {
+        for i in 0...9 {
+            add(with: &MockUser.mockUserDatas[i])
+        }
+    }
      
     private func configureStackContainer() {
         guard let stackContainer = stackContainer,
             let fullScreen = fullScreen else { return }
 
         stackContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        stackContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        stackContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
         stackContainer.widthAnchor.constraint(equalToConstant: fullScreen.width * 0.95).isActive = true
         stackContainer.heightAnchor.constraint(equalToConstant: fullScreen.height * 0.75).isActive = true
     }
@@ -137,12 +146,47 @@ class MatchVC: UIViewController {
 }
 // MARK: Firebase
 extension MatchVC {
+//    private func fetchData() {
+//        let query = FirestoreEndpoint.users.ref.whereField("id", isNotEqualTo: ChatManager.mockId)
+//        FireBaseManager.shared.getDocument(query: query) { [weak self] (users: [User]) in
+//            guard let `self` = self else { return }
+//
+//            self.matchData = users
+//        }
+//    }
+//    private func fetchData() {
+//        FireBaseManager.shared.getMatchListener(dbName: "1JHcGEkBW0IOrfO5IMLx") { [weak self] result in
+//            switch result {
+//            case .success(let success):
+//                self?.matchData = success
+//            case .failure(let failure):
+//                print(failure)
+//            }
+//        }
+//    }
+    
     private func fetchData() {
-        let query = FirestoreEndpoint.users.ref.whereField("id", isNotEqualTo: ChatManager.mockId)
-        FireBaseManager.shared.getDocument(query: query) { [weak self] (users: [User]) in
-            guard let `self` = self else { return }
-            
-            self.matchData = users
+        FireBaseManager.shared.getUser { result in
+            switch result {
+            case .success(let user):
+
+                guard let user = user else { return }
+                SignVC.userData = user
+
+                if !SignVC.userData.index.isEmpty {
+                    FireBaseManager.shared.getMatchListener(dbName: SignVC.userData.index) { [weak self] result in
+                        switch result {
+                        case .success(let success):
+                            self?.matchData = success
+                        case .failure(let failure):
+                            print(failure)
+                        }
+                    }
+                }
+
+            case .failure(let failure):
+                print(failure)
+            }
         }
     }
     
@@ -178,6 +222,10 @@ extension MatchVC {
             }
         }
     }
+    
+    private func updateIndex(index: Int) {
+        FireBaseManager.shared.updateUserData(user: SignVC.userData, data: ["index": matchData?[index].id])
+    }
 }
 
 // MARK: Swipe Card
@@ -200,11 +248,16 @@ extension MatchVC: StackContainerViewDataSource {
 extension MatchVC: StackContainerViewDelegate {
     func swipeMatched(toMatch: Bool, index: Int) {
         guard let matchData = matchData else { return }
+        self.updateIndex(index: index)
         if toMatch {
 //            self.playMatchAnimation(true)
             self.searchID(user: SignVC.userData, netizen: matchData[index])
         } else {
             self.serachBeLike(user: SignVC.userData, netizen: matchData[index])
+        }
+        
+        if index == matchData.count - 2 {
+            self.fetchData()
         }
     }
 }
@@ -216,7 +269,7 @@ extension MatchVC: CLLocationManagerDelegate {
         if location.horizontalAccuracy > 0 {
             locationManager.stopUpdatingHeading()
         }
-        print("\(location.coordinate.latitude)+ \(location.coordinate.longitude)")
+        print("\(location.coordinate.latitude) + \(location.coordinate.longitude)")
 //        self.updateLocation(lat: location.coordinate.latitude, lon: location.coordinate.longitude)
     }
     
