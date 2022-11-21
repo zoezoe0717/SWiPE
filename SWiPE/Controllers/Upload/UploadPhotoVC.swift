@@ -58,18 +58,22 @@ class UploadPhotoVC: UploadVC {
     }
     
     override func uploadData() {
+        ProgressHUD.show()
+
         if let image = profileImagePhoto.image {
-            UploadStoryProvider.shared.uploadPhoto(image: image) { result in
+            UploadStoryProvider.shared.uploadPhoto(image: image) { [weak self] result in
                 switch result {
                 case .success(let url):
                     SignVC.userData.story = "\(url)"
                     FireBaseManager.shared.updateUserData(user: SignVC.userData, data: ["story": "\(url)"])
+                    ProgressHUD.dismiss()
                 case .failure(let failure):
                     print(failure)
+                    ProgressHUD.dismiss()
                 }
             }
         }
-        
+
         if isNewUser {
             updateFirstIndex()
             if let controller = storyboard?.instantiateViewController(withIdentifier: "\(UploadVideoVC.self)") as? UploadVideoVC {

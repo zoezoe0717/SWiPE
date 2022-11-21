@@ -34,7 +34,7 @@ class ProfileVC: UIViewController {
     }
     
     private func getUser() {
-        FireBaseManager.shared.getUser { result in
+        FireBaseManager.shared.getUserListener { result in
             switch result {
             case .success(let user):
                 self.user = user

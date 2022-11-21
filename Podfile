@@ -18,4 +18,5 @@ target 'SWiPE' do
   pod 'YPImagePicker'
   pod 'lottie-ios'
   pod 'KeychainSwift', '~> 20.0'
+  pod 'JGProgressHUD'
 end

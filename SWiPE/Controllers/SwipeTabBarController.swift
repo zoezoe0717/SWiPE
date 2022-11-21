@@ -12,25 +12,19 @@ class SwipeTabBarController: UITabBarController {
     lazy var customView: UIView = {
         let view = UIView()
         view.backgroundColor = CustomColor.main.color
-        view.layer.cornerRadius = 10
-        view.layer.borderColor = UIColor.black.cgColor
-        view.layer.borderWidth = 3 
+        view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        view.layer.cornerRadius = 20
+
         return view
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.tintColor = CustomColor.secondary.color
+//        clearLogin()
+
         loginJudgment()
         setUI()
-//        clearLogin()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        var tabFrame: CGRect = self.tabBar.frame
-        tabFrame.size.height = 90
-        tabFrame.origin.y = self.view.frame.size.height - 90
-        self.tabBar.frame = tabFrame
     }
     
     private func setUI() {
@@ -42,8 +36,9 @@ class SwipeTabBarController: UITabBarController {
             customView.centerXAnchor.constraint(equalTo: self.tabBar.centerXAnchor),
             customView.bottomAnchor.constraint(equalTo: self.tabBar.bottomAnchor),
             customView.topAnchor.constraint(equalTo: self.tabBar.topAnchor),
-            customView.widthAnchor.constraint(equalTo: self.tabBar.widthAnchor, multiplier: 0.95),
-            customView.heightAnchor.constraint(equalTo: self.tabBar.heightAnchor, multiplier: 0.7)
+            customView.bottomAnchor.constraint(equalTo: self.tabBar.bottomAnchor),
+            customView.widthAnchor.constraint(equalTo: self.tabBar.widthAnchor, multiplier: 1),
+            customView.heightAnchor.constraint(equalTo: self.tabBar.heightAnchor, multiplier: 1)
         ])
     }
     

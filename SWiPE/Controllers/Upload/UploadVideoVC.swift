@@ -92,14 +92,18 @@ class UploadVideoVC: UploadVC {
     }
     
     override func uploadData() {
+        ProgressHUD.show()
+
         if let videoUrl = videoUrl {
             UploadStoryProvider.shared.uploadVideo(url: videoUrl) { result in
                 switch result {
                 case .success(let url):
                     SignVC.userData.video = "\(url)"
                     FireBaseManager.shared.updateUserData(user: SignVC.userData, data: ["video": "\(url)"])
+                    ProgressHUD.dismiss()
                 case .failure(let failure):
                     print(failure)
+                    ProgressHUD.dismiss()
                 }
             }
         }
