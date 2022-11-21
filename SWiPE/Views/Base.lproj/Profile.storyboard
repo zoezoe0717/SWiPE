@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AbZ-ZJ-Utv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AbZ-ZJ-Utv">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,31 +18,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DlO-gd-TwM">
-                                <rect key="frame" x="62" y="283" width="269" height="269"/>
+                                <rect key="frame" x="16" y="191" width="361" height="361"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DlO-gd-TwM" secondAttribute="height" multiplier="1:1" id="CtQ-Qw-DYS"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ot3-Gw-9uq">
-                                <rect key="frame" x="62" y="560" width="94" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="編輯頭貼"/>
-                                <connections>
-                                    <action selector="updateProfileImage:" destination="w7P-BU-96T" eventType="touchUpInside" id="Zbv-9m-gNr"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOm-Zf-Zd7">
-                                <rect key="frame" x="237" y="560" width="94" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="編輯資料"/>
-                                <connections>
-                                    <action selector="showEditPage:" destination="w7P-BU-96T" eventType="touchUpInside" id="e8o-Bf-GX8"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iTp-SW-vJO">
-                                <rect key="frame" x="167" y="151" width="59" height="35"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="173" translatesAutoresizingMaskIntoConstraints="NO" id="YvJ-Jr-ala">
+                                <rect key="frame" x="16" y="568" width="361" height="34.333333333333371"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ot3-Gw-9uq">
+                                        <rect key="frame" x="0.0" y="0.0" width="94" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="編輯頭貼"/>
+                                        <connections>
+                                            <action selector="updateProfileImage:" destination="w7P-BU-96T" eventType="touchUpInside" id="Zbv-9m-gNr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOm-Zf-Zd7">
+                                        <rect key="frame" x="267" y="0.0" width="94" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="編輯資料"/>
+                                        <connections>
+                                            <action selector="showEditPage:" destination="w7P-BU-96T" eventType="touchUpInside" id="e8o-Bf-GX8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="u40-y6-b3X"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DlO-gd-TwM" firstAttribute="centerX" secondItem="h4h-qm-4oA" secondAttribute="centerX" id="5pL-s1-4Xt"/>
+                            <constraint firstAttribute="bottom" secondItem="DlO-gd-TwM" secondAttribute="bottom" constant="300" id="VxR-0V-0Wy"/>
+                            <constraint firstItem="YvJ-Jr-ala" firstAttribute="leading" secondItem="u40-y6-b3X" secondAttribute="leading" constant="16" id="ZXt-gI-WZX"/>
+                            <constraint firstItem="u40-y6-b3X" firstAttribute="trailing" secondItem="YvJ-Jr-ala" secondAttribute="trailing" constant="16" id="azq-R9-dWb"/>
+                            <constraint firstItem="DlO-gd-TwM" firstAttribute="leading" secondItem="u40-y6-b3X" secondAttribute="leading" constant="16" id="eId-sL-gIT"/>
+                            <constraint firstItem="u40-y6-b3X" firstAttribute="trailing" secondItem="DlO-gd-TwM" secondAttribute="trailing" constant="16" id="eUd-b5-b1u"/>
+                            <constraint firstItem="YvJ-Jr-ala" firstAttribute="top" secondItem="DlO-gd-TwM" secondAttribute="bottom" constant="16" id="vYg-8O-8I1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="lZm-7E-3I4">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="jl4-nj-rVk">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="iTp-SW-vJO">
+                                <rect key="frame" x="318" y="4.6666666666666679" width="59" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="登出"/>
@@ -50,16 +68,8 @@
                                     <action selector="testSign:" destination="w7P-BU-96T" eventType="touchUpInside" id="y8g-gd-Kdr"/>
                                 </connections>
                             </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="u40-y6-b3X"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="DlO-gd-TwM" firstAttribute="top" secondItem="u40-y6-b3X" secondAttribute="top" constant="180" id="3M9-AN-81q"/>
-                            <constraint firstItem="DlO-gd-TwM" firstAttribute="centerX" secondItem="h4h-qm-4oA" secondAttribute="centerX" id="5pL-s1-4Xt"/>
-                            <constraint firstAttribute="bottom" secondItem="DlO-gd-TwM" secondAttribute="bottom" constant="300" id="VxR-0V-0Wy"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="lZm-7E-3I4"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="userImageView" destination="DlO-gd-TwM" id="Sle-1K-qln"/>
                     </connections>

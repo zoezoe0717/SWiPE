@@ -23,6 +23,7 @@
 		C889468B2914BB37009A5BF3 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889468A2914BB37009A5BF3 /* ProfileVC.swift */; };
 		C88D50E12914E3780022D31B /* Match.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C88D50DF2914E3780022D31B /* Match.storyboard */; };
 		C89B179E2914E3EE002BF20D /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C89B179D2914E3EE002BF20D /* Chat.storyboard */; };
+		C8AC8486292BCA520062B0ED /* JGProgressHUDWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC8485292BCA520062B0ED /* JGProgressHUDWrapper.swift */; };
 		C8C77BEA291CE21F00A1675D /* UploadVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BE9291CE21F00A1675D /* UploadVideoVC.swift */; };
 		C8C77BEC291CE8DA00A1675D /* UploadPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BEB291CE8DA00A1675D /* UploadPhotoVC.swift */; };
 		C8C77BF0291CFADA00A1675D /* UploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BEF291CFADA00A1675D /* UploadVC.swift */; };
@@ -77,6 +78,7 @@
 		C889468A2914BB37009A5BF3 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		C88D50E02914E3780022D31B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Match.storyboard; sourceTree = "<group>"; };
 		C89B179D2914E3EE002BF20D /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
+		C8AC8485292BCA520062B0ED /* JGProgressHUDWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGProgressHUDWrapper.swift; sourceTree = "<group>"; };
 		C8C77BE9291CE21F00A1675D /* UploadVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVideoVC.swift; sourceTree = "<group>"; };
 		C8C77BEB291CE8DA00A1675D /* UploadPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoVC.swift; sourceTree = "<group>"; };
 		C8C77BEF291CFADA00A1675D /* UploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVC.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */,
+				C8AC8485292BCA520062B0ED /* JGProgressHUDWrapper.swift */,
 			);
 			path = "Third Party Wrapper";
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				C8E845F9291B914A00180758 /* OwnImageCell.swift in Sources */,
 				C851F4A32920BC8600813E31 /* SwipeTabBarController.swift in Sources */,
 				C88946792913589F009A5BF3 /* ChatManager.swift in Sources */,
+				C8AC8486292BCA520062B0ED /* JGProgressHUDWrapper.swift in Sources */,
 				C8FC9878290FB9E80028DE17 /* StackContainerView.swift in Sources */,
 				C8C77BF0291CFADA00A1675D /* UploadVC.swift in Sources */,
 			);
