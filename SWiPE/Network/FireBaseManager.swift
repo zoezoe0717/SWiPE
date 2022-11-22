@@ -92,6 +92,19 @@ class FireBaseManager {
         }
     }
     
+    func getUserListener(completion: @escaping (Result<User?, Error>) -> Void ) {
+        let document = FirestoreEndpoint.users.ref.document(ChatManager.mockId)
+        document.addSnapshotListener { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                guard let snapshot = snapshot else { return }
+                let user = try? snapshot.data(as: User.self)
+                completion(.success(user))
+            }
+        }
+    }
+    
     func getMatchListener(dbName: String, completion: @escaping (Result<[User], Error>) -> Void) {
         FirestoreEndpoint.users.ref.document(dbName).getDocument(completion: { [weak self] document, error in
             guard let document = document else {

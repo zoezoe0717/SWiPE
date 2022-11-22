@@ -17,6 +17,7 @@ class OwnImageCell: UITableViewCell {
         self.contentView.transform = CGAffineTransform(rotationAngle: .pi)
         messageImage.layer.cornerRadius = 20
         userImage.layer.cornerRadius = 25
+        timeLabel.textColor = CustomColor.text.color
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
