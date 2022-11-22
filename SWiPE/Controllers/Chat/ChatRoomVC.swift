@@ -19,16 +19,7 @@ class ChatRoomVC: UIViewController {
     
     @IBOutlet weak var messageTextView: UITextView!
     
-    @IBOutlet weak var chatRoomTableView: UITableView! {
-        didSet {
-            chatRoomTableView.delegate = self
-            chatRoomTableView.dataSource = self
-            chatRoomTableView.register(UINib(nibName: "\(OwnTextCell.self)", bundle: nil), forCellReuseIdentifier: "\(OwnTextCell.self)")
-            chatRoomTableView.register(UINib(nibName: "\(FriendTextCell.self)", bundle: nil), forCellReuseIdentifier: "\(FriendTextCell.self)")
-            chatRoomTableView.register(UINib(nibName: "\(OwnImageCell.self)", bundle: nil), forCellReuseIdentifier: "\(OwnImageCell.self)")
-            chatRoomTableView.register(UINib(nibName: "\(FriendImageCell.self)", bundle: nil), forCellReuseIdentifier: "\(FriendImageCell.self)")
-        }
-    }
+    @IBOutlet weak var chatRoomTableView: UITableView!
     
     var id = ""
     
@@ -58,6 +49,7 @@ class ChatRoomVC: UIViewController {
         setUI()
         addListener()
         chatRoomTableView.transform = CGAffineTransform(rotationAngle: .pi)
+        setTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,11 +63,22 @@ class ChatRoomVC: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    private func setTableView() {
+        chatRoomTableView.delegate = self
+        chatRoomTableView.dataSource = self
+        
+        chatRoomTableView.register(UINib(nibName: "\(OwnTextCell.self)", bundle: nil), forCellReuseIdentifier: "\(OwnTextCell.self)")
+        chatRoomTableView.register(UINib(nibName: "\(FriendTextCell.self)", bundle: nil), forCellReuseIdentifier: "\(FriendTextCell.self)")
+        chatRoomTableView.register(UINib(nibName: "\(OwnImageCell.self)", bundle: nil), forCellReuseIdentifier: "\(OwnImageCell.self)")
+        chatRoomTableView.register(UINib(nibName: "\(FriendImageCell.self)", bundle: nil), forCellReuseIdentifier: "\(FriendImageCell.self)")
+    }
+    
     private func setUI() {
         messageInputView.layer.cornerRadius = messageInputView.bounds.width * 0.06
         
         chatRoomTableView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         chatRoomTableView.layer.cornerRadius = 50
+        chatRoomTableView.backgroundColor = CustomColor.base.color
         
         inputMessageBaseView.backgroundColor = CustomColor.main.color
         

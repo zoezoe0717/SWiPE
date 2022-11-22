@@ -13,7 +13,10 @@ class UploadVC: UIViewController {
     lazy var createButton: UIButton = {
         let button = UIButton()
         button.setTitle("點我新增", for: .normal)
-        button.backgroundColor = .gray
+        button.backgroundColor = CustomColor.main.color
+        button.layer.cornerRadius = 30
+        button.layer.borderColor = CustomColor.text.color.cgColor
+        button.layer.borderWidth = 3
         button.addTarget(self, action: #selector(openCamera), for: .touchUpInside)
         return button
     }()

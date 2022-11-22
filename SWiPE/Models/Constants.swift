@@ -27,6 +27,10 @@ enum CustomColor {
     case base
     
     case main
+    
+    case text
+    
+    case secondary
         
     var color: UIColor {
         switch self {
@@ -35,6 +39,12 @@ enum CustomColor {
             
         case .main:
             return UIColor(named: "MainColor") ?? .systemRed
+            
+        case .text:
+            return UIColor(named: "TextColor") ?? .black
+            
+        case .secondary:
+            return UIColor(named: "SecondaryColor") ?? .yellow
         }
     }
 }
@@ -55,4 +65,10 @@ enum LottieString: String {
     case signSheep = "SignSheep"
     case arrow = "Arrow"
     case backArrow = "BackArrow"
+}
+
+enum ProfileString: String, CaseIterable {
+    case updatePhoto = "更新頭貼"
+    case updateVideo = "更新影片"
+    case setting = "設定"
 }

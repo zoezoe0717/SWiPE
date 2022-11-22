@@ -11,6 +11,7 @@ import AVFoundation
 import AVKit
 
 class UploadVideoVC: UploadVC {
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var videoView: UIView!
     
     lazy private var playerLayer: AVPlayerLayer = {
@@ -34,6 +35,11 @@ class UploadVideoVC: UploadVC {
     }
     
     private func setUI() {
+        titleLabel.textColor = CustomColor.text.color
+        
+        videoView.layer.cornerRadius = 20
+        videoView.layer.borderColor = UIColor.black.cgColor
+        videoView.layer.borderWidth = 3
         videoView.isHidden = true
         
         [createButton, pushButton, cancelButton].forEach { sub in
@@ -46,7 +52,9 @@ class UploadVideoVC: UploadVC {
         NSLayoutConstraint.activate([
             createButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             createButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            createButton.heightAnchor.constraint(equalToConstant: 40),
+            createButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            createButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            createButton.heightAnchor.constraint(equalToConstant: 60),
 
             pushButton.topAnchor.constraint(equalTo: videoView.bottomAnchor, constant: 40),
             pushButton.rightAnchor.constraint(equalTo: videoView.rightAnchor),
@@ -84,14 +92,18 @@ class UploadVideoVC: UploadVC {
     }
     
     override func uploadData() {
+        ProgressHUD.show()
+
         if let videoUrl = videoUrl {
             UploadStoryProvider.shared.uploadVideo(url: videoUrl) { result in
                 switch result {
                 case .success(let url):
                     SignVC.userData.video = "\(url)"
                     FireBaseManager.shared.updateUserData(user: SignVC.userData, data: ["video": "\(url)"])
+                    ProgressHUD.dismiss()
                 case .failure(let failure):
                     print(failure)
+                    ProgressHUD.dismiss()
                 }
             }
         }

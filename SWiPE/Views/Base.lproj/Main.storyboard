@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bZE-eR-N8H">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bZE-eR-N8H">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,23 +17,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="新增一個頭像吧！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4b-F8-Ivy">
-                                <rect key="frame" x="90" y="127" width="211" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增一個頭像吧！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4b-F8-Ivy">
+                                <rect key="frame" x="16" y="97" width="358" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EVI-xB-SI7">
-                                <rect key="frame" x="39" y="221" width="312" height="291"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EVI-xB-SI7">
+                                <rect key="frame" x="16" y="179" width="358" height="358"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="EVI-xB-SI7" secondAttribute="height" multiplier="1:1" id="7c0-jn-VFU"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="m1i-us-WH9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="u4b-F8-Ivy" firstAttribute="leading" secondItem="m1i-us-WH9" secondAttribute="leading" constant="16" id="6M2-jw-OPH"/>
+                            <constraint firstItem="u4b-F8-Ivy" firstAttribute="top" secondItem="m1i-us-WH9" secondAttribute="top" constant="50" id="DLD-Af-aRs"/>
+                            <constraint firstItem="m1i-us-WH9" firstAttribute="trailing" secondItem="EVI-xB-SI7" secondAttribute="trailing" constant="16" id="Mmz-3o-XhN"/>
+                            <constraint firstItem="m1i-us-WH9" firstAttribute="trailing" secondItem="u4b-F8-Ivy" secondAttribute="trailing" constant="16" id="aLe-L4-EYE"/>
+                            <constraint firstItem="EVI-xB-SI7" firstAttribute="leading" secondItem="m1i-us-WH9" secondAttribute="leading" constant="16" id="aws-98-QX9"/>
+                            <constraint firstItem="EVI-xB-SI7" firstAttribute="top" secondItem="u4b-F8-Ivy" secondAttribute="bottom" constant="50" id="hr3-wj-Kkx"/>
+                            <constraint firstItem="EVI-xB-SI7" firstAttribute="centerX" secondItem="gx7-o7-KAu" secondAttribute="centerX" id="uVc-3A-tXx"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="profileImagePhoto" destination="EVI-xB-SI7" id="4ZW-Nb-Vkt"/>
+                        <outlet property="titleLabel" destination="u4b-F8-Ivy" id="MaV-VK-0WG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxH-Wi-xRw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -159,29 +170,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="新增介紹影片吧！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdP-YF-lOo">
-                                <rect key="frame" x="90" y="59" width="211" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增介紹影片吧！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdP-YF-lOo">
+                                <rect key="frame" x="16" y="97" width="358" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PWb-gO-CKW">
-                                <rect key="frame" x="16" y="99" width="358" height="635"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PWb-gO-CKW">
+                                <rect key="frame" x="10" y="178.99999999999997" width="370" height="493.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PWb-gO-CKW" secondAttribute="height" multiplier="3:4" id="8Ey-zz-7Il"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QhL-qo-oag"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PWb-gO-CKW" firstAttribute="top" secondItem="qdP-YF-lOo" secondAttribute="bottom" constant="50" id="36F-pH-fPV"/>
+                            <constraint firstItem="PWb-gO-CKW" firstAttribute="leading" secondItem="QhL-qo-oag" secondAttribute="leading" constant="10" id="Y3K-2U-PPt"/>
+                            <constraint firstItem="qdP-YF-lOo" firstAttribute="top" secondItem="QhL-qo-oag" secondAttribute="top" constant="50" id="eBb-xn-OG2"/>
+                            <constraint firstItem="QhL-qo-oag" firstAttribute="trailing" secondItem="PWb-gO-CKW" secondAttribute="trailing" constant="10" id="eIC-2w-72X"/>
+                            <constraint firstItem="qdP-YF-lOo" firstAttribute="leading" secondItem="QhL-qo-oag" secondAttribute="leading" constant="16" id="lUt-QU-jTy"/>
+                            <constraint firstItem="QhL-qo-oag" firstAttribute="trailing" secondItem="qdP-YF-lOo" secondAttribute="trailing" constant="16" id="yan-uU-Ayi"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="titleLabel" destination="qdP-YF-lOo" id="RbG-Mu-AQW"/>
                         <outlet property="videoView" destination="PWb-gO-CKW" id="PQE-Dl-q02"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V8L-fu-Ylh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1142" y="-1611"/>
+            <point key="canvasLocation" x="1141.5384615384614" y="-1611.6113744075828"/>
         </scene>
         <!--Chat-->
         <scene sceneID="TzS-hn-fEE">

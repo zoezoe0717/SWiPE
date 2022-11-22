@@ -15,11 +15,16 @@ class OwnTextCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentView.transform = CGAffineTransform(rotationAngle: .pi)
-        userImage.layer.cornerRadius = 25
+        setUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    private func setUI() {
+        userImage.layer.cornerRadius = 25
+        timeLabel.textColor = CustomColor.text.color
     }
     
     func setText(message: Message) {
