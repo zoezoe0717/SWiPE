@@ -66,3 +66,9 @@ enum LottieString: String {
     case arrow = "Arrow"
     case backArrow = "BackArrow"
 }
+
+enum ProfileString: String, CaseIterable {
+    case updatePhoto = "更新頭貼"
+    case updateVideo = "更新影片"
+    case setting = "設定"
+}

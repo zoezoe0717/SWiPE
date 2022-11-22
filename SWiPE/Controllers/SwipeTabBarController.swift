@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class SwipeTabBarController: UITabBarController {
+class SwipeTabBarController: UITabBarController, UITabBarControllerDelegate {
     lazy var customView: UIView = {
         let view = UIView()
         view.backgroundColor = CustomColor.main.color
@@ -22,7 +22,6 @@ class SwipeTabBarController: UITabBarController {
         super.viewDidLoad()
         self.tabBar.tintColor = CustomColor.secondary.color
 //        clearLogin()
-
         loginJudgment()
         setUI()
     }
