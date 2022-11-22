@@ -11,11 +11,19 @@ import YPImagePicker
 
 class ProfileVC: UIViewController {
     @IBOutlet weak var userImageView: UIImageView!
-        
+    @IBOutlet weak var editPhotoButton: UIButton!
+    @IBOutlet weak var editVideoButton: UIButton!
+    @IBOutlet weak var bottomBackgroundView: UIView!
+    @IBOutlet weak var updatePhotoLabel: UILabel!
+    @IBOutlet weak var updateVideoLabel: UILabel!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var settingLabel: UILabel!
+    
     var user: User? {
         didSet {
             guard let user = user else { return }
             userImageView.loadImage(user.story)
+            userName.text = "\(user.name)"
         }
     }
             
@@ -30,14 +38,22 @@ class ProfileVC: UIViewController {
     }
     
     private func setUI() {
-        view.backgroundColor = CustomColor.base.color
+        bottomBackgroundView.backgroundColor = CustomColor.main.color
+        bottomBackgroundView.layer.cornerRadius = 50
+        
+        [updatePhotoLabel, updateVideoLabel, settingLabel].forEach { label in
+            label?.textColor = CustomColor.base.color
+        }
+        updatePhotoLabel.text = ProfileString.updatePhoto.rawValue
+        updateVideoLabel.text = ProfileString.updateVideo.rawValue
+        settingLabel.text = ProfileString.setting.rawValue
     }
     
     private func getUser() {
-        FireBaseManager.shared.getUserListener { result in
+        FireBaseManager.shared.getUserListener { [weak self] result in
             switch result {
             case .success(let user):
-                self.user = user
+                self?.user = user
             case .failure(let failure):
                 print(failure)
             }
@@ -67,7 +83,7 @@ class ProfileVC: UIViewController {
         }
     }
     
-    @IBAction func showEditPage(_ sender: Any) {
+    @IBAction func updateVideo(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
         if let controller = storyboard.instantiateViewController(withIdentifier: "\(UploadVideoVC.self)") as? UploadVideoVC {
@@ -76,7 +92,7 @@ class ProfileVC: UIViewController {
         }
     }
     
-    @IBAction func testSign(_ sender: Any) {
+    @IBAction func signOut(_ sender: Any) {
         do {
             try Auth.auth().signOut()
         } catch {
