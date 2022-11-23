@@ -110,6 +110,15 @@
                                 <color key="textColor" name="BaseColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="oE0-78-dsk">
+                                <rect key="frame" x="318" y="37" width="59" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="登出"/>
+                                <connections>
+                                    <action selector="signOut:" destination="w7P-BU-96T" eventType="touchUpInside" id="dLK-e5-Lzy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="u40-y6-b3X"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

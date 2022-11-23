@@ -17,9 +17,7 @@ enum MessageType: String {
 
 class ChatManager {
     static let shared = ChatManager()
-        
-    static let mockId = UserUid.share.getUid()
-    
+
     func addListener(id: String, completion: @escaping(Result<[Message], Error>) -> Void) {
         let document = FirestoreEndpoint.chatRoomsMessages(id).ref.order(by: "createdTime", descending: true)
         document.addSnapshotListener { snapshot, error in
@@ -38,7 +36,7 @@ class ChatManager {
     
     func addMessage(id: String, message: inout Message, completion: @escaping (Result<String, Error>) -> Void) {
         let document = FirestoreEndpoint.chatRoomsMessages(id).ref.document()
-        message.senderId = ChatManager.mockId
+        message.senderId = UserUid.share.getUid()
         message.messageId = document.documentID
         message.createdTime = Date().millisecondsSince1970
         
@@ -127,7 +125,7 @@ class ChatManager {
                 FirestoreEndpoint.users.ref.document(member.id).getDocument { snapshot, _ in
                     guard let snapshot = snapshot else { return }
                     guard let memberData = try? snapshot.data(as: User.self) else { return }
-                    if memberData.id == ChatManager.mockId {
+                    if memberData.id == UserUid.share.getUid() {
                         completion(memberData)
                     } else {
                         completion(memberData)
@@ -143,7 +141,7 @@ class ChatManager {
         roomIds.forEach { room in
             queue.async {
                 semaphore.wait()
-                let query = FirestoreEndpoint.chatRoomsMembers(room.id).ref.whereField("id", isNotEqualTo: ChatManager.mockId)
+                let query = FirestoreEndpoint.chatRoomsMembers(room.id).ref.whereField("id", isNotEqualTo: UserUid.share.getUid())
                 query.getDocuments { snapshot, error in
                     if let error = error {
                         completion(.failure(error))
@@ -166,7 +164,7 @@ class ChatManager {
     
     func getChat(completion: @escaping (Result<[ChatRoom], Error>) -> Void) {
         var roomDatas: [ChatRoom] = []
-        let document = FirestoreEndpoint.usersChatRoomID(ChatManager.mockId).ref
+        let document = FirestoreEndpoint.usersChatRoomID(UserUid.share.getUid()).ref
         document.getDocuments { snapshot, _ in
             guard let snapshot = snapshot else { return }
             let count = snapshot.count

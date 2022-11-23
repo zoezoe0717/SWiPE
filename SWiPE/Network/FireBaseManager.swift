@@ -80,7 +80,8 @@ class FireBaseManager {
     }
     
     func getUser(completion: @escaping (Result<User?, Error>) -> Void ) {
-        let document = FirestoreEndpoint.users.ref.document(ChatManager.mockId)
+        print("===AAA\(UserUid.share.getUid())")
+        let document = FirestoreEndpoint.users.ref.document(UserUid.share.getUid())
         document.getDocument { snapshot, error in
             if let error = error {
                 completion(.failure(error))
@@ -93,7 +94,7 @@ class FireBaseManager {
     }
     
     func getUserListener(completion: @escaping (Result<User?, Error>) -> Void ) {
-        let document = FirestoreEndpoint.users.ref.document(ChatManager.mockId)
+        let document = FirestoreEndpoint.users.ref.document(UserUid.share.getUid())
         document.addSnapshotListener { snapshot, error in
             if let error = error {
                 completion(.failure(error))
@@ -112,7 +113,7 @@ class FireBaseManager {
                 return
             }
             
-            let matchData = FirestoreEndpoint.users.ref.order(by: "createdTime", descending: false).start(afterDocument: document).limit(to: 5)
+            let matchData = FirestoreEndpoint.users.ref.order(by: "createdTime", descending: false).start(afterDocument: document).limit(to: 50)
             
             self?.getDocument(query: matchData) { (user: [User]) in
                 completion(.success(user))

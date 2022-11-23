@@ -47,13 +47,12 @@ class SwipeTabBarController: UITabBarController, UITabBarControllerDelegate {
         } catch {
             print(error)
         }
-        UserUid.share.keychain.set("", forKey: "UID")
     }
     
     private func loginJudgment() {
         Auth.auth().addStateDidChangeListener { [weak self] _, user in
             if let user = user {
-                print("\(user.uid) login")
+                print("\(user.uid) Login")
             } else {
                 self?.presentSignPage()
             }
