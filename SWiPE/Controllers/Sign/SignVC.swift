@@ -215,6 +215,7 @@ extension SignVC {
         guard let currentUser = currentUser else {
             fatalError("Can not find user information")
         }
+        UserUid.share.setUidKeychain(uid: currentUser.uid)
         SignVC.userData.id = currentUser.uid
         signUpJudgment(uid: currentUser.uid)
     }

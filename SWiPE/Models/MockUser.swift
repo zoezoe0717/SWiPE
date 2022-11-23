@@ -157,10 +157,10 @@ enum MockVideo: String, CaseIterable {
     case video2 = "https://i.imgur.com/O9omfmg.mp4"
     case video3 = "https://i.imgur.com/tIUryXg.mp4"
     case video4 = "https://i.imgur.com/BAWPWVq.mp4"
-    case video5 = "https://i.imgur.com/fqSuUHE.mp4"
+    case video5 = "https://i.imgur.com/JHW2LEZ.mp4"
     case video6 = "https://i.imgur.com/2HuQHYz.mp4"
     case video7 = "https://i.imgur.com/V5iaVCy.mp4"
-    case video8 = "https://i.imgur.com/xDbSzdz.mp4"
+    case video8 = "https://i.imgur.com/PcgYp9n.mp4"
     case video9 = "https://i.imgur.com/3HhfJO3.mp4"
     case video10 = "https://i.imgur.com/6qmF0eC.mp4"
 }
@@ -174,7 +174,7 @@ enum MockPhoto: String, CaseIterable {
     case photo6 = "https://i.imgur.com/BkHSOfR.jpeg"
     case photo7 = "https://i.imgur.com/qlGCV9c.jpeg"
     case photo8 = "https://i.imgur.com/qMXLQlM.jpeg"
-    case photo9 = "https://imgur.com/gallery/NUyttbn"
+    case photo9 = "https://i.imgur.com/TvFSA9b.jpeg"
     case photo10 = "https://i.imgur.com/y9dH2bJ.jpeg"
 }
 

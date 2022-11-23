@@ -12,7 +12,7 @@ import FirebaseAuth
 
 class MatchVC: UIViewController {
     var mockUserData = User(
-        id: ChatManager.mockId,
+        id: UserUid.share.getUid(),
         name: "Zoe",
         email: "123@gmail.com",
         latitude: 0,
@@ -55,7 +55,11 @@ class MatchVC: UIViewController {
         fullScreen = UIScreen.main.bounds.size
         configureStackContainer()
         setAnimation()
-//        addMockData()
+        
+//        for i in 0..<20 {
+//            print("===\(i)")
+//            addMockData()
+//        }
     }
     
     override func loadView() {
@@ -70,6 +74,7 @@ class MatchVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !UserUid.share.getUid().isEmpty {
+            print("===\(UserUid.share.getUid())")
             fetchData()
         }
     }
@@ -87,7 +92,7 @@ class MatchVC: UIViewController {
     }
     
     private func addMockData() {
-        for i in 0...9 {
+        for i in 0..<MockUser.mockUserDatas.count {
             add(with: &MockUser.mockUserDatas[i])
         }
     }
@@ -250,12 +255,12 @@ extension MatchVC: StackContainerViewDelegate {
         guard let matchData = matchData else { return }
         self.updateIndex(index: index)
         if toMatch {
-//            self.playMatchAnimation(true)
             self.searchID(user: SignVC.userData, netizen: matchData[index])
+//            self.playMatchAnimation(true)
         } else {
             self.serachBeLike(user: SignVC.userData, netizen: matchData[index])
         }
-        
+                
         if index == matchData.count - 2 {
             self.fetchData()
         }
