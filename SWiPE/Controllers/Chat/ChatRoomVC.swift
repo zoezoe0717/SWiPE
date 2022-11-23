@@ -118,7 +118,7 @@ class ChatRoomVC: UIViewController {
     
     private func getMemberData(id: String) {
         ChatManager.shared.getMember(roomId: id) { member in
-            if member.id == ChatManager.mockId {
+            if member.id == UserUid.share.getUid() {
                 self.userData = member
             } else {
                 self.friendData = member
@@ -182,7 +182,7 @@ extension ChatRoomVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var messageCell = UITableViewCell()
-        let isUser = message[indexPath.item].senderId == ChatManager.mockId
+        let isUser = message[indexPath.item].senderId == UserUid.share.getUid()
         let isText = message[indexPath.item].type == MessageType.text.rawValue
 
         if isUser {
