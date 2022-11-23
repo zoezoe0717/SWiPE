@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 import YPImagePicker
 
 class ProfileVC: UIViewController {
@@ -94,17 +93,8 @@ class ProfileVC: UIViewController {
     
     @IBAction func presentSetting(_ sender: Any) {
         if let controller = storyboard?.instantiateViewController(withIdentifier: "\(SettingVC.self)") as? SettingVC {
-//            controller.modalPresentationStyle = .fullScreen
+            controller.modalPresentationStyle = .fullScreen
             present(controller, animated: true)
         }
-    }
-    
-    @IBAction func signOut(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print(error)
-        }
-        UserUid.share.setUidKeychain(uid: "")
     }
 }
