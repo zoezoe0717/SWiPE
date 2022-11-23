@@ -12,14 +12,20 @@ import FirebaseAuth
 
 struct UserUid {
     static var share = UserUid()
-    
+
     let keychain = KeychainSwift()
+
+    func setUidKeychain(uid: String) {
+        keychain.set(uid, forKey: "UID")
+    }
+
+    func getUidKeychain() -> String {
+        return keychain.get("UID") ?? ""
+    }
     
     func getUid() -> String {
-        guard let currentUser = Auth.auth().currentUser else { return "" }
-        keychain.set(currentUser.uid, forKey: "UID")
-
-        return keychain.get("UID") ?? ""
+        guard let uid = Auth.auth().currentUser else { return ""}
+        return uid.uid
     }
 }
 

@@ -98,5 +98,6 @@ class ProfileVC: UIViewController {
         } catch {
             print(error)
         }
+        UserUid.share.setUidKeychain(uid: "")
     }
 }
