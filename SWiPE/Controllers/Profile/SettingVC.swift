@@ -15,7 +15,7 @@ class SettingVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private let settingOptions = ["修改暱稱", "修改自我介紹", "查看隱私權政策", "刪除帳號", "登出"]
-    private let actions = [#selector(test), #selector(test), #selector(test), #selector(test), #selector(signOut)]
+    private let actions = [#selector(presentPrivacyPage), #selector(presentPrivacyPage), #selector(presentPrivacyPage), #selector(presentPrivacyPage), #selector(signOut)]
     
     private lazy var sheepAnimationView: LottieAnimationView = {
         let view = LottieAnimationView(name: LottieString.swimmingSheep.rawValue)
@@ -43,6 +43,11 @@ class SettingVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         setUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        [sheepAnimationView, arrowAnimationView].forEach { $0.play() }
     }
     
     private func setUI() {
@@ -91,8 +96,17 @@ extension SettingVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    @objc func test() {
-        print("dkdkd")
+    @objc func presentPrivacyPage() {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "\(PrivacyVC.self)") as? PrivacyVC {
+            let navgationVC = UINavigationController(rootViewController: controller)
+            navgationVC.modalPresentationStyle = .fullScreen
+
+            let barAppearance = UINavigationBarAppearance()
+            barAppearance.configureWithDefaultBackground()
+            navgationVC.navigationBar.scrollEdgeAppearance = barAppearance
+            
+            present(navgationVC, animated: true)
+        }
     }
     
     @objc func signOut() {
