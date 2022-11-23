@@ -169,6 +169,12 @@ extension SignVC: ASAuthorizationControllerDelegate {
             let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
             // 與 Firebase Auth 進行串接
             firebaseSignInWithApple(credential: credential)
+
+            // Add new code below
+            if let authorizationCode = appleIDCredential.authorizationCode,
+               let codeString = String(data: authorizationCode, encoding: .utf8) {
+                print("===\(codeString)")
+            }
         }
     }
     
