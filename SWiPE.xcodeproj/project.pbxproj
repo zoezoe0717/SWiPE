@@ -25,6 +25,7 @@
 		C89B179E2914E3EE002BF20D /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C89B179D2914E3EE002BF20D /* Chat.storyboard */; };
 		C8AA629D292DECD700D7E16C /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AA629C292DECD700D7E16C /* SettingVC.swift */; };
 		C8AA629F292DF35E00D7E16C /* SwimmingSheep.json in Resources */ = {isa = PBXBuildFile; fileRef = C8AA629E292DF35E00D7E16C /* SwimmingSheep.json */; };
+		C8AA62A1292DF9E700D7E16C /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AA62A0292DF9E700D7E16C /* SettingCell.swift */; };
 		C8AC8486292BCA520062B0ED /* JGProgressHUDWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC8485292BCA520062B0ED /* JGProgressHUDWrapper.swift */; };
 		C8AC8488292CA67A0062B0ED /* TextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC8487292CA67A0062B0ED /* TextField+Ext.swift */; };
 		C8C77BEA291CE21F00A1675D /* UploadVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BE9291CE21F00A1675D /* UploadVideoVC.swift */; };
@@ -83,6 +84,7 @@
 		C89B179D2914E3EE002BF20D /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		C8AA629C292DECD700D7E16C /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		C8AA629E292DF35E00D7E16C /* SwimmingSheep.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SwimmingSheep.json; sourceTree = "<group>"; };
+		C8AA62A0292DF9E700D7E16C /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		C8AC8485292BCA520062B0ED /* JGProgressHUDWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGProgressHUDWrapper.swift; sourceTree = "<group>"; };
 		C8AC8487292CA67A0062B0ED /* TextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Ext.swift"; sourceTree = "<group>"; };
 		C8C77BE9291CE21F00A1675D /* UploadVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVideoVC.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				C8C77BF1291E217500A1675D /* Profile.storyboard */,
+				C8AA62A0292DF9E700D7E16C /* SettingCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				C8FC98892910C7B50028DE17 /* FireBaseManager.swift in Sources */,
 				C8FC9871290F78020028DE17 /* Constants.swift in Sources */,
 				C889468029135B28009A5BF3 /* ChatCell.swift in Sources */,
+				C8AA62A1292DF9E700D7E16C /* SettingCell.swift in Sources */,
 				C8FDC8D42928C675006FF1E6 /* MockUser.swift in Sources */,
 				C889467D29135AAF009A5BF3 /* ChatVC.swift in Sources */,
 				C8FDC8C12924D1F7006FF1E6 /* SignVC.swift in Sources */,
