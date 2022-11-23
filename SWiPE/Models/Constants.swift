@@ -71,6 +71,7 @@ enum LottieString: String {
     case signSheep = "SignSheep"
     case arrow = "Arrow"
     case backArrow = "BackArrow"
+    case swimmingSheep = "SwimmingSheep"
 }
 
 enum ProfileString: String, CaseIterable {

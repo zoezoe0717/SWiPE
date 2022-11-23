@@ -92,6 +92,13 @@ class ProfileVC: UIViewController {
         }
     }
     
+    @IBAction func presentSetting(_ sender: Any) {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "\(SettingVC.self)") as? SettingVC {
+//            controller.modalPresentationStyle = .fullScreen
+            present(controller, animated: true)
+        }
+    }
+    
     @IBAction func signOut(_ sender: Any) {
         do {
             try Auth.auth().signOut()
