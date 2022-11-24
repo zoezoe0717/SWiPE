@@ -8,6 +8,7 @@
 import UIKit
 import Lottie
 import FirebaseAuth
+import SafariServices
 
 class SettingVC: UIViewController {
     @IBOutlet weak var bottomBackgroundView: UIView!
@@ -15,7 +16,16 @@ class SettingVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private let settingOptions = ["修改暱稱", "修改自我介紹", "查看隱私權政策", "刪除帳號", "登出"]
-    private let actions = [#selector(presentPrivacyPage), #selector(presentPrivacyPage), #selector(presentPrivacyPage), #selector(presentPrivacyPage), #selector(signOut)]
+    
+    private let actions = [
+        #selector(editUserName),
+        #selector(editUserIntroduction),
+        #selector(presentPrivacyPage),
+        #selector(deleteAccount),
+        #selector(signOut)
+    ]
+    
+    var user: User?
     
     private lazy var sheepAnimationView: LottieAnimationView = {
         let view = LottieAnimationView(name: LottieString.swimmingSheep.rawValue)
@@ -72,6 +82,50 @@ class SettingVC: UIViewController {
         ])
     }
     
+    @objc private func editUserName() {
+        let message = AlertMessage(
+            text: "您的新名字是？",
+            successSubTitle: "成功更新您的暱稱",
+            errorSubTitle: "您尚未輸入新暱稱喔！",
+            alertTitle: "更新暱稱",
+            alertSubTitle: "請在下方輸入您的新暱稱"
+        )
+        guard let user = user else { return }
+        ZAlertView.share.editView(message: message, user: user, dataType: "name")
+    }
+    
+    @objc private func editUserIntroduction() {
+        let message = AlertMessage(
+            text: "您要更新自我介紹嗎？",
+            successSubTitle: "更新成功",
+            errorSubTitle: "您尚未輸入自我介紹喔！",
+            alertTitle: "更新自我介紹",
+            alertSubTitle: "請在下方輸入您的自我介紹"
+        )
+        guard let user = user else { return }
+        ZAlertView.share.editView(message: message, user: user, dataType: "introduction")
+    }
+    
+    @objc private func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print(error)
+        }
+        UserUid.share.setUidKeychain(uid: "")
+        dismiss(animated: true)
+    }
+    
+    @objc private func deleteAccount() {
+        ProgressHUD.show()
+        Auth.auth().currentUser?.delete()
+        FireBaseManager.shared.deleteUser()
+        ProgressHUD.dismiss()
+        
+        dismissPage()
+        signOut()
+    }
+    
     @objc private func dismissPage() {
         dismiss(animated: true)
     }
@@ -95,28 +149,14 @@ extension SettingVC: UITableViewDelegate, UITableViewDataSource {
         cell.titleLabel.text = settingOptions[indexPath.item]
         return cell
     }
-    
-    @objc func presentPrivacyPage() {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "\(PrivacyVC.self)") as? PrivacyVC {
-            let navgationVC = UINavigationController(rootViewController: controller)
-            navgationVC.modalPresentationStyle = .fullScreen
+}
 
-            let barAppearance = UINavigationBarAppearance()
-            barAppearance.configureWithDefaultBackground()
-            navgationVC.navigationBar.scrollEdgeAppearance = barAppearance
-            
-            present(navgationVC, animated: true)
+extension SettingVC: SFSafariViewControllerDelegate {
+    @objc func presentPrivacyPage() {
+        if let url = URL(string: "https://www.privacypolicies.com/live/739f8e31-8ddf-4b6b-8ba2-0c4bcba24a63") {
+            let safari = SFSafariViewController(url: url)
+            safari.delegate = self
+            present(safari, animated: true)
         }
-    }
-    
-    @objc func signOut() {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print(error)
-        }
-        UserUid.share.setUidKeychain(uid: "")
-        
-        dismiss(animated: true)
     }
 }

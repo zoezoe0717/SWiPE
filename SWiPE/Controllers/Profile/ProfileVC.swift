@@ -94,6 +94,7 @@ class ProfileVC: UIViewController {
     @IBAction func presentSetting(_ sender: Any) {
         if let controller = storyboard?.instantiateViewController(withIdentifier: "\(SettingVC.self)") as? SettingVC {
             controller.modalPresentationStyle = .fullScreen
+            controller.user = user
             present(controller, animated: true)
         }
     }
