@@ -19,4 +19,5 @@ target 'SWiPE' do
   pod 'lottie-ios'
   pod 'KeychainSwift', '~> 20.0'
   pod 'JGProgressHUD'
+  pod 'SCLAlertView'
 end

@@ -80,7 +80,6 @@ class FireBaseManager {
     }
     
     func getUser(completion: @escaping (Result<User?, Error>) -> Void ) {
-        print("===AAA\(UserUid.share.getUid())")
         let document = FirestoreEndpoint.users.ref.document(UserUid.share.getUid())
         document.getDocument { snapshot, error in
             if let error = error {
@@ -279,6 +278,31 @@ class FireBaseManager {
                 print(error)
             } else {
                 print("Document successfully removed!")
+            }
+        }
+    }
+    
+    func deleteUser() {
+        let document = FirestoreEndpoint.users.ref.document(UserUid.share.getUid())
+        
+        let chatRoom = FirestoreEndpoint.usersChatRoomID(UserUid.share.getUid()).ref
+        chatRoom.getDocuments { snapshot, _ in
+            guard let snapshot = snapshot else { return }
+            snapshot.documents.forEach { roomId in
+                guard let room = try? roomId.data(as: Id.self) else { return }
+                FirestoreEndpoint.chatRooms.ref.document(room.id).getDocument { snapshot, _ in
+                    guard let snapshot = snapshot else { return }
+                    snapshot.reference.delete()
+                }
+            }
+        }
+        
+        document.getDocument { snapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+                guard let snapshot = snapshot else { return }
+                snapshot.reference.delete()
             }
         }
     }

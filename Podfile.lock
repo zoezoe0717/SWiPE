@@ -755,6 +755,7 @@ PODS:
   - nanopb/encode (2.30909.0)
   - PromisesObjC (2.1.1)
   - PryntTrimmerView (4.0.2)
+  - SCLAlertView (0.8)
   - SteviaLayout (4.7.3)
   - SwiftLint (0.49.1)
   - YPImagePicker (5.2.1):
@@ -773,6 +774,7 @@ DEPENDENCIES:
   - KeychainSwift (~> 20.0)
   - Kingfisher (~> 7.0)
   - lottie-ios
+  - SCLAlertView
   - SwiftLint
   - YPImagePicker
 
@@ -809,6 +811,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - PryntTrimmerView
+    - SCLAlertView
     - SteviaLayout
     - SwiftLint
     - YPImagePicker
@@ -845,10 +848,11 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
+  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
   SwiftLint: 32ee33ded0636d0905ef6911b2b67bbaeeedafa5
   YPImagePicker: f36043210c10b0783034eb1947d6e06e31c461e4
 
-PODFILE CHECKSUM: 7c685492f6e94a7d85d7cf695dbd8ebbd2454f6a
+PODFILE CHECKSUM: e336801975501d7059b234953a6be20a11d2b598
 
 COCOAPODS: 1.11.3
