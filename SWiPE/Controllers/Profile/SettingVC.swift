@@ -118,6 +118,7 @@ class SettingVC: UIViewController {
     
     @objc private func deleteAccount() {
         ProgressHUD.show()
+        ZSwiftJWT.share.removeAccount()
         Auth.auth().currentUser?.delete()
         FireBaseManager.shared.deleteUser()
         ProgressHUD.dismiss()

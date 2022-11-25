@@ -82,6 +82,7 @@ class MatchVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         locationManager.delegate = self
+
 //        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
 //        locationManager.requestWhenInUseAuthorization()
 //        locationManager.startUpdatingLocation()
