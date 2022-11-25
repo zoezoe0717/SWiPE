@@ -11,6 +11,9 @@ import SCLAlertView
 class ZAlertView {
     static let share = ZAlertView()
     
+    let alert = SCLAlertView()
+    var isAngry = false
+    
     func editView(message: AlertMessage, user: User, dataType: String) {
         let alert = SCLAlertView()
         let textField = alert.addTextField(message.text)
@@ -53,10 +56,11 @@ class ZAlertView {
         )
     }
     
-    func angryViewme(message: AlertMessage) {
+    func angryView(message: AlertMessage, roomID: String) {
         let alert = SCLAlertView()
+        guard let isAngry = message.isAngry else { return }
         alert.addButton(AlertSrting.confirm.rawValue) {
-            
+            ChatManager.shared.updateData(roomID: roomID, data: ["isAngry": isAngry])
         }
         
         let image = UIImage(named: "angry")
@@ -78,6 +82,7 @@ struct AlertMessage {
     var errorSubTitle: String = ""
     let alertTitle: String
     let alertSubTitle: String
+    var isAngry: Bool?
 }
 
 enum AlertSrting: String {
