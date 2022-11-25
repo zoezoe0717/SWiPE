@@ -33,12 +33,49 @@ class ZAlertView {
             style: .edit
         )
     }
+    
+    func blockView(message: AlertMessage, roomID: String) {
+        let alert = SCLAlertView()
+        alert.addButton(AlertSrting.confirm.rawValue) {
+            ChatManager.shared.blockFriend(roomID: roomID)
+        }
+        
+        let image = UIImage(named: "block")
+                
+        alert.showTitle(
+            message.alertTitle,
+            subTitle: message.alertSubTitle,
+            timeout: nil,
+            completeText: AlertSrting.canael.rawValue,
+            style: .warning,
+            colorStyle: 0xF1BF7F,
+            circleIconImage: image
+        )
+    }
+    
+    func angryViewme(message: AlertMessage) {
+        let alert = SCLAlertView()
+        alert.addButton(AlertSrting.confirm.rawValue) {
+            
+        }
+        
+        let image = UIImage(named: "angry")
+                
+        alert.showTitle(
+            message.alertTitle,
+            subTitle: message.alertSubTitle,
+            timeout: nil,
+            completeText: AlertSrting.canael.rawValue,
+            style: .warning,
+            circleIconImage: image
+        )
+    }
 }
 
 struct AlertMessage {
-    let text: String
-    let successSubTitle: String
-    let errorSubTitle: String
+    var text: String = ""
+    var successSubTitle: String = ""
+    var errorSubTitle: String = ""
     let alertTitle: String
     let alertSubTitle: String
 }

@@ -163,6 +163,18 @@ class ChatRoomVC: UIViewController {
         messageTextView.text = nil
     }
     
+    @IBAction func angryClick(_ sender: Any) {
+        let message = AlertMessage(alertTitle: "很生氣？", alertSubTitle: "確定要讓對方感受您的憤怒嗎")
+        
+        ZAlertView.share.angryViewme(message: message)
+    }
+    
+    @IBAction func block(_ sender: Any) {
+        let message = AlertMessage(alertTitle: "封鎖確認", alertSubTitle: "封鎖後將看不到此聊天室\r如需解封鎖請在設定頁面修改")
+        
+        ZAlertView.share.blockView(message: message, roomID: id)
+    }
+    
     @IBAction func openAlbum(_ sender: Any) {
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = 1
