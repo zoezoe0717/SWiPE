@@ -194,7 +194,7 @@ class FireBaseManager {
                 if findID {
                     self.addFriendList(user: user, netizen: netizen)
                     self.addFriendList(user: netizen, netizen: user)
-                    self.deleteUser(user: user, netizen: netizen)
+                    self.deleteBeLiked(user: user, netizen: netizen)
                     
                     ChatManager.shared.addChatRoom(user: user, netizen: netizen) { result in
                         switch result {
@@ -220,7 +220,7 @@ class FireBaseManager {
             } else {
                 guard let snapshot = snapshot else { return }
                 for _ in snapshot.documents {
-                    self?.deleteUser(user: user, netizen: netizen)
+                    self?.deleteBeLiked(user: user, netizen: netizen)
                 }
                 completion(.success("Search Success"))
             }
@@ -276,7 +276,7 @@ class FireBaseManager {
         }
     }
     
-    func deleteUser(user: User, netizen: User) {
+    func deleteBeLiked(user: User, netizen: User) {
         let document = FirestoreEndpoint.usersBeLiked(user.id).ref.document(netizen.id)
         document.delete { error in
             if let error = error {

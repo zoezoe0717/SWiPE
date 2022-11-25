@@ -41,3 +41,8 @@ struct ChatRoom: Codable {
 struct Id: Codable {
     let id: String
 }
+
+struct ChatRoomMembers: Codable {
+    let id: String
+    let isAngry: Bool
+}
