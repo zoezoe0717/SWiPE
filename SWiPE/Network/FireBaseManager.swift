@@ -17,12 +17,14 @@ enum FirestoreEndpoint {
     
     case usersFriendList(String)
     
+    case userBlock
+    
     case chatRooms
     
     case chatRoomsMessages(String)
     
     case chatRoomsMembers(String)
-
+    
     var ref: CollectionReference {
         let firestore = Firestore.firestore()
         switch self {
@@ -37,6 +39,9 @@ enum FirestoreEndpoint {
             
         case .usersFriendList(let id):
             return firestore.collection("Users").document(id).collection("FriendList")
+            
+        case .userBlock:
+            return firestore.collection("Users").document(UserUid.share.getUid()).collection("BlockList")
             
         case .chatRooms:
             return firestore.collection("ChatRoom")
@@ -288,12 +293,12 @@ class FireBaseManager {
         let chatRoom = FirestoreEndpoint.usersChatRoomID(UserUid.share.getUid()).ref
         chatRoom.getDocuments { snapshot, _ in
             guard let snapshot = snapshot else { return }
+            
             snapshot.documents.forEach { roomId in
                 guard let room = try? roomId.data(as: Id.self) else { return }
                 FirestoreEndpoint.chatRooms.ref.document(room.id).getDocument { snapshot, _ in
                     guard let snapshot = snapshot else { return }
                     snapshot.reference.delete()
-//                    snapshot.reference.collection("Members").parent?.delete()
                 }
             }
         }

@@ -182,6 +182,16 @@ class ChatManager {
         }
     }
     
+    func blockFriend(roomID: String) {
+        let document = FirestoreEndpoint.usersChatRoomID(UserUid.share.getUid()).ref.document(roomID)
+    
+        let blockDocument = FirestoreEndpoint.userBlock.ref
+        
+        document.delete()
+        
+        blockDocument.document(roomID).setData(["id": roomID])
+    }
+    
     private func updateData(id: String, completion: @escaping(Result<String, Error>) -> Void) {
         let document = FirestoreEndpoint.chatRooms.ref.document(id)
         document.updateData(["lastUpdated": Date().millisecondsSince1970]) { error in
