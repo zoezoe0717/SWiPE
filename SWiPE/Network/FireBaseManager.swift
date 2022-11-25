@@ -293,6 +293,7 @@ class FireBaseManager {
                 FirestoreEndpoint.chatRooms.ref.document(room.id).getDocument { snapshot, _ in
                     guard let snapshot = snapshot else { return }
                     snapshot.reference.delete()
+//                    snapshot.reference.collection("Members").parent?.delete()
                 }
             }
         }
