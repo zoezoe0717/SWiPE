@@ -181,6 +181,30 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p2j-k9-FMO">
+                                <rect key="frame" x="344" y="63" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="74i-0t-6E9"/>
+                                    <constraint firstAttribute="width" secondItem="p2j-k9-FMO" secondAttribute="height" multiplier="1:1" id="aXX-1U-79V"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="block"/>
+                                <connections>
+                                    <action selector="block:" destination="gvp-da-foI" eventType="touchUpInside" id="jID-qX-it1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHR-Kj-EsZ">
+                                <rect key="frame" x="288" y="53" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="OfS-pT-pLL"/>
+                                    <constraint firstAttribute="width" secondItem="aHR-Kj-EsZ" secondAttribute="height" multiplier="1:1" id="prY-Kv-F75"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="angry"/>
+                                <connections>
+                                    <action selector="angryClick:" destination="gvp-da-foI" eventType="touchUpInside" id="cw9-YP-Pa9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="l5C-VL-Xoi"/>
                         <color key="backgroundColor" name="BaseColor"/>
@@ -189,11 +213,15 @@
                             <constraint firstAttribute="trailing" secondItem="S1o-Uu-7VE" secondAttribute="trailing" id="Daj-a2-rHG"/>
                             <constraint firstItem="liO-hn-iuo" firstAttribute="trailing" secondItem="l5C-VL-Xoi" secondAttribute="trailing" id="Ddl-Qt-6Oh"/>
                             <constraint firstItem="hIi-oC-7hN" firstAttribute="centerX" secondItem="QKN-2n-zcz" secondAttribute="centerX" id="HI1-NE-bBh"/>
+                            <constraint firstItem="p2j-k9-FMO" firstAttribute="top" secondItem="l5C-VL-Xoi" secondAttribute="top" constant="16" id="S7A-hv-VZg"/>
+                            <constraint firstAttribute="trailing" secondItem="p2j-k9-FMO" secondAttribute="trailing" constant="16" id="Ue7-3s-U9p"/>
                             <constraint firstItem="hIi-oC-7hN" firstAttribute="top" secondItem="l5C-VL-Xoi" secondAttribute="top" constant="16" id="Ztv-nF-j9D"/>
                             <constraint firstItem="S1o-Uu-7VE" firstAttribute="leading" secondItem="QKN-2n-zcz" secondAttribute="leading" id="eoq-yv-Vuu"/>
                             <constraint firstItem="liO-hn-iuo" firstAttribute="leading" secondItem="l5C-VL-Xoi" secondAttribute="leading" id="gg0-a1-5fg"/>
                             <constraint firstItem="liO-hn-iuo" firstAttribute="top" secondItem="evR-AB-3yg" secondAttribute="bottom" constant="5" id="h6L-za-R96"/>
+                            <constraint firstItem="aHR-Kj-EsZ" firstAttribute="centerY" secondItem="p2j-k9-FMO" secondAttribute="centerY" constant="-5" id="iNJ-Aj-Z5E"/>
                             <constraint firstItem="evR-AB-3yg" firstAttribute="leading" secondItem="l5C-VL-Xoi" secondAttribute="leading" constant="16" id="kkE-Jf-2tQ"/>
+                            <constraint firstItem="p2j-k9-FMO" firstAttribute="leading" secondItem="aHR-Kj-EsZ" secondAttribute="trailing" constant="16" id="opN-7n-8gR"/>
                             <constraint firstItem="l5C-VL-Xoi" firstAttribute="bottom" secondItem="liO-hn-iuo" secondAttribute="bottom" constant="70" id="qLS-1X-HHy"/>
                             <constraint firstItem="evR-AB-3yg" firstAttribute="top" secondItem="l5C-VL-Xoi" secondAttribute="top" constant="16" id="tFL-ua-fFW"/>
                             <constraint firstItem="azc-U4-NG8" firstAttribute="bottom" secondItem="l5C-VL-Xoi" secondAttribute="bottom" constant="-10" id="xD4-mN-2Cq"/>
@@ -216,7 +244,9 @@
     </scenes>
     <resources>
         <image name="album-image" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="angry" width="170.66667175292969" height="170.66667175292969"/>
         <image name="arrowshape.left.fill" catalog="system" width="128" height="104"/>
+        <image name="block" width="170.66667175292969" height="170.66667175292969"/>
         <image name="chat-bubble" width="33.333332061767578" height="33.333332061767578"/>
         <image name="message-send-white" width="32" height="32"/>
         <image name="paperplane.circle.fill" catalog="system" width="128" height="123"/>

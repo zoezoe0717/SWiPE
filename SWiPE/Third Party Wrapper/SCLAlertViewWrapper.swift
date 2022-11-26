@@ -11,6 +11,9 @@ import SCLAlertView
 class ZAlertView {
     static let share = ZAlertView()
     
+    let alert = SCLAlertView()
+    var isAngry = false
+    
     func editView(message: AlertMessage, user: User, dataType: String) {
         let alert = SCLAlertView()
         let textField = alert.addTextField(message.text)
@@ -33,14 +36,53 @@ class ZAlertView {
             style: .edit
         )
     }
+    
+    func blockView(message: AlertMessage, roomID: String) {
+        let alert = SCLAlertView()
+        alert.addButton(AlertSrting.confirm.rawValue) {
+            ChatManager.shared.blockFriend(roomID: roomID)
+        }
+        
+        let image = UIImage(named: "block")
+                
+        alert.showTitle(
+            message.alertTitle,
+            subTitle: message.alertSubTitle,
+            timeout: nil,
+            completeText: AlertSrting.canael.rawValue,
+            style: .warning,
+            colorStyle: 0xF1BF7F,
+            circleIconImage: image
+        )
+    }
+    
+    func angryView(message: AlertMessage, roomID: String) {
+        let alert = SCLAlertView()
+        guard let isAngry = message.isAngry else { return }
+        alert.addButton(AlertSrting.confirm.rawValue) {
+            ChatManager.shared.updateData(roomID: roomID, data: ["isAngry": isAngry])
+        }
+        
+        let image = UIImage(named: "angry")
+                
+        alert.showTitle(
+            message.alertTitle,
+            subTitle: message.alertSubTitle,
+            timeout: nil,
+            completeText: AlertSrting.canael.rawValue,
+            style: .warning,
+            circleIconImage: image
+        )
+    }
 }
 
 struct AlertMessage {
-    let text: String
-    let successSubTitle: String
-    let errorSubTitle: String
+    var text: String = ""
+    var successSubTitle: String = ""
+    var errorSubTitle: String = ""
     let alertTitle: String
     let alertSubTitle: String
+    var isAngry: Bool?
 }
 
 enum AlertSrting: String {

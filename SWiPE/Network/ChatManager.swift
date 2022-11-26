@@ -34,6 +34,26 @@ class ChatManager {
         }
     }
     
+    func addAngryListener(id: String, completion: @escaping(Result<ChatRoomMembers, Error>) -> Void) {
+//        let member = FirestoreEndpoint.chatRoomsMembers(id).ref.whereField("id", isNotEqualTo: UserUid.share.getUid())
+        let member = FirestoreEndpoint.chatRoomsMembers(id).ref
+        
+        member.addSnapshotListener { snapshot, error in
+            guard let snapshot = snapshot else {
+                if let error = error {
+                    completion(.failure(error))
+                }
+                return
+            }
+            
+            snapshot.documents.forEach { snap in
+                if let data = try? snap.data(as: ChatRoomMembers.self) {
+                    completion(.success(data))
+                }
+            }
+        }
+    }
+    
     func addMessage(id: String, message: inout Message, completion: @escaping (Result<String, Error>) -> Void) {
         let document = FirestoreEndpoint.chatRoomsMessages(id).ref.document()
         message.senderId = UserUid.share.getUid()
@@ -97,7 +117,7 @@ class ChatManager {
         }
         
         [user.id, netizen.id].forEach { id in
-            document.collection("Members").document(id).setData(["id": id]) { error in
+            document.collection("Members").document(id).setData(["id": id, "isAngry": false]) { error in
                 if let error = error {
                     completion(.failure(error))
                 } else {
@@ -116,10 +136,22 @@ class ChatManager {
         }
     }
     
+    func updateData<T>(roomID: String, data: [String: T]) {
+        let document = FirestoreEndpoint.chatRoomsMembers(roomID).ref.document(UserUid.share.getUid())
+        
+        document.updateData(data) { error in
+            if let error = error {
+                print(error)
+            } else {
+                print("Update Success")
+            }
+        }
+    }
+    
     func getMember(roomId: String, completion: @escaping(User) -> Void) {
         FirestoreEndpoint.chatRoomsMembers(roomId).ref.getDocuments { snapshot, _ in
             guard let snapshot = snapshot else { return }
-            let memberId = snapshot.documents.compactMap({ try? $0.data(as: Id.self) })
+            let memberId = snapshot.documents.compactMap { try? $0.data(as: Id.self) }
 
             memberId.forEach { member in
                 FirestoreEndpoint.users.ref.document(member.id).getDocument { snapshot, _ in
@@ -180,6 +212,16 @@ class ChatManager {
                 }
             }
         }
+    }
+    
+    func blockFriend(roomID: String) {
+        let document = FirestoreEndpoint.usersChatRoomID(UserUid.share.getUid()).ref.document(roomID)
+    
+        let blockDocument = FirestoreEndpoint.userBlock.ref
+        
+        document.delete()
+        
+        blockDocument.document(roomID).setData(["id": roomID])
     }
     
     private func updateData(id: String, completion: @escaping(Result<String, Error>) -> Void) {
