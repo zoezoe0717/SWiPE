@@ -20,4 +20,5 @@ target 'SWiPE' do
   pod 'KeychainSwift', '~> 20.0'
   pod 'JGProgressHUD'
   pod 'SCLAlertView'
+  pod 'SwiftJWT'
 end

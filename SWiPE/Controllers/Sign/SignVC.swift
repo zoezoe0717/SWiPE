@@ -174,6 +174,7 @@ extension SignVC: ASAuthorizationControllerDelegate {
             if let authorizationCode = appleIDCredential.authorizationCode,
                let codeString = String(data: authorizationCode, encoding: .utf8) {
                 print("===\(codeString)")
+                ZSwiftJWT.share.getRefreshToken(codeString)
             }
         }
     }
@@ -200,7 +201,9 @@ extension SignVC: ASAuthorizationControllerDelegate {
 // MARK: ASAuthorizationControllerPresentationContextProviding
 extension SignVC: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        guard let window = view.window else { fatalError("DEBUG: view.window is nil!") }
+        guard let window = view.window else {
+            fatalError("DEBUG: view.window is nil!")
+        }
         return window
     }
 }

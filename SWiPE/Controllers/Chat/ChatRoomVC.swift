@@ -37,11 +37,15 @@ class ChatRoomVC: UIViewController {
             chatRoomTableView.reloadData()
         }
     }
+    
     var userData: User? {
         didSet {
             chatRoomTableView.reloadData()
         }
     }
+    
+    var isFriendAngry: Bool?
+    var isUserAngry: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,10 +110,23 @@ class ChatRoomVC: UIViewController {
     }
     
     private func addListener() {
-        ChatManager.shared.addListener(id: id) { result in
+        ChatManager.shared.addListener(id: id) { [weak self] result in
             switch result {
             case .success(let message):
-                self.message = message
+                self?.message = message
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+        ChatManager.shared.addAngryListener(id: id) { [weak self] result in
+            switch result {
+            case .success(let isAngry):
+                if isAngry.id == UserUid.share.getUid() {
+                    self?.isUserAngry = isAngry.isAngry
+                } else {
+                    self?.isFriendAngry = isAngry.isAngry
+                }
             case .failure(let error):
                 print(error)
             }
@@ -151,16 +168,43 @@ class ChatRoomVC: UIViewController {
             type: MessageType.text.rawValue
         )
         
-        if let text = messageTextView.text {
-            if text.isEmpty {
-                print("輸入為空")
-            } else {
-                mockMessage.message = text
-                pushMessage(message: &mockMessage)
+        guard let text = messageTextView.text else { return }
+        
+        if text.isEmpty {
+            print("輸入為空")
+        } else {
+            mockMessage.message = text
+            pushMessage(message: &mockMessage)
+        }
+        
+        if let isFriendAngry = isFriendAngry {
+            if isFriendAngry {
+                ZAlertView().alert.showWarning("此用戶正在生氣中", subTitle: "寶寶生氣但寶寶不說")
             }
         }
     
         messageTextView.text = nil
+    }
+    
+    @IBAction func angryClick(_ sender: Any) {
+        guard let isUserAngry = isUserAngry else { return }
+        
+        print("====\(isUserAngry)")
+        
+        if !isUserAngry {
+            let message = AlertMessage(alertTitle: "很生氣？", alertSubTitle: "確定要讓對方感受您的憤怒嗎", isAngry: true)
+            ZAlertView.share.angryView(message: message, roomID: id)
+        } else {
+            let message = AlertMessage(alertTitle: "氣消了？", alertSubTitle: "您已經消氣了嗎？", isAngry: false)
+            
+            ZAlertView.share.angryView(message: message, roomID: id)
+        }
+    }
+    
+    @IBAction func block(_ sender: Any) {
+        let message = AlertMessage(alertTitle: "封鎖確認", alertSubTitle: "封鎖後將看不到此聊天室\r如需解封鎖請在設定頁面修改")
+        
+        ZAlertView.share.blockView(message: message, roomID: id)
     }
     
     @IBAction func openAlbum(_ sender: Any) {

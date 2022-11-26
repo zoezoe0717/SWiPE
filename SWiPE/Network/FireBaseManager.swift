@@ -17,12 +17,14 @@ enum FirestoreEndpoint {
     
     case usersFriendList(String)
     
+    case userBlock
+    
     case chatRooms
     
     case chatRoomsMessages(String)
     
     case chatRoomsMembers(String)
-
+    
     var ref: CollectionReference {
         let firestore = Firestore.firestore()
         switch self {
@@ -37,6 +39,9 @@ enum FirestoreEndpoint {
             
         case .usersFriendList(let id):
             return firestore.collection("Users").document(id).collection("FriendList")
+            
+        case .userBlock:
+            return firestore.collection("Users").document(UserUid.share.getUid()).collection("BlockList")
             
         case .chatRooms:
             return firestore.collection("ChatRoom")
@@ -189,7 +194,7 @@ class FireBaseManager {
                 if findID {
                     self.addFriendList(user: user, netizen: netizen)
                     self.addFriendList(user: netizen, netizen: user)
-                    self.deleteUser(user: user, netizen: netizen)
+                    self.deleteBeLiked(user: user, netizen: netizen)
                     
                     ChatManager.shared.addChatRoom(user: user, netizen: netizen) { result in
                         switch result {
@@ -215,7 +220,7 @@ class FireBaseManager {
             } else {
                 guard let snapshot = snapshot else { return }
                 for _ in snapshot.documents {
-                    self?.deleteUser(user: user, netizen: netizen)
+                    self?.deleteBeLiked(user: user, netizen: netizen)
                 }
                 completion(.success("Search Success"))
             }
@@ -271,7 +276,7 @@ class FireBaseManager {
         }
     }
     
-    func deleteUser(user: User, netizen: User) {
+    func deleteBeLiked(user: User, netizen: User) {
         let document = FirestoreEndpoint.usersBeLiked(user.id).ref.document(netizen.id)
         document.delete { error in
             if let error = error {
@@ -288,6 +293,7 @@ class FireBaseManager {
         let chatRoom = FirestoreEndpoint.usersChatRoomID(UserUid.share.getUid()).ref
         chatRoom.getDocuments { snapshot, _ in
             guard let snapshot = snapshot else { return }
+            
             snapshot.documents.forEach { roomId in
                 guard let room = try? roomId.data(as: Id.self) else { return }
                 FirestoreEndpoint.chatRooms.ref.document(room.id).getDocument { snapshot, _ in

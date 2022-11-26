@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		653863C99883BB5B15ACCA69 /* Pods_SWiPE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA99A84933CECDE40F287328 /* Pods_SWiPE.framework */; };
+		C808ED22292F6A2600BFF7A1 /* AuthClaims.swift in Sources */ = {isa = PBXBuildFile; fileRef = C808ED21292F6A2600BFF7A1 /* AuthClaims.swift */; };
+		C808ED24292F6C4C00BFF7A1 /* SwiftJWTWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C808ED23292F6C4C00BFF7A1 /* SwiftJWTWrapper.swift */; };
+		C808ED26292F73D800BFF7A1 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C808ED25292F73D800BFF7A1 /* AuthManager.swift */; };
 		C844D299292496EF00BBB098 /* Match.json in Resources */ = {isa = PBXBuildFile; fileRef = C844D298292496EF00BBB098 /* Match.json */; };
 		C851F4A32920BC8600813E31 /* SwipeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C851F4A22920BC8600813E31 /* SwipeTabBarController.swift */; };
 		C8573D0B29150CB00095601B /* OwnTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8573D0929150CB00095601B /* OwnTextCell.swift */; };
@@ -68,6 +71,9 @@
 /* Begin PBXFileReference section */
 		05D499648B8F8501A9C04305 /* Pods-SWiPE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWiPE.debug.xcconfig"; path = "Target Support Files/Pods-SWiPE/Pods-SWiPE.debug.xcconfig"; sourceTree = "<group>"; };
 		AA118603100A4148BF1C064B /* Pods-SWiPE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWiPE.release.xcconfig"; path = "Target Support Files/Pods-SWiPE/Pods-SWiPE.release.xcconfig"; sourceTree = "<group>"; };
+		C808ED21292F6A2600BFF7A1 /* AuthClaims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClaims.swift; sourceTree = "<group>"; };
+		C808ED23292F6C4C00BFF7A1 /* SwiftJWTWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftJWTWrapper.swift; sourceTree = "<group>"; };
+		C808ED25292F73D800BFF7A1 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		C844D298292496EF00BBB098 /* Match.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Match.json; sourceTree = "<group>"; };
 		C851F4A22920BC8600813E31 /* SwipeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTabBarController.swift; sourceTree = "<group>"; };
 		C8573D0929150CB00095601B /* OwnTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnTextCell.swift; sourceTree = "<group>"; };
@@ -238,6 +244,7 @@
 				C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */,
 				C8AC8485292BCA520062B0ED /* JGProgressHUDWrapper.swift */,
 				C8AA62A6292F194E00D7E16C /* SCLAlertViewWrapper.swift */,
+				C808ED23292F6C4C00BFF7A1 /* SwiftJWTWrapper.swift */,
 			);
 			path = "Third Party Wrapper";
 			sourceTree = "<group>";
@@ -301,6 +308,7 @@
 				C8FC98822910AD830028DE17 /* User.swift */,
 				C8894681291390DD009A5BF3 /* ChatRoom.swift */,
 				C8FDC8D32928C675006FF1E6 /* MockUser.swift */,
+				C808ED21292F6A2600BFF7A1 /* AuthClaims.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -353,6 +361,7 @@
 				C8FC98882910C7B50028DE17 /* FireBaseManager.swift */,
 				C8FC986E290F69390028DE17 /* UploadStoryProvider.swift */,
 				C88946782913589F009A5BF3 /* ChatManager.swift */,
+				C808ED25292F73D800BFF7A1 /* AuthManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -544,8 +553,10 @@
 				C8FC986F290F69390028DE17 /* UploadStoryProvider.swift in Sources */,
 				C8C77BEC291CE8DA00A1675D /* UploadPhotoVC.swift in Sources */,
 				C8C77BEA291CE21F00A1675D /* UploadVideoVC.swift in Sources */,
+				C808ED24292F6C4C00BFF7A1 /* SwiftJWTWrapper.swift in Sources */,
 				C8FC987E290FC0350028DE17 /* MatchVC.swift in Sources */,
 				C8894682291390DD009A5BF3 /* ChatRoom.swift in Sources */,
+				C808ED22292F6A2600BFF7A1 /* AuthClaims.swift in Sources */,
 				C889468B2914BB37009A5BF3 /* ProfileVC.swift in Sources */,
 				C8AC8488292CA67A0062B0ED /* TextField+Ext.swift in Sources */,
 				C8573D142916E75B0095601B /* AddDataVC.swift in Sources */,
@@ -555,6 +566,7 @@
 				C8FC9820290BE50C0028DE17 /* SWiPE.xcdatamodeld in Sources */,
 				C8FA65072910F65D0059AD23 /* KingFisherWrapper.swift in Sources */,
 				C88946862913CCB1009A5BF3 /* ChatRoomVC.swift in Sources */,
+				C808ED26292F73D800BFF7A1 /* AuthManager.swift in Sources */,
 				C8FC9876290FB9E10028DE17 /* SwipeCardView.swift in Sources */,
 				C8FC98892910C7B50028DE17 /* FireBaseManager.swift in Sources */,
 				C8FC9871290F78020028DE17 /* Constants.swift in Sources */,
