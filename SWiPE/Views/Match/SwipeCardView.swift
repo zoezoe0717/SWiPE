@@ -108,6 +108,14 @@ class SwipeCardView: UIView {
         return label
     }()
     
+    
+    lazy private var moreOptionButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "more"), for: .normal)
+        button.addTarget(self, action: #selector(moreOption), for: .touchUpInside)
+        return button
+    }()
+    
     weak var delegate: SwipeCardsDelegate?
 
     var divisor: CGFloat = 0
@@ -145,7 +153,7 @@ class SwipeCardView: UIView {
             subView.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        [nameLabel, ageLabel, introductionLabel].forEach { label in
+        [nameLabel, ageLabel, introductionLabel, moreOptionButton].forEach { label in
             label.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -217,6 +225,14 @@ class SwipeCardView: UIView {
         NSLayoutConstraint.activate([
             introductionLabel.leftAnchor.constraint(equalTo: swipeView.leftAnchor, constant: 20),
             introductionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5)
+        ])
+        
+        swipeView.addSubview(moreOptionButton)
+        NSLayoutConstraint.activate([
+            moreOptionButton.widthAnchor.constraint(equalToConstant: 40),
+            moreOptionButton.heightAnchor.constraint(equalToConstant: 40),
+            moreOptionButton.centerYAnchor.constraint(equalTo: ageLabel.centerYAnchor, constant: 20),
+            moreOptionButton.rightAnchor.constraint(equalTo: swipeView.rightAnchor, constant: -20)
         ])
     }
     
@@ -314,7 +330,12 @@ class SwipeCardView: UIView {
             break
         }
     }
-
+    
+    @objc func moreOption() {
+        guard let id = dataSource?.id else { return }
+        ZAlertView.share.showProsecute(id: id)
+    }
+    
     @objc func handleTapGesture(sender: UITapGestureRecognizer) {
     }
 }
