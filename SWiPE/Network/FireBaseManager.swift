@@ -9,6 +9,8 @@ import Foundation
 import FirebaseFirestore
 
 enum FirestoreEndpoint {
+    case prosecute
+    
     case users
     
     case usersChatRoomID(String)
@@ -28,6 +30,8 @@ enum FirestoreEndpoint {
     var ref: CollectionReference {
         let firestore = Firestore.firestore()
         switch self {
+        case .prosecute:
+            return firestore.collection("Prosecute")
         case .users:
             return firestore.collection("Users")
             
@@ -256,6 +260,18 @@ class FireBaseManager {
         let document = FirestoreEndpoint.usersBeLiked(netizen.id).ref.document(user.id)
         
         document.setData(["id": user.id]) { error in
+            if let error = error {
+                print(error)
+            } else {
+                print("Success add SubCollection")
+            }
+        }
+    }
+    
+    func addProsecute(id: String) {
+        let document = FirestoreEndpoint.prosecute.ref.document()
+        
+        document.setData(["informant": UserUid.share.getUid(), "beAccused": id]) { error in
             if let error = error {
                 print(error)
             } else {

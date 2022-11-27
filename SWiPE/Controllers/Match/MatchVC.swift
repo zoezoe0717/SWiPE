@@ -109,8 +109,10 @@ class MatchVC: UIViewController {
     }
     
     private func setAnimation() {
-        view.addSubview(matchAnimationView)
-        matchAnimationView.translatesAutoresizingMaskIntoConstraints = false
+        [matchAnimationView].forEach { sub in
+            view.addSubview(sub)
+            sub.translatesAutoresizingMaskIntoConstraints = false
+        }
         
         NSLayoutConstraint.activate([
             matchAnimationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
