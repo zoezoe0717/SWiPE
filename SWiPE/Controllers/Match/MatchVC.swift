@@ -50,18 +50,6 @@ class MatchVC: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        fullScreen = UIScreen.main.bounds.size
-        configureStackContainer()
-        setAnimation()
-        
-//        for i in 0..<20 {
-//            print("===\(i)")
-//            addMockData()
-//        }
-    }
-    
     override func loadView() {
         view = UIView()
         view.backgroundColor = CustomColor.base.color
@@ -71,18 +59,34 @@ class MatchVC: UIViewController {
         stackContainer.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        fullScreen = UIScreen.main.bounds.size
+        configureStackContainer()
+        setAnimation()
         if !UserUid.share.getUid().isEmpty {
             print("===\(UserUid.share.getUid())")
             fetchData()
+        }
+        
+//        for i in 0..<20 {
+//            print("===\(i)")
+//            addMockData()
+//        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        stackContainer?.cardViews.forEach { card in
+            if card.frame.minX == 0 {
+                card.queuePlayer?.play()
+            }
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         locationManager.delegate = self
-
 //        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
 //        locationManager.requestWhenInUseAuthorization()
 //        locationManager.startUpdatingLocation()
@@ -90,6 +94,11 @@ class MatchVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        stackContainer?.cardViews.forEach { card in
+            if card.frame.minX == 0 {
+                card.queuePlayer?.pause()
+            }
+        }
     }
     
     private func addMockData() {
@@ -259,14 +268,14 @@ extension MatchVC: StackContainerViewDelegate {
         guard let matchData = matchData else { return }
         self.updateIndex(index: index)
         if toMatch {
-            self.searchID(user: SignVC.userData, netizen: matchData[index])
+            searchID(user: SignVC.userData, netizen: matchData[index])
 //            self.playMatchAnimation(true)
         } else {
-            self.serachBeLike(user: SignVC.userData, netizen: matchData[index])
+            serachBeLike(user: SignVC.userData, netizen: matchData[index])
         }
                 
         if index == matchData.count - 2 {
-            self.fetchData()
+            fetchData()
         }
     }
 }
