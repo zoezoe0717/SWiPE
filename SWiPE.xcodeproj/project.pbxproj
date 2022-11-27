@@ -414,6 +414,7 @@
 				C8FC9810290BE50C0028DE17 /* Resources */,
 				A5A75BE323C1C47196DECA41 /* [CP] Embed Pods Frameworks */,
 				C8FC9874290FA98C0028DE17 /* ShellScript */,
+				C800FCB92933897100273228 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -525,6 +526,25 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C800FCB92933897100273228 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		C8FC9874290FA98C0028DE17 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -753,6 +773,7 @@
 				CODE_SIGN_ENTITLEMENTS = SWiPE/SWiPE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = FHH82V8NXD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SWiPE/Info.plist;
@@ -788,6 +809,7 @@
 				CODE_SIGN_ENTITLEMENTS = SWiPE/SWiPE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = FHH82V8NXD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SWiPE/Info.plist;
