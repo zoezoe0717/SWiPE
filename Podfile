@@ -21,4 +21,6 @@ target 'SWiPE' do
   pod 'JGProgressHUD'
   pod 'SCLAlertView'
   pod 'SwiftJWT'
+  pod 'FirebaseAnalytics'
+  pod 'Firebase/Crashlytics'
 end
