@@ -74,6 +74,23 @@ class ZAlertView {
             circleIconImage: image
         )
     }
+    
+    func showProsecute(id: String) {
+        let alert = SCLAlertView()
+        alert.addButton("檢舉") {
+            FireBaseManager.shared.addProsecute(id: id)
+            SCLAlertView().showSuccess(AlertSrting.success.rawValue, subTitle: "我們已收到您的檢舉。")
+        }
+        
+        alert.showTitle(
+            "檢舉",
+            subTitle: "此檢舉會匿名處理，我們將會為您處理",
+            timeout: nil,
+            completeText: AlertSrting.canael.rawValue,
+            style: .warning,
+            colorStyle: 0xF1BF7F
+        )
+    }
 }
 
 struct AlertMessage {
