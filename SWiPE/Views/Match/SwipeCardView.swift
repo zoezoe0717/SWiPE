@@ -35,16 +35,16 @@ class SwipeCardView: UIView {
         return view
     }()
     
-    lazy private var shadowView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: 0)
-        view.layer.shadowOpacity = 0.8
-        view.layer.shadowRadius = 4.0
-        
-        return view
-    }()
+//    lazy private var shadowView: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = .clear
+//        view.layer.shadowColor = UIColor.black.cgColor
+//        view.layer.shadowOffset = CGSize(width: 0, height: 0)
+//        view.layer.shadowOpacity = 0.8
+//        view.layer.shadowRadius = 4.0
+//
+//        return view
+//    }()
     
     lazy private var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -149,7 +149,7 @@ class SwipeCardView: UIView {
     }
     
     private func setConstraint() {
-        [shadowView, swipeView, imageView, loadingView, likeImageView, missImageView].forEach { subView in
+        [swipeView, imageView, loadingView, likeImageView, missImageView].forEach { subView in
             subView.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -158,21 +158,21 @@ class SwipeCardView: UIView {
         }
         
         // MARK: ShadowView
-        addSubview(shadowView)
-        NSLayoutConstraint.activate([
-            shadowView.leftAnchor.constraint(equalTo: leftAnchor),
-            shadowView.rightAnchor.constraint(equalTo: rightAnchor),
-            shadowView.topAnchor.constraint(equalTo: topAnchor),
-            shadowView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+//        addSubview(shadowView)
+//        NSLayoutConstraint.activate([
+//            shadowView.leftAnchor.constraint(equalTo: leftAnchor),
+//            shadowView.rightAnchor.constraint(equalTo: rightAnchor),
+//            shadowView.topAnchor.constraint(equalTo: topAnchor),
+//            shadowView.bottomAnchor.constraint(equalTo: bottomAnchor)
+//        ])
         
         // MARK: SwipeView
-        shadowView.addSubview(swipeView)
+        addSubview(swipeView)
         NSLayoutConstraint.activate([
-            swipeView.leftAnchor.constraint(equalTo: shadowView.leftAnchor),
-            swipeView.rightAnchor.constraint(equalTo: shadowView.rightAnchor),
-            swipeView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor),
-            swipeView.topAnchor.constraint(equalTo: shadowView.topAnchor)
+            swipeView.leftAnchor.constraint(equalTo: leftAnchor),
+            swipeView.rightAnchor.constraint(equalTo: rightAnchor),
+            swipeView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            swipeView.topAnchor.constraint(equalTo: topAnchor)
         ])
         
         // MARK: ImageView
