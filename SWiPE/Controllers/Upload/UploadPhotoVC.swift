@@ -87,7 +87,9 @@ class UploadPhotoVC: UploadVC {
     }
     
     override func createCamera() {
-        let picker = YPImagePicker()
+        var config = YPImagePickerConfiguration()
+        config.screens = [.photo, .library]
+        let picker = YPImagePicker(configuration: config)
         picker.didFinishPicking { [unowned picker] items, _ in
             if let photo = items.singlePhoto {
                 DispatchQueue.main.async { [weak self] in
