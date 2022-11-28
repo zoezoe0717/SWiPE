@@ -84,7 +84,7 @@ class ZAlertView {
         
         alert.showTitle(
             "檢舉",
-            subTitle: "此檢舉會匿名處理，我們將會為您處理",
+            subTitle: "此檢舉將會匿名，我們將會為您處理",
             timeout: nil,
             completeText: AlertSrting.canael.rawValue,
             style: .warning,
