@@ -119,7 +119,7 @@ class UploadVideoVC: UploadVC {
         queuePlayer?.pause()
         
         var config = YPImagePickerConfiguration()
-        config.screens = [.library, .video]
+        config.screens = [.video, .library]
         config.library.mediaType = .video
         config.video.recordingTimeLimit = 30.0
         config.video.libraryTimeLimit = 30.0
