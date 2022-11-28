@@ -63,6 +63,7 @@ enum SignVCString: String {
     case welcome = "歡迎來到SWiPE!"
     case signup = "或是建立帳號"
     case login = "登入"
+    case subTitle = "為了保障用戶權益，需登入過後才可以使用"
 }
 
 enum LottieString: String {

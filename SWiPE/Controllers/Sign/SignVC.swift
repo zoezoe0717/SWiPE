@@ -17,6 +17,7 @@ class SignVC: UIViewController {
     @IBOutlet weak var topBackgroundView: UIView!
     @IBOutlet weak var bottomBackgroundView: UIView!
     @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var subTitleLabel: UILabel!
     
     private var currentNonce: String?
     
@@ -61,10 +62,13 @@ class SignVC: UIViewController {
     private func setUI() {
         welcomeLabel.textColor = CustomColor.text.color
         welcomeLabel.text = SignVCString.welcome.rawValue
+        
+        subTitleLabel.textColor = CustomColor.text.color
+        subTitleLabel.text = SignVCString.subTitle.rawValue
     }
     
     private func setConstraints() {
-        [welcomeLabel, signCatAnimationView, signInAppleButton].forEach { subView in
+        [welcomeLabel, subTitleLabel, signCatAnimationView, signInAppleButton].forEach { subView in
             subView.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(subView)
         }
@@ -81,7 +85,10 @@ class SignVC: UIViewController {
             signInAppleButton.heightAnchor.constraint(equalTo: bottomBackgroundView.heightAnchor, multiplier: 0.15),
             
             welcomeLabel.leftAnchor.constraint(equalTo: signInAppleButton.leftAnchor),
-            welcomeLabel.topAnchor.constraint(equalTo: bottomBackgroundView.topAnchor, constant: 40)
+            welcomeLabel.topAnchor.constraint(equalTo: bottomBackgroundView.topAnchor, constant: 40),
+            
+            subTitleLabel.leftAnchor.constraint(equalTo: signInAppleButton.leftAnchor),
+            subTitleLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 20)
         ])
     }
     

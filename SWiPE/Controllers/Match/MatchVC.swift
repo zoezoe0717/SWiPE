@@ -64,10 +64,7 @@ class MatchVC: UIViewController {
         fullScreen = UIScreen.main.bounds.size
         configureStackContainer()
         setAnimation()
-        if !UserUid.share.getUid().isEmpty {
-            print("===\(UserUid.share.getUid())")
-            fetchData()
-        }
+
         
 //        for i in 0..<20 {
 //            print("===\(i)")
@@ -77,6 +74,11 @@ class MatchVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if !UserUid.share.getUid().isEmpty {
+            print("===\(UserUid.share.getUid())")
+            fetchData()
+        }
+        
         stackContainer?.cardViews.forEach { card in
             if card.frame.minX == 0 {
                 card.queuePlayer?.play()
@@ -196,12 +198,6 @@ extension MatchVC {
                         case .success(let success):
                             self?.matchData = success
                             print("===\(success[0])")
-                            print("===\(success[1])")
-                            print("===\(success[2])")
-                            print("===\(success[3])")
-                            print("===\(success[4])")
-                            print("===\(success[5])")
-                            print("===\(success[6])")
                         case .failure(let failure):
                             print(failure)
                         }
