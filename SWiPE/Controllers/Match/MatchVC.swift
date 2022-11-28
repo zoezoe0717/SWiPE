@@ -196,6 +196,12 @@ extension MatchVC {
                         case .success(let success):
                             self?.matchData = success
                             print("===\(success[0])")
+                            print("===\(success[1])")
+                            print("===\(success[2])")
+                            print("===\(success[3])")
+                            print("===\(success[4])")
+                            print("===\(success[5])")
+                            print("===\(success[6])")
                         case .failure(let failure):
                             print(failure)
                         }
