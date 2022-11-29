@@ -88,7 +88,7 @@ class SignVC: UIViewController {
             welcomeLabel.topAnchor.constraint(equalTo: bottomBackgroundView.topAnchor, constant: 40),
             
             subTitleLabel.leftAnchor.constraint(equalTo: signInAppleButton.leftAnchor),
-            subTitleLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 20)
+            subTitleLabel.bottomAnchor.constraint(equalTo: signInAppleButton.topAnchor, constant: -10)
         ])
     }
     
