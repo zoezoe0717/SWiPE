@@ -117,7 +117,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="lUz-zz-aQy">
                                         <rect key="frame" x="50" y="100" width="293" height="150"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nYT-ka-pWF">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入您的暱稱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nYT-ka-pWF">
                                                 <rect key="frame" x="0.0" y="0.0" width="293" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="ZID-hD-JWE"/>
@@ -125,7 +125,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mMo-93-fx5">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入您的年紀" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mMo-93-fx5">
                                                 <rect key="frame" x="0.0" y="100" width="293" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="ERE-HC-1Tf"/>
@@ -268,7 +268,7 @@
             <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="MainColor">
-            <color red="0.34900000691413879" green="0.68999999761581421" blue="0.74500000476837158" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.34901960784313724" green="0.69019607843137254" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
