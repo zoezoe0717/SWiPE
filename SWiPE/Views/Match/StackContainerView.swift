@@ -30,8 +30,8 @@ class StackContainerView: UIView {
     }
     lazy var index = 0
     
-    let horizontalInset: CGFloat = 10.0
-    let verticalInset: CGFloat = 10.0
+    let horizontalInset: CGFloat = 0
+    let verticalInset: CGFloat = 0
     
     var visibleCards: [SwipeCardView] {
         return subviews as? [SwipeCardView] ?? []

@@ -33,6 +33,20 @@ class MatchVC: UIViewController {
         return view
     }()
     
+    lazy private var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "SWiPER"
+        
+        return label
+    }()
+    
+    lazy private var titleImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "SwipeTitle")
+        
+        return imageView
+    }()
+    
     private let locationManager = CLLocationManager()
     
     private var fullScreen: CGSize?
@@ -50,6 +64,11 @@ class MatchVC: UIViewController {
         }
     }
     
+    override func loadView() {
+        super.loadView()
+        setStackContainer()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fullScreen = UIScreen.main.bounds.size
@@ -62,27 +81,23 @@ class MatchVC: UIViewController {
 //        }
     }
     
-    override func loadView() {
-        view = UIView()
-        view.backgroundColor = CustomColor.base.color
-        stackContainer = StackContainerView()
-        guard let stackContainer = stackContainer else { return }
-        view.addSubview(stackContainer)
-        stackContainer.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !UserUid.share.getUid().isEmpty {
             print("===\(UserUid.share.getUid())")
             fetchData()
         }
+        
+        stackContainer?.cardViews.forEach { card in
+            if card.frame.minX == 0 {
+                card.queuePlayer?.play()
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         locationManager.delegate = self
-
 //        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
 //        locationManager.requestWhenInUseAuthorization()
 //        locationManager.startUpdatingLocation()
@@ -90,6 +105,11 @@ class MatchVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        stackContainer?.cardViews.forEach { card in
+            if card.frame.minX == 0 {
+                card.queuePlayer?.pause()
+            }
+        }
     }
     
     private func addMockData() {
@@ -97,13 +117,22 @@ class MatchVC: UIViewController {
             add(with: &MockUser.mockUserDatas[i])
         }
     }
+    
+    private func setStackContainer() {
+        view = UIView()
+        view.backgroundColor = CustomColor.base.color
+        stackContainer = StackContainerView()
+        guard let stackContainer = stackContainer else { return }
+        view.addSubview(stackContainer)
+        stackContainer.translatesAutoresizingMaskIntoConstraints = false
+    }
      
     private func configureStackContainer() {
         guard let stackContainer = stackContainer,
             let fullScreen = fullScreen else { return }
 
         stackContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        stackContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
+        stackContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
         stackContainer.widthAnchor.constraint(equalToConstant: fullScreen.width * 0.95).isActive = true
         stackContainer.heightAnchor.constraint(equalToConstant: fullScreen.height * 0.75).isActive = true
     }
@@ -154,25 +183,6 @@ class MatchVC: UIViewController {
 }
 // MARK: Firebase
 extension MatchVC {
-//    private func fetchData() {
-//        let query = FirestoreEndpoint.users.ref.whereField("id", isNotEqualTo: ChatManager.mockId)
-//        FireBaseManager.shared.getDocument(query: query) { [weak self] (users: [User]) in
-//            guard let `self` = self else { return }
-//
-//            self.matchData = users
-//        }
-//    }
-//    private func fetchData() {
-//        FireBaseManager.shared.getMatchListener(dbName: "1JHcGEkBW0IOrfO5IMLx") { [weak self] result in
-//            switch result {
-//            case .success(let success):
-//                self?.matchData = success
-//            case .failure(let failure):
-//                print(failure)
-//            }
-//        }
-//    }
-    
     private func fetchData() {
         FireBaseManager.shared.getUser { result in
             switch result {
@@ -259,14 +269,14 @@ extension MatchVC: StackContainerViewDelegate {
         guard let matchData = matchData else { return }
         self.updateIndex(index: index)
         if toMatch {
-            self.searchID(user: SignVC.userData, netizen: matchData[index])
+            searchID(user: SignVC.userData, netizen: matchData[index])
 //            self.playMatchAnimation(true)
         } else {
-            self.serachBeLike(user: SignVC.userData, netizen: matchData[index])
+            serachBeLike(user: SignVC.userData, netizen: matchData[index])
         }
                 
         if index == matchData.count - 2 {
-            self.fetchData()
+            fetchData()
         }
     }
 }

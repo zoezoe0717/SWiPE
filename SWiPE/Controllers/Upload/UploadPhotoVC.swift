@@ -7,6 +7,7 @@
 
 import UIKit
 import YPImagePicker
+import CoreImage
 
 class UploadPhotoVC: UploadVC {
     @IBOutlet weak var titleLabel: UILabel!
@@ -86,17 +87,40 @@ class UploadPhotoVC: UploadVC {
     }
     
     override func createCamera() {
-        let picker = YPImagePicker()
+        var config = YPImagePickerConfiguration()
+        config.screens = [.photo, .library]
+        let picker = YPImagePicker(configuration: config)
         picker.didFinishPicking { [unowned picker] items, _ in
             if let photo = items.singlePhoto {
                 DispatchQueue.main.async { [weak self] in
                     self?.profileImagePhoto.image = photo.image
                     self?.profileImagePhoto.isHidden = false
-                    self?.buttonSwitch(hasImage: true)
+                    self?.faceDetect(photo: photo.image)
                 }
             }
             picker.dismiss(animated: true)
         }
         present(picker, animated: true)
+    }
+}
+
+// MARK: Core Image
+extension UploadPhotoVC {
+    private func faceDetect(photo: UIImage) {
+        let imageOptions = NSDictionary(object: NSNumber(value: 5), forKey: CIDetectorImageOrientation as NSString)
+        guard let personciImage = CIImage(image: photo) else { return }
+        
+        let accuracy = [CIDetectorAccuracy: CIDetectorAccuracyHigh]
+        let faceDetector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: accuracy)
+        let faces = faceDetector?.features(in: personciImage, options: imageOptions as? [String: AnyObject])
+        
+        if faces?.first is CIFaceFeature {
+            buttonSwitch(hasImage: true)
+        } else {
+            buttonSwitch(hasImage: false)
+            let alert = UIAlertController(title: "未偵測到臉部", message: "請重新選擇有臉部的照片喔！", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+        }
     }
 }

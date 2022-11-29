@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bZE-eR-N8H">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bZE-eR-N8H">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -150,7 +151,6 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="a92-n7-HdM">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="jFg-N8-FcE" kind="relationship" relationship="viewControllers" id="XFr-jf-MTw"/>
@@ -178,7 +178,7 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PWb-gO-CKW">
                                 <rect key="frame" x="10" y="178.99999999999997" width="370" height="493.33333333333326"/>
-                                <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                <color key="backgroundColor" name="BaseColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PWb-gO-CKW" secondAttribute="height" multiplier="3:4" id="8Ey-zz-7Il"/>
                                 </constraints>
@@ -214,10 +214,10 @@
             </objects>
             <point key="canvasLocation" x="-495" y="-481"/>
         </scene>
-        <!--MatchVC-->
+        <!--Match-->
         <scene sceneID="GHj-7E-k2t">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="MatchVC" storyboardName="Match" referencedIdentifier="MatchVC" id="jFg-N8-FcE" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="MatchVC" storyboardName="Match" id="jFg-N8-FcE" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="dgN-pe-1IM"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7hd-Ou-kNQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -237,11 +237,11 @@
     </scenes>
     <resources>
         <image name="chat-bubble" width="33.333332061767578" height="33.333332061767578"/>
+        <namedColor name="BaseColor">
+            <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
