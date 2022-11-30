@@ -91,10 +91,9 @@ class SwipeTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         callData.forEach { call in
             let isReceiver = call.receiverId == UserUid.share.getUid()
-            let isCall = !call.receiverStatus && call.senderStatus
+            let isCall = call.isCall
             
             if isReceiver && isCall {
-                print("---我的電話啦")
                 if let controller = storyboard.instantiateViewController(withIdentifier: "\(CallVC.self)") as? CallVC {
                     controller.callData = call
                     present(controller, animated: false)

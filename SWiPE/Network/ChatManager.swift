@@ -70,6 +70,23 @@ class ChatManager {
         }
     }
     
+    func addStatusListener(room: String, completion: @escaping(Result<CallStatus, Error>) -> Void) {
+        let collection = FirestoreEndpoint.call.ref.document(room).collection("Status")
+        
+        collection.addSnapshotListener { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                guard let snapshot = snapshot else { return }
+                snapshot.documents.forEach { snap in
+                    if let data = try? snap.data(as: CallStatus.self) {
+                        completion(.success(data))
+                    }
+                }
+            }
+        }
+    }
+    
     func addMessage(id: String, message: inout Message, completion: @escaping (Result<String, Error>) -> Void) {
         let document = FirestoreEndpoint.chatRoomsMessages(id).ref.document()
         message.senderId = UserUid.share.getUid()
@@ -153,23 +170,29 @@ class ChatManager {
     }
     
     func addCallRequest(roomId: String, sender: User, receiver: User, completion: @escaping (Result<String, Error>) -> Void) {
-        var callData = Call(
-            messageId: "",
+        let callData = Call(
             senderId: sender.id,
             receiverId: receiver.id,
             roomId: roomId,
             senderImage: sender.story,
             senderName: sender.name,
             createdTime: Date().millisecondsSince1970,
-            senderStatus: true,
-            receiverStatus: false
+            isCall: true
         )
         
-        let document = FirestoreEndpoint.call.ref.document()
-        
-        callData.messageId = document.documentID
-        
+        let document = FirestoreEndpoint.call.ref.document(roomId)
+                
         document.setData(callData.toDict) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success("Success add call request"))
+            }
+        }
+        
+        let status = FirestoreEndpoint.call.ref.document(document.documentID).collection("Status")
+        let callStatus = CallStatus(senderStatus: true, receiverStatus: false)
+        status.document(roomId).setData(callStatus.toDict) { error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -190,8 +213,8 @@ class ChatManager {
         }
     }
     
-    func updateCallStatus<T>(messageId: String, data: [String: T]) {
-        let document = FirestoreEndpoint.call.ref.document(messageId)
+    func updateCallStatus<T>(roomId: String, data: [String: T]) {
+        let document = FirestoreEndpoint.call.ref.document(roomId).collection("Status").document(roomId)
         document.updateData(data) { error in
             if let error = error {
                 print(error)

@@ -46,6 +46,7 @@
 		C8EEA63629378F1C00E9B6E3 /* KeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA63529378F1C00E9B6E3 /* KeyCenter.swift */; };
 		C8EEA63929378FA500E9B6E3 /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA63829378FA500E9B6E3 /* JSONObject.swift */; };
 		C8EEA63B2937916700E9B6E3 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA63A2937916700E9B6E3 /* String+Ext.swift */; };
+		C8EEA63D2937956900E9B6E3 /* GlobalSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA63C2937956900E9B6E3 /* GlobalSetting.swift */; };
 		C8FA65072910F65D0059AD23 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */; };
 		C8FA652C291212530059AD23 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA652B291212530059AD23 /* Date+Ext.swift */; };
 		C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9815290BE50C0028DE17 /* AppDelegate.swift */; };
@@ -115,6 +116,7 @@
 		C8EEA63529378F1C00E9B6E3 /* KeyCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCenter.swift; sourceTree = "<group>"; };
 		C8EEA63829378FA500E9B6E3 /* JSONObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONObject.swift; sourceTree = "<group>"; };
 		C8EEA63A2937916700E9B6E3 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		C8EEA63C2937956900E9B6E3 /* GlobalSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSetting.swift; sourceTree = "<group>"; };
 		C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		C8FA652B291212530059AD23 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		C8FC9812290BE50C0028DE17 /* SWiPE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWiPE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -348,6 +350,7 @@
 				C8FDC8D32928C675006FF1E6 /* MockUser.swift */,
 				C808ED21292F6A2600BFF7A1 /* AuthClaims.swift */,
 				C8EEA63529378F1C00E9B6E3 /* KeyCenter.swift */,
+				C8EEA63C2937956900E9B6E3 /* GlobalSetting.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 				C88946862913CCB1009A5BF3 /* ChatRoomVC.swift in Sources */,
 				C808ED26292F73D800BFF7A1 /* AuthManager.swift in Sources */,
 				C8FC9876290FB9E10028DE17 /* SwipeCardView.swift in Sources */,
+				C8EEA63D2937956900E9B6E3 /* GlobalSetting.swift in Sources */,
 				C8FC98892910C7B50028DE17 /* FireBaseManager.swift in Sources */,
 				C8FC9871290F78020028DE17 /* Constants.swift in Sources */,
 				C889468029135B28009A5BF3 /* ChatCell.swift in Sources */,
