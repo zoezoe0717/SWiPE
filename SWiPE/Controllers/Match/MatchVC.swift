@@ -196,7 +196,7 @@ extension MatchVC {
                         switch result {
                         case .success(let success):
                             self?.matchData = success
-                            print("===\(success[0])")
+//                            print("===\(success[0])")
                         case .failure(let failure):
                             print(failure)
                         }

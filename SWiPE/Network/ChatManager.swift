@@ -54,6 +54,23 @@ class ChatManager {
         }
     }
     
+    func addCallListener(completion: @escaping(Result<Call, Error>) -> Void) {
+        let collection = FirestoreEndpoint.call.ref
+        
+        collection.addSnapshotListener { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                guard let snapshot = snapshot else { return }
+                snapshot.documents.forEach { snap in
+                    if let data = try? snap.data(as: Call.self) {
+                        completion(.success(data))
+                    }
+                }
+            }
+        }
+    }
+    
     func addMessage(id: String, message: inout Message, completion: @escaping (Result<String, Error>) -> Void) {
         let document = FirestoreEndpoint.chatRoomsMessages(id).ref.document()
         message.senderId = UserUid.share.getUid()
@@ -136,6 +153,26 @@ class ChatManager {
         }
     }
     
+    func addCallRequest(roomId: String, receiverId: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let callData = Call(
+            senderId: UserUid.share.getUid(),
+            receiverId: receiverId,
+            roomId: roomId,
+            createdTime: Date().millisecondsSince1970,
+            senderStatus: true,
+            receiverStatus: false
+        )
+        let document = FirestoreEndpoint.call.ref.document()
+        
+        document.setData(callData.toDict) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success("Success add call request"))
+            }
+        }
+    }
+        
     func updateData<T>(roomID: String, data: [String: T]) {
         let document = FirestoreEndpoint.chatRoomsMembers(roomID).ref.document(UserUid.share.getUid())
         

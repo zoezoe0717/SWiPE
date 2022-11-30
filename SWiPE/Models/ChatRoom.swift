@@ -14,14 +14,6 @@ struct Message: Codable {
     var createdTime: Int64
     var type: String
     
-//    enum CodingKeys: String, CodingKey {
-//        case senderId = "sender_id"
-//        case messageId = "message_id"
-//        case message
-//        case createdTime
-//        case type
-//    }
-    
     var toDict: [String: Any] {
         return [
             "senderId": senderId as Any,
@@ -29,6 +21,26 @@ struct Message: Codable {
             "message": message as Any,
             "createdTime": createdTime as Any,
             "type": type as Any
+        ]
+    }
+}
+
+struct Call: Codable {
+    var senderId: String
+    var receiverId: String
+    var roomId: String
+    var createdTime: Int64
+    var senderStatus: Bool
+    var receiverStatus: Bool
+
+    var toDict: [String: Any] {
+        return [
+            "senderId": senderId as Any,
+            "receiverId": receiverId as Any,
+            "roomId": roomId as Any,
+            "createdTime": createdTime as Any,
+            "senderStatus": senderStatus as Any,
+            "receiverStatus": receiverStatus as Any,
         ]
     }
 }

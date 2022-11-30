@@ -44,6 +44,8 @@ class ChatRoomVC: UIViewController {
         }
     }
     
+    var callData: Call?
+    
     var isFriendAngry: Bool?
     var isUserAngry: Bool?
     
@@ -217,6 +219,17 @@ class ChatRoomVC: UIViewController {
         picker.delegate = self
         self.present(picker, animated: true)
     }
+    
+    @IBAction func voiceCall(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Call", bundle: nil)
+        
+        if let controller = storyboard.instantiateViewController(withIdentifier: "\(CallVC.self)") as? CallVC {
+            controller.roomId = id
+            controller.receiverId = friendData?.id
+            controller.isSender = true
+            present(controller, animated: false)
+        }
+    }
 }
 
 extension ChatRoomVC: UITableViewDelegate, UITableViewDataSource {
@@ -308,3 +321,4 @@ extension ChatRoomVC: PHPickerViewControllerDelegate {
         }
     }
 }
+

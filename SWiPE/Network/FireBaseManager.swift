@@ -27,6 +27,8 @@ enum FirestoreEndpoint {
     
     case chatRoomsMembers(String)
     
+    case call
+    
     var ref: CollectionReference {
         let firestore = Firestore.firestore()
         switch self {
@@ -55,6 +57,9 @@ enum FirestoreEndpoint {
             
         case .chatRoomsMembers(let id):
             return firestore.collection("ChatRoom").document(id).collection("Members")
+        
+        case .call:
+            return firestore.collection("Call")
         }
     }
 }

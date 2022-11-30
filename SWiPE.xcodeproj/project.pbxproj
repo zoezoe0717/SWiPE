@@ -40,6 +40,8 @@
 		C8E845FA291B914A00180758 /* OwnImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8E845F8291B914A00180758 /* OwnImageCell.xib */; };
 		C8E845FD291B915B00180758 /* FriendImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E845FB291B915B00180758 /* FriendImageCell.swift */; };
 		C8E845FE291B915B00180758 /* FriendImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8E845FC291B915B00180758 /* FriendImageCell.xib */; };
+		C8EEA62F293750BD00E9B6E3 /* Call.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8EEA62E293750BC00E9B6E3 /* Call.storyboard */; };
+		C8EEA632293750D900E9B6E3 /* CallVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA631293750D900E9B6E3 /* CallVC.swift */; };
 		C8FA65072910F65D0059AD23 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */; };
 		C8FA652C291212530059AD23 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA652B291212530059AD23 /* Date+Ext.swift */; };
 		C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9815290BE50C0028DE17 /* AppDelegate.swift */; };
@@ -103,6 +105,8 @@
 		C8E845F8291B914A00180758 /* OwnImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OwnImageCell.xib; sourceTree = "<group>"; };
 		C8E845FB291B915B00180758 /* FriendImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendImageCell.swift; sourceTree = "<group>"; };
 		C8E845FC291B915B00180758 /* FriendImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendImageCell.xib; sourceTree = "<group>"; };
+		C8EEA62E293750BC00E9B6E3 /* Call.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Call.storyboard; sourceTree = "<group>"; };
+		C8EEA631293750D900E9B6E3 /* CallVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallVC.swift; sourceTree = "<group>"; };
 		C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		C8FA652B291212530059AD23 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		C8FC9812290BE50C0028DE17 /* SWiPE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWiPE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,6 +242,22 @@
 			path = ChatRoom;
 			sourceTree = "<group>";
 		};
+		C8EEA62D293750B000E9B6E3 /* Call */ = {
+			isa = PBXGroup;
+			children = (
+				C8EEA62E293750BC00E9B6E3 /* Call.storyboard */,
+			);
+			path = Call;
+			sourceTree = "<group>";
+		};
+		C8EEA630293750C700E9B6E3 /* Call */ = {
+			isa = PBXGroup;
+			children = (
+				C8EEA631293750D900E9B6E3 /* CallVC.swift */,
+			);
+			path = Call;
+			sourceTree = "<group>";
+		};
 		C8FA65052910F6190059AD23 /* Third Party Wrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +311,7 @@
 		C8FC982E290BECF40028DE17 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C8EEA62D293750B000E9B6E3 /* Call */,
 				C8FDC8BB2924D11F006FF1E6 /* Sign */,
 				C8C77BBB291C936B00A1675D /* Profile */,
 				C869195529150A99003E5A9A /* Cell */,
@@ -316,6 +337,7 @@
 		C8FC9831290BED300028DE17 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C8EEA630293750C700E9B6E3 /* Call */,
 				C8FDC8BA2924D115006FF1E6 /* Sign */,
 				C8A18A5D2914BDF600CB7C9C /* Upload */,
 				C889468C2914BB45009A5BF3 /* Profile */,
@@ -465,6 +487,7 @@
 			files = (
 				C8FDC8CB29261767006FF1E6 /* CardLoding.json in Resources */,
 				C8573D12291516B40095601B /* FriendTextCell.xib in Resources */,
+				C8EEA62F293750BD00E9B6E3 /* Call.storyboard in Resources */,
 				C8C77BF3291E217500A1675D /* Profile.storyboard in Resources */,
 				C8573D0C29150CB00095601B /* OwnTextCell.xib in Resources */,
 				C89B179E2914E3EE002BF20D /* Chat.storyboard in Resources */,
@@ -582,6 +605,7 @@
 				C8573D142916E75B0095601B /* AddDataVC.swift in Sources */,
 				C8FA652C291212530059AD23 /* Date+Ext.swift in Sources */,
 				C8573D0B29150CB00095601B /* OwnTextCell.swift in Sources */,
+				C8EEA632293750D900E9B6E3 /* CallVC.swift in Sources */,
 				C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */,
 				C8FC9820290BE50C0028DE17 /* SWiPE.xcdatamodeld in Sources */,
 				C8FA65072910F65D0059AD23 /* KingFisherWrapper.swift in Sources */,
@@ -790,7 +814,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SWiPE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -828,7 +852,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SWiPE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

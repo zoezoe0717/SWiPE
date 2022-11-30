@@ -205,6 +205,18 @@
                                     <action selector="angryClick:" destination="gvp-da-foI" eventType="touchUpInside" id="cw9-YP-Pa9"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibX-cu-Sgm">
+                                <rect key="frame" x="72" y="54.333333333333343" width="40" height="38.999999999999993"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ibX-cu-Sgm" secondAttribute="height" multiplier="1:1" id="kio-VW-sf8"/>
+                                    <constraint firstAttribute="height" constant="40" id="reO-Oi-ZmN"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="phone.bubble.left.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="voiceCall:" destination="gvp-da-foI" eventType="touchUpInside" id="h8k-SJ-5Rf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="l5C-VL-Xoi"/>
                         <color key="backgroundColor" name="BaseColor"/>
@@ -212,8 +224,10 @@
                             <constraint firstItem="S1o-Uu-7VE" firstAttribute="height" secondItem="QKN-2n-zcz" secondAttribute="height" multiplier="0.2" id="5L3-qN-aQX"/>
                             <constraint firstAttribute="trailing" secondItem="S1o-Uu-7VE" secondAttribute="trailing" id="Daj-a2-rHG"/>
                             <constraint firstItem="liO-hn-iuo" firstAttribute="trailing" secondItem="l5C-VL-Xoi" secondAttribute="trailing" id="Ddl-Qt-6Oh"/>
+                            <constraint firstItem="ibX-cu-Sgm" firstAttribute="centerY" secondItem="aHR-Kj-EsZ" secondAttribute="centerY" id="GhJ-gV-HiN"/>
                             <constraint firstItem="hIi-oC-7hN" firstAttribute="centerX" secondItem="QKN-2n-zcz" secondAttribute="centerX" id="HI1-NE-bBh"/>
                             <constraint firstItem="p2j-k9-FMO" firstAttribute="top" secondItem="l5C-VL-Xoi" secondAttribute="top" constant="16" id="S7A-hv-VZg"/>
+                            <constraint firstItem="ibX-cu-Sgm" firstAttribute="leading" secondItem="evR-AB-3yg" secondAttribute="trailing" constant="16" id="U9X-m7-EFc"/>
                             <constraint firstAttribute="trailing" secondItem="p2j-k9-FMO" secondAttribute="trailing" constant="16" id="Ue7-3s-U9p"/>
                             <constraint firstItem="hIi-oC-7hN" firstAttribute="top" secondItem="l5C-VL-Xoi" secondAttribute="top" constant="16" id="Ztv-nF-j9D"/>
                             <constraint firstItem="S1o-Uu-7VE" firstAttribute="leading" secondItem="QKN-2n-zcz" secondAttribute="leading" id="eoq-yv-Vuu"/>
@@ -250,6 +264,7 @@
         <image name="chat-bubble" width="33.333332061767578" height="33.333332061767578"/>
         <image name="message-send-white" width="32" height="32"/>
         <image name="paperplane.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="phone.bubble.left.fill" catalog="system" width="128" height="110"/>
         <image name="photo.fill" catalog="system" width="128" height="93"/>
         <namedColor name="BaseColor">
             <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

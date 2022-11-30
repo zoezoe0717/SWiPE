@@ -53,6 +53,7 @@ class SwipeTabBarController: UITabBarController, UITabBarControllerDelegate {
         Auth.auth().addStateDidChangeListener { [weak self] _, user in
             if let user = user {
                 print("\(user.uid) Login")
+                self?.addCallListener()
             } else {
                 self?.presentSignPage()
             }
@@ -65,6 +66,17 @@ class SwipeTabBarController: UITabBarController, UITabBarControllerDelegate {
         if let controller = storyboard.instantiateViewController(withIdentifier: "\(SignVC.self)") as? SignVC {
             controller.modalPresentationStyle = .fullScreen
             present(controller, animated: false)
+        }
+    }
+    
+    private func addCallListener() {
+        ChatManager.shared.addCallListener { result in
+            switch result {
+            case .success(let callData):
+                print("---\(callData)")
+            case .failure(let error):
+                print(error)
+            }
         }
     }
 }
