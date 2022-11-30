@@ -9,6 +9,12 @@ import UIKit
 import FirebaseAuth
 
 class SwipeTabBarController: UITabBarController, UITabBarControllerDelegate {
+    var callDatas: [Call] = [] {
+        didSet {
+            callJudgment(callData: callDatas)
+        }
+    }
+    
     lazy var customView: UIView = {
         let view = UIView()
         view.backgroundColor = CustomColor.main.color
@@ -70,12 +76,29 @@ class SwipeTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     private func addCallListener() {
-        ChatManager.shared.addCallListener { result in
+        ChatManager.shared.addCallListener { [weak self] result in
             switch result {
-            case .success(let callData):
-                print("---\(callData)")
+            case .success(let callDatas):
+                self?.callDatas = callDatas
             case .failure(let error):
                 print(error)
+            }
+        }
+    }
+    
+    private func callJudgment(callData: [Call]) {
+        let storyboard = UIStoryboard(name: "Call", bundle: nil)
+        
+        callData.forEach { call in
+            let isReceiver = call.receiverId == UserUid.share.getUid()
+            let isCall = !call.receiverStatus && call.senderStatus
+            
+            if isReceiver && isCall {
+                print("---我的電話啦")
+                if let controller = storyboard.instantiateViewController(withIdentifier: "\(CallVC.self)") as? CallVC {
+                    controller.callData = call
+                    present(controller, animated: false)
+                }
             }
         }
     }

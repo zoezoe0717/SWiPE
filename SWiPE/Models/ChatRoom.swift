@@ -26,18 +26,24 @@ struct Message: Codable {
 }
 
 struct Call: Codable {
+    var messageId: String
     var senderId: String
     var receiverId: String
     var roomId: String
+    var senderImage: String
+    var senderName: String
     var createdTime: Int64
     var senderStatus: Bool
     var receiverStatus: Bool
 
     var toDict: [String: Any] {
         return [
+            "messageId": messageId as Any,
             "senderId": senderId as Any,
             "receiverId": receiverId as Any,
             "roomId": roomId as Any,
+            "senderImage": senderImage as Any,
+            "senderName": senderName as Any,
             "createdTime": createdTime as Any,
             "senderStatus": senderStatus as Any,
             "receiverStatus": receiverStatus as Any,

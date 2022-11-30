@@ -225,7 +225,8 @@ class ChatRoomVC: UIViewController {
         
         if let controller = storyboard.instantiateViewController(withIdentifier: "\(CallVC.self)") as? CallVC {
             controller.roomId = id
-            controller.receiverId = friendData?.id
+            controller.receiver = friendData
+            controller.sender = userData
             controller.isSender = true
             present(controller, animated: false)
         }

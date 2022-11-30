@@ -23,4 +23,5 @@ target 'SWiPE' do
   pod 'SwiftJWT'
   pod 'FirebaseAnalytics'
   pod 'Firebase/Crashlytics'
+  pod 'AgoraAudio_iOS'
 end

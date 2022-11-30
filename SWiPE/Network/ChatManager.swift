@@ -54,7 +54,7 @@ class ChatManager {
         }
     }
     
-    func addCallListener(completion: @escaping(Result<Call, Error>) -> Void) {
+    func addCallListener(completion: @escaping(Result<[Call], Error>) -> Void) {
         let collection = FirestoreEndpoint.call.ref
         
         collection.addSnapshotListener { snapshot, error in
@@ -62,11 +62,10 @@ class ChatManager {
                 completion(.failure(error))
             } else {
                 guard let snapshot = snapshot else { return }
-                snapshot.documents.forEach { snap in
-                    if let data = try? snap.data(as: Call.self) {
-                        completion(.success(data))
-                    }
+                let datas = snapshot.documents.compactMap { snap in
+                    try? snap.data(as: Call.self)
                 }
+                completion(.success(datas))
             }
         }
     }
@@ -153,16 +152,22 @@ class ChatManager {
         }
     }
     
-    func addCallRequest(roomId: String, receiverId: String, completion: @escaping (Result<String, Error>) -> Void) {
-        let callData = Call(
-            senderId: UserUid.share.getUid(),
-            receiverId: receiverId,
+    func addCallRequest(roomId: String, sender: User, receiver: User, completion: @escaping (Result<String, Error>) -> Void) {
+        var callData = Call(
+            messageId: "",
+            senderId: sender.id,
+            receiverId: receiver.id,
             roomId: roomId,
+            senderImage: sender.story,
+            senderName: sender.name,
             createdTime: Date().millisecondsSince1970,
             senderStatus: true,
             receiverStatus: false
         )
+        
         let document = FirestoreEndpoint.call.ref.document()
+        
+        callData.messageId = document.documentID
         
         document.setData(callData.toDict) { error in
             if let error = error {
@@ -176,6 +181,17 @@ class ChatManager {
     func updateData<T>(roomID: String, data: [String: T]) {
         let document = FirestoreEndpoint.chatRoomsMembers(roomID).ref.document(UserUid.share.getUid())
         
+        document.updateData(data) { error in
+            if let error = error {
+                print(error)
+            } else {
+                print("Update Success")
+            }
+        }
+    }
+    
+    func updateCallStatus<T>(messageId: String, data: [String: T]) {
+        let document = FirestoreEndpoint.call.ref.document(messageId)
         document.updateData(data) { error in
             if let error = error {
                 print(error)

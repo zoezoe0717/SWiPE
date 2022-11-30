@@ -596,6 +596,15 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - AgoraAudio_iOS (4.0.1):
+    - AgoraAudio_iOS/AINS (= 4.0.1)
+    - AgoraAudio_iOS/AudioBeauty (= 4.0.1)
+    - AgoraAudio_iOS/RtcBasic (= 4.0.1)
+    - AgoraAudio_iOS/SpatialAudio (= 4.0.1)
+  - AgoraAudio_iOS/AINS (4.0.1)
+  - AgoraAudio_iOS/AudioBeauty (4.0.1)
+  - AgoraAudio_iOS/RtcBasic (4.0.1)
+  - AgoraAudio_iOS/SpatialAudio (4.0.1)
   - Alamofire (5.6.2)
   - BlueCryptor (1.0.32)
   - BlueECC (1.2.5)
@@ -834,6 +843,7 @@ PODS:
     - SteviaLayout (= 4.7.3)
 
 DEPENDENCIES:
+  - AgoraAudio_iOS
   - Alamofire
   - Firebase/Auth
   - Firebase/Crashlytics
@@ -855,6 +865,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - abseil
+    - AgoraAudio_iOS
     - Alamofire
     - BlueCryptor
     - BlueECC
@@ -903,6 +914,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
+  AgoraAudio_iOS: 4589b3c2e4fee17ef6e47c67d0054fcfaa3c1b72
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
   BlueCryptor: b0aee3d9b8f367b49b30de11cda90e1735571c24
   BlueECC: 0d18e93347d3ec6d41416de21c1ffa4d4cd3c2cc
@@ -949,6 +961,6 @@ SPEC CHECKSUMS:
   SwiftLint: 32ee33ded0636d0905ef6911b2b67bbaeeedafa5
   YPImagePicker: f36043210c10b0783034eb1947d6e06e31c461e4
 
-PODFILE CHECKSUM: 99039b7851c01a6a104708adc7b6f90c6f3c8f6c
+PODFILE CHECKSUM: 6e093a84246439c4094c6a518794ded5430f9a5c
 
 COCOAPODS: 1.11.3

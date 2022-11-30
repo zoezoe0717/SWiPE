@@ -42,6 +42,10 @@
 		C8E845FE291B915B00180758 /* FriendImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8E845FC291B915B00180758 /* FriendImageCell.xib */; };
 		C8EEA62F293750BD00E9B6E3 /* Call.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8EEA62E293750BC00E9B6E3 /* Call.storyboard */; };
 		C8EEA632293750D900E9B6E3 /* CallVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA631293750D900E9B6E3 /* CallVC.swift */; };
+		C8EEA63429378DA000E9B6E3 /* AgoraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA63329378D9F00E9B6E3 /* AgoraManager.swift */; };
+		C8EEA63629378F1C00E9B6E3 /* KeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA63529378F1C00E9B6E3 /* KeyCenter.swift */; };
+		C8EEA63929378FA500E9B6E3 /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA63829378FA500E9B6E3 /* JSONObject.swift */; };
+		C8EEA63B2937916700E9B6E3 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA63A2937916700E9B6E3 /* String+Ext.swift */; };
 		C8FA65072910F65D0059AD23 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */; };
 		C8FA652C291212530059AD23 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA652B291212530059AD23 /* Date+Ext.swift */; };
 		C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9815290BE50C0028DE17 /* AppDelegate.swift */; };
@@ -107,6 +111,10 @@
 		C8E845FC291B915B00180758 /* FriendImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendImageCell.xib; sourceTree = "<group>"; };
 		C8EEA62E293750BC00E9B6E3 /* Call.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Call.storyboard; sourceTree = "<group>"; };
 		C8EEA631293750D900E9B6E3 /* CallVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallVC.swift; sourceTree = "<group>"; };
+		C8EEA63329378D9F00E9B6E3 /* AgoraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraManager.swift; sourceTree = "<group>"; };
+		C8EEA63529378F1C00E9B6E3 /* KeyCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCenter.swift; sourceTree = "<group>"; };
+		C8EEA63829378FA500E9B6E3 /* JSONObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONObject.swift; sourceTree = "<group>"; };
+		C8EEA63A2937916700E9B6E3 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		C8FA652B291212530059AD23 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		C8FC9812290BE50C0028DE17 /* SWiPE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWiPE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +266,15 @@
 			path = Call;
 			sourceTree = "<group>";
 		};
+		C8EEA63729378F8F00E9B6E3 /* AgoraManager */ = {
+			isa = PBXGroup;
+			children = (
+				C8EEA63829378FA500E9B6E3 /* JSONObject.swift */,
+				C8EEA63329378D9F00E9B6E3 /* AgoraManager.swift */,
+			);
+			path = AgoraManager;
+			sourceTree = "<group>";
+		};
 		C8FA65052910F6190059AD23 /* Third Party Wrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +347,7 @@
 				C8894681291390DD009A5BF3 /* ChatRoom.swift */,
 				C8FDC8D32928C675006FF1E6 /* MockUser.swift */,
 				C808ED21292F6A2600BFF7A1 /* AuthClaims.swift */,
+				C8EEA63529378F1C00E9B6E3 /* KeyCenter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -363,6 +381,7 @@
 			children = (
 				C8FA652B291212530059AD23 /* Date+Ext.swift */,
 				C8AC8487292CA67A0062B0ED /* TextField+Ext.swift */,
+				C8EEA63A2937916700E9B6E3 /* String+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -380,6 +399,7 @@
 		C8FC988A2910E6070028DE17 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C8EEA63729378F8F00E9B6E3 /* AgoraManager */,
 				C8FC98882910C7B50028DE17 /* FireBaseManager.swift */,
 				C8FC986E290F69390028DE17 /* UploadStoryProvider.swift */,
 				C88946782913589F009A5BF3 /* ChatManager.swift */,
@@ -597,11 +617,13 @@
 				C8C77BEC291CE8DA00A1675D /* UploadPhotoVC.swift in Sources */,
 				C8C77BEA291CE21F00A1675D /* UploadVideoVC.swift in Sources */,
 				C808ED24292F6C4C00BFF7A1 /* SwiftJWTWrapper.swift in Sources */,
+				C8EEA63629378F1C00E9B6E3 /* KeyCenter.swift in Sources */,
 				C8FC987E290FC0350028DE17 /* MatchVC.swift in Sources */,
 				C8894682291390DD009A5BF3 /* ChatRoom.swift in Sources */,
 				C808ED22292F6A2600BFF7A1 /* AuthClaims.swift in Sources */,
 				C889468B2914BB37009A5BF3 /* ProfileVC.swift in Sources */,
 				C8AC8488292CA67A0062B0ED /* TextField+Ext.swift in Sources */,
+				C8EEA63B2937916700E9B6E3 /* String+Ext.swift in Sources */,
 				C8573D142916E75B0095601B /* AddDataVC.swift in Sources */,
 				C8FA652C291212530059AD23 /* Date+Ext.swift in Sources */,
 				C8573D0B29150CB00095601B /* OwnTextCell.swift in Sources */,
@@ -627,7 +649,9 @@
 				C8E845FD291B915B00180758 /* FriendImageCell.swift in Sources */,
 				C8AA629D292DECD700D7E16C /* SettingVC.swift in Sources */,
 				C8AA62A7292F194E00D7E16C /* SCLAlertViewWrapper.swift in Sources */,
+				C8EEA63929378FA500E9B6E3 /* JSONObject.swift in Sources */,
 				C8E845F9291B914A00180758 /* OwnImageCell.swift in Sources */,
+				C8EEA63429378DA000E9B6E3 /* AgoraManager.swift in Sources */,
 				C851F4A32920BC8600813E31 /* SwipeTabBarController.swift in Sources */,
 				C88946792913589F009A5BF3 /* ChatManager.swift in Sources */,
 				C8AC8486292BCA520062B0ED /* JGProgressHUDWrapper.swift in Sources */,
