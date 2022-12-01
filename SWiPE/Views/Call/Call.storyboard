@@ -73,6 +73,7 @@
                     </view>
                     <connections>
                         <outlet property="endButton" destination="3pf-UU-172" id="acS-xW-DBH"/>
+                        <outlet property="nameLabel" destination="AG6-ly-S8k" id="1yn-ZU-Yg8"/>
                         <outlet property="phoneAcceptButton" destination="Byk-9h-ayH" id="D8H-IC-1Ma"/>
                         <outlet property="phoneRejectButton" destination="uxN-pK-ngJ" id="gRt-al-NtL"/>
                         <outlet property="userImage" destination="yge-zX-B1B" id="yLa-xp-90c"/>
@@ -82,28 +83,10 @@
             </objects>
             <point key="canvasLocation" x="45.038167938931295" y="-2.1126760563380285"/>
         </scene>
-        <!--Join ChannelVC-->
-        <scene sceneID="Dh6-nd-oWs">
-            <objects>
-                <viewController storyboardIdentifier="JoinChannelVC" id="j3k-L1-Je4" customClass="JoinChannelVC" customModule="SWiPE" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="j8G-Ve-tVY">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="8hJ-7J-XdK"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oOh-4V-vUO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1093" y="14"/>
-        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

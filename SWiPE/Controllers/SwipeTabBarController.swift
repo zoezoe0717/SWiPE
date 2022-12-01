@@ -96,6 +96,7 @@ class SwipeTabBarController: UITabBarController, UITabBarControllerDelegate {
             if isReceiver && isCall {
                 if let controller = storyboard.instantiateViewController(withIdentifier: "\(CallVC.self)") as? CallVC {
                     controller.callData = call
+                    controller.modalPresentationStyle = .fullScreen
                     present(controller, animated: false)
                 }
             }

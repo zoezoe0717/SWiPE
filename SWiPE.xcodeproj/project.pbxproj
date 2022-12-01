@@ -47,7 +47,6 @@
 		C8EEA63929378FA500E9B6E3 /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA63829378FA500E9B6E3 /* JSONObject.swift */; };
 		C8EEA63B2937916700E9B6E3 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA63A2937916700E9B6E3 /* String+Ext.swift */; };
 		C8EEA63D2937956900E9B6E3 /* GlobalSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA63C2937956900E9B6E3 /* GlobalSetting.swift */; };
-		C8EEA6412938567900E9B6E3 /* JoinChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA6402938567900E9B6E3 /* JoinChannelVC.swift */; };
 		C8FA65072910F65D0059AD23 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */; };
 		C8FA652C291212530059AD23 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA652B291212530059AD23 /* Date+Ext.swift */; };
 		C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9815290BE50C0028DE17 /* AppDelegate.swift */; };
@@ -118,7 +117,6 @@
 		C8EEA63829378FA500E9B6E3 /* JSONObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONObject.swift; sourceTree = "<group>"; };
 		C8EEA63A2937916700E9B6E3 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		C8EEA63C2937956900E9B6E3 /* GlobalSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSetting.swift; sourceTree = "<group>"; };
-		C8EEA6402938567900E9B6E3 /* JoinChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinChannelVC.swift; sourceTree = "<group>"; };
 		C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		C8FA652B291212530059AD23 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		C8FC9812290BE50C0028DE17 /* SWiPE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWiPE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,7 +264,6 @@
 			isa = PBXGroup;
 			children = (
 				C8EEA631293750D900E9B6E3 /* CallVC.swift */,
-				C8EEA6402938567900E9B6E3 /* JoinChannelVC.swift */,
 			);
 			path = Call;
 			sourceTree = "<group>";
@@ -631,7 +628,6 @@
 				C8AC8488292CA67A0062B0ED /* TextField+Ext.swift in Sources */,
 				C8EEA63B2937916700E9B6E3 /* String+Ext.swift in Sources */,
 				C8573D142916E75B0095601B /* AddDataVC.swift in Sources */,
-				C8EEA6412938567900E9B6E3 /* JoinChannelVC.swift in Sources */,
 				C8FA652C291212530059AD23 /* Date+Ext.swift in Sources */,
 				C8573D0B29150CB00095601B /* OwnTextCell.swift in Sources */,
 				C8EEA632293750D900E9B6E3 /* CallVC.swift in Sources */,

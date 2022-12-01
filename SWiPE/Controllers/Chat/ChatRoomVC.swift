@@ -190,9 +190,7 @@ class ChatRoomVC: UIViewController {
     
     @IBAction func angryClick(_ sender: Any) {
         guard let isUserAngry = isUserAngry else { return }
-        
-        print("====\(isUserAngry)")
-        
+                
         if !isUserAngry {
             let message = AlertMessage(alertTitle: "很生氣？", alertSubTitle: "確定要讓對方感受您的憤怒嗎", isAngry: true)
             ZAlertView.share.angryView(message: message, roomID: id)
@@ -228,6 +226,7 @@ class ChatRoomVC: UIViewController {
             controller.receiver = friendData
             controller.sender = userData
             controller.isSender = true
+            controller.modalPresentationStyle = .fullScreen
             present(controller, animated: false)
         }
     }
