@@ -71,8 +71,13 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
     }
     
     private func updateIsCall() {
-        guard let callData = callData else { return }
-        ChatManager.shared.updateCallDocument(messageId: callData.messageId, data: ["isCall": false])
+        if isSender {
+            guard let messageID = messageID else { return }
+            ChatManager.shared.updateCallDocument(messageId: messageID, data: ["isCall": false])
+        } else {
+            guard let callData = callData else { return }
+            ChatManager.shared.updateCallDocument(messageId: callData.messageId, data: ["isCall": false])
+        }
     }
     
     private func addCallRequest() {

@@ -229,7 +229,7 @@ class ChatManager {
             if let error = error {
                 print(error)
             } else {
-                print("Update Success")
+                print("===AAAUpdate Success")
             }
         }
     }
