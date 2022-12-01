@@ -829,10 +829,10 @@
 				DEVELOPMENT_TEAM = FHH82V8NXD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SWiPE/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "打開相機";
+				INFOPLIST_KEY_NSCameraUsageDescription = "您將可以錄製影片與拍攝相片，並套用特效。";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "打開麥克風";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "取得相簿";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "若要錄製音訊，請允許我們存取您的麥克風";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "您將可以從相簿中選擇相片並上傳成頭像";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -842,7 +842,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SWiPE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -867,10 +867,10 @@
 				DEVELOPMENT_TEAM = FHH82V8NXD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SWiPE/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "打開相機";
+				INFOPLIST_KEY_NSCameraUsageDescription = "您將可以錄製影片與拍攝相片，並套用特效。";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "打開麥克風";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "取得相簿";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "若要錄製音訊，請允許我們存取您的麥克風";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "您將可以從相簿中選擇相片並上傳成頭像";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -880,7 +880,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SWiPE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

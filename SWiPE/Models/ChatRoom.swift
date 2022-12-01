@@ -26,6 +26,7 @@ struct Message: Codable {
 }
 
 struct Call: Codable {
+    var messageId: String
     var senderId: String
     var receiverId: String
     var roomId: String
@@ -36,6 +37,7 @@ struct Call: Codable {
 
     var toDict: [String: Any] {
         return [
+            "messageId": messageId as Any,
             "senderId": senderId as Any,
             "receiverId": receiverId as Any,
             "roomId": roomId as Any,

@@ -23,47 +23,52 @@
                                     <constraint firstAttribute="width" secondItem="yge-zX-B1B" secondAttribute="height" multiplier="1:1" id="tbr-SX-Nra"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pf-UU-172">
-                                <rect key="frame" x="167" y="675" width="59" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="打打"/>
-                                <connections>
-                                    <action selector="endCall:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="dC4-ac-chI"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AG6-ly-S8k">
-                                <rect key="frame" x="175" y="416" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AG6-ly-S8k">
+                                <rect key="frame" x="176" y="416" width="41.333333333333343" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxN-pK-ngJ">
-                                <rect key="frame" x="76" y="675" width="52" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="bye"/>
-                                <connections>
-                                    <action selector="rejectCall:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="dGK-Iv-7Py"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Byk-9h-ayH">
-                                <rect key="frame" x="272" y="675" width="59" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="接接"/>
-                                <connections>
-                                    <action selector="acceptCall:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="QTv-Br-DRg"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="42" translatesAutoresizingMaskIntoConstraints="NO" id="aoB-fK-coP">
+                                <rect key="frame" x="66.666666666666686" y="486.33333333333331" width="260" height="34.333333333333314"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxN-pK-ngJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="58.666666666666664" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="拒接"/>
+                                        <connections>
+                                            <action selector="rejectCall:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="dGK-Iv-7Py"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pf-UU-172">
+                                        <rect key="frame" x="100.66666666666667" y="0.0" width="58.666666666666671" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="掛"/>
+                                        <connections>
+                                            <action selector="endCall:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="dC4-ac-chI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Byk-9h-ayH">
+                                        <rect key="frame" x="201.33333333333331" y="0.0" width="58.666666666666686" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="接接"/>
+                                        <connections>
+                                            <action selector="acceptCall:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="QTv-Br-DRg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="AG6-ly-S8k" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="5Rt-4i-dzr"/>
+                            <constraint firstItem="AG6-ly-S8k" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="CuA-mM-UYy"/>
+                            <constraint firstItem="aoB-fK-coP" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="J72-pD-pyl"/>
                             <constraint firstItem="yge-zX-B1B" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Lg1-Up-pgR"/>
                             <constraint firstItem="yge-zX-B1B" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="100" id="Rsd-jA-hCs"/>
                             <constraint firstItem="yge-zX-B1B" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.25" id="pKd-O0-txI"/>
+                            <constraint firstItem="aoB-fK-coP" firstAttribute="top" secondItem="AG6-ly-S8k" secondAttribute="bottom" constant="50" id="ymf-1w-Mzm"/>
                         </constraints>
                     </view>
                     <connections>

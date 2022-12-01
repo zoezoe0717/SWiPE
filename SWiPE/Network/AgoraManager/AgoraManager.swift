@@ -50,7 +50,7 @@ class AgoraManager {
                       "src": "iOS",
                       "ts": "".timeStamp,
                       "type": 1,
-                      "uid": "\(uid)"] as [String : Any]
+                      "uid": "\(uid)"] as [String: Any]
         AgoraManager.shared.postRequest(urlString: "https://toolbox.bj2.agoralab.co/v1/token/generate", params: params, success: { response in
             let data = response["data"] as? [String: String]
             let token = data?["token"]
