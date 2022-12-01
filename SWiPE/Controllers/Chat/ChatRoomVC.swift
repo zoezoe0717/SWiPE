@@ -77,6 +77,8 @@ class ChatRoomVC: UIViewController {
         chatRoomTableView.register(UINib(nibName: "\(FriendTextCell.self)", bundle: nil), forCellReuseIdentifier: "\(FriendTextCell.self)")
         chatRoomTableView.register(UINib(nibName: "\(OwnImageCell.self)", bundle: nil), forCellReuseIdentifier: "\(OwnImageCell.self)")
         chatRoomTableView.register(UINib(nibName: "\(FriendImageCell.self)", bundle: nil), forCellReuseIdentifier: "\(FriendImageCell.self)")
+        chatRoomTableView.register(UINib(nibName: "\(OwnCallCell.self)", bundle: nil), forCellReuseIdentifier: "\(OwnCallCell.self)")
+        chatRoomTableView.register(UINib(nibName: "\(FriendCallCell.self)", bundle: nil), forCellReuseIdentifier: "\(FriendCallCell.self)")
     }
     
     private func setUI() {
@@ -241,10 +243,18 @@ extension ChatRoomVC: UITableViewDelegate, UITableViewDataSource {
         var messageCell = UITableViewCell()
         let isUser = message[indexPath.item].senderId == UserUid.share.getUid()
         let isText = message[indexPath.item].type == MessageType.text.rawValue
+        let isCall = message[indexPath.item].type == MessageType.call.rawValue
 
         if isUser {
             if isText {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(OwnTextCell.self)", for: indexPath) as? OwnTextCell else {
+                    fatalError("DEBUG: Can not create OwnTextCell")
+                }
+                cell.setText(message: message[indexPath.item])
+                cell.userImage.loadImage(userData?.story)
+                messageCell = cell
+            } else if isCall {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(OwnCallCell.self)", for: indexPath) as? OwnCallCell else {
                     fatalError("DEBUG: Can not create OwnTextCell")
                 }
                 cell.setText(message: message[indexPath.item])
@@ -264,6 +274,13 @@ extension ChatRoomVC: UITableViewDelegate, UITableViewDataSource {
                     fatalError("DEBUG: Can not create FriendTextCell")
                 }
                 
+                cell.setText(message: message[indexPath.item])
+                cell.friendImageView.loadImage(friendData?.story)
+                messageCell = cell
+            } else if isCall {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(FriendCallCell.self)", for: indexPath) as? FriendCallCell else {
+                    fatalError("DEBUG: Can not create OwnTextCell")
+                }
                 cell.setText(message: message[indexPath.item])
                 cell.friendImageView.loadImage(friendData?.story)
                 messageCell = cell

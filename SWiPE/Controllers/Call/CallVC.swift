@@ -16,6 +16,13 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
     var roomId: String?
     var agoraKit: AgoraRtcEngineKit!
     var configs: [String: Any] = [:]
+    var channelDuration: Int? {
+        didSet {
+            if let channelDuration = channelDuration {
+                addCallMessage(timeMessage: "\(String(describing: channelDuration))秒")
+            }
+        }
+    }
     
     var isJoined = false
     var isSender = false
@@ -46,14 +53,6 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        if isJoined {
-            agoraKit.enable(inEarMonitoring: false)
-            agoraKit.disableAudio()
-            agoraKit.disableVideo()
-            agoraKit.leaveChannel { stats -> Void in
-                print("left channel, duration: \(stats.duration)")
-            }
-        }
     }
     
     private func setUI() {
@@ -125,6 +124,26 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
         ChatManager.shared.updateCallStatus(messageId: messageId, data: status)
     }
     
+    private func updateAllStatus(messageId: String) {
+        if isJoined {
+            updateStatus(messageId: messageId, status: ["senderStatus": false])
+            updateStatus(messageId: messageId, status: ["receiverStatus": false])
+        }
+    }
+    
+    private func addCallMessage(timeMessage: String = "取消") {
+        guard let callData = callData else { return }
+        
+        ChatManager.shared.addCallMessage(callData: callData, timeMessage: timeMessage) { result in
+            switch result {
+            case .success(let success):
+                print(success)
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+    }
+    
     private func callJudgement(status: CallStatus?) {
         if let status = status {
             let hasConnect = status.senderStatus && status.receiverStatus
@@ -133,16 +152,13 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
             if hasConnect {
                 joinVoiceRoom()
             } else if disconnected {
+                if !isJoined && !isSender {
+                    addCallMessage()
+                }
                 updateIsCall()
+                leftChannel()
                 dismiss(animated: true)
             }
-        }
-    }
-    
-    private func updateAllStatus(messageId: String) {
-        if isJoined {
-            updateStatus(messageId: messageId, status: ["senderStatus": false])
-            updateStatus(messageId: messageId, status: ["receiverStatus": false])
         }
     }
     
@@ -197,11 +213,11 @@ extension CallVC {
         ]
         
         AgoraManager.shared.generateToken(channelName: channelName, uid: 0) {
-            self.test()
+            self.joinChannel()
         }
     }
     
-    private func test() {
+    private func joinChannel() {
         isJoined = true
         
         guard let channelName = configs["channelName"] as? String,
@@ -245,5 +261,17 @@ extension CallVC {
             uid: 0,
             mediaOptions: option
         )
+    }
+    
+    private func leftChannel() {
+        if isJoined {
+            agoraKit.enable(inEarMonitoring: false)
+            agoraKit.disableAudio()
+            agoraKit.disableVideo()
+            agoraKit.leaveChannel { [weak self] stats -> Void in
+                print("left channel, duration: \(stats.duration)")
+                self?.channelDuration = Int(stats.duration)
+            }
+        }
     }
 }

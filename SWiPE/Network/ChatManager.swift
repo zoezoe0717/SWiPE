@@ -13,6 +13,7 @@ enum MessageType: String {
     case text = "text_message"
     case image = "image_message"
     case video = "video_message"
+    case call = "call_message"
 }
 
 class ChatManager {
@@ -106,6 +107,26 @@ class ChatManager {
                         print(error)
                     }
                 }
+            }
+        }
+    }
+    
+    func addCallMessage(callData: Call, timeMessage: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let document = FirestoreEndpoint.chatRoomsMessages(callData.roomId).ref.document(callData.messageId)
+
+        let message = Message(
+            senderId: callData.senderId,
+            messageId: callData.messageId,
+            message: timeMessage,
+            createdTime: callData.createdTime,
+            type: MessageType.call.rawValue
+        )
+        
+        document.setData(message.toDict) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success("Success add message"))
             }
         }
     }

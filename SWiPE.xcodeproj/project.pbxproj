@@ -49,7 +49,8 @@
 		C8EEA63D2937956900E9B6E3 /* GlobalSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA63C2937956900E9B6E3 /* GlobalSetting.swift */; };
 		C8EEA646293895ED00E9B6E3 /* OwnCallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA644293895ED00E9B6E3 /* OwnCallCell.swift */; };
 		C8EEA647293895ED00E9B6E3 /* OwnCallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8EEA645293895ED00E9B6E3 /* OwnCallCell.xib */; };
-		C8EEA6492938960E00E9B6E3 /* FriendCallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA6482938960E00E9B6E3 /* FriendCallCell.swift */; };
+		C8EEA64C29389A5D00E9B6E3 /* FriendCallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EEA64A29389A5D00E9B6E3 /* FriendCallCell.swift */; };
+		C8EEA64D29389A5D00E9B6E3 /* FriendCallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8EEA64B29389A5D00E9B6E3 /* FriendCallCell.xib */; };
 		C8FA65072910F65D0059AD23 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */; };
 		C8FA652C291212530059AD23 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA652B291212530059AD23 /* Date+Ext.swift */; };
 		C8FC9816290BE50C0028DE17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC9815290BE50C0028DE17 /* AppDelegate.swift */; };
@@ -122,7 +123,8 @@
 		C8EEA63C2937956900E9B6E3 /* GlobalSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSetting.swift; sourceTree = "<group>"; };
 		C8EEA644293895ED00E9B6E3 /* OwnCallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnCallCell.swift; sourceTree = "<group>"; };
 		C8EEA645293895ED00E9B6E3 /* OwnCallCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OwnCallCell.xib; sourceTree = "<group>"; };
-		C8EEA6482938960E00E9B6E3 /* FriendCallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCallCell.swift; sourceTree = "<group>"; };
+		C8EEA64A29389A5D00E9B6E3 /* FriendCallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCallCell.swift; sourceTree = "<group>"; };
+		C8EEA64B29389A5D00E9B6E3 /* FriendCallCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCallCell.xib; sourceTree = "<group>"; };
 		C8FA65062910F65D0059AD23 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		C8FA652B291212530059AD23 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		C8FC9812290BE50C0028DE17 /* SWiPE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWiPE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -256,7 +258,8 @@
 				C8E845FC291B915B00180758 /* FriendImageCell.xib */,
 				C8EEA644293895ED00E9B6E3 /* OwnCallCell.swift */,
 				C8EEA645293895ED00E9B6E3 /* OwnCallCell.xib */,
-				C8EEA6482938960E00E9B6E3 /* FriendCallCell.swift */,
+				C8EEA64A29389A5D00E9B6E3 /* FriendCallCell.swift */,
+				C8EEA64B29389A5D00E9B6E3 /* FriendCallCell.xib */,
 			);
 			path = ChatRoom;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				C8FDC8C32924D7A7006FF1E6 /* SignCat.json in Resources */,
 				C8E845FE291B915B00180758 /* FriendImageCell.xib in Resources */,
 				C8FC9822290BE50D0028DE17 /* Assets.xcassets in Resources */,
+				C8EEA64D29389A5D00E9B6E3 /* FriendCallCell.xib in Resources */,
 				C8FDC8BF2924D153006FF1E6 /* Sign.storyboard in Resources */,
 				C8FC981D290BE50C0028DE17 /* Main.storyboard in Resources */,
 			);
@@ -649,7 +653,7 @@
 				C8FC9876290FB9E10028DE17 /* SwipeCardView.swift in Sources */,
 				C8EEA63D2937956900E9B6E3 /* GlobalSetting.swift in Sources */,
 				C8FC98892910C7B50028DE17 /* FireBaseManager.swift in Sources */,
-				C8EEA6492938960E00E9B6E3 /* FriendCallCell.swift in Sources */,
+				C8EEA64C29389A5D00E9B6E3 /* FriendCallCell.swift in Sources */,
 				C8FC9871290F78020028DE17 /* Constants.swift in Sources */,
 				C889468029135B28009A5BF3 /* ChatCell.swift in Sources */,
 				C8AA62A1292DF9E700D7E16C /* SettingCell.swift in Sources */,
