@@ -12,16 +12,11 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
     var roomId: String?
     var receiver: User?
     var sender: User?
-    var callData: Call? {
-        didSet {
-            updateIsCall()
-        }
-    }
+    var callData: Call?
     var agoraKit: AgoraRtcEngineKit?
     var messageID: String?
     var status: CallStatus? {
         didSet {
-            print("---->C\(status)")
             callJudgement(status: status)
         }
     }
@@ -83,11 +78,9 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
     
     private func addListener() {
         if isSender {
-            print("--->A\(messageID)")
             guard let messageID = messageID else { return }
             callStatusListener(messageId: messageID)
         } else {
-            print("--->B\(callData)")
             guard let callData = callData else { return }
             callStatusListener(messageId: callData.messageId)
         }
@@ -98,7 +91,6 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
             switch result {
             case .success(let success):
                 self?.status = success
-                print("---->D\(success)")
             case .failure(let failure):
                 print(failure)
             }
@@ -115,8 +107,9 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
             let disconnected = !status.senderStatus && !status.receiverStatus
             
             if hasConnect {
-//                joinVoiceRoom()
+                joinVoiceRoom()
             } else if disconnected {
+                updateIsCall()
                 dismiss(animated: true)
             }
         }
@@ -140,12 +133,10 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
     
     @IBAction func endCall(_ sender: Any) {
         if isSender {
-            print("--->FF\(messageID)")
             guard let messageID = messageID else { return }
             updateStatus(messageId: messageID, status: ["senderStatus": false])
         } else {
             guard let callData = callData else { return }
-            print("--->QQQ\(callData.messageId)")
             updateStatus(messageId: callData.messageId, status: ["senderStatus": false])
         }
     }
@@ -153,57 +144,28 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
 
 extension CallVC {
     private func joinVoiceRoom() {
-        guard let channelName = callData?.roomId else { return }
-        
         let profile: AgoraAudioProfile = .default
         let scenario: AgoraAudioScenario = .default
+        var channelName = ""
         
-        var configs = [
+        if isSender {
+            guard let roomID = roomId else { return }
+            channelName = roomID
+        } else {
+            guard let callData = callData else { return }
+            channelName = callData.roomId
+        }
+                
+        guard let controller = storyboard?.instantiateViewController(withIdentifier: "\(JoinChannelVC.self)") as? JoinChannelVC else { return }
+        
+        controller.configs = [
             "channelName": channelName,
             "audioProfile": profile,
             "audioScenario": scenario
-        ] as [String: Any]
-              
+        ]
+        
         AgoraManager.shared.generateToken(channelName: channelName, uid: 0) {
-            guard let channelName = configs["channelName"] as? String,
-                let audioProfile = configs["audioProfile"] as? AgoraAudioProfile,
-                let audioScenario = configs["audioScenario"] as? AgoraAudioScenario
-                else { return }
-            
-            guard var agoraKit = self.agoraKit else { return }
-            
-            // set up agora instance when view loaded
-            let config = AgoraRtcEngineConfig()
-            config.appId = KeyCenter.AppId
-            config.areaCode = GlobalSettings.shared.area
-            config.channelProfile = .liveBroadcasting
-            // set audio scenario
-            config.audioScenario = audioScenario
-            agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
-            
-            // make myself a broadcaster
-            agoraKit.setClientRole(GlobalSettings.shared.getUserRole())
-            
-            // disable video module
-            agoraKit.disableVideo()
-            
-            agoraKit.enableAudio()
-            
-            // set audio profile
-            agoraKit.setAudioProfile(audioProfile)
-            
-            // Set audio route to speaker
-            agoraKit.setDefaultAudioRouteToSpeakerphone(true)
-            
-            // enable volume indicator
-            agoraKit.enableAudioVolumeIndication(200, smooth: 3, reportVad: true)
-
-            let option = AgoraRtcChannelMediaOptions()
-            option.publishCameraTrack = false
-            option.publishMicrophoneTrack = true
-            option.clientRoleType = GlobalSettings.shared.getUserRole()
-            
-            agoraKit.joinChannel(byToken: KeyCenter.Token, channelId: channelName, uid: 0, mediaOptions: option)
+            self.present(controller, animated: true)
         }
     }
 }

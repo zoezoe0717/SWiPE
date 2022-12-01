@@ -12,5 +12,5 @@ struct KeyCenter {
 
     static let Certificate: String? = "23b1a871b36645b39fade5e9ea0970fb"
 
-    static var Token: String? = nil
+    static var Token: String?
 }

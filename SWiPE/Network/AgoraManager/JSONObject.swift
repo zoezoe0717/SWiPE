@@ -8,24 +8,23 @@
 import Foundation
 
 class JSONObject {
-    /// 字典转模型
     static func toModel<T: Codable>(_ type: T.Type, value: Any?) -> T? {
         guard let value = value else { return nil }
         return toModel(type, value: value)
     }
-    /// 字典转模型
+    
     static func toModel<T: Codable>(_ type: T.Type, value: Any) -> T? {
         guard let data = try? JSONSerialization.data(withJSONObject: value) else { return nil }
         let decoder = JSONDecoder()
         decoder.nonConformingFloatDecodingStrategy = .convertFromString(positiveInfinity: "+Infinity", negativeInfinity: "-Infinity", nan: "NaN")
         return try? decoder.decode(type, from: data)
     }
-    /// JSON字符串转模型
+    
     static func toModel<T: Codable>(_ type: T.Type, value: String?) -> T? {
         guard let value = value else { return nil }
         return toModel(type, value: value)
     }
-    /// JSON字符串转模型
+    
     static func toModel<T: Codable>(_ type: T.Type, value: String) -> T? {
         let decoder = JSONDecoder()
         decoder.nonConformingFloatDecodingStrategy = .convertFromString(positiveInfinity: "+Infinity", negativeInfinity: "-Infinity", nan: "NaN")
