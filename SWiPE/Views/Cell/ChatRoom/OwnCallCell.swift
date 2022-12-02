@@ -14,6 +14,7 @@ class OwnCallCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.contentView.transform = CGAffineTransform(rotationAngle: .pi)
         setUI()
     }
 
