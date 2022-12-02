@@ -91,16 +91,24 @@ class UploadVideoVC: UploadVC {
         }
     }
     
+    private func dismissViewController() {
+        if isNewUser {
+            self.view.window?.rootViewController?.dismiss(animated: true)
+        } else {
+            dismiss(animated: true)
+        }
+    }
+    
     override func uploadData() {
         ProgressHUD.show()
 
         if let videoUrl = videoUrl {
-            UploadStoryProvider.shared.uploadVideo(url: videoUrl) { result in
+            UploadStoryProvider.shared.uploadVideoWithImgur(url: videoUrl) { result in
                 switch result {
-                case .success(let url):
-                    SignVC.userData.video = "\(url)"
-                    FireBaseManager.shared.updateUserData(user: SignVC.userData, data: ["video": "\(url)"])
-                    ProgressHUD.dismiss()
+                case .success(let videoURL):
+                    SignVC.userData.video = "\(videoURL)"
+                    FireBaseManager.shared.updateUserData(user: SignVC.userData, data: ["video": "\(videoURL)"])
+                    ProgressHUD.showSuccess()
                 case .failure(let failure):
                     print(failure)
                     ProgressHUD.dismiss()
@@ -108,11 +116,7 @@ class UploadVideoVC: UploadVC {
             }
         }
         
-        if isNewUser {
-            self.view.window?.rootViewController?.dismiss(animated: true)
-        } else {
-            dismiss(animated: true)
-        }
+        dismissViewController()
     }
         
     override func createCamera() {
@@ -136,8 +140,6 @@ class UploadVideoVC: UploadVC {
                     self.buttonSwitch(hasImage: true)
                     self.clearVideo()
                     print("====>>>>\(video.url)")
-                    
-                    UploadStoryProvider.shared.uploadVideoWithImgur(url: video.url)
                 }
             }
             picker.dismiss(animated: true)

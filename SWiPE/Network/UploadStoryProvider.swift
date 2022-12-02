@@ -49,13 +49,6 @@ class UploadStoryProvider {
     }
 }
 
-struct UploadImageResult: Decodable {
-    struct Data: Decodable {
-        let link: URL
-    }
-    let data: Data
-}
-
 extension UploadStoryProvider {
     func uploadImageWithImgur(image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
         let headers: HTTPHeaders = ["Authorization": "Client-ID 977f389688519a1"]
@@ -77,14 +70,9 @@ extension UploadStoryProvider {
     }
     
     
-    func uploadVideoWithImgur(url: URL) {
-        let boundary = UUID().uuidString
-        let session = URLSession.shared
-        var data = Data()
-
+    func uploadVideoWithImgur(url: URL, completion: @escaping (Result<URL, Error>) -> Void) {
         guard let movData = try? Data(contentsOf: url) else { return }
         let headers: HTTPHeaders = ["Authorization": "Client-ID 977f389688519a1"]
-        let parameters = ["video": movData]
         let urlString = "https://api.imgur.com/3/upload"
         
         AF.upload(multipartFormData: { data in
@@ -95,9 +83,9 @@ extension UploadStoryProvider {
         .responseDecodable(of: UploadImageResult.self, decoder: JSONDecoder()) { response in
             switch response.result {
             case .success(let result):
-                print("---->>>>\(result.data.link)")
+                completion(.success(result.data.link))
             case .failure(let error):
-                print(error)
+                completion(.failure(error))
             }
         }
     }
