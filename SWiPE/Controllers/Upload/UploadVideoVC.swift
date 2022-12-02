@@ -135,6 +135,9 @@ class UploadVideoVC: UploadVC {
                     self.createVideo(url: video.url)
                     self.buttonSwitch(hasImage: true)
                     self.clearVideo()
+                    print("====>>>>\(video.url)")
+                    
+                    UploadStoryProvider.shared.uploadVideoWithImgur(url: video.url)
                 }
             }
             picker.dismiss(animated: true)

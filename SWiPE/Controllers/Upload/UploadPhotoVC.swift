@@ -96,6 +96,14 @@ class UploadPhotoVC: UploadVC {
                     self?.profileImagePhoto.image = photo.image
                     self?.profileImagePhoto.isHidden = false
                     self?.faceDetect(photo: photo.image)
+//                    UploadStoryProvider.shared.uploadImageWithImgur(image: photo.image) { result in
+//                        switch result {
+//                        case .success(let success):
+//                            print(success)
+//                        case .failure(let failure):
+//                            print(failure)
+//                        }
+//                    }
                 }
             }
             picker.dismiss(animated: true)
