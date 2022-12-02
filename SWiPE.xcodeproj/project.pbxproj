@@ -12,6 +12,7 @@
 		C808ED24292F6C4C00BFF7A1 /* SwiftJWTWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C808ED23292F6C4C00BFF7A1 /* SwiftJWTWrapper.swift */; };
 		C808ED26292F73D800BFF7A1 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C808ED25292F73D800BFF7A1 /* AuthManager.swift */; };
 		C844D299292496EF00BBB098 /* Match.json in Resources */ = {isa = PBXBuildFile; fileRef = C844D298292496EF00BBB098 /* Match.json */; };
+		C850EE59293A257600D38742 /* UploadImageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C850EE58293A257600D38742 /* UploadImageResult.swift */; };
 		C851F4A32920BC8600813E31 /* SwipeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C851F4A22920BC8600813E31 /* SwipeTabBarController.swift */; };
 		C8573D0B29150CB00095601B /* OwnTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8573D0929150CB00095601B /* OwnTextCell.swift */; };
 		C8573D0C29150CB00095601B /* OwnTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8573D0A29150CB00095601B /* OwnTextCell.xib */; };
@@ -86,6 +87,7 @@
 		C808ED23292F6C4C00BFF7A1 /* SwiftJWTWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftJWTWrapper.swift; sourceTree = "<group>"; };
 		C808ED25292F73D800BFF7A1 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		C844D298292496EF00BBB098 /* Match.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Match.json; sourceTree = "<group>"; };
+		C850EE58293A257600D38742 /* UploadImageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageResult.swift; sourceTree = "<group>"; };
 		C851F4A22920BC8600813E31 /* SwipeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTabBarController.swift; sourceTree = "<group>"; };
 		C8573D0929150CB00095601B /* OwnTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnTextCell.swift; sourceTree = "<group>"; };
 		C8573D0A29150CB00095601B /* OwnTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OwnTextCell.xib; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 				C808ED21292F6A2600BFF7A1 /* AuthClaims.swift */,
 				C8EEA63529378F1C00E9B6E3 /* KeyCenter.swift */,
 				C8EEA63C2937956900E9B6E3 /* GlobalSetting.swift */,
+				C850EE58293A257600D38742 /* UploadImageResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				C8894682291390DD009A5BF3 /* ChatRoom.swift in Sources */,
 				C808ED22292F6A2600BFF7A1 /* AuthClaims.swift in Sources */,
 				C889468B2914BB37009A5BF3 /* ProfileVC.swift in Sources */,
+				C850EE59293A257600D38742 /* UploadImageResult.swift in Sources */,
 				C8AC8488292CA67A0062B0ED /* TextField+Ext.swift in Sources */,
 				C8EEA63B2937916700E9B6E3 /* String+Ext.swift in Sources */,
 				C8573D142916E75B0095601B /* AddDataVC.swift in Sources */,

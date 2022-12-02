@@ -62,7 +62,7 @@ class UploadPhotoVC: UploadVC {
         ProgressHUD.show()
 
         if let image = profileImagePhoto.image {
-            UploadStoryProvider.shared.uploadPhoto(image: image) { [weak self] result in
+            UploadStoryProvider.shared.uploadImageWithImgur(image: image) { result in
                 switch result {
                 case .success(let url):
                     SignVC.userData.story = "\(url)"
@@ -96,6 +96,14 @@ class UploadPhotoVC: UploadVC {
                     self?.profileImagePhoto.image = photo.image
                     self?.profileImagePhoto.isHidden = false
                     self?.faceDetect(photo: photo.image)
+//                    UploadStoryProvider.shared.uploadImageWithImgur(image: photo.image) { result in
+//                        switch result {
+//                        case .success(let success):
+//                            print(success)
+//                        case .failure(let failure):
+//                            print(failure)
+//                        }
+//                    }
                 }
             }
             picker.dismiss(animated: true)

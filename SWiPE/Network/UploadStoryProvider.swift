@@ -7,22 +7,24 @@
 
 import Foundation
 import Firebase
+import Alamofire
+import AVFoundation
 
 class UploadStoryProvider {
     static let shared = UploadStoryProvider()
     
     func uploadPhoto(image: UIImage, completion: @escaping (Result<URL, Error>) -> Void) {
         let fileReference = Storage.storage().reference().child(UUID().uuidString + ".jpg")
-            if let data = image.jpegData(compressionQuality: 0.1) {
-                fileReference.putData(data, metadata: nil) { result in
-                    switch result {
-                    case .success:
-                        fileReference.downloadURL(completion: completion)
-                    case .failure(let error):
-                        completion(.failure(error))
-                    }
+        if let data = image.jpegData(compressionQuality: 0.1) {
+            fileReference.putData(data, metadata: nil) { result in
+                switch result {
+                case .success:
+                    fileReference.downloadURL(completion: completion)
+                case .failure(let error):
+                    completion(.failure(error))
                 }
             }
+        }
     }
     
     func uploadVideo(url: URL, completion: @escaping (Result<URL, Error>) -> Void) {
@@ -42,6 +44,48 @@ class UploadStoryProvider {
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+extension UploadStoryProvider {
+    func uploadImageWithImgur(image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
+        let headers: HTTPHeaders = ["Authorization": "Client-ID 977f389688519a1"]
+        let urlString = "https://api.imgur.com/3/image"
+        
+        AF.upload(multipartFormData: { data in
+            guard let imageData = image.jpegData(compressionQuality: 0.9) else { return }
+            data.append(imageData, withName: "image")
+        }, to: urlString,
+            headers: headers)
+        .responseDecodable(of: UploadImageResult.self, decoder: JSONDecoder()) { response in
+            switch response.result {
+            case .success(let result):
+                completion(.success("\(result.data.link)"))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    
+    func uploadVideoWithImgur(url: URL, completion: @escaping (Result<URL, Error>) -> Void) {
+        guard let movData = try? Data(contentsOf: url) else { return }
+        let headers: HTTPHeaders = ["Authorization": "Client-ID 977f389688519a1"]
+        let urlString = "https://api.imgur.com/3/upload"
+        
+        AF.upload(multipartFormData: { data in
+            data.append(url, withName: "video", fileName: "video.mov", mimeType: "video/mov")
+        }, to: urlString,
+            method: .post,
+            headers: headers)
+        .responseDecodable(of: UploadImageResult.self, decoder: JSONDecoder()) { response in
+            switch response.result {
+            case .success(let result):
+                completion(.success(result.data.link))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
