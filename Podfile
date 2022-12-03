@@ -24,4 +24,5 @@ target 'SWiPE' do
   pod 'FirebaseAnalytics'
   pod 'Firebase/Crashlytics'
   pod 'AgoraAudio_iOS'
+  pod 'Hero'
 end

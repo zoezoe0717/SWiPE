@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 import AgoraRtcKit
 
 class CallVC: UIViewController, AgoraRtcEngineDelegate {
@@ -35,14 +36,25 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var phoneAcceptButton: UIButton!
     @IBOutlet weak var endButton: UIButton!
+    @IBOutlet weak var phoneAcceptButton: UIButton!
     @IBOutlet weak var phoneRejectButton: UIButton!
+    @IBOutlet weak var voiceChangerButton: UIButton!
+    
+    lazy private var callingAnimationView: LottieAnimationView = {
+        let view = LottieAnimationView(name: LottieString.calling.rawValue)
+        view.loopMode = .loop
+        view.contentMode = .scaleAspectFill
+        view.play()
+        
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addCallRequest()
         setUI()
+        setAnimation()
+        addCallRequest()
         addListener()
     }
     
@@ -56,6 +68,8 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
     }
     
     private func setUI() {
+        voiceChangerButton.isHidden = true
+        
         if isSender {
             userImage.loadImage(receiver?.story)
             [phoneAcceptButton, phoneRejectButton].forEach { button in
@@ -66,7 +80,20 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
             userImage.loadImage(callData?.senderImage)
             endButton.isHidden = true
             nameLabel.text = callData?.senderName
+            callingAnimationView.isHidden = true
         }
+    }
+    
+    private func setAnimation() {
+        view.addSubview(callingAnimationView)
+        callingAnimationView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            callingAnimationView.bottomAnchor.constraint(equalTo: endButton.topAnchor, constant: -50),
+            callingAnimationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            callingAnimationView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3),
+            callingAnimationView.heightAnchor.constraint(equalToConstant: 20)
+        ])
     }
     
     private func updateIsCall() {
@@ -151,6 +178,7 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
             
             if hasConnect {
                 joinVoiceRoom()
+                callingAnimationView.isHidden = true
             } else if disconnected {
                 if !isJoined && !isSender {
                     addCallMessage()
@@ -189,11 +217,31 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
             updateAllStatus(messageId: callData.messageId)
         }
     }
+
+    @IBAction func onVoiceChanger(_ sender: Any) {
+        let alert = UIAlertController(
+            title: "Set Voice Changer",
+            message: nil,
+            preferredStyle: UIDevice.current.userInterfaceIdiom == .pad ? UIAlertController.Style.alert : UIAlertController.Style.actionSheet)
+        alert.addAction(getVoiceChangerAction(.off))
+        alert.addAction(getVoiceChangerAction(.voiceChangerEffectOldMan))
+        alert.addAction(getVoiceChangerAction(.voiceChangerEffectBoy))
+        alert.addAction(getVoiceChangerAction(.voiceChangerEffectSister))
+        alert.addAction(getVoiceChangerAction(.voiceChangerEffectGirl))
+        alert.addAction(getVoiceChangerAction(.voiceChangerEffectPigKin))
+        alert.addAction(getVoiceChangerAction(.voiceChangerEffectHulk))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+        debugPrint(alert)
+    }
 }
 
+// MARK: - 處理語音通話
 extension CallVC {
     private func joinVoiceRoom() {
         isJoined = true
+        voiceChangerButton.isHidden = false
+
         let profile: AgoraAudioProfile = .default
         let scenario: AgoraAudioScenario = .default
         var channelName = ""
@@ -273,5 +321,11 @@ extension CallVC {
                 self?.channelDuration = Int(stats.duration)
             }
         }
+    }
+    
+    private func getVoiceChangerAction(_ voiceChanger: AgoraAudioEffectPreset) -> UIAlertAction {
+        return UIAlertAction(title: "\(voiceChanger.description())", style: .default, handler: { [unowned self] action in
+            self.agoraKit.setAudioEffectPreset(voiceChanger)
+        })
     }
 }

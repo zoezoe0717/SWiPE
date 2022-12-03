@@ -140,7 +140,7 @@ class ChatManager {
             type: MessageType.image.rawValue
         )
         
-        UploadStoryProvider.shared.uploadPhoto(image: image) { [weak self] result in
+        UploadStoryProvider.shared.uploadImageWithImgur(image: image) { [weak self] result in
             switch result {
             case .success(let url):
                 message.message = "\(url)"

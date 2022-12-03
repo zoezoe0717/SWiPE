@@ -13,6 +13,8 @@
 		C808ED26292F73D800BFF7A1 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C808ED25292F73D800BFF7A1 /* AuthManager.swift */; };
 		C844D299292496EF00BBB098 /* Match.json in Resources */ = {isa = PBXBuildFile; fileRef = C844D298292496EF00BBB098 /* Match.json */; };
 		C850EE59293A257600D38742 /* UploadImageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C850EE58293A257600D38742 /* UploadImageResult.swift */; };
+		C850EE5B293BA5C000D38742 /* AgoraAudioEffectPreset+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C850EE5A293BA5C000D38742 /* AgoraAudioEffectPreset+Ext.swift */; };
+		C850EE5D293BB81F00D38742 /* Calling.json in Resources */ = {isa = PBXBuildFile; fileRef = C850EE5C293BB81F00D38742 /* Calling.json */; };
 		C851F4A32920BC8600813E31 /* SwipeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C851F4A22920BC8600813E31 /* SwipeTabBarController.swift */; };
 		C8573D0B29150CB00095601B /* OwnTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8573D0929150CB00095601B /* OwnTextCell.swift */; };
 		C8573D0C29150CB00095601B /* OwnTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8573D0A29150CB00095601B /* OwnTextCell.xib */; };
@@ -88,6 +90,8 @@
 		C808ED25292F73D800BFF7A1 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		C844D298292496EF00BBB098 /* Match.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Match.json; sourceTree = "<group>"; };
 		C850EE58293A257600D38742 /* UploadImageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageResult.swift; sourceTree = "<group>"; };
+		C850EE5A293BA5C000D38742 /* AgoraAudioEffectPreset+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AgoraAudioEffectPreset+Ext.swift"; sourceTree = "<group>"; };
+		C850EE5C293BB81F00D38742 /* Calling.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Calling.json; sourceTree = "<group>"; };
 		C851F4A22920BC8600813E31 /* SwipeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTabBarController.swift; sourceTree = "<group>"; };
 		C8573D0929150CB00095601B /* OwnTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnTextCell.swift; sourceTree = "<group>"; };
 		C8573D0A29150CB00095601B /* OwnTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OwnTextCell.xib; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 		C851F4A429212DBA00813E31 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				C850EE5C293BB81F00D38742 /* Calling.json */,
 				C8AA629E292DF35E00D7E16C /* SwimmingSheep.json */,
 				C8FDC8CE29261F35006FF1E6 /* BackArrow.json */,
 				C8FDC8CC292619D1006FF1E6 /* SignSheep.json */,
@@ -400,6 +405,7 @@
 				C8FA652B291212530059AD23 /* Date+Ext.swift */,
 				C8AC8487292CA67A0062B0ED /* TextField+Ext.swift */,
 				C8EEA63A2937916700E9B6E3 /* String+Ext.swift */,
+				C850EE5A293BA5C000D38742 /* AgoraAudioEffectPreset+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -539,6 +545,7 @@
 				C8E845FA291B914A00180758 /* OwnImageCell.xib in Resources */,
 				C8FDC8CF29261F35006FF1E6 /* BackArrow.json in Resources */,
 				C8FDC8CD292619D1006FF1E6 /* SignSheep.json in Resources */,
+				C850EE5D293BB81F00D38742 /* Calling.json in Resources */,
 				C8FDC8C32924D7A7006FF1E6 /* SignCat.json in Resources */,
 				C8E845FE291B915B00180758 /* FriendImageCell.xib in Resources */,
 				C8FC9822290BE50D0028DE17 /* Assets.xcassets in Resources */,
@@ -637,6 +644,7 @@
 				C8C77BEC291CE8DA00A1675D /* UploadPhotoVC.swift in Sources */,
 				C8C77BEA291CE21F00A1675D /* UploadVideoVC.swift in Sources */,
 				C808ED24292F6C4C00BFF7A1 /* SwiftJWTWrapper.swift in Sources */,
+				C850EE5B293BA5C000D38742 /* AgoraAudioEffectPreset+Ext.swift in Sources */,
 				C8EEA63629378F1C00E9B6E3 /* KeyCenter.swift in Sources */,
 				C8FC987E290FC0350028DE17 /* MatchVC.swift in Sources */,
 				C8894682291390DD009A5BF3 /* ChatRoom.swift in Sources */,
