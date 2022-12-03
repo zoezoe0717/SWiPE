@@ -21,6 +21,8 @@ class ChatRoomVC: UIViewController {
     
     @IBOutlet weak var chatRoomTableView: UITableView!
     
+    @IBOutlet weak var moreOptionsButton: UIButton!
+    
     var id = ""
     
     var messageImage: UIImage?
@@ -190,20 +192,33 @@ class ChatRoomVC: UIViewController {
         messageTextView.text = nil
     }
     
-    @IBAction func angryClick(_ sender: Any) {
+    @IBAction func chooseMoreOptions(_ sender: Any) {
+        moreOptionsButton.showsMenuAsPrimaryAction = true
+        moreOptionsButton.menu =
+        UIMenu(children: [
+            UIAction(title: "一鍵生氣", image: UIImage(named: "angry"), handler: { _ in
+                self.angryClick()
+            }),
+            UIAction(title: "封鎖用戶", image: UIImage(named: "block"), handler: { _ in
+                self.block()
+            })
+        ])
+    }
+    
+    private func angryClick() {
         guard let isUserAngry = isUserAngry else { return }
-                
+
         if !isUserAngry {
             let message = AlertMessage(alertTitle: "很生氣？", alertSubTitle: "確定要讓對方感受您的憤怒嗎", isAngry: true)
             ZAlertView.share.angryView(message: message, roomID: id)
         } else {
             let message = AlertMessage(alertTitle: "氣消了？", alertSubTitle: "您已經消氣了嗎？", isAngry: false)
-            
+
             ZAlertView.share.angryView(message: message, roomID: id)
         }
     }
     
-    @IBAction func block(_ sender: Any) {
+    private func block() {
         let message = AlertMessage(alertTitle: "封鎖確認", alertSubTitle: "封鎖後將看不到此聊天室\r如需解封鎖請在設定頁面修改")
         
         ZAlertView.share.blockView(message: message, roomID: id)
@@ -338,4 +353,3 @@ extension ChatRoomVC: PHPickerViewControllerDelegate {
         }
     }
 }
-
