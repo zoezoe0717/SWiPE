@@ -28,8 +28,9 @@ class SwipeTabBarController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         self.tabBar.tintColor = CustomColor.base.color
 //        clearLogin()
-        loginJudgment()
+//        loginJudgment()
         setUI()
+        addCallListener()
     }
     
     private func setUI() {

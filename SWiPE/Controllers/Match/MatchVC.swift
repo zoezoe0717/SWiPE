@@ -75,6 +75,17 @@ class MatchVC: UIViewController {
         configureStackContainer()
         setAnimation()
         
+        if !UserUid.share.getUid().isEmpty {
+            print("===\(UserUid.share.getUid())")
+            fetchData()
+        }
+        
+        stackContainer?.cardViews.forEach { card in
+            if card.frame.minX == 0 {
+                card.queuePlayer?.play()
+            }
+        }
+        
 //        for i in 0..<20 {
 //            print("===\(i)")
 //            addMockData()
@@ -83,11 +94,11 @@ class MatchVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if !UserUid.share.getUid().isEmpty {
-            print("===\(UserUid.share.getUid())")
-            fetchData()
-        }
-        
+//        if !UserUid.share.getUid().isEmpty {
+//            print("===\(UserUid.share.getUid())")
+//            fetchData()
+//        }
+//
         stackContainer?.cardViews.forEach { card in
             if card.frame.minX == 0 {
                 card.queuePlayer?.play()
