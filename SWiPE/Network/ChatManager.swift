@@ -213,7 +213,10 @@ class ChatManager {
         }
         
         let status = FirestoreEndpoint.call.ref.document(document.documentID).collection("Status")
-        let callStatus = CallStatus(senderStatus: true, receiverStatus: false)
+        let callStatus = CallStatus(
+            senderStatus: true,
+            receiverStatus: false,
+            isVideoCall: false)
         status.document(document.documentID).setData(callStatus.toDict) { error in
             if let error = error {
                 completion(.failure(error))

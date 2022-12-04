@@ -79,12 +79,21 @@
                                     <action selector="acceptCall:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="QTv-Br-DRg"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OeQ-Ah-H9w">
+                                <rect key="frame" x="167" y="496.33333333333326" width="59" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="視訊"/>
+                                <connections>
+                                    <action selector="videoCall:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Kac-KM-ZM1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="BaseColor"/>
                         <constraints>
                             <constraint firstItem="ulS-N1-8A8" firstAttribute="top" secondItem="AG6-ly-S8k" secondAttribute="bottom" constant="30" id="6Ig-nn-c2I"/>
                             <constraint firstItem="3pf-UU-172" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="8YF-EH-IKb"/>
+                            <constraint firstItem="OeQ-Ah-H9w" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Bh6-c5-fF1"/>
                             <constraint firstItem="AG6-ly-S8k" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="CuA-mM-UYy"/>
                             <constraint firstItem="AG6-ly-S8k" firstAttribute="top" secondItem="yge-zX-B1B" secondAttribute="bottom" constant="20" id="ITt-FA-BrE"/>
                             <constraint firstItem="Byk-9h-ayH" firstAttribute="top" secondItem="ulS-N1-8A8" secondAttribute="bottom" constant="100" id="JYi-0h-5W7"/>
@@ -95,6 +104,7 @@
                             <constraint firstItem="yge-zX-B1B" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="100" id="Rsd-jA-hCs"/>
                             <constraint firstItem="uxN-pK-ngJ" firstAttribute="top" secondItem="ulS-N1-8A8" secondAttribute="bottom" constant="100" id="dD4-SF-rdU"/>
                             <constraint firstItem="uxN-pK-ngJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="eyc-31-6pf"/>
+                            <constraint firstItem="OeQ-Ah-H9w" firstAttribute="top" secondItem="ulS-N1-8A8" secondAttribute="bottom" constant="20" id="mFU-VZ-IeK"/>
                             <constraint firstItem="yge-zX-B1B" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.25" id="pKd-O0-txI"/>
                             <constraint firstItem="ulS-N1-8A8" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="rCO-WW-dDx"/>
                         </constraints>
@@ -105,6 +115,7 @@
                         <outlet property="phoneAcceptButton" destination="Byk-9h-ayH" id="D8H-IC-1Ma"/>
                         <outlet property="phoneRejectButton" destination="uxN-pK-ngJ" id="gRt-al-NtL"/>
                         <outlet property="userImage" destination="yge-zX-B1B" id="yLa-xp-90c"/>
+                        <outlet property="videoCallButton" destination="OeQ-Ah-H9w" id="L2L-RS-YLV"/>
                         <outlet property="voiceChangerButton" destination="ulS-N1-8A8" id="agi-W1-BHF"/>
                     </connections>
                 </viewController>

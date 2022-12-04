@@ -10,6 +10,7 @@ import Lottie
 import AgoraRtcKit
 
 class CallVC: UIViewController, AgoraRtcEngineDelegate {
+    
     var receiver: User?
     var sender: User?
     var callData: Call?
@@ -40,7 +41,8 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
     @IBOutlet weak var phoneAcceptButton: UIButton!
     @IBOutlet weak var phoneRejectButton: UIButton!
     @IBOutlet weak var voiceChangerButton: UIButton!
-    
+    @IBOutlet weak var videoCallButton: UIButton!
+
     lazy private var callingAnimationView: LottieAnimationView = {
         let view = LottieAnimationView(name: LottieString.calling.rawValue)
         view.loopMode = .loop
@@ -65,10 +67,13 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        AgoraRtcEngineKit.destroy()
     }
     
     private func setUI() {
-        voiceChangerButton.isHidden = true
+        [voiceChangerButton, videoCallButton].forEach { button in
+            button?.isHidden = true
+        }
         
         if isSender {
             userImage.loadImage(receiver?.story)
@@ -187,6 +192,23 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
                 leftChannel()
                 dismiss(animated: true)
             }
+            
+//            if status.isVideoCall {
+//                [remoteView, localView].forEach { subView in
+//                    view.addSubview(subView)
+//                    subView.isHidden = false
+//                }
+//            }
+        }
+    }
+    
+    @IBAction func videoCall(_ sender: Any) {
+        if isSender {
+            guard let messageID = messageID else { return }
+            updateStatus(messageId: messageID, status: ["isVideoCall": true])
+        } else {
+            guard let callData = callData else { return }
+            updateStatus(messageId: callData.messageId, status: ["isVideoCall": true])
         }
     }
     
@@ -240,8 +262,11 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
 extension CallVC {
     private func joinVoiceRoom() {
         isJoined = true
-        voiceChangerButton.isHidden = false
-
+        
+        [voiceChangerButton, videoCallButton].forEach { button in
+            button?.isHidden = false
+        }
+        
         let profile: AgoraAudioProfile = .default
         let scenario: AgoraAudioScenario = .default
         var channelName = ""
@@ -259,6 +284,7 @@ extension CallVC {
             "audioProfile": profile,
             "audioScenario": scenario
         ]
+
         
         AgoraManager.shared.generateToken(channelName: channelName, uid: 0) {
             self.joinChannel()
@@ -268,6 +294,9 @@ extension CallVC {
     private func joinChannel() {
         isJoined = true
         
+//        var localVideo = Bundle.loadVideoView(type: .local, audioOnly: false)
+//        var remoteVideo = Bundle.loadVideoView(type: .remote, audioOnly: false)
+//
         guard let channelName = configs["channelName"] as? String,
             let audioProfile = configs["audioProfile"] as? AgoraAudioProfile,
             let audioScenario = configs["audioScenario"] as? AgoraAudioScenario
