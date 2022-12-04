@@ -57,6 +57,100 @@
             </objects>
             <point key="canvasLocation" x="-516.92307692307691" y="-181.27962085308056"/>
         </scene>
+        <!--Match SuccessVC-->
+        <scene sceneID="eiS-9Z-QEC">
+            <objects>
+                <viewController storyboardIdentifier="MatchSuccessVC" id="BuU-8z-BsW" customClass="MatchSuccessVC" customModule="SWiPE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3vk-sf-3Bk">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w5i-4R-yHr">
+                                <rect key="frame" x="20" y="57" width="350" height="262.66666666666669"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="w5i-4R-yHr" secondAttribute="height" multiplier="4:3" id="ADF-vB-TDh"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ppi-5x-Q2B">
+                                <rect key="frame" x="20" y="329.66666666666674" width="350" height="262.33333333333326"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Ppi-5x-Q2B" secondAttribute="height" multiplier="4:3" id="fYu-lb-xwx"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="WME-9G-Ucs">
+                                <rect key="frame" x="20" y="612" width="350" height="97.666666666666629"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IT'S A MATCH!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjd-3G-Eh7">
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="40.666666666666664"/>
+                                        <color key="tintColor" name="TextColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="34"/>
+                                        <nil key="textColor"/>
+                                        <color key="highlightedColor" name="TextColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0wB-cn-lXu">
+                                        <rect key="frame" x="0.0" y="50.666666666666629" width="350" height="47"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pFE-mB-clF">
+                                                <rect key="frame" x="0.0" y="0.0" width="170" height="47"/>
+                                                <color key="backgroundColor" name="MainColor"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="繼續配對">
+                                                    <color key="titleColor" name="BaseColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="dismissPage:" destination="BuU-8z-BsW" eventType="touchUpInside" id="Tbq-cG-NwY"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1H-dL-f1g">
+                                                <rect key="frame" x="180" y="0.0" width="170" height="47"/>
+                                                <color key="backgroundColor" name="MainColor"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="去聊天">
+                                                    <color key="titleColor" name="BaseColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="goToChatPage:" destination="BuU-8z-BsW" eventType="touchUpInside" id="8F4-b6-7tJ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="pFE-mB-clF" firstAttribute="width" secondItem="G1H-dL-f1g" secondAttribute="width" id="785-9N-Ll2"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="mjd-3G-Eh7" firstAttribute="width" secondItem="WME-9G-Ucs" secondAttribute="width" id="CIx-tu-L4A"/>
+                                    <constraint firstItem="0wB-cn-lXu" firstAttribute="width" secondItem="WME-9G-Ucs" secondAttribute="width" id="La7-be-DYX"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="TqU-vp-tG0"/>
+                        <color key="backgroundColor" name="BaseColor"/>
+                        <constraints>
+                            <constraint firstItem="Ppi-5x-Q2B" firstAttribute="top" secondItem="w5i-4R-yHr" secondAttribute="bottom" constant="10" id="FQB-0v-JXF"/>
+                            <constraint firstItem="w5i-4R-yHr" firstAttribute="leading" secondItem="TqU-vp-tG0" secondAttribute="leading" constant="20" id="PDn-jm-7BW"/>
+                            <constraint firstItem="WME-9G-Ucs" firstAttribute="top" secondItem="Ppi-5x-Q2B" secondAttribute="bottom" constant="20" id="aXe-0S-fNL"/>
+                            <constraint firstItem="TqU-vp-tG0" firstAttribute="trailing" secondItem="w5i-4R-yHr" secondAttribute="trailing" constant="20" id="gQv-iB-mIw"/>
+                            <constraint firstItem="Ppi-5x-Q2B" firstAttribute="leading" secondItem="TqU-vp-tG0" secondAttribute="leading" constant="20" id="hck-1i-VSs"/>
+                            <constraint firstItem="w5i-4R-yHr" firstAttribute="top" secondItem="TqU-vp-tG0" secondAttribute="top" constant="10" id="oAq-TO-lPU"/>
+                            <constraint firstItem="TqU-vp-tG0" firstAttribute="trailing" secondItem="WME-9G-Ucs" secondAttribute="trailing" constant="20" id="q2N-Of-GEy"/>
+                            <constraint firstItem="WME-9G-Ucs" firstAttribute="leading" secondItem="TqU-vp-tG0" secondAttribute="leading" constant="20" id="sI5-il-1tv"/>
+                            <constraint firstItem="TqU-vp-tG0" firstAttribute="trailing" secondItem="Ppi-5x-Q2B" secondAttribute="trailing" constant="20" id="sJM-Xo-Eqc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="continueMatchButton" destination="pFE-mB-clF" id="PJe-6W-tNC"/>
+                        <outlet property="friendImageView" destination="Ppi-5x-Q2B" id="nM0-ZT-UEF"/>
+                        <outlet property="goToChatButton" destination="G1H-dL-f1g" id="Rpi-dX-l2I"/>
+                        <outlet property="userImageView" destination="w5i-4R-yHr" id="adq-Tn-ySc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KFL-Qv-bXs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="312.30769230769232" y="-181.27962085308056"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="dME-rY-ihp">
             <objects>
@@ -86,6 +180,9 @@
         <image name="red-panda" width="33.333332061767578" height="33.333332061767578"/>
         <namedColor name="BaseColor">
             <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="MainColor">
+            <color red="0.34900000691413879" green="0.68999999761581421" blue="0.74500000476837158" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TextColor">
             <color red="0.13199999928474426" green="0.13300000131130219" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

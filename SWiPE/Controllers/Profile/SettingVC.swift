@@ -113,7 +113,7 @@ class SettingVC: UIViewController {
             print(error)
         }
         UserUid.share.setUidKeychain(uid: "")
-        dismiss(animated: true)
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     @objc private func deleteAccount() {
