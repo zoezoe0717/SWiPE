@@ -25,6 +25,15 @@ class MatchVC: UIViewController {
         index: ""
     )
     
+    var userData: User?
+    
+    var needToPlay = true {
+        didSet {
+            controlVideoPlay(needToPlay: needToPlay)
+            self.tabBarController?.selectedIndex = 2
+        }
+    }
+    
     lazy private var matchAnimationView: LottieAnimationView = {
         let view = LottieAnimationView(name: LottieString.match.rawValue)
 
@@ -54,6 +63,7 @@ class MatchVC: UIViewController {
     private var matchData: [User]? {
         didSet {
             stackContainer?.reloadData()
+            print("===\(matchData?[0])")
         }
     }
     
@@ -94,16 +104,12 @@ class MatchVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        if !UserUid.share.getUid().isEmpty {
-//            print("===\(UserUid.share.getUid())")
-//            fetchData()
-//        }
-//
         stackContainer?.cardViews.forEach { card in
             if card.frame.minX == 0 {
                 card.queuePlayer?.play()
             }
         }
+        getUser()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -162,13 +168,43 @@ class MatchVC: UIViewController {
         ])
     }
     
-    private func playMatchAnimation(_ isMatch: Bool) {
+//    private func playMatchAnimation(_ isMatch: Bool) {
+//        if isMatch {
+//            matchAnimationView.isHidden = false
+//            matchAnimationView.play { _ in self.matchAnimationView.isHidden = true }
+//        }
+//    }
+    
+    private func presentMatchSuccessPage(_ isMatch: Bool, friendData: User) {
         if isMatch {
-            matchAnimationView.isHidden = false
-            matchAnimationView.play { _ in self.matchAnimationView.isHidden = true }
+            guard let userData = userData else { return }
+            controlVideoPlay(needToPlay: false)
+            
+            if let controller = storyboard?.instantiateViewController(withIdentifier: "\(MatchSuccessVC.self)") as? MatchSuccessVC {
+                controller.needToPlay = { [weak self] bool in
+                    self?.needToPlay = bool
+                }
+                controller.modalPresentationStyle = .fullScreen
+                controller.userImageString = userData.story
+                controller.friendImageString = friendData.story
+                present(controller, animated: true)
+            }
         }
     }
     
+    private func controlVideoPlay(needToPlay: Bool) {
+        if needToPlay {
+            stackContainer?.cardViews.forEach { card in
+                if card.frame.minX == 0 {
+                    card.queuePlayer?.play()
+                }
+            }
+        } else {
+            stackContainer?.cardViews.forEach { card in
+                card.queuePlayer?.pause()
+            }
+        }
+    }
     
     //    func convertLocation(lat latitude: CLLocationDegrees, lon longitude: CLLocationDegrees) {
 //        let geocoder = CLGeocoder()
@@ -207,7 +243,6 @@ extension MatchVC {
                         switch result {
                         case .success(let success):
                             self?.matchData = success
-//                            print("===\(success[0])")
                         case .failure(let failure):
                             print(failure)
                         }
@@ -235,7 +270,8 @@ extension MatchVC {
         FireBaseManager.shared.searchUser(user: user, netizen: netizen) { result in
             switch result {
             case .success(let isMatch):
-                self.playMatchAnimation(isMatch)
+                self.presentMatchSuccessPage(isMatch, friendData: netizen)
+//                self.playMatchAnimation(isMatch)
             case .failure(let error):
                 print("DEBUG: \(error)")
             }
@@ -255,6 +291,17 @@ extension MatchVC {
     
     private func updateIndex(index: Int) {
         FireBaseManager.shared.updateUserData(user: SignVC.userData, data: ["index": matchData?[index].id])
+    }
+    
+    private func getUser() {
+        FireBaseManager.shared.getUserListener { [weak self] result in
+            switch result {
+            case .success(let user):
+                self?.userData = user
+            case .failure(let failure):
+                print(failure)
+            }
+        }
     }
 }
 
@@ -281,6 +328,7 @@ extension MatchVC: StackContainerViewDelegate {
         self.updateIndex(index: index)
         if toMatch {
             searchID(user: SignVC.userData, netizen: matchData[index])
+//            presentMatchSuccessPage(true, friendData: matchData[index])
 //            self.playMatchAnimation(true)
         } else {
             serachBeLike(user: SignVC.userData, netizen: matchData[index])
