@@ -127,6 +127,14 @@ class ChatManager {
                 completion(.failure(error))
             } else {
                 completion(.success("Success add message"))
+                self.updateData(id: callData.roomId) { result in
+                    switch result {
+                    case .success(let success):
+                        print(success)
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
             }
         }
     }

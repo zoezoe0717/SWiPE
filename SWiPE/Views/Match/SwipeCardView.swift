@@ -337,5 +337,6 @@ class SwipeCardView: UIView {
     }
     
     @objc func handleTapGesture(sender: UITapGestureRecognizer) {
+        queuePlayer?.play()
     }
 }

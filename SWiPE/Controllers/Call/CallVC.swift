@@ -10,7 +10,6 @@ import Lottie
 import AgoraRtcKit
 
 class CallVC: UIViewController, AgoraRtcEngineDelegate {
-    
     var receiver: User?
     var sender: User?
     var callData: Call?
@@ -263,7 +262,7 @@ extension CallVC {
     private func joinVoiceRoom() {
         isJoined = true
         
-        [voiceChangerButton, videoCallButton].forEach { button in
+        [voiceChangerButton].forEach { button in
             button?.isHidden = false
         }
         

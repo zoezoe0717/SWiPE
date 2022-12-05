@@ -36,6 +36,7 @@
 		C8AA62A7292F194E00D7E16C /* SCLAlertViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AA62A6292F194E00D7E16C /* SCLAlertViewWrapper.swift */; };
 		C8AC8486292BCA520062B0ED /* JGProgressHUDWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC8485292BCA520062B0ED /* JGProgressHUDWrapper.swift */; };
 		C8AC8488292CA67A0062B0ED /* TextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC8487292CA67A0062B0ED /* TextField+Ext.swift */; };
+		C8B08FFE293CE1A5004DF3EF /* MatchDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B08FFD293CE1A5004DF3EF /* MatchDetailVC.swift */; };
 		C8C77BEA291CE21F00A1675D /* UploadVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BE9291CE21F00A1675D /* UploadVideoVC.swift */; };
 		C8C77BEC291CE8DA00A1675D /* UploadPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BEB291CE8DA00A1675D /* UploadPhotoVC.swift */; };
 		C8C77BF0291CFADA00A1675D /* UploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BEF291CFADA00A1675D /* UploadVC.swift */; };
@@ -114,6 +115,7 @@
 		C8AA62A6292F194E00D7E16C /* SCLAlertViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCLAlertViewWrapper.swift; sourceTree = "<group>"; };
 		C8AC8485292BCA520062B0ED /* JGProgressHUDWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGProgressHUDWrapper.swift; sourceTree = "<group>"; };
 		C8AC8487292CA67A0062B0ED /* TextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Ext.swift"; sourceTree = "<group>"; };
+		C8B08FFD293CE1A5004DF3EF /* MatchDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailVC.swift; sourceTree = "<group>"; };
 		C8C77BE9291CE21F00A1675D /* UploadVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVideoVC.swift; sourceTree = "<group>"; };
 		C8C77BEB291CE8DA00A1675D /* UploadPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoVC.swift; sourceTree = "<group>"; };
 		C8C77BEF291CFADA00A1675D /* UploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVC.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			children = (
 				C8FC987D290FC0350028DE17 /* MatchVC.swift */,
 				C824F21B293BFEC80010C29E /* MatchSuccessVC.swift */,
+				C8B08FFD293CE1A5004DF3EF /* MatchDetailVC.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				C889468029135B28009A5BF3 /* ChatCell.swift in Sources */,
 				C8AA62A1292DF9E700D7E16C /* SettingCell.swift in Sources */,
 				C8FDC8D42928C675006FF1E6 /* MockUser.swift in Sources */,
+				C8B08FFE293CE1A5004DF3EF /* MatchDetailVC.swift in Sources */,
 				C889467D29135AAF009A5BF3 /* ChatVC.swift in Sources */,
 				C8FDC8C12924D1F7006FF1E6 /* SignVC.swift in Sources */,
 				C8FC98832910AD830028DE17 /* User.swift in Sources */,
