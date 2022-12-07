@@ -22,7 +22,7 @@ class SignVC: UIViewController {
     private var currentNonce: String?
     
     private lazy var signCatAnimationView: LottieAnimationView = {
-        let view = LottieAnimationView(name: LottieString.signSheep.rawValue)
+        let view = LottieAnimationView(name: Constants.LottieString.signSheep)
         view.contentMode = .scaleAspectFill
         view.loopMode = .loop
         view.play()
@@ -31,7 +31,7 @@ class SignVC: UIViewController {
     }()
     
     private lazy var arrowAnimationView: LottieAnimationView = {
-        let view = LottieAnimationView(name: LottieString.arrow.rawValue)
+        let view = LottieAnimationView(name: Constants.LottieString.arrow)
         view.contentMode = .scaleAspectFill
         view.loopMode = .loop
         view.play()
@@ -61,10 +61,10 @@ class SignVC: UIViewController {
     
     private func setUI() {
         welcomeLabel.textColor = CustomColor.text.color
-        welcomeLabel.text = SignVCString.welcome.rawValue
+        welcomeLabel.text = Constants.SignVCString.welcome
         
         subTitleLabel.textColor = CustomColor.text.color
-        subTitleLabel.text = SignVCString.subTitle.rawValue
+        subTitleLabel.text = Constants.SignVCString.subTitle
     }
     
     private func setConstraints() {

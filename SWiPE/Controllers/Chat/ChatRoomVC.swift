@@ -210,18 +210,18 @@ class ChatRoomVC: UIViewController {
 
         if !isUserAngry {
             let message = AlertMessage(alertTitle: "很生氣？", alertSubTitle: "確定要讓對方感受您的憤怒嗎", isAngry: true)
-            ZAlertView.share.angryView(message: message, roomID: id)
+            ZAlertView.shared.angryView(message: message, roomID: id)
         } else {
             let message = AlertMessage(alertTitle: "氣消了？", alertSubTitle: "您已經消氣了嗎？", isAngry: false)
 
-            ZAlertView.share.angryView(message: message, roomID: id)
+            ZAlertView.shared.angryView(message: message, roomID: id)
         }
     }
     
     private func block() {
         let message = AlertMessage(alertTitle: "封鎖確認", alertSubTitle: "封鎖後將看不到此聊天室\r如需解封鎖請在設定頁面修改")
         
-        ZAlertView.share.blockView(message: message, roomID: id)
+        ZAlertView.shared.blockView(message: message, roomID: id)
     }
     
     @IBAction func openAlbum(_ sender: Any) {

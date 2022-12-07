@@ -28,7 +28,7 @@ class SettingVC: UIViewController {
     var user: User?
     
     private lazy var sheepAnimationView: LottieAnimationView = {
-        let view = LottieAnimationView(name: LottieString.swimmingSheep.rawValue)
+        let view = LottieAnimationView(name: Constants.LottieString.swimmingSheep)
         view.contentMode = .scaleAspectFill
         view.loopMode = .loop
         view.play()
@@ -37,7 +37,7 @@ class SettingVC: UIViewController {
     }()
     
     lazy private var arrowAnimationView: LottieAnimationView = {
-        let view = LottieAnimationView(name: LottieString.arrow.rawValue)
+        let view = LottieAnimationView(name: Constants.LottieString.arrow)
         view.transform = CGAffineTransform(scaleX: -1, y: 1)
         view.loopMode = .loop
         view.contentMode = .scaleAspectFill
@@ -91,7 +91,7 @@ class SettingVC: UIViewController {
             alertSubTitle: "請在下方輸入您的新暱稱"
         )
         guard let user = user else { return }
-        ZAlertView.share.editView(message: message, user: user, dataType: "name")
+        ZAlertView.shared.editView(message: message, user: user, dataType: "name")
     }
     
     @objc private func editUserIntroduction() {
@@ -103,7 +103,7 @@ class SettingVC: UIViewController {
             alertSubTitle: "請在下方輸入您的自我介紹"
         )
         guard let user = user else { return }
-        ZAlertView.share.editView(message: message, user: user, dataType: "introduction")
+        ZAlertView.shared.editView(message: message, user: user, dataType: "introduction")
     }
     
     @objc private func signOut() {

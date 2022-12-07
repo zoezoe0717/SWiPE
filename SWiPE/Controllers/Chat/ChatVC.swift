@@ -42,7 +42,7 @@ class ChatVC: UIViewController {
         view.backgroundColor = CustomColor.base.color
         
         titleBackgroundView.backgroundColor = CustomColor.main.color
-        titleLabel.text = ChatVCString.title.rawValue
+        titleLabel.text = Constants.ChatVCString.title
         
         chatTableView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         chatTableView.layer.cornerRadius = 50

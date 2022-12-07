@@ -11,7 +11,6 @@ import CryptoKit
 import FirebaseAuth
 import AuthenticationServices
 
-
 class SignUpVC: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var topBackgroundView: UIView!
@@ -23,7 +22,7 @@ class SignUpVC: UIViewController {
     var userData: User?
     
     lazy private var arrowAnimationView: LottieAnimationView = {
-        let view = LottieAnimationView(name: LottieString.arrow.rawValue)
+        let view = LottieAnimationView(name: Constants.LottieString.arrow)
         view.transform = CGAffineTransform(scaleX: -1, y: 1)
         view.loopMode = .loop
         view.contentMode = .scaleAspectFill
@@ -99,10 +98,7 @@ class SignUpVC: UIViewController {
         guard let name = nameTextField.text,
             let age = ageTextField.text else { return }
         
-        guard !name.isEmpty && !age.isEmpty else {
-            print("尚未輸入完整")
-            return
-        }
+        guard !name.isEmpty && !age.isEmpty else { return }
         
         SignVC.userData.name = name
         SignVC.userData.age = Int(age) ?? 0

@@ -8,7 +8,6 @@
 import UIKit
 
 class MatchDetailVC: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }

@@ -35,7 +35,7 @@ class MatchVC: UIViewController {
     }
     
     lazy private var matchAnimationView: LottieAnimationView = {
-        let view = LottieAnimationView(name: LottieString.match.rawValue)
+        let view = LottieAnimationView(name: Constants.LottieString.match)
 
         view.contentMode = .scaleAspectFill
         view.isHidden = true
@@ -63,7 +63,6 @@ class MatchVC: UIViewController {
     private var matchData: [User]? {
         didSet {
             stackContainer?.reloadData()
-            print("===\(matchData?[0])")
         }
     }
     

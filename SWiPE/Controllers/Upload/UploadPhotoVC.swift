@@ -96,14 +96,6 @@ class UploadPhotoVC: UploadVC {
                     self?.profileImagePhoto.image = photo.image
                     self?.profileImagePhoto.isHidden = false
                     self?.faceDetect(photo: photo.image)
-//                    UploadStoryProvider.shared.uploadImageWithImgur(image: photo.image) { result in
-//                        switch result {
-//                        case .success(let success):
-//                            print(success)
-//                        case .failure(let failure):
-//                            print(failure)
-//                        }
-//                    }
                 }
             }
             picker.dismiss(animated: true)
@@ -126,7 +118,13 @@ extension UploadPhotoVC {
             buttonSwitch(hasImage: true)
         } else {
             buttonSwitch(hasImage: false)
-            let alert = UIAlertController(title: "未偵測到臉部", message: "請重新選擇有臉部的照片喔！", preferredStyle: .alert)
+            
+            let alert = UIAlertController(
+                title: Constants.UploadPhotoStr.faceAlertTitle,
+                message: Constants.UploadPhotoStr.faceAlertMessage,
+                preferredStyle: .alert
+            )
+            
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             present(alert, animated: true)
         }

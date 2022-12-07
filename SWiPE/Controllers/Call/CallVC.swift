@@ -10,27 +10,28 @@ import Lottie
 import AgoraRtcKit
 
 class CallVC: UIViewController, AgoraRtcEngineDelegate {
+    private var agoraKit: AgoraRtcEngineKit?
     var receiver: User?
     var sender: User?
     var callData: Call?
     var messageID: String?
     var roomId: String?
-    var agoraKit: AgoraRtcEngineKit!
     var configs: [String: Any] = [:]
-    var channelDuration: Int? {
+    
+    private var isJoined = false
+    var isSender = false
+    
+    lazy var status: CallStatus? = nil {
+        didSet {
+            callJudgement(status: status)
+        }
+    }
+    
+    lazy var channelDuration: Int? = nil {
         didSet {
             if let channelDuration = channelDuration {
                 addCallMessage(timeMessage: "\(String(describing: channelDuration))秒")
             }
-        }
-    }
-    
-    var isJoined = false
-    var isSender = false
-    
-    var status: CallStatus? {
-        didSet {
-            callJudgement(status: status)
         }
     }
 
@@ -43,7 +44,7 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
     @IBOutlet weak var videoCallButton: UIButton!
 
     lazy private var callingAnimationView: LottieAnimationView = {
-        let view = LottieAnimationView(name: LottieString.calling.rawValue)
+        let view = LottieAnimationView(name: Constants.LottieString.calling)
         view.loopMode = .loop
         view.contentMode = .scaleAspectFill
         view.play()
@@ -191,13 +192,6 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
                 leftChannel()
                 dismiss(animated: true)
             }
-            
-//            if status.isVideoCall {
-//                [remoteView, localView].forEach { subView in
-//                    view.addSubview(subView)
-//                    subView.isHidden = false
-//                }
-//            }
         }
     }
     
@@ -243,7 +237,8 @@ class CallVC: UIViewController, AgoraRtcEngineDelegate {
         let alert = UIAlertController(
             title: "Set Voice Changer",
             message: nil,
-            preferredStyle: UIDevice.current.userInterfaceIdiom == .pad ? UIAlertController.Style.alert : UIAlertController.Style.actionSheet)
+            preferredStyle: .actionSheet)
+        
         alert.addAction(getVoiceChangerAction(.off))
         alert.addAction(getVoiceChangerAction(.voiceChangerEffectOldMan))
         alert.addAction(getVoiceChangerAction(.voiceChangerEffectBoy))
@@ -292,11 +287,9 @@ extension CallVC {
     
     private func joinChannel() {
         isJoined = true
-        
-//        var localVideo = Bundle.loadVideoView(type: .local, audioOnly: false)
-//        var remoteVideo = Bundle.loadVideoView(type: .remote, audioOnly: false)
-//
-        guard let channelName = configs["channelName"] as? String,
+
+        guard
+            let channelName = configs["channelName"] as? String,
             let audioProfile = configs["audioProfile"] as? AgoraAudioProfile,
             let audioScenario = configs["audioScenario"] as? AgoraAudioScenario
             else { return }
@@ -310,6 +303,7 @@ extension CallVC {
         config.audioScenario = audioScenario
         agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
         
+        guard let agoraKit = agoraKit else { return }
         // make myself a broadcaster
         agoraKit.setClientRole(GlobalSettings.shared.getUserRole())
         
@@ -340,6 +334,7 @@ extension CallVC {
     }
     
     private func leftChannel() {
+        guard let agoraKit = agoraKit else { return }
         if isJoined {
             agoraKit.enable(inEarMonitoring: false)
             agoraKit.disableAudio()
@@ -352,8 +347,13 @@ extension CallVC {
     }
     
     private func getVoiceChangerAction(_ voiceChanger: AgoraAudioEffectPreset) -> UIAlertAction {
-        return UIAlertAction(title: "\(voiceChanger.description())", style: .default, handler: { [unowned self] action in
-            self.agoraKit.setAudioEffectPreset(voiceChanger)
-        })
+        guard agoraKit != nil else { fatalError("AgoraKit is nil") }
+        
+        let description = voiceChanger.description()
+        let alertAction = UIAlertAction(title: description, style: .default) { [unowned self] _ in
+            self.agoraKit?.setAudioEffectPreset(voiceChanger)
+        }
+        
+        return alertAction
     }
 }

@@ -8,9 +8,13 @@
 import UIKit
 
 class AgoraManager {
+    private init() { }
+
+    static let shared = AgoraManager()
+
     enum HTTPMethods: String {
-        case GET = "GET"
-        case POST = "POST"
+        case GET
+        case POST
     }
         
     typealias SuccessClosure = ([String: Any]) -> Void
@@ -18,18 +22,18 @@ class AgoraManager {
     
     private lazy var sessionConfig: URLSessionConfiguration = {
         let config = URLSessionConfiguration.default
-        config.httpAdditionalHeaders = ["Content-Type": "application/json",
-                                        "X-LC-Id": "fkUjxadPMmvYF3F3BI4uvmjo-gzGzoHsz",
-                                        "X-LC-Key": "QAvFS62IOR28GfSFQO5ze45s",
-                                        "X-LC-Session": "qmdj8pdidnmyzp0c7yqil91oc"]
+        config.httpAdditionalHeaders = [
+            "Content-Type": "application/json",
+            "X-LC-Id": "fkUjxadPMmvYF3F3BI4uvmjo-gzGzoHsz",
+            "X-LC-Key": "QAvFS62IOR28GfSFQO5ze45s",
+            "X-LC-Session": "qmdj8pdidnmyzp0c7yqil91oc"
+        ]
         config.timeoutIntervalForRequest = 30
         config.timeoutIntervalForResource = 30
         config.requestCachePolicy = .reloadIgnoringLocalCacheData
         return config
     }()
     
-    static let shared = AgoraManager()
-    private init() { }
     private let baseUrl = "https://test-toolbox.bj2.agoralab.co/v1/token/generate"
     
     func generateToken(channelName: String, uid: UInt = 0, success: @escaping () -> Void) {
@@ -43,19 +47,22 @@ class AgoraManager {
             success(nil)
             return
         }
-        let params = ["appCertificate": KeyCenter.Certificate ?? "",
-                      "appId": KeyCenter.AppId,
-                      "channelName": channelName,
-                      "expire": 900,
-                      "src": "iOS",
-                      "ts": "".timeStamp,
-                      "type": 1,
-                      "uid": "\(uid)"] as [String: Any]
+        
+        let params = [
+            "appCertificate": KeyCenter.Certificate ?? "",
+            "appId": KeyCenter.AppId,
+            "channelName": channelName,
+            "expire": 900,
+            "src": "iOS",
+            "ts": "".timeStamp,
+            "type": 1,
+            "uid": "\(uid)"
+        ] as [String: Any]
+        
         AgoraManager.shared.postRequest(urlString: "https://toolbox.bj2.agoralab.co/v1/token/generate", params: params, success: { response in
             let data = response["data"] as? [String: String]
             let token = data?["token"]
             KeyCenter.Token = token
-            print("===\(response)")
             success(token)
         }, failure: { error in
             print(error)
@@ -63,59 +70,59 @@ class AgoraManager {
         })
     }
     
-    func getRequest(urlString: String, success: SuccessClosure?, failure: FailClosure?) {
-        DispatchQueue.global().async {
-            self.request(urlString: urlString, params: nil, method: .GET, success: success, failure: failure)
-        }
-    }
     func postRequest(urlString: String, params: [String: Any]?, success: SuccessClosure?, failure: FailClosure?) {
         DispatchQueue.global().async {
             self.request(urlString: urlString, params: params, method: .POST, success: success, failure: failure)
         }
     }
     
-    private func request(urlString: String,
-                         params: [String: Any]?,
-                         method: HTTPMethods,
-                         success: SuccessClosure?,
-                         failure: FailClosure?) {
+    private func request(
+        urlString: String,
+        params: [String: Any]?,
+        method: HTTPMethods,
+        success: SuccessClosure?,
+        failure: FailClosure?
+    ) {
         let session = URLSession(configuration: sessionConfig)
-        guard let request = getRequest(urlString: urlString,
-                                       params: params,
-                                       method: method,
-                                       success: success,
-                                       failure: failure) else { return }
-        session.dataTask(with: request) { data, response, error in
+        guard let request = getRequest(
+            urlString: urlString,
+            params: params,
+            method: method,
+            success: success,
+            failure: failure
+        ) else { return }
+        
+        session.dataTask(with: request) { data, response, _ in
             DispatchQueue.main.async {
                 self.checkResponse(response: response, data: data, success: success, failure: failure)
             }
-        }.resume()
+        }
+        .resume()
     }
     
-    private func getRequest(urlString: String,
-                            params: [String: Any]?,
-                            method: HTTPMethods,
-                            success: SuccessClosure?,
-                            failure: FailClosure?) -> URLRequest? {
-        
+    private func getRequest(
+        urlString: String,
+        params: [String: Any]?,
+        method: HTTPMethods,
+        success: SuccessClosure?,
+        failure: FailClosure?
+    ) -> URLRequest? {
         let string = urlString.hasPrefix("http") ? urlString : baseUrl.appending(urlString)
+        
         guard let url = URL(string: string) else {
             return nil
         }
+        
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
+        
         if method == .POST {
-            request.httpBody = try? JSONSerialization.data(withJSONObject: params ?? [], options: .sortedKeys)//convertParams(params: params).data(using: .utf8)
+            request.httpBody = try? JSONSerialization.data(withJSONObject: params ?? [], options: .sortedKeys)
         }
+        
         let curl = request.cURL(pretty: true)
         debugPrint("curl == \(curl)")
         return request
-    }
-    
-    private func convertParams(params: [String: Any]?) -> String {
-        guard let params = params else { return "" }
-        let value = params.map({ String(format: "%@=%@", $0.key, "\($0.value)") }).joined(separator: "&")
-        return value
     }
     
     private func checkResponse(response: URLResponse?, data: Data?, success: SuccessClosure?, failure: FailClosure?) {
@@ -125,12 +132,12 @@ class AgoraManager {
                 if let resultData = data {
                     let result = String(data: resultData, encoding: .utf8)
                     print(result ?? "")
-                    success?(JSONObject.toDictionary(jsonString: result ?? ""))
+                    success?(JSONObject.shared.toDictionary(jsonString: result ?? ""))
                 } else {
-                    failure?("Error in the request status code \(httpResponse.statusCode), response: \(String(describing: response))")
+                    failure?("Error - StatusCode: \(httpResponse.statusCode)")
                 }
             default:
-                failure?("Error in the request status code \(httpResponse.statusCode), response: \(String(describing: response))")
+                failure?("Error - StatusCode: \(httpResponse.statusCode)")
             }
         }
     }

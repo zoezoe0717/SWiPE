@@ -18,7 +18,7 @@ class MatchSuccessVC: UIViewController {
     var friendImageString: String?
     
     lazy private var matchAnimationView: LottieAnimationView = {
-        let view = LottieAnimationView(name: LottieString.match.rawValue)
+        let view = LottieAnimationView(name: Constants.LottieString.match)
         view.contentMode = .scaleAspectFit
         view.play()
         return view

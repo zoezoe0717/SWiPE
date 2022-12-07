@@ -35,17 +35,6 @@ class SwipeCardView: UIView {
         return view
     }()
     
-//    lazy private var shadowView: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = .clear
-//        view.layer.shadowColor = UIColor.black.cgColor
-//        view.layer.shadowOffset = CGSize(width: 0, height: 0)
-//        view.layer.shadowOpacity = 0.8
-//        view.layer.shadowRadius = 4.0
-//
-//        return view
-//    }()
-    
     lazy private var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .white
@@ -55,7 +44,7 @@ class SwipeCardView: UIView {
     }()
     
     lazy private var loadingView: LottieAnimationView = {
-        let view = LottieAnimationView(name: LottieString.cardLoding.rawValue)
+        let view = LottieAnimationView(name: Constants.LottieString.cardLoding)
         view.loopMode = .loop
         view.animationSpeed = 0.8
         view.play()
@@ -156,15 +145,6 @@ class SwipeCardView: UIView {
         [nameLabel, ageLabel, introductionLabel, moreOptionButton].forEach { label in
             label.translatesAutoresizingMaskIntoConstraints = false
         }
-        
-        // MARK: ShadowView
-//        addSubview(shadowView)
-//        NSLayoutConstraint.activate([
-//            shadowView.leftAnchor.constraint(equalTo: leftAnchor),
-//            shadowView.rightAnchor.constraint(equalTo: rightAnchor),
-//            shadowView.topAnchor.constraint(equalTo: topAnchor),
-//            shadowView.bottomAnchor.constraint(equalTo: bottomAnchor)
-//        ])
         
         // MARK: SwipeView
         addSubview(swipeView)
@@ -333,7 +313,7 @@ class SwipeCardView: UIView {
     
     @objc func moreOption() {
         guard let id = dataSource?.id else { return }
-        ZAlertView.share.showProsecute(id: id)
+        ZAlertView.shared.showProsecute(id: id)
     }
     
     @objc func handleTapGesture(sender: UITapGestureRecognizer) {
