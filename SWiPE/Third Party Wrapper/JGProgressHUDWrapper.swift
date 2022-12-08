@@ -21,9 +21,22 @@ class ProgressHUD {
     let hud = JGProgressHUD(style: .dark)
     
     var view: UIView {
-        guard let window = UIApplication.shared.windows.first,
-            let view = window.rootViewController?.view else { fatalError("can not find view") }
+        let scene = UIApplication.shared.connectedScenes
+            .filter { $0.activationState == .foregroundActive }
+            .first { $0 is UIWindowScene } as? UIWindowScene
+        
+        let window = scene?.windows.first { $0.isKeyWindow }
+        var presentedViewController = window?.rootViewController
+        while presentedViewController?.presentedViewController != nil {
+            presentedViewController = presentedViewController?.presentedViewController
+        }
+        
+        guard let view = presentedViewController?.view else { fatalError("Error: `1 qCan not find view") }
+        
         return view
+//        guard let window = UIApplication.shared.windows.first,
+//            let view = window.rootViewController?.view else { fatalError("can not find view") }
+//        return view
     }
 
     static func show(type: HUDType) {
@@ -100,5 +113,19 @@ class ProgressHUD {
         }
 
         shared.hud.dismiss()
+    }
+}
+
+extension UIViewController {
+    static func getLastPresentedViewController() -> UIViewController? {
+        let scene = UIApplication.shared.connectedScenes
+            .filter { $0.activationState == .foregroundActive }
+            .first { $0 is UIWindowScene } as? UIWindowScene
+        let window = scene?.windows.first { $0.isKeyWindow }
+        var presentedViewController = window?.rootViewController
+        while presentedViewController?.presentedViewController != nil {
+            presentedViewController = presentedViewController?.presentedViewController
+        }
+        return presentedViewController
     }
 }

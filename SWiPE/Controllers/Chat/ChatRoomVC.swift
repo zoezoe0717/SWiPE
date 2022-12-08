@@ -75,12 +75,16 @@ class ChatRoomVC: UIViewController {
         chatRoomTableView.delegate = self
         chatRoomTableView.dataSource = self
         
-        chatRoomTableView.register(UINib(nibName: "\(OwnTextCell.self)", bundle: nil), forCellReuseIdentifier: "\(OwnTextCell.self)")
-        chatRoomTableView.register(UINib(nibName: "\(FriendTextCell.self)", bundle: nil), forCellReuseIdentifier: "\(FriendTextCell.self)")
-        chatRoomTableView.register(UINib(nibName: "\(OwnImageCell.self)", bundle: nil), forCellReuseIdentifier: "\(OwnImageCell.self)")
-        chatRoomTableView.register(UINib(nibName: "\(FriendImageCell.self)", bundle: nil), forCellReuseIdentifier: "\(FriendImageCell.self)")
-        chatRoomTableView.register(UINib(nibName: "\(OwnCallCell.self)", bundle: nil), forCellReuseIdentifier: "\(OwnCallCell.self)")
-        chatRoomTableView.register(UINib(nibName: "\(FriendCallCell.self)", bundle: nil), forCellReuseIdentifier: "\(FriendCallCell.self)")
+        [
+            OwnTextCell.identifier,
+            FriendTextCell.identifier,
+            OwnImageCell.identifier,
+            FriendImageCell.identifier,
+            OwnCallCell.identifier,
+            FriendCallCell.identifier
+        ].forEach { cellIdentifier in
+            chatRoomTableView.zRegisterCellWithNib(identifier: cellIdentifier, bundle: nil)
+        }
     }
     
     private func setUI() {
@@ -196,12 +200,12 @@ class ChatRoomVC: UIViewController {
         moreOptionsButton.showsMenuAsPrimaryAction = true
         moreOptionsButton.menu =
         UIMenu(children: [
-            UIAction(title: "一鍵生氣", image: UIImage(named: "angry"), handler: { _ in
+            UIAction(title: "一鍵生氣", image: UIImage(named: "angry")) { _ in
                 self.angryClick()
-            }),
-            UIAction(title: "封鎖用戶", image: UIImage(named: "block"), handler: { _ in
+            },
+            UIAction(title: "封鎖用戶", image: UIImage(named: "block")) { _ in
                 self.block()
-            })
+            }
         ])
     }
     
@@ -348,7 +352,6 @@ extension ChatRoomVC: PHPickerViewControllerDelegate {
                 print(error)
             } else {
                 guard let url = url as? NSURL else { return }
-                print("===\(url)")
             }
         }
     }

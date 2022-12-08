@@ -285,9 +285,12 @@ class ChatManager {
         }
     }
     
-    func getFriendData(roomIds: [ChatRoom], completion: @escaping (Result<User, Error>) -> Void) {
+    func getFriendData(roomIds: [ChatRoom], completion: @escaping (Result<[User], Error>) -> Void) {
+        var friendDatas: [User] = []
+
         let queue = DispatchQueue(label: "queue", qos: .background, attributes: .concurrent)
         let semaphore = DispatchSemaphore(value: 1)
+        
         roomIds.forEach { room in
             queue.async {
                 semaphore.wait()
@@ -297,12 +300,16 @@ class ChatManager {
                         completion(.failure(error))
                     } else {
                         guard let snapshot = snapshot else { return }
+
                         snapshot.documents.forEach { friendId in
                             guard let friendId = try? friendId.data(as: Id.self) else { return }
                             FirestoreEndpoint.users.ref.document(friendId.id).getDocument { snapshot, _ in
                                 guard let snapshot = snapshot else { return }
                                 guard let friendData = try? snapshot.data(as: User.self) else { return }
-                                completion(.success(friendData))
+                                friendDatas.append(friendData)
+                                if friendDatas.count == roomIds.count {
+                                    completion(.success(friendDatas))
+                                }
                             }
                         }
                     }

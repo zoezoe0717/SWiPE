@@ -101,7 +101,10 @@ class UploadVideoVC: UploadVC {
     
     override func uploadData() {
         ProgressHUD.show()
-
+        
+        let group = DispatchGroup()
+        
+        group.enter()
         if let videoUrl = videoUrl {
             UploadStoryProvider.shared.uploadVideoWithImgur(url: videoUrl) { result in
                 switch result {
@@ -109,14 +112,18 @@ class UploadVideoVC: UploadVC {
                     SignVC.userData.video = "\(videoURL)"
                     FireBaseManager.shared.updateUserData(user: SignVC.userData, data: ["video": "\(videoURL)"])
                     ProgressHUD.showSuccess()
+                    group.leave()
                 case .failure(let failure):
                     print(failure)
-                    ProgressHUD.dismiss()
+                    ProgressHUD.showFailure()
+                    group.leave()
                 }
             }
         }
         
-        dismissViewController()
+        group.notify(queue: .main) {
+            self.dismissViewController()
+        }
     }
         
     override func createCamera() {

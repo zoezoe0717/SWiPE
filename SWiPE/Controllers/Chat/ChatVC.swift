@@ -8,13 +8,14 @@
 import UIKit
 
 class ChatVC: UIViewController {
+    @IBOutlet weak var placeholderLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBOutlet weak var titleBackgroundView: UIView!
     
     var friendList: [User] = [] {
         didSet {
             chatTableView.reloadData()
+            print("===A\(friendList)")
         }
     }
     
@@ -41,6 +42,8 @@ class ChatVC: UIViewController {
     private func setUI() {
         view.backgroundColor = CustomColor.base.color
         
+        placeholderLabel.isHidden = true
+        
         titleBackgroundView.backgroundColor = CustomColor.main.color
         titleLabel.text = Constants.ChatVCString.title
         
@@ -51,7 +54,8 @@ class ChatVC: UIViewController {
     private func getRoomId() {
         self.roomId = []
         self.friendList = []
-        ChatManager.shared.getChat { result in
+        ChatManager.shared.getChat { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let id):
                 self.roomId = id
@@ -65,13 +69,15 @@ class ChatVC: UIViewController {
     }
     
     private func getFriendID(roomIds: [ChatRoom]) {
-        self.friendList = []
-        ChatManager.shared.getFriendData(roomIds: roomIds) { result in
+        ProgressHUD.show()
+        ChatManager.shared.getFriendData(roomIds: roomIds) { [weak self] result in
             switch result {
             case .success(let friends):
-                self.friendList.append(friends)
+                self?.friendList = friends
+                ProgressHUD.dismiss()
             case .failure(let error):
                 print(error)
+                ProgressHUD.dismiss()
             }
         }
     }

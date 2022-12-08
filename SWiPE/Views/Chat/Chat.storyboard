@@ -70,6 +70,12 @@
                                 <color key="textColor" name="BaseColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您目前無好友，請努力配對吧！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AdX-fI-qQv">
+                                <rect key="frame" x="73.666666666666671" y="411.66666666666669" width="242.66666666666663" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w5U-4a-7tM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -79,9 +85,11 @@
                             <constraint firstItem="GhK-1X-g7y" firstAttribute="top" secondItem="D3P-W0-5tx" secondAttribute="bottom" constant="10" id="Aju-BU-AN0"/>
                             <constraint firstItem="w5U-4a-7tM" firstAttribute="trailing" secondItem="GhK-1X-g7y" secondAttribute="trailing" id="DAv-RY-LTT"/>
                             <constraint firstItem="Gc5-0c-Kd1" firstAttribute="top" secondItem="6MX-lZ-JCu" secondAttribute="top" id="Feb-ZC-MBM"/>
+                            <constraint firstItem="AdX-fI-qQv" firstAttribute="centerX" secondItem="6MX-lZ-JCu" secondAttribute="centerX" id="Fy1-iV-jjA"/>
                             <constraint firstItem="Gc5-0c-Kd1" firstAttribute="leading" secondItem="6MX-lZ-JCu" secondAttribute="leading" id="J9c-KL-Xaj"/>
                             <constraint firstItem="w5U-4a-7tM" firstAttribute="bottom" secondItem="GhK-1X-g7y" secondAttribute="bottom" id="TGH-xO-gv3"/>
                             <constraint firstItem="Gc5-0c-Kd1" firstAttribute="height" secondItem="6MX-lZ-JCu" secondAttribute="height" multiplier="0.5" id="VUE-FL-S9v"/>
+                            <constraint firstItem="AdX-fI-qQv" firstAttribute="centerY" secondItem="6MX-lZ-JCu" secondAttribute="centerY" id="Vqb-mP-s8p"/>
                             <constraint firstItem="GhK-1X-g7y" firstAttribute="leading" secondItem="w5U-4a-7tM" secondAttribute="leading" id="ffk-ZK-Sid"/>
                             <constraint firstItem="D3P-W0-5tx" firstAttribute="centerX" secondItem="6MX-lZ-JCu" secondAttribute="centerX" id="rO5-Hd-cnl"/>
                         </constraints>
@@ -90,6 +98,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="chatTableView" destination="GhK-1X-g7y" id="ftH-Ze-bUd"/>
+                        <outlet property="placeholderLabel" destination="AdX-fI-qQv" id="QKR-KO-zJa"/>
                         <outlet property="titleBackgroundView" destination="Gc5-0c-Kd1" id="uyO-vK-ieh"/>
                         <outlet property="titleLabel" destination="D3P-W0-5tx" id="ETp-oV-qHU"/>
                     </connections>

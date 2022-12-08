@@ -37,6 +37,8 @@
 		C8AC8486292BCA520062B0ED /* JGProgressHUDWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC8485292BCA520062B0ED /* JGProgressHUDWrapper.swift */; };
 		C8AC8488292CA67A0062B0ED /* TextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC8487292CA67A0062B0ED /* TextField+Ext.swift */; };
 		C8B08FFE293CE1A5004DF3EF /* MatchDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B08FFD293CE1A5004DF3EF /* MatchDetailVC.swift */; };
+		C8B090092940A261004DF3EF /* UIStoryboard+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B090082940A261004DF3EF /* UIStoryboard+Ext.swift */; };
+		C8B0900B2941790E004DF3EF /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B0900A2941790E004DF3EF /* UITableView+Ext.swift */; };
 		C8C77BEA291CE21F00A1675D /* UploadVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BE9291CE21F00A1675D /* UploadVideoVC.swift */; };
 		C8C77BEC291CE8DA00A1675D /* UploadPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BEB291CE8DA00A1675D /* UploadPhotoVC.swift */; };
 		C8C77BF0291CFADA00A1675D /* UploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BEF291CFADA00A1675D /* UploadVC.swift */; };
@@ -116,6 +118,8 @@
 		C8AC8485292BCA520062B0ED /* JGProgressHUDWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGProgressHUDWrapper.swift; sourceTree = "<group>"; };
 		C8AC8487292CA67A0062B0ED /* TextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Ext.swift"; sourceTree = "<group>"; };
 		C8B08FFD293CE1A5004DF3EF /* MatchDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailVC.swift; sourceTree = "<group>"; };
+		C8B090082940A261004DF3EF /* UIStoryboard+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Ext.swift"; sourceTree = "<group>"; };
+		C8B0900A2941790E004DF3EF /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		C8C77BE9291CE21F00A1675D /* UploadVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVideoVC.swift; sourceTree = "<group>"; };
 		C8C77BEB291CE8DA00A1675D /* UploadPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoVC.swift; sourceTree = "<group>"; };
 		C8C77BEF291CFADA00A1675D /* UploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVC.swift; sourceTree = "<group>"; };
@@ -412,6 +416,8 @@
 				C8AC8487292CA67A0062B0ED /* TextField+Ext.swift */,
 				C8EEA63A2937916700E9B6E3 /* String+Ext.swift */,
 				C850EE5A293BA5C000D38742 /* AgoraAudioEffectPreset+Ext.swift */,
+				C8B090082940A261004DF3EF /* UIStoryboard+Ext.swift */,
+				C8B0900A2941790E004DF3EF /* UITableView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -678,6 +684,7 @@
 				C8AA62A1292DF9E700D7E16C /* SettingCell.swift in Sources */,
 				C8FDC8D42928C675006FF1E6 /* MockUser.swift in Sources */,
 				C8B08FFE293CE1A5004DF3EF /* MatchDetailVC.swift in Sources */,
+				C8B090092940A261004DF3EF /* UIStoryboard+Ext.swift in Sources */,
 				C889467D29135AAF009A5BF3 /* ChatVC.swift in Sources */,
 				C8FDC8C12924D1F7006FF1E6 /* SignVC.swift in Sources */,
 				C8FC98832910AD830028DE17 /* User.swift in Sources */,
@@ -692,6 +699,7 @@
 				C8EEA63929378FA500E9B6E3 /* JSONObject.swift in Sources */,
 				C8E845F9291B914A00180758 /* OwnImageCell.swift in Sources */,
 				C8EEA63429378DA000E9B6E3 /* AgoraManager.swift in Sources */,
+				C8B0900B2941790E004DF3EF /* UITableView+Ext.swift in Sources */,
 				C851F4A32920BC8600813E31 /* SwipeTabBarController.swift in Sources */,
 				C88946792913589F009A5BF3 /* ChatManager.swift in Sources */,
 				C8AC8486292BCA520062B0ED /* JGProgressHUDWrapper.swift in Sources */,
@@ -878,7 +886,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SWiPE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -916,7 +924,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SWiPE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

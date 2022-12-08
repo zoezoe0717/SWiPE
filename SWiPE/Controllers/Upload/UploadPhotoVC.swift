@@ -60,7 +60,10 @@ class UploadPhotoVC: UploadVC {
     
     override func uploadData() {
         ProgressHUD.show()
-
+        
+        let group = DispatchGroup()
+        
+        group.enter()
         if let image = profileImagePhoto.image {
             UploadStoryProvider.shared.uploadImageWithImgur(image: image) { result in
                 switch result {
@@ -68,20 +71,32 @@ class UploadPhotoVC: UploadVC {
                     SignVC.userData.story = "\(url)"
                     FireBaseManager.shared.updateUserData(user: SignVC.userData, data: ["story": "\(url)"])
                     ProgressHUD.dismiss()
+                    group.leave()
                 case .failure(let failure):
                     print(failure)
                     ProgressHUD.dismiss()
+                    group.leave()
                 }
             }
         }
-
+        
+        group.notify(queue: .main) {
+            self.changePage()
+        }
+    }
+    
+    private func changePage() {
         if isNewUser {
             updateFirstIndex()
             if let controller = storyboard?.instantiateViewController(withIdentifier: "\(UploadVideoVC.self)") as? UploadVideoVC {
                 controller.modalPresentationStyle = .fullScreen
+                ProgressHUD.dismiss()
+
                 present(controller, animated: true)
             }
         } else {
+            ProgressHUD.dismiss()
+
             dismiss(animated: true)
         }
     }

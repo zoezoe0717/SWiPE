@@ -23,7 +23,7 @@ class UploadVC: UIViewController {
     
     lazy public var pushButton: UIButton = {
         let button = UIButton()
-        button.setTitle(Constants.UploadVCString.reselect, for: .normal)
+        button.setTitle(Constants.UploadVCString.confirm, for: .normal)
         button.backgroundColor = .gray
         button.addTarget(self, action: #selector(uploadData), for: .touchUpInside)
         return button
