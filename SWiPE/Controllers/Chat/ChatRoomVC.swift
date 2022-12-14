@@ -8,6 +8,12 @@
 import UIKit
 import PhotosUI
 
+protocol CellConfiguraable: UITableViewCell {
+    func setup(message: Message, userData: User)
+}
+
+protocol RowViewModel {}
+
 class ChatRoomVC: UIViewController {
     @IBOutlet weak var friendLabel: UILabel!
     
@@ -82,9 +88,7 @@ class ChatRoomVC: UIViewController {
             FriendImageCell.identifier,
             OwnCallCell.identifier,
             FriendCallCell.identifier
-        ].forEach { cellIdentifier in
-            chatRoomTableView.zRegisterCellWithNib(identifier: cellIdentifier, bundle: nil)
-        }
+        ].forEach { chatRoomTableView.zRegisterCellWithNib(identifier: $0, bundle: nil) }
     }
     
     private func setUI() {
@@ -260,66 +264,57 @@ extension ChatRoomVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var messageCell = UITableViewCell()
-        let isUser = message[indexPath.item].senderId == UserUid.share.getUid()
-        let isText = message[indexPath.item].type == MessageType.text.rawValue
-        let isCall = message[indexPath.item].type == MessageType.call.rawValue
-
-        if isUser {
-            if isText {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(OwnTextCell.self)", for: indexPath) as? OwnTextCell else {
-                    fatalError("DEBUG: Can not create OwnTextCell")
-                }
-                cell.setText(message: message[indexPath.item])
-                cell.userImage.loadImage(userData?.story)
-                messageCell = cell
-            } else if isCall {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(OwnCallCell.self)", for: indexPath) as? OwnCallCell else {
-                    fatalError("DEBUG: Can not create OwnTextCell")
-                }
-                cell.setText(message: message[indexPath.item])
-                cell.userImage.loadImage(userData?.story)
-                messageCell = cell
-            } else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(OwnImageCell.self)", for: indexPath) as? OwnImageCell else {
-                    fatalError("DEBUG: Can not create OwnTextCell")
-                }
-                cell.setup(message: message[indexPath.item])
-                cell.userImage.loadImage(userData?.story)
-                messageCell = cell
-            }
+        var messageType = MessageType.text
+        let message = message[indexPath.item]
+        let sender = message.senderId == UserUid.share.getUid() ? MessageSender.isFromUser : MessageSender.isFromFriend
+        let isText = message.type == MessageType.text.rawValue
+        let isImage = message.type == MessageType.image.rawValue
+        
+        if isText {
+            messageType = .text
+        } else if isImage {
+            messageType = .image
         } else {
-            if isText {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(FriendTextCell.self)", for: indexPath) as? FriendTextCell else {
-                    fatalError("DEBUG: Can not create FriendTextCell")
-                }
-                
-                cell.setText(message: message[indexPath.item])
-                cell.friendImageView.loadImage(friendData?.story)
-                messageCell = cell
-            } else if isCall {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(FriendCallCell.self)", for: indexPath) as? FriendCallCell else {
-                    fatalError("DEBUG: Can not create OwnTextCell")
-                }
-                cell.setText(message: message[indexPath.item])
-                cell.friendImageView.loadImage(friendData?.story)
-                messageCell = cell
-            } else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(FriendImageCell.self)", for: indexPath) as? FriendImageCell else {
-                    fatalError("DEBUG: Can not create FriendTextCell")
-                }
-                
-                cell.setup(message: message[indexPath.item])
-                cell.userImage.loadImage(friendData?.story)
-                messageCell = cell
-            }
+            messageType = .call
         }
         
+        let identifier = getCellIdentifier(sender: sender, type: messageType)
+
+        if
+            let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? CellConfiguraable,
+            let friendData = friendData
+        {
+            cell.setup(message: message, userData: friendData)
+            messageCell = cell
+        }
         return messageCell
+    }
+    
+    private func getCellIdentifier(sender: MessageSender, type: MessageType) -> String {
+        switch (sender, type) {
+        case (.isFromUser, .text):
+            return OwnTextCell.identifier
+            
+        case (.isFromUser, .image):
+            return OwnImageCell.identifier
+            
+        case (.isFromUser, .call):
+            return OwnCallCell.identifier
+            
+        case (.isFromFriend, .text):
+            return FriendTextCell.identifier
+            
+        case (.isFromFriend, .image):
+            return FriendImageCell.identifier
+            
+        case (.isFromFriend, .call):
+            return FriendCallCell.identifier
+        }
     }
 }
 
 extension ChatRoomVC: PHPickerViewControllerDelegate {
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+    internal func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         guard let result = results.first else { return }
         let provider = result.itemProvider
@@ -346,7 +341,7 @@ extension ChatRoomVC: PHPickerViewControllerDelegate {
     private func dealWithVideo(_ result: PHPickerResult) {
         let movie = UTType.movie.identifier
         let provider = result.itemProvider
-        
+
         provider.loadFileRepresentation(forTypeIdentifier: movie) { url, error in
             if let error = error {
                 print(error)

@@ -8,7 +8,6 @@
 import UIKit
 import YPImagePicker
 import AVFoundation
-import AVKit
 
 class UploadVideoVC: UploadVC {
     @IBOutlet weak var titleLabel: UILabel!

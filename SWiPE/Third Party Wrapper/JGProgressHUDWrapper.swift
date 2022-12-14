@@ -34,9 +34,6 @@ class ProgressHUD {
         guard let view = presentedViewController?.view else { fatalError("Error: `1 qCan not find view") }
         
         return view
-//        guard let window = UIApplication.shared.windows.first,
-//            let view = window.rootViewController?.view else { fatalError("can not find view") }
-//        return view
     }
 
     static func show(type: HUDType) {

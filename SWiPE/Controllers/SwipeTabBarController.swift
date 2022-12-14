@@ -46,24 +46,24 @@ class SwipeTabBarController: UITabBarController, UITabBarControllerDelegate {
         ])
     }
     
-    private func clearLogin() {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print(error)
-        }
-    }
+//    private func clearLogin() {
+//        do {
+//            try Auth.auth().signOut()
+//        } catch {
+//            print(error)
+//        }
+//    }
     
-    private func loginJudgment() {
-        Auth.auth().addStateDidChangeListener { [weak self] _, user in
-            if let user = user {
-                print("\(user.uid) Login")
-                self?.addCallListener()
-            } else {
-                self?.presentSignPage()
-            }
-        }
-    }
+//    private func loginJudgment() {
+//        Auth.auth().addStateDidChangeListener { [weak self] _, user in
+//            if let user = user {
+//                print("\(user.uid) Login")
+//                self?.addCallListener()
+//            } else {
+//                self?.presentSignPage()
+//            }
+//        }
+//    }
     
     private func presentSignPage() {
         let storyboard = UIStoryboard(name: "Sign", bundle: nil)

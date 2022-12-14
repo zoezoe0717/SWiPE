@@ -9,10 +9,15 @@ import Foundation
 import FirebaseCore
 import FirebaseFirestore
 
+
+enum MessageSender: String {
+    case isFromUser
+    case isFromFriend
+}
+
 enum MessageType: String {
     case text = "text_message"
     case image = "image_message"
-    case video = "video_message"
     case call = "call_message"
 }
 
@@ -261,7 +266,7 @@ class ChatManager {
             if let error = error {
                 print(error)
             } else {
-                print("===AAAUpdate Success")
+                print("Update Success")
             }
         }
     }

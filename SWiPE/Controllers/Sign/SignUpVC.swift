@@ -20,6 +20,7 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var nextPageButton: UIButton!
     
     var userData: User?
+    var userName: String?
     
     lazy private var arrowAnimationView: LottieAnimationView = {
         let view = LottieAnimationView(name: Constants.LottieString.arrow)
@@ -35,6 +36,7 @@ class SignUpVC: UIViewController {
         super.viewDidLoad()
         setBackgroundView()
         setUI()
+        nameTextField.text = userName ?? ""
     }
     
     private func setBackgroundView() {
@@ -51,6 +53,9 @@ class SignUpVC: UIViewController {
             textField?.backgroundColor = CustomColor.base.color
             textField?.textColor = CustomColor.text.color
         }
+        let textFieldColor = [NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+        nameTextField?.attributedPlaceholder = NSAttributedString(string: "NickName", attributes: textFieldColor)
+        ageTextField?.attributedPlaceholder = NSAttributedString(string: "Age", attributes: textFieldColor)
         
         nextPageButton.backgroundColor = CustomColor.secondary.color
         nextPageButton.layer.borderColor = CustomColor.text.color.cgColor

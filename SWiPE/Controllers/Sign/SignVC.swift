@@ -20,6 +20,7 @@ class SignVC: UIViewController {
     @IBOutlet weak var subTitleLabel: UILabel!
     
     private var currentNonce: String?
+    var userName: String?
     
     private lazy var signCatAnimationView: LottieAnimationView = {
         let view = LottieAnimationView(name: Constants.LottieString.signSheep)
@@ -172,15 +173,21 @@ extension SignVC: ASAuthorizationControllerDelegate {
             guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
                 return
             }
+            
+            if
+                let userFullName = appleIDCredential.fullName,
+                let userGiveName = userFullName.givenName {
+                userName = userGiveName
+            }
             // 產生 Apple ID 登入的 Credential
             let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
             // 與 Firebase Auth 進行串接
             firebaseSignInWithApple(credential: credential)
 
             // Add new code below
-            if let authorizationCode = appleIDCredential.authorizationCode,
-               let codeString = String(data: authorizationCode, encoding: .utf8) {
-                print("===\(codeString)")
+            if
+                let authorizationCode = appleIDCredential.authorizationCode,
+                let codeString = String(data: authorizationCode, encoding: .utf8) {
                 ZSwiftJWT.share.getRefreshToken(codeString)
             }
         }
@@ -268,6 +275,9 @@ extension SignVC {
     private func presentSignUpVC() {
         if let controller = storyboard?.instantiateViewController(withIdentifier: "\(SignUpVC.self)") as? SignUpVC {
             controller.modalPresentationStyle = .fullScreen
+            if let userName = userName {
+                controller.userName = userName
+            }
             present(controller, animated: true)
         }
     }

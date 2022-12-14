@@ -79,7 +79,6 @@
 		C8FDC8C12924D1F7006FF1E6 /* SignVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FDC8C02924D1F7006FF1E6 /* SignVC.swift */; };
 		C8FDC8C32924D7A7006FF1E6 /* SignCat.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8C22924D7A7006FF1E6 /* SignCat.json */; };
 		C8FDC8C72924ED63006FF1E6 /* Arrow.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8C62924ED63006FF1E6 /* Arrow.json */; };
-		C8FDC8C929253A3D006FF1E6 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FDC8C829253A3D006FF1E6 /* SignInVC.swift */; };
 		C8FDC8CB29261767006FF1E6 /* CardLoding.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8CA29261767006FF1E6 /* CardLoding.json */; };
 		C8FDC8CD292619D1006FF1E6 /* SignSheep.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8CC292619D1006FF1E6 /* SignSheep.json */; };
 		C8FDC8CF29261F35006FF1E6 /* BackArrow.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8CE29261F35006FF1E6 /* BackArrow.json */; };
@@ -162,7 +161,6 @@
 		C8FDC8C02924D1F7006FF1E6 /* SignVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignVC.swift; sourceTree = "<group>"; };
 		C8FDC8C22924D7A7006FF1E6 /* SignCat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SignCat.json; sourceTree = "<group>"; };
 		C8FDC8C62924ED63006FF1E6 /* Arrow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Arrow.json; sourceTree = "<group>"; };
-		C8FDC8C829253A3D006FF1E6 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		C8FDC8CA29261767006FF1E6 /* CardLoding.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CardLoding.json; sourceTree = "<group>"; };
 		C8FDC8CC292619D1006FF1E6 /* SignSheep.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SignSheep.json; sourceTree = "<group>"; };
 		C8FDC8CE29261F35006FF1E6 /* BackArrow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BackArrow.json; sourceTree = "<group>"; };
@@ -449,7 +447,6 @@
 			children = (
 				C8FDC8BC2924D13C006FF1E6 /* SignUpVC.swift */,
 				C8FDC8C02924D1F7006FF1E6 /* SignVC.swift */,
-				C8FDC8C829253A3D006FF1E6 /* SignInVC.swift */,
 			);
 			path = Sign;
 			sourceTree = "<group>";
@@ -688,7 +685,6 @@
 				C889467D29135AAF009A5BF3 /* ChatVC.swift in Sources */,
 				C8FDC8C12924D1F7006FF1E6 /* SignVC.swift in Sources */,
 				C8FC98832910AD830028DE17 /* User.swift in Sources */,
-				C8FDC8C929253A3D006FF1E6 /* SignInVC.swift in Sources */,
 				C8FC9818290BE50C0028DE17 /* SceneDelegate.swift in Sources */,
 				C8FDC8BD2924D13C006FF1E6 /* SignUpVC.swift in Sources */,
 				C8573D11291516B40095601B /* FriendTextCell.swift in Sources */,
@@ -886,7 +882,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SWiPE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -924,7 +920,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SWiPE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
