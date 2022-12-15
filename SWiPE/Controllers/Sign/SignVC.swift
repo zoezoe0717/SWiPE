@@ -12,8 +12,22 @@ import FirebaseAuth
 import AuthenticationServices
 
 class SignVC: UIViewController {
-    static var userData = User(id: UserUid.share.getUid(), name: "", email: "", latitude: 0, longitude: 0, age: 0, story: "", video: "", introduction: "", createdTime: 0, index: "")
+    static var userData =
+    User(
+        id: UserUid.share.getUid(),
+        name: "",
+        email: "",
+        latitude: 0,
+        longitude: 0,
+        age: 0,
+        story: "",
+        video: "",
+        introduction: "",
+        createdTime: 0,
+        index: ""
+    )
     
+    @IBOutlet weak var signInStackView: UIStackView!
     @IBOutlet weak var topBackgroundView: UIView!
     @IBOutlet weak var bottomBackgroundView: UIView!
     @IBOutlet weak var welcomeLabel: UILabel!
@@ -41,9 +55,20 @@ class SignVC: UIViewController {
     }()
     
     private lazy var signInAppleButton: ASAuthorizationAppleIDButton = {
-        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .signIn, authorizationButtonStyle: .black)
+        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .signIn, authorizationButtonStyle: .whiteOutline)
         button.cornerRadius = 10
         button.addTarget(self, action: #selector(signInWithApple), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    private lazy var signInEmailButton: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 10
+        button.backgroundColor = .black
+        button.setTitle("Sign in with Email", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.addTarget(self, action: #selector(signInWithEmail), for: .touchUpInside)
         
         return button
     }()
@@ -69,9 +94,14 @@ class SignVC: UIViewController {
     }
     
     private func setConstraints() {
-        [welcomeLabel, subTitleLabel, signCatAnimationView, signInAppleButton].forEach { subView in
+        [welcomeLabel, subTitleLabel, signCatAnimationView, signInStackView].forEach { subView in
             subView.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(subView)
+        }
+        
+        [signInAppleButton, signInEmailButton].forEach { button in
+            button.translatesAutoresizingMaskIntoConstraints = false
+            signInStackView.addSubview(button)
         }
         
         NSLayoutConstraint.activate([
@@ -80,16 +110,28 @@ class SignVC: UIViewController {
             signCatAnimationView.leftAnchor.constraint(equalTo: topBackgroundView.leftAnchor),
             signCatAnimationView.rightAnchor.constraint(equalTo: topBackgroundView.rightAnchor),
             
-            signInAppleButton.centerYAnchor.constraint(equalTo: bottomBackgroundView.centerYAnchor),
-            signInAppleButton.centerXAnchor.constraint(equalTo: bottomBackgroundView.centerXAnchor),
+            signInStackView.centerXAnchor.constraint(equalTo: bottomBackgroundView.centerXAnchor),
+            signInStackView.leftAnchor.constraint(equalTo: bottomBackgroundView.leftAnchor, constant: 20),
+            signInStackView.rightAnchor.constraint(equalTo: bottomBackgroundView.rightAnchor, constant: -20),
+            signInStackView.heightAnchor.constraint(equalTo: bottomBackgroundView.heightAnchor, multiplier: 0.4),
+            
+//            signInAppleButton.centerYAnchor.constraint(equalTo: bottomBackgroundView.centerYAnchor),
+//            signInAppleButton.centerXAnchor.constraint(equalTo: bottomBackgroundView.centerXAnchor),
+            signInEmailButton.widthAnchor.constraint(equalTo: bottomBackgroundView.widthAnchor, multiplier: 0.8),
+            signInEmailButton.heightAnchor.constraint(equalTo: bottomBackgroundView.heightAnchor, multiplier: 0.15),
+            signInEmailButton.topAnchor.constraint(equalTo: signInAppleButton.bottomAnchor, constant: 10),
+            signInEmailButton.centerXAnchor.constraint(equalTo: signInStackView.centerXAnchor),
+            
             signInAppleButton.widthAnchor.constraint(equalTo: bottomBackgroundView.widthAnchor, multiplier: 0.8),
             signInAppleButton.heightAnchor.constraint(equalTo: bottomBackgroundView.heightAnchor, multiplier: 0.15),
+            signInAppleButton.centerXAnchor.constraint(equalTo: signInStackView.centerXAnchor),
             
             welcomeLabel.leftAnchor.constraint(equalTo: signInAppleButton.leftAnchor),
             welcomeLabel.topAnchor.constraint(equalTo: bottomBackgroundView.topAnchor, constant: 40),
             
             subTitleLabel.leftAnchor.constraint(equalTo: signInAppleButton.leftAnchor),
-            subTitleLabel.bottomAnchor.constraint(equalTo: signInAppleButton.topAnchor, constant: -10)
+            subTitleLabel.bottomAnchor.constraint(equalTo: signInAppleButton.topAnchor, constant: -10),
+            subTitleLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 20)
         ])
     }
     
@@ -156,6 +198,12 @@ class SignVC: UIViewController {
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
+    }
+    
+    @objc private func signInWithEmail() {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "\(SignInVC.self)") as? SignInVC {
+            present(controller, animated: true)
+        }
     }
 }
 

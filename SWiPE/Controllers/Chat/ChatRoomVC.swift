@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 import PhotosUI
 
 protocol CellConfiguraable: UITableViewCell {
@@ -257,6 +258,40 @@ class ChatRoomVC: UIViewController {
     }
 }
 
+extension ChatRoomVC {
+    func removeAccount(params: [String: String]) {
+        let token = UserUid.share.keychain.get("refreshToken")
+        
+        let headers: HTTPHeaders = ["content-type": "application/x-www-form-urlencoded"]
+
+        AF.request("https://appleid.apple.com/auth/revoke", method: .post, parameters: params, headers: headers).response { response in
+            if response.response?.statusCode == 200 {
+                print("SUCCESS!")
+            }
+        }
+    }
+//    private func chatWithOpenAI() {
+//        guard let url = URL(string: "https://api.openai.com/v1/completions") else { return }
+//        let headers: HTTPHeaders = ["Content-Type"]
+//        var request = URLRequest(url: url)
+//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.setValue("Bearer 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", forHTTPHeaderField: "Authorization")
+//        let openAIBody = OpenAIBody(model: "text-davinci-003", prompt: "你好嗎？")
+//        request.httpBody = try? JSONEncoder().encode(openAIBody)
+//        request.httpMethod = "post"
+//        Task {
+//            do {
+//                let (data, _) = try await URLSession.shared.data(for: request)
+//                if let content = String(data: data, encoding: .utf8) {
+//                    print("===5566\(content)")
+//                }
+//            } catch {
+//                print(error)
+//            }
+//        }
+//    }
+}
+
 extension ChatRoomVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         message.count
@@ -267,6 +302,7 @@ extension ChatRoomVC: UITableViewDelegate, UITableViewDataSource {
         var messageType = MessageType.text
         let message = message[indexPath.item]
         let sender = message.senderId == UserUid.share.getUid() ? MessageSender.isFromUser : MessageSender.isFromFriend
+        let snderImage = message.senderId == UserUid.share.getUid() ? userData : friendData
         let isText = message.type == MessageType.text.rawValue
         let isImage = message.type == MessageType.image.rawValue
         
@@ -282,9 +318,9 @@ extension ChatRoomVC: UITableViewDelegate, UITableViewDataSource {
 
         if
             let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? CellConfiguraable,
-            let friendData = friendData
+            let snderImage = snderImage
         {
-            cell.setup(message: message, userData: friendData)
+            cell.setup(message: message, userData: snderImage)
             messageCell = cell
         }
         return messageCell

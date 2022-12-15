@@ -39,6 +39,9 @@
 		C8B08FFE293CE1A5004DF3EF /* MatchDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B08FFD293CE1A5004DF3EF /* MatchDetailVC.swift */; };
 		C8B090092940A261004DF3EF /* UIStoryboard+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B090082940A261004DF3EF /* UIStoryboard+Ext.swift */; };
 		C8B0900B2941790E004DF3EF /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B0900A2941790E004DF3EF /* UITableView+Ext.swift */; };
+		C8B09056294A1AB6004DF3EF /* OpenAIBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B09055294A1AB6004DF3EF /* OpenAIBody.swift */; };
+		C8B09058294ABB0B004DF3EF /* PrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B09057294ABB0B004DF3EF /* PrivacyPolicyVC.swift */; };
+		C8B0905C294B0293004DF3EF /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B0905B294B0293004DF3EF /* SignInVC.swift */; };
 		C8C77BEA291CE21F00A1675D /* UploadVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BE9291CE21F00A1675D /* UploadVideoVC.swift */; };
 		C8C77BEC291CE8DA00A1675D /* UploadPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BEB291CE8DA00A1675D /* UploadPhotoVC.swift */; };
 		C8C77BF0291CFADA00A1675D /* UploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BEF291CFADA00A1675D /* UploadVC.swift */; };
@@ -119,6 +122,9 @@
 		C8B08FFD293CE1A5004DF3EF /* MatchDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailVC.swift; sourceTree = "<group>"; };
 		C8B090082940A261004DF3EF /* UIStoryboard+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Ext.swift"; sourceTree = "<group>"; };
 		C8B0900A2941790E004DF3EF /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
+		C8B09055294A1AB6004DF3EF /* OpenAIBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIBody.swift; sourceTree = "<group>"; };
+		C8B09057294ABB0B004DF3EF /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyVC.swift; sourceTree = "<group>"; };
+		C8B0905B294B0293004DF3EF /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		C8C77BE9291CE21F00A1675D /* UploadVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVideoVC.swift; sourceTree = "<group>"; };
 		C8C77BEB291CE8DA00A1675D /* UploadPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoVC.swift; sourceTree = "<group>"; };
 		C8C77BEF291CFADA00A1675D /* UploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVC.swift; sourceTree = "<group>"; };
@@ -229,6 +235,7 @@
 			children = (
 				C889468A2914BB37009A5BF3 /* ProfileVC.swift */,
 				C8AA629C292DECD700D7E16C /* SettingVC.swift */,
+				C8B09057294ABB0B004DF3EF /* PrivacyPolicyVC.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -379,6 +386,7 @@
 				C8EEA63529378F1C00E9B6E3 /* KeyCenter.swift */,
 				C8EEA63C2937956900E9B6E3 /* GlobalSetting.swift */,
 				C850EE58293A257600D38742 /* UploadImageResult.swift */,
+				C8B09055294A1AB6004DF3EF /* OpenAIBody.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -447,6 +455,7 @@
 			children = (
 				C8FDC8BC2924D13C006FF1E6 /* SignUpVC.swift */,
 				C8FDC8C02924D1F7006FF1E6 /* SignVC.swift */,
+				C8B0905B294B0293004DF3EF /* SignInVC.swift */,
 			);
 			path = Sign;
 			sourceTree = "<group>";
@@ -653,11 +662,13 @@
 				C8C77BEC291CE8DA00A1675D /* UploadPhotoVC.swift in Sources */,
 				C8C77BEA291CE21F00A1675D /* UploadVideoVC.swift in Sources */,
 				C808ED24292F6C4C00BFF7A1 /* SwiftJWTWrapper.swift in Sources */,
+				C8B0905C294B0293004DF3EF /* SignInVC.swift in Sources */,
 				C850EE5B293BA5C000D38742 /* AgoraAudioEffectPreset+Ext.swift in Sources */,
 				C8EEA63629378F1C00E9B6E3 /* KeyCenter.swift in Sources */,
 				C824F21A293BF8CB0010C29E /* MainVC.swift in Sources */,
 				C8FC987E290FC0350028DE17 /* MatchVC.swift in Sources */,
 				C8894682291390DD009A5BF3 /* ChatRoom.swift in Sources */,
+				C8B09058294ABB0B004DF3EF /* PrivacyPolicyVC.swift in Sources */,
 				C808ED22292F6A2600BFF7A1 /* AuthClaims.swift in Sources */,
 				C889468B2914BB37009A5BF3 /* ProfileVC.swift in Sources */,
 				C850EE59293A257600D38742 /* UploadImageResult.swift in Sources */,
@@ -690,6 +701,7 @@
 				C8573D11291516B40095601B /* FriendTextCell.swift in Sources */,
 				C8EEA646293895ED00E9B6E3 /* OwnCallCell.swift in Sources */,
 				C8E845FD291B915B00180758 /* FriendImageCell.swift in Sources */,
+				C8B09056294A1AB6004DF3EF /* OpenAIBody.swift in Sources */,
 				C8AA629D292DECD700D7E16C /* SettingVC.swift in Sources */,
 				C8AA62A7292F194E00D7E16C /* SCLAlertViewWrapper.swift in Sources */,
 				C8EEA63929378FA500E9B6E3 /* JSONObject.swift in Sources */,
@@ -869,7 +881,7 @@
 				DEVELOPMENT_TEAM = FHH82V8NXD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SWiPE/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "您將可以錄製影片與拍攝相片，並套用特效。";
+				INFOPLIST_KEY_NSCameraUsageDescription = "您將可以錄製影片與拍攝相片，可以上傳您的影音並交友配對。";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "若要錄製音訊，請允許我們存取您的麥克風";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "您將可以從相簿中選擇相片並上傳成頭像";
@@ -907,7 +919,7 @@
 				DEVELOPMENT_TEAM = FHH82V8NXD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SWiPE/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "您將可以錄製影片與拍攝相片，並套用特效。";
+				INFOPLIST_KEY_NSCameraUsageDescription = "您將可以錄製影片與拍攝相片，可以上傳您的影音並交友配對。";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "若要錄製音訊，請允許我們存取您的麥克風";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "您將可以從相簿中選擇相片並上傳成頭像";

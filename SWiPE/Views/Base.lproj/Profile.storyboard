@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w7P-BU-96T">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kon-4h-KwK">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--SWiPER-->
+        <!--ProfileVC-->
         <scene sceneID="gXy-Gl-0g2">
             <objects>
                 <viewController id="w7P-BU-96T" customClass="ProfileVC" customModule="SWiPE" customModuleProvider="target" sceneMemberID="viewController">
@@ -132,20 +132,7 @@
                             <constraint firstItem="FNM-3k-37b" firstAttribute="leading" secondItem="u40-y6-b3X" secondAttribute="leading" id="wVh-KH-Kvc"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="profile" id="rPP-UF-a8E"/>
-                    <navigationItem key="navigationItem" title="SWiPER" id="lZm-7E-3I4">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="jl4-nj-rVk">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="iTp-SW-vJO">
-                                <rect key="frame" x="318" y="4.6666666666666679" width="59" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="登出"/>
-                                <connections>
-                                    <action selector="testSign:" destination="w7P-BU-96T" eventType="touchUpInside" id="y8g-gd-Kdr"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="lZm-7E-3I4"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bottomBackgroundView" destination="FNM-3k-37b" id="pyR-KU-0r3"/>
@@ -160,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URB-su-fGT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1835.8778625954199" y="-215.49295774647888"/>
+            <point key="canvasLocation" x="2762.5954198473282" y="-215.49295774647888"/>
         </scene>
         <!--SettingVC-->
         <scene sceneID="ndv-CD-92P">
@@ -255,7 +242,41 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ugj-gD-uz1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2879" y="-215"/>
+            <point key="canvasLocation" x="3805.3435114503814" y="-215.49295774647888"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="cIY-3i-buG">
+            <objects>
+                <viewController id="mTu-DI-jXx" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NeV-K2-8mb">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="5XE-k7-BH8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nai-Bd-HUF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4727.480916030534" y="-215.49295774647888"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rPj-4d-ElI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kon-4h-KwK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="profile" id="rPP-UF-a8E"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8nM-lK-8k0">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="w7P-BU-96T" kind="relationship" relationship="rootViewController" id="HXC-KE-qh6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lXX-XU-NOx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1835.8778625954199" y="-215.49295774647888"/>
         </scene>
     </scenes>
     <resources>
@@ -267,7 +288,7 @@
             <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="MainColor">
-            <color red="0.34901960784313724" green="0.69019607843137254" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.34900000691413879" green="0.68999999761581421" blue="0.74500000476837158" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
