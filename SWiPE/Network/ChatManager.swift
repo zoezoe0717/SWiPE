@@ -9,10 +9,15 @@ import Foundation
 import FirebaseCore
 import FirebaseFirestore
 
+
+enum MessageSender: String {
+    case isFromUser
+    case isFromFriend
+}
+
 enum MessageType: String {
     case text = "text_message"
     case image = "image_message"
-    case video = "video_message"
     case call = "call_message"
 }
 
@@ -127,6 +132,14 @@ class ChatManager {
                 completion(.failure(error))
             } else {
                 completion(.success("Success add message"))
+                self.updateData(id: callData.roomId) { result in
+                    switch result {
+                    case .success(let success):
+                        print(success)
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
             }
         }
     }
@@ -213,7 +226,10 @@ class ChatManager {
         }
         
         let status = FirestoreEndpoint.call.ref.document(document.documentID).collection("Status")
-        let callStatus = CallStatus(senderStatus: true, receiverStatus: false)
+        let callStatus = CallStatus(
+            senderStatus: true,
+            receiverStatus: false,
+            isVideoCall: false)
         status.document(document.documentID).setData(callStatus.toDict) { error in
             if let error = error {
                 completion(.failure(error))
@@ -250,7 +266,7 @@ class ChatManager {
             if let error = error {
                 print(error)
             } else {
-                print("===AAAUpdate Success")
+                print("Update Success")
             }
         }
     }
@@ -274,9 +290,12 @@ class ChatManager {
         }
     }
     
-    func getFriendData(roomIds: [ChatRoom], completion: @escaping (Result<User, Error>) -> Void) {
+    func getFriendData(roomIds: [ChatRoom], completion: @escaping (Result<[User], Error>) -> Void) {
+        var friendDatas: [User] = []
+
         let queue = DispatchQueue(label: "queue", qos: .background, attributes: .concurrent)
         let semaphore = DispatchSemaphore(value: 1)
+        
         roomIds.forEach { room in
             queue.async {
                 semaphore.wait()
@@ -286,12 +305,16 @@ class ChatManager {
                         completion(.failure(error))
                     } else {
                         guard let snapshot = snapshot else { return }
+
                         snapshot.documents.forEach { friendId in
                             guard let friendId = try? friendId.data(as: Id.self) else { return }
                             FirestoreEndpoint.users.ref.document(friendId.id).getDocument { snapshot, _ in
                                 guard let snapshot = snapshot else { return }
                                 guard let friendData = try? snapshot.data(as: User.self) else { return }
-                                completion(.success(friendData))
+                                friendDatas.append(friendData)
+                                if friendDatas.count == roomIds.count {
+                                    completion(.success(friendDatas))
+                                }
                             }
                         }
                     }

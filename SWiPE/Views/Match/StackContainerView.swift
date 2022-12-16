@@ -18,22 +18,24 @@ protocol StackContainerViewDelegate: AnyObject {
 }
 
 class StackContainerView: UIView {
-    var numberOfCardsToShow: Int = 0
-    var remainingcards: Int = 0
+    private var numberOfCardsToShow: Int = 0
+    private var remainingcards: Int = 0
 
-    var cardsToBeVisible: Int = 3
+    private var cardsToBeVisible: Int = 3
+    
     var cardViews: [SwipeCardView] = [] {
         didSet {
             guard let queuePlayer = cardViews.first?.queuePlayer else { return }
             queuePlayer.play()
         }
     }
-    lazy var index = 0
     
-    let horizontalInset: CGFloat = 10
-    let verticalInset: CGFloat = 0
+    lazy private var index = 0
     
-    var visibleCards: [SwipeCardView] {
+    private let horizontalInset: CGFloat = 10
+    private let verticalInset: CGFloat = 0
+    
+    private var visibleCards: [SwipeCardView] {
         return subviews as? [SwipeCardView] ?? []
     }
     
@@ -77,7 +79,7 @@ class StackContainerView: UIView {
         remainingcards -= 1
     }
     
-    func addCardFrame(index: Int, cardView: SwipeCardView) {
+    private func addCardFrame(index: Int, cardView: SwipeCardView) {
         var cardViewFrame = bounds
         let horizontalInset = (CGFloat(index) * self.horizontalInset)
         let verticalInset = CGFloat(index) * self.verticalInset
@@ -126,19 +128,19 @@ extension StackContainerView: SwipeCardsDelegate {
             let newIndex = datasource.numberOfCardsToShow() - remainingcards
             addCardView(cardView: datasource.card(at: newIndex), atIndex: 2)
             for (cardIndex, cardView) in visibleCards.reversed().enumerated() {
-                UIView.animate(withDuration: 0.2, animations: {
+                UIView.animate(withDuration: 0.2) {
                 cardView.center = self.center
                     self.addCardFrame(index: cardIndex, cardView: cardView)
                     self.layoutIfNeeded()
-                })
+                }
             }
         } else {
             for (cardIndex, cardView) in visibleCards.reversed().enumerated() {
-                UIView.animate(withDuration: 0.2, animations: {
+                UIView.animate(withDuration: 0.2) {
                     cardView.center = self.center
                     self.addCardFrame(index: cardIndex, cardView: cardView)
                     self.layoutIfNeeded()
-                })
+                }
             }
         }
     }

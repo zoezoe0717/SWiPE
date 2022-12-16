@@ -22,6 +22,7 @@
 		C8573D0C29150CB00095601B /* OwnTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8573D0A29150CB00095601B /* OwnTextCell.xib */; };
 		C8573D11291516B40095601B /* FriendTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8573D0F291516B40095601B /* FriendTextCell.swift */; };
 		C8573D12291516B40095601B /* FriendTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8573D10291516B40095601B /* FriendTextCell.xib */; };
+		C860591E294B457C00F4BB8B /* PrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C860591D294B457C00F4BB8B /* PrivacyPolicyVC.swift */; };
 		C88946792913589F009A5BF3 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88946782913589F009A5BF3 /* ChatManager.swift */; };
 		C889467D29135AAF009A5BF3 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889467C29135AAF009A5BF3 /* ChatVC.swift */; };
 		C889468029135B28009A5BF3 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889467F29135B28009A5BF3 /* ChatCell.swift */; };
@@ -36,6 +37,11 @@
 		C8AA62A7292F194E00D7E16C /* SCLAlertViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AA62A6292F194E00D7E16C /* SCLAlertViewWrapper.swift */; };
 		C8AC8486292BCA520062B0ED /* JGProgressHUDWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC8485292BCA520062B0ED /* JGProgressHUDWrapper.swift */; };
 		C8AC8488292CA67A0062B0ED /* TextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC8487292CA67A0062B0ED /* TextField+Ext.swift */; };
+		C8B08FFE293CE1A5004DF3EF /* MatchDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B08FFD293CE1A5004DF3EF /* MatchDetailVC.swift */; };
+		C8B090092940A261004DF3EF /* UIStoryboard+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B090082940A261004DF3EF /* UIStoryboard+Ext.swift */; };
+		C8B0900B2941790E004DF3EF /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B0900A2941790E004DF3EF /* UITableView+Ext.swift */; };
+		C8B09056294A1AB6004DF3EF /* OpenAIBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B09055294A1AB6004DF3EF /* OpenAIBody.swift */; };
+		C8B0905C294B0293004DF3EF /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B0905B294B0293004DF3EF /* SignInVC.swift */; };
 		C8C77BEA291CE21F00A1675D /* UploadVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BE9291CE21F00A1675D /* UploadVideoVC.swift */; };
 		C8C77BEC291CE8DA00A1675D /* UploadPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BEB291CE8DA00A1675D /* UploadPhotoVC.swift */; };
 		C8C77BF0291CFADA00A1675D /* UploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BEF291CFADA00A1675D /* UploadVC.swift */; };
@@ -76,7 +82,6 @@
 		C8FDC8C12924D1F7006FF1E6 /* SignVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FDC8C02924D1F7006FF1E6 /* SignVC.swift */; };
 		C8FDC8C32924D7A7006FF1E6 /* SignCat.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8C22924D7A7006FF1E6 /* SignCat.json */; };
 		C8FDC8C72924ED63006FF1E6 /* Arrow.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8C62924ED63006FF1E6 /* Arrow.json */; };
-		C8FDC8C929253A3D006FF1E6 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FDC8C829253A3D006FF1E6 /* SignInVC.swift */; };
 		C8FDC8CB29261767006FF1E6 /* CardLoding.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8CA29261767006FF1E6 /* CardLoding.json */; };
 		C8FDC8CD292619D1006FF1E6 /* SignSheep.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8CC292619D1006FF1E6 /* SignSheep.json */; };
 		C8FDC8CF29261F35006FF1E6 /* BackArrow.json in Resources */ = {isa = PBXBuildFile; fileRef = C8FDC8CE29261F35006FF1E6 /* BackArrow.json */; };
@@ -100,6 +105,7 @@
 		C8573D0A29150CB00095601B /* OwnTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OwnTextCell.xib; sourceTree = "<group>"; };
 		C8573D0F291516B40095601B /* FriendTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTextCell.swift; sourceTree = "<group>"; };
 		C8573D10291516B40095601B /* FriendTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendTextCell.xib; sourceTree = "<group>"; };
+		C860591D294B457C00F4BB8B /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyVC.swift; sourceTree = "<group>"; };
 		C88946782913589F009A5BF3 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		C889467C29135AAF009A5BF3 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		C889467F29135B28009A5BF3 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
@@ -114,6 +120,11 @@
 		C8AA62A6292F194E00D7E16C /* SCLAlertViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCLAlertViewWrapper.swift; sourceTree = "<group>"; };
 		C8AC8485292BCA520062B0ED /* JGProgressHUDWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGProgressHUDWrapper.swift; sourceTree = "<group>"; };
 		C8AC8487292CA67A0062B0ED /* TextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Ext.swift"; sourceTree = "<group>"; };
+		C8B08FFD293CE1A5004DF3EF /* MatchDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailVC.swift; sourceTree = "<group>"; };
+		C8B090082940A261004DF3EF /* UIStoryboard+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Ext.swift"; sourceTree = "<group>"; };
+		C8B0900A2941790E004DF3EF /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
+		C8B09055294A1AB6004DF3EF /* OpenAIBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIBody.swift; sourceTree = "<group>"; };
+		C8B0905B294B0293004DF3EF /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		C8C77BE9291CE21F00A1675D /* UploadVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVideoVC.swift; sourceTree = "<group>"; };
 		C8C77BEB291CE8DA00A1675D /* UploadPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoVC.swift; sourceTree = "<group>"; };
 		C8C77BEF291CFADA00A1675D /* UploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVC.swift; sourceTree = "<group>"; };
@@ -156,7 +167,6 @@
 		C8FDC8C02924D1F7006FF1E6 /* SignVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignVC.swift; sourceTree = "<group>"; };
 		C8FDC8C22924D7A7006FF1E6 /* SignCat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SignCat.json; sourceTree = "<group>"; };
 		C8FDC8C62924ED63006FF1E6 /* Arrow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Arrow.json; sourceTree = "<group>"; };
-		C8FDC8C829253A3D006FF1E6 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		C8FDC8CA29261767006FF1E6 /* CardLoding.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CardLoding.json; sourceTree = "<group>"; };
 		C8FDC8CC292619D1006FF1E6 /* SignSheep.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SignSheep.json; sourceTree = "<group>"; };
 		C8FDC8CE29261F35006FF1E6 /* BackArrow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BackArrow.json; sourceTree = "<group>"; };
@@ -215,6 +225,7 @@
 			children = (
 				C8FC987D290FC0350028DE17 /* MatchVC.swift */,
 				C824F21B293BFEC80010C29E /* MatchSuccessVC.swift */,
+				C8B08FFD293CE1A5004DF3EF /* MatchDetailVC.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -224,6 +235,7 @@
 			children = (
 				C889468A2914BB37009A5BF3 /* ProfileVC.swift */,
 				C8AA629C292DECD700D7E16C /* SettingVC.swift */,
+				C860591D294B457C00F4BB8B /* PrivacyPolicyVC.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -374,6 +386,7 @@
 				C8EEA63529378F1C00E9B6E3 /* KeyCenter.swift */,
 				C8EEA63C2937956900E9B6E3 /* GlobalSetting.swift */,
 				C850EE58293A257600D38742 /* UploadImageResult.swift */,
+				C8B09055294A1AB6004DF3EF /* OpenAIBody.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -409,6 +422,8 @@
 				C8AC8487292CA67A0062B0ED /* TextField+Ext.swift */,
 				C8EEA63A2937916700E9B6E3 /* String+Ext.swift */,
 				C850EE5A293BA5C000D38742 /* AgoraAudioEffectPreset+Ext.swift */,
+				C8B090082940A261004DF3EF /* UIStoryboard+Ext.swift */,
+				C8B0900A2941790E004DF3EF /* UITableView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -440,7 +455,7 @@
 			children = (
 				C8FDC8BC2924D13C006FF1E6 /* SignUpVC.swift */,
 				C8FDC8C02924D1F7006FF1E6 /* SignVC.swift */,
-				C8FDC8C829253A3D006FF1E6 /* SignInVC.swift */,
+				C8B0905B294B0293004DF3EF /* SignInVC.swift */,
 			);
 			path = Sign;
 			sourceTree = "<group>";
@@ -647,6 +662,7 @@
 				C8C77BEC291CE8DA00A1675D /* UploadPhotoVC.swift in Sources */,
 				C8C77BEA291CE21F00A1675D /* UploadVideoVC.swift in Sources */,
 				C808ED24292F6C4C00BFF7A1 /* SwiftJWTWrapper.swift in Sources */,
+				C8B0905C294B0293004DF3EF /* SignInVC.swift in Sources */,
 				C850EE5B293BA5C000D38742 /* AgoraAudioEffectPreset+Ext.swift in Sources */,
 				C8EEA63629378F1C00E9B6E3 /* KeyCenter.swift in Sources */,
 				C824F21A293BF8CB0010C29E /* MainVC.swift in Sources */,
@@ -668,26 +684,30 @@
 				C824F21C293BFEC80010C29E /* MatchSuccessVC.swift in Sources */,
 				C8FC9876290FB9E10028DE17 /* SwipeCardView.swift in Sources */,
 				C8EEA63D2937956900E9B6E3 /* GlobalSetting.swift in Sources */,
+				C860591E294B457C00F4BB8B /* PrivacyPolicyVC.swift in Sources */,
 				C8FC98892910C7B50028DE17 /* FireBaseManager.swift in Sources */,
 				C8EEA64C29389A5D00E9B6E3 /* FriendCallCell.swift in Sources */,
 				C8FC9871290F78020028DE17 /* Constants.swift in Sources */,
 				C889468029135B28009A5BF3 /* ChatCell.swift in Sources */,
 				C8AA62A1292DF9E700D7E16C /* SettingCell.swift in Sources */,
 				C8FDC8D42928C675006FF1E6 /* MockUser.swift in Sources */,
+				C8B08FFE293CE1A5004DF3EF /* MatchDetailVC.swift in Sources */,
+				C8B090092940A261004DF3EF /* UIStoryboard+Ext.swift in Sources */,
 				C889467D29135AAF009A5BF3 /* ChatVC.swift in Sources */,
 				C8FDC8C12924D1F7006FF1E6 /* SignVC.swift in Sources */,
 				C8FC98832910AD830028DE17 /* User.swift in Sources */,
-				C8FDC8C929253A3D006FF1E6 /* SignInVC.swift in Sources */,
 				C8FC9818290BE50C0028DE17 /* SceneDelegate.swift in Sources */,
 				C8FDC8BD2924D13C006FF1E6 /* SignUpVC.swift in Sources */,
 				C8573D11291516B40095601B /* FriendTextCell.swift in Sources */,
 				C8EEA646293895ED00E9B6E3 /* OwnCallCell.swift in Sources */,
 				C8E845FD291B915B00180758 /* FriendImageCell.swift in Sources */,
+				C8B09056294A1AB6004DF3EF /* OpenAIBody.swift in Sources */,
 				C8AA629D292DECD700D7E16C /* SettingVC.swift in Sources */,
 				C8AA62A7292F194E00D7E16C /* SCLAlertViewWrapper.swift in Sources */,
 				C8EEA63929378FA500E9B6E3 /* JSONObject.swift in Sources */,
 				C8E845F9291B914A00180758 /* OwnImageCell.swift in Sources */,
 				C8EEA63429378DA000E9B6E3 /* AgoraManager.swift in Sources */,
+				C8B0900B2941790E004DF3EF /* UITableView+Ext.swift in Sources */,
 				C851F4A32920BC8600813E31 /* SwipeTabBarController.swift in Sources */,
 				C88946792913589F009A5BF3 /* ChatManager.swift in Sources */,
 				C8AC8486292BCA520062B0ED /* JGProgressHUDWrapper.swift in Sources */,
@@ -861,7 +881,7 @@
 				DEVELOPMENT_TEAM = FHH82V8NXD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SWiPE/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "您將可以錄製影片與拍攝相片，並套用特效。";
+				INFOPLIST_KEY_NSCameraUsageDescription = "您將可以錄製影片與拍攝相片，可以上傳您的影音並交友配對。";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "若要錄製音訊，請允許我們存取您的麥克風";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "您將可以從相簿中選擇相片並上傳成頭像";
@@ -874,7 +894,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SWiPE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -899,7 +919,7 @@
 				DEVELOPMENT_TEAM = FHH82V8NXD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SWiPE/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "您將可以錄製影片與拍攝相片，並套用特效。";
+				INFOPLIST_KEY_NSCameraUsageDescription = "您將可以錄製影片與拍攝相片，可以上傳您的影音並交友配對。";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "若要錄製音訊，請允許我們存取您的麥克風";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "您將可以從相簿中選擇相片並上傳成頭像";
@@ -912,7 +932,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SWiPE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

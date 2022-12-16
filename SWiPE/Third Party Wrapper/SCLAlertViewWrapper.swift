@@ -9,7 +9,7 @@ import Foundation
 import SCLAlertView
 
 class ZAlertView {
-    static let share = ZAlertView()
+    static let shared = ZAlertView()
     
     let alert = SCLAlertView()
     var isAngry = false
@@ -18,13 +18,13 @@ class ZAlertView {
         let alert = SCLAlertView()
         let textField = alert.addTextField(message.text)
         
-        alert.addButton(AlertSrting.confirm.rawValue) {
+        alert.addButton(Constants.AlertSrting.confirm) {
             guard let text = textField.text else { return }
             if !text.isEmpty {
-                SCLAlertView().showSuccess(AlertSrting.success.rawValue, subTitle: message.successSubTitle)
+                SCLAlertView().showSuccess(Constants.AlertSrting.success, subTitle: message.successSubTitle)
                 FireBaseManager.shared.updateUserData(user: user, data: [dataType: text])
             } else {
-                SCLAlertView().showError(AlertSrting.error.rawValue, subTitle: message.errorSubTitle)
+                SCLAlertView().showError(Constants.AlertSrting.error, subTitle: message.errorSubTitle)
             }
         }
         
@@ -32,14 +32,14 @@ class ZAlertView {
             message.alertTitle,
             subTitle: message.alertSubTitle,
             timeout: nil,
-            completeText: AlertSrting.canael.rawValue,
+            completeText: Constants.AlertSrting.canael,
             style: .edit
         )
     }
     
     func blockView(message: AlertMessage, roomID: String) {
         let alert = SCLAlertView()
-        alert.addButton(AlertSrting.confirm.rawValue) {
+        alert.addButton(Constants.AlertSrting.confirm) {
             ChatManager.shared.blockFriend(roomID: roomID)
         }
         
@@ -49,7 +49,7 @@ class ZAlertView {
             message.alertTitle,
             subTitle: message.alertSubTitle,
             timeout: nil,
-            completeText: AlertSrting.canael.rawValue,
+            completeText: Constants.AlertSrting.canael,
             style: .warning,
             colorStyle: 0xF1BF7F,
             circleIconImage: image
@@ -59,7 +59,7 @@ class ZAlertView {
     func angryView(message: AlertMessage, roomID: String) {
         let alert = SCLAlertView()
         guard let isAngry = message.isAngry else { return }
-        alert.addButton(AlertSrting.confirm.rawValue) {
+        alert.addButton(Constants.AlertSrting.confirm) {
             ChatManager.shared.updateData(roomID: roomID, data: ["isAngry": isAngry])
         }
         
@@ -69,7 +69,7 @@ class ZAlertView {
             message.alertTitle,
             subTitle: message.alertSubTitle,
             timeout: nil,
-            completeText: AlertSrting.canael.rawValue,
+            completeText: Constants.AlertSrting.canael,
             style: .warning,
             circleIconImage: image
         )
@@ -77,16 +77,16 @@ class ZAlertView {
     
     func showProsecute(id: String) {
         let alert = SCLAlertView()
-        alert.addButton("檢舉") {
+        alert.addButton(Constants.AlertSrting.prosecution) {
             FireBaseManager.shared.addProsecute(id: id)
-            SCLAlertView().showSuccess(AlertSrting.success.rawValue, subTitle: "我們已收到您的檢舉。")
+            SCLAlertView().showSuccess(Constants.AlertSrting.success, subTitle: Constants.AlertSrting.prosecutionSubTitle)
         }
         
         alert.showTitle(
-            "檢舉",
-            subTitle: "此檢舉將會匿名，我們將會為您處理",
+            Constants.AlertSrting.prosecutionSubTitle,
+            subTitle: Constants.AlertSrting.reportSubTitle,
             timeout: nil,
-            completeText: AlertSrting.canael.rawValue,
+            completeText: Constants.AlertSrting.canael,
             style: .warning,
             colorStyle: 0xF1BF7F
         )
@@ -100,11 +100,4 @@ struct AlertMessage {
     let alertTitle: String
     let alertSubTitle: String
     var isAngry: Bool?
-}
-
-enum AlertSrting: String {
-    case confirm = "確定"
-    case success = "成功"
-    case error = "錯誤"
-    case canael = "取消"
 }

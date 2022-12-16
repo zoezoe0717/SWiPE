@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w7P-BU-96T">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kon-4h-KwK">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--SWiPER-->
+        <!--ProfileVC-->
         <scene sceneID="gXy-Gl-0g2">
             <objects>
                 <viewController id="w7P-BU-96T" customClass="ProfileVC" customModule="SWiPE" customModuleProvider="target" sceneMemberID="viewController">
@@ -132,20 +132,7 @@
                             <constraint firstItem="FNM-3k-37b" firstAttribute="leading" secondItem="u40-y6-b3X" secondAttribute="leading" id="wVh-KH-Kvc"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="profile" id="rPP-UF-a8E"/>
-                    <navigationItem key="navigationItem" title="SWiPER" id="lZm-7E-3I4">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="jl4-nj-rVk">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="iTp-SW-vJO">
-                                <rect key="frame" x="318" y="4.6666666666666679" width="59" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="登出"/>
-                                <connections>
-                                    <action selector="testSign:" destination="w7P-BU-96T" eventType="touchUpInside" id="y8g-gd-Kdr"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="lZm-7E-3I4"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bottomBackgroundView" destination="FNM-3k-37b" id="pyR-KU-0r3"/>
@@ -160,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URB-su-fGT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1835.8778625954199" y="-215.49295774647888"/>
+            <point key="canvasLocation" x="2762.5954198473282" y="-215.49295774647888"/>
         </scene>
         <!--SettingVC-->
         <scene sceneID="ndv-CD-92P">
@@ -170,92 +157,292 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sFI-DW-iN1">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="511.33333333333331"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QO-4b-gZz">
-                                <rect key="frame" x="0.0" y="340.66666666666674" width="393" height="511.33333333333326"/>
-                                <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gpz-jH-CfE">
-                                        <rect key="frame" x="0.0" y="49.999999999999972" width="393" height="427.33333333333326"/>
-                                        <color key="backgroundColor" name="BaseColor"/>
-                                        <color key="sectionIndexBackgroundColor" name="BaseColor"/>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingCell" rowHeight="147" id="BmC-Xg-zZK" customClass="SettingCell" customModule="SWiPE" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="50" width="393" height="147"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BmC-Xg-zZK" id="U8r-bn-81N">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="147"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wj2-pe-5cZ">
-                                                            <rect key="frame" x="20" y="16" width="353" height="130"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMw-pA-ZNT">
-                                                                    <rect key="frame" x="156" y="55.000000000000007" width="41.333333333333343" height="20.333333333333336"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <color key="backgroundColor" name="MainColor"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="60" id="XRD-Mz-ceW"/>
-                                                                <constraint firstItem="lMw-pA-ZNT" firstAttribute="centerY" secondItem="Wj2-pe-5cZ" secondAttribute="centerY" id="cDD-yq-T4u"/>
-                                                                <constraint firstItem="lMw-pA-ZNT" firstAttribute="centerX" secondItem="Wj2-pe-5cZ" secondAttribute="centerX" id="mt6-s4-u4S"/>
-                                                            </constraints>
-                                                        </view>
-                                                    </subviews>
-                                                    <color key="backgroundColor" name="BaseColor"/>
-                                                    <constraints>
-                                                        <constraint firstItem="Wj2-pe-5cZ" firstAttribute="centerX" secondItem="U8r-bn-81N" secondAttribute="centerX" id="20d-8X-UJz"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Wj2-pe-5cZ" secondAttribute="bottom" constant="1" id="68O-Ct-KLL"/>
-                                                        <constraint firstItem="Wj2-pe-5cZ" firstAttribute="leading" secondItem="U8r-bn-81N" secondAttribute="leading" constant="20" id="SBv-qX-Kc4"/>
-                                                        <constraint firstItem="Wj2-pe-5cZ" firstAttribute="top" secondItem="U8r-bn-81N" secondAttribute="top" constant="16" id="zE2-SW-FV1"/>
-                                                    </constraints>
-                                                </tableViewCellContentView>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <connections>
-                                                    <outlet property="cardBackgroundView" destination="Wj2-pe-5cZ" id="nJQ-Mm-Zqo"/>
-                                                    <outlet property="titleLabel" destination="lMw-pA-ZNT" id="Hgn-h2-9UV"/>
-                                                </connections>
-                                            </tableViewCell>
-                                        </prototypes>
-                                    </tableView>
-                                </subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gpz-jH-CfE">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" name="BaseColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="gpz-jH-CfE" secondAttribute="trailing" id="MoL-g2-DeP"/>
-                                    <constraint firstItem="gpz-jH-CfE" firstAttribute="leading" secondItem="9QO-4b-gZz" secondAttribute="leading" id="UzC-CV-tIa"/>
-                                    <constraint firstItem="gpz-jH-CfE" firstAttribute="top" secondItem="9QO-4b-gZz" secondAttribute="top" constant="50" id="kpp-Y0-rKe"/>
-                                </constraints>
-                            </view>
+                                <color key="sectionIndexBackgroundColor" name="BaseColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingCell" rowHeight="147" id="BmC-Xg-zZK" customClass="SettingCell" customModule="SWiPE" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="147"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BmC-Xg-zZK" id="U8r-bn-81N">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="147"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wj2-pe-5cZ">
+                                                    <rect key="frame" x="20" y="16" width="353" height="130"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMw-pA-ZNT">
+                                                            <rect key="frame" x="156" y="55.000000000000007" width="41.333333333333343" height="20.333333333333336"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="MainColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="XRD-Mz-ceW"/>
+                                                        <constraint firstItem="lMw-pA-ZNT" firstAttribute="centerY" secondItem="Wj2-pe-5cZ" secondAttribute="centerY" id="cDD-yq-T4u"/>
+                                                        <constraint firstItem="lMw-pA-ZNT" firstAttribute="centerX" secondItem="Wj2-pe-5cZ" secondAttribute="centerX" id="mt6-s4-u4S"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" name="BaseColor"/>
+                                            <constraints>
+                                                <constraint firstItem="Wj2-pe-5cZ" firstAttribute="centerX" secondItem="U8r-bn-81N" secondAttribute="centerX" id="20d-8X-UJz"/>
+                                                <constraint firstAttribute="bottom" secondItem="Wj2-pe-5cZ" secondAttribute="bottom" constant="1" id="68O-Ct-KLL"/>
+                                                <constraint firstItem="Wj2-pe-5cZ" firstAttribute="leading" secondItem="U8r-bn-81N" secondAttribute="leading" constant="20" id="SBv-qX-Kc4"/>
+                                                <constraint firstItem="Wj2-pe-5cZ" firstAttribute="top" secondItem="U8r-bn-81N" secondAttribute="top" constant="16" id="zE2-SW-FV1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="cardBackgroundView" destination="Wj2-pe-5cZ" id="nJQ-Mm-Zqo"/>
+                                            <outlet property="titleLabel" destination="lMw-pA-ZNT" id="Hgn-h2-9UV"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yhz-y5-5gL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="9QO-4b-gZz" firstAttribute="leading" secondItem="Yhz-y5-5gL" secondAttribute="leading" id="6Jr-ba-gdn"/>
-                            <constraint firstItem="gpz-jH-CfE" firstAttribute="bottom" secondItem="Yhz-y5-5gL" secondAttribute="bottom" id="KiX-5A-jFz"/>
-                            <constraint firstAttribute="bottom" secondItem="9QO-4b-gZz" secondAttribute="bottom" id="Oct-2K-ZlV"/>
-                            <constraint firstItem="sFI-DW-iN1" firstAttribute="trailing" secondItem="Yhz-y5-5gL" secondAttribute="trailing" id="bQN-hw-u9h"/>
-                            <constraint firstItem="9QO-4b-gZz" firstAttribute="trailing" secondItem="Yhz-y5-5gL" secondAttribute="trailing" id="gtY-PZ-z7r"/>
-                            <constraint firstItem="sFI-DW-iN1" firstAttribute="leading" secondItem="Yhz-y5-5gL" secondAttribute="leading" id="lLr-RF-jqK"/>
-                            <constraint firstItem="sFI-DW-iN1" firstAttribute="top" secondItem="F4s-qQ-Eic" secondAttribute="top" id="sen-bO-MD4"/>
-                            <constraint firstItem="9QO-4b-gZz" firstAttribute="height" secondItem="F4s-qQ-Eic" secondAttribute="height" multiplier="0.6" id="tKf-NU-YzQ"/>
-                            <constraint firstItem="sFI-DW-iN1" firstAttribute="height" secondItem="F4s-qQ-Eic" secondAttribute="height" multiplier="0.6" id="u8D-zt-HmI"/>
+                            <constraint firstItem="gpz-jH-CfE" firstAttribute="trailing" secondItem="Yhz-y5-5gL" secondAttribute="trailing" id="YHx-Hq-9Mh"/>
+                            <constraint firstItem="gpz-jH-CfE" firstAttribute="top" secondItem="Yhz-y5-5gL" secondAttribute="top" id="c4P-SA-APS"/>
+                            <constraint firstItem="gpz-jH-CfE" firstAttribute="leading" secondItem="Yhz-y5-5gL" secondAttribute="leading" id="fAI-YI-4JV"/>
+                            <constraint firstItem="Yhz-y5-5gL" firstAttribute="bottom" secondItem="gpz-jH-CfE" secondAttribute="bottom" id="nY7-pi-pcM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Zip-9v-7Gh"/>
                     <connections>
-                        <outlet property="bottomBackgroundView" destination="9QO-4b-gZz" id="N4w-aU-wz8"/>
                         <outlet property="tableView" destination="gpz-jH-CfE" id="Ocz-Mk-JGf"/>
-                        <outlet property="topBackgroundView" destination="sFI-DW-iN1" id="VZL-w4-oKF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ugj-gD-uz1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2879" y="-215"/>
+            <point key="canvasLocation" x="3779" y="-215"/>
+        </scene>
+        <!--Privacy PolicyVC-->
+        <scene sceneID="cIY-3i-buG">
+            <objects>
+                <viewController storyboardIdentifier="PrivacyPolicyVC" id="mTu-DI-jXx" customClass="PrivacyPolicyVC" customModule="SWiPE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NeV-K2-8mb">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oKi-bR-MXt">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <mutableString key="text">Privacy Policy
+Last updated: November 23, 2022
+
+This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.
+
+We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. This Privacy Policy has been created with the help of the Privacy Policy Generator.
+
+Interpretation and Definitions
+Interpretation
+The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.
+
+Definitions
+For the purposes of this Privacy Policy:
+
+Account means a unique account created for You to access our Service or parts of our Service.
+
+Affiliate means an entity that controls, is controlled by or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.
+
+Application means the software program provided by the Company downloaded by You on any electronic device, named SWiPER
+
+Company (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to SWiPER.
+
+Country refers to: Taiwan
+
+Device means any device that can access the Service such as a computer, a cellphone or a digital tablet.
+
+Personal Data is any information that relates to an identified or identifiable individual.
+
+Service refers to the Application.
+
+Service Provider means any natural or legal person who processes the data on behalf of the Company. It refers to third-party companies or individuals employed by the Company to facilitate the Service, to provide the Service on behalf of the Company, to perform services related to the Service or to assist the Company in analyzing how the Service is used.
+
+Third-party Social Media Service refers to any website or any social network website through which a User can log in or create an account to use the Service.
+
+Usage Data refers to data collected automatically, either generated by the use of the Service or from the Service infrastructure itself (for example, the duration of a page visit).
+
+You means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.
+
+Collecting and Using Your Personal Data
+Types of Data Collected
+Personal Data
+While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:
+
+Email address
+
+First name and last name
+
+Usage Data
+
+Usage Data
+Usage Data is collected automatically when using the Service.
+
+Usage Data may include information such as Your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that You visit, the time and date of Your visit, the time spent on those pages, unique device identifiers and other diagnostic data.
+
+When You access the Service by or through a mobile device, We may collect certain information automatically, including, but not limited to, the type of mobile device You use, Your mobile device unique ID, the IP address of Your mobile device, Your mobile operating system, the type of mobile Internet browser You use, unique device identifiers and other diagnostic data.
+
+We may also collect information that Your browser sends whenever You visit our Service or when You access the Service by or through a mobile device.
+
+Information from Third-Party Social Media Services
+The Company allows You to create an account and log in to use the Service through the following Third-party Social Media Services:
+
+Google
+Facebook
+Twitter
+LinkedIn
+If You decide to register through or otherwise grant us access to a Third-Party Social Media Service, We may collect Personal data that is already associated with Your Third-Party Social Media Service's account, such as Your name, Your email address, Your activities or Your contact list associated with that account.
+
+You may also have the option of sharing additional information with the Company through Your Third-Party Social Media Service's account. If You choose to provide such information and Personal Data, during registration or otherwise, You are giving the Company permission to use, share, and store it in a manner consistent with this Privacy Policy.
+
+Information Collected while Using the Application
+While using Our Application, in order to provide features of Our Application, We may collect, with Your prior permission:
+
+Information regarding your location
+
+Pictures and other information from your Device's camera and photo library
+
+We use this information to provide features of Our Service, to improve and customize Our Service. The information may be uploaded to the Company's servers and/or a Service Provider's server or it may be simply stored on Your device.
+
+You can enable or disable access to this information at any time, through Your Device settings.
+
+Use of Your Personal Data
+The Company may use Personal Data for the following purposes:
+
+To provide and maintain our Service, including to monitor the usage of our Service.
+
+To manage Your Account: to manage Your registration as a user of the Service. The Personal Data You provide can give You access to different functionalities of the Service that are available to You as a registered user.
+
+For the performance of a contract: the development, compliance and undertaking of the purchase contract for the products, items or services You have purchased or of any other contract with Us through the Service.
+
+To contact You: To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including the security updates, when necessary or reasonable for their implementation.
+
+To provide You with news, special offers and general information about other goods, services and events which we offer that are similar to those that you have already purchased or enquired about unless You have opted not to receive such information.
+
+To manage Your requests: To attend and manage Your requests to Us.
+
+For business transfers: We may use Your information to evaluate or conduct a merger, divestiture, restructuring, reorganization, dissolution, or other sale or transfer of some or all of Our assets, whether as a going concern or as part of bankruptcy, liquidation, or similar proceeding, in which Personal Data held by Us about our Service users is among the assets transferred.
+
+For other purposes: We may use Your information for other purposes, such as data analysis, identifying usage trends, determining the effectiveness of our promotional campaigns and to evaluate and improve our Service, products, services, marketing and your experience.
+
+We may share Your personal information in the following situations:
+
+With Service Providers: We may share Your personal information with Service Providers to monitor and analyze the use of our Service, to contact You.
+For business transfers: We may share or transfer Your personal information in connection with, or during negotiations of, any merger, sale of Company assets, financing, or acquisition of all or a portion of Our business to another company.
+With Affiliates: We may share Your information with Our affiliates, in which case we will require those affiliates to honor this Privacy Policy. Affiliates include Our parent company and any other subsidiaries, joint venture partners or other companies that We control or that are under common control with Us.
+With business partners: We may share Your information with Our business partners to offer You certain products, services or promotions.
+With other users: when You share personal information or otherwise interact in the public areas with other users, such information may be viewed by all users and may be publicly distributed outside. If You interact with other users or register through a Third-Party Social Media Service, Your contacts on the Third-Party Social Media Service may see Your name, profile, pictures and description of Your activity. Similarly, other users will be able to view descriptions of Your activity, communicate with You and view Your profile.
+With Your consent: We may disclose Your personal information for any other purpose with Your consent.
+Retention of Your Personal Data
+The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.
+
+The Company will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of Our Service, or We are legally obligated to retain this data for longer time periods.
+
+Transfer of Your Personal Data
+Your information, including Personal Data, is processed at the Company's operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of Your state, province, country or other governmental jurisdiction where the data protection laws may differ than those from Your jurisdiction.
+
+Your consent to this Privacy Policy followed by Your submission of such information represents Your agreement to that transfer.
+
+The Company will take all steps reasonably necessary to ensure that Your data is treated securely and in accordance with this Privacy Policy and no transfer of Your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of Your data and other personal information.
+
+Delete Your Personal Data
+You have the right to delete or request that We assist in deleting the Personal Data that We have collected about You.
+
+Our Service may give You the ability to delete certain information about You from within the Service.
+
+You may update, amend, or delete Your information at any time by signing in to Your Account, if you have one, and visiting the account settings section that allows you to manage Your personal information. You may also contact Us to request access to, correct, or delete any personal information that You have provided to Us.
+
+Please note, however, that We may need to retain certain information when we have a legal obligation or lawful basis to do so.
+
+Disclosure of Your Personal Data
+Business Transactions
+If the Company is involved in a merger, acquisition or asset sale, Your Personal Data may be transferred. We will provide notice before Your Personal Data is transferred and becomes subject to a different Privacy Policy.
+
+Law enforcement
+Under certain circumstances, the Company may be required to disclose Your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency).
+
+Other legal requirements
+The Company may disclose Your Personal Data in the good faith belief that such action is necessary to:
+
+Comply with a legal obligation
+Protect and defend the rights or property of the Company
+Prevent or investigate possible wrongdoing in connection with the Service
+Protect the personal safety of Users of the Service or the public
+Protect against legal liability
+Security of Your Personal Data
+The security of Your Personal Data is important to Us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, We cannot guarantee its absolute security.
+
+Children's Privacy
+Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from anyone under the age of 13. If You are a parent or guardian and You are aware that Your child has provided Us with Personal Data, please contact Us. If We become aware that We have collected Personal Data from anyone under the age of 13 without verification of parental consent, We take steps to remove that information from Our servers.
+
+If We need to rely on consent as a legal basis for processing Your information and Your country requires consent from a parent, We may require Your parent's consent before We collect and use that information.
+
+Links to Other Websites
+Our Service may contain links to other websites that are not operated by Us. If You click on a third party link, You will be directed to that third party's site. We strongly advise You to review the Privacy Policy of every site You visit.
+
+We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.
+
+Changes to this Privacy Policy
+We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page.
+
+We will let You know via email and/or a prominent notice on Our Service, prior to the change becoming effective and update the "Last updated" date at the top of this Privacy Policy.
+
+You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
+
+About Face Data
+To protect the dating interests of other users, we restrict users from uploading photos related to their faces, and we do not give, exchange, rent or sell your face information to other individuals, groups, private businesses or public institutions.
+
+Contact Us
+If you have any questions about this Privacy Policy, You can contact us:
+
+By email: zoezoe07171031@gmail.com</mutableString>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="5XE-k7-BH8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="oKi-bR-MXt" firstAttribute="leading" secondItem="5XE-k7-BH8" secondAttribute="leading" id="2Hg-gn-UNh"/>
+                            <constraint firstItem="5XE-k7-BH8" firstAttribute="bottom" secondItem="oKi-bR-MXt" secondAttribute="bottom" id="2Je-gS-akX"/>
+                            <constraint firstItem="oKi-bR-MXt" firstAttribute="top" secondItem="5XE-k7-BH8" secondAttribute="top" id="4Vh-Dz-O2S"/>
+                            <constraint firstItem="5XE-k7-BH8" firstAttribute="trailing" secondItem="oKi-bR-MXt" secondAttribute="trailing" id="r6Z-ef-COk"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nai-Bd-HUF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4727.480916030534" y="-215.49295774647888"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rPj-4d-ElI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kon-4h-KwK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="profile" id="rPP-UF-a8E"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8nM-lK-8k0">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" name="BaseColor"/>
+                        </navigationBarAppearance>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="w7P-BU-96T" kind="relationship" relationship="rootViewController" id="HXC-KE-qh6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lXX-XU-NOx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1835.8778625954199" y="-215.49295774647888"/>
         </scene>
     </scenes>
     <resources>
@@ -267,16 +454,16 @@
             <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="MainColor">
-            <color red="0.34901960784313724" green="0.69019607843137254" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.34900000691413879" green="0.68999999761581421" blue="0.74500000476837158" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemCyanColor">
             <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

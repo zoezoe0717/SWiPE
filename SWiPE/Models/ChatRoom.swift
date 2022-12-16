@@ -52,11 +52,13 @@ struct Call: Codable {
 struct CallStatus: Codable {
     var senderStatus: Bool
     var receiverStatus: Bool
+    var isVideoCall: Bool
     
     var toDict: [String: Any] {
         return [
             "senderStatus": senderStatus as Any,
-            "receiverStatus": receiverStatus as Any
+            "receiverStatus": receiverStatus as Any,
+            "isVideoCall": isVideoCall as Any
         ]
     }
 }

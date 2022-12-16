@@ -8,7 +8,6 @@
 import UIKit
 import YPImagePicker
 import AVFoundation
-import AVKit
 
 class UploadVideoVC: UploadVC {
     @IBOutlet weak var titleLabel: UILabel!
@@ -56,12 +55,12 @@ class UploadVideoVC: UploadVC {
             createButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             createButton.heightAnchor.constraint(equalToConstant: 60),
 
-            pushButton.topAnchor.constraint(equalTo: videoView.bottomAnchor, constant: 40),
+            pushButton.bottomAnchor.constraint(equalTo: videoView.bottomAnchor, constant: 50),
             pushButton.rightAnchor.constraint(equalTo: videoView.rightAnchor),
             pushButton.heightAnchor.constraint(equalToConstant: 40),
             pushButton.widthAnchor.constraint(equalToConstant: 80),
             
-            cancelButton.topAnchor.constraint(equalTo: videoView.bottomAnchor, constant: 40),
+            cancelButton.bottomAnchor.constraint(equalTo: videoView.bottomAnchor, constant: 50),
             cancelButton.leftAnchor.constraint(equalTo: videoView.leftAnchor),
             cancelButton.heightAnchor.constraint(equalToConstant: 40),
             cancelButton.widthAnchor.constraint(equalToConstant: 80)
@@ -101,7 +100,10 @@ class UploadVideoVC: UploadVC {
     
     override func uploadData() {
         ProgressHUD.show()
-
+        
+        let group = DispatchGroup()
+        
+        group.enter()
         if let videoUrl = videoUrl {
             UploadStoryProvider.shared.uploadVideoWithImgur(url: videoUrl) { result in
                 switch result {
@@ -109,14 +111,18 @@ class UploadVideoVC: UploadVC {
                     SignVC.userData.video = "\(videoURL)"
                     FireBaseManager.shared.updateUserData(user: SignVC.userData, data: ["video": "\(videoURL)"])
                     ProgressHUD.showSuccess()
+                    group.leave()
                 case .failure(let failure):
                     print(failure)
-                    ProgressHUD.dismiss()
+                    ProgressHUD.showFailure()
+                    group.leave()
                 }
             }
         }
         
-        dismissViewController()
+        group.notify(queue: .main) {
+            self.dismissViewController()
+        }
     }
         
     override func createCamera() {
@@ -139,7 +145,6 @@ class UploadVideoVC: UploadVC {
                     self.createVideo(url: video.url)
                     self.buttonSwitch(hasImage: true)
                     self.clearVideo()
-                    print("====>>>>\(video.url)")
                 }
             }
             picker.dismiss(animated: true)

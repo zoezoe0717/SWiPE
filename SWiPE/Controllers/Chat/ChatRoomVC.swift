@@ -6,7 +6,14 @@
 //
 
 import UIKit
+import Alamofire
 import PhotosUI
+
+protocol CellConfiguraable: UITableViewCell {
+    func setup(message: Message, userData: User)
+}
+
+protocol RowViewModel {}
 
 class ChatRoomVC: UIViewController {
     @IBOutlet weak var friendLabel: UILabel!
@@ -75,12 +82,14 @@ class ChatRoomVC: UIViewController {
         chatRoomTableView.delegate = self
         chatRoomTableView.dataSource = self
         
-        chatRoomTableView.register(UINib(nibName: "\(OwnTextCell.self)", bundle: nil), forCellReuseIdentifier: "\(OwnTextCell.self)")
-        chatRoomTableView.register(UINib(nibName: "\(FriendTextCell.self)", bundle: nil), forCellReuseIdentifier: "\(FriendTextCell.self)")
-        chatRoomTableView.register(UINib(nibName: "\(OwnImageCell.self)", bundle: nil), forCellReuseIdentifier: "\(OwnImageCell.self)")
-        chatRoomTableView.register(UINib(nibName: "\(FriendImageCell.self)", bundle: nil), forCellReuseIdentifier: "\(FriendImageCell.self)")
-        chatRoomTableView.register(UINib(nibName: "\(OwnCallCell.self)", bundle: nil), forCellReuseIdentifier: "\(OwnCallCell.self)")
-        chatRoomTableView.register(UINib(nibName: "\(FriendCallCell.self)", bundle: nil), forCellReuseIdentifier: "\(FriendCallCell.self)")
+        [
+            OwnTextCell.identifier,
+            FriendTextCell.identifier,
+            OwnImageCell.identifier,
+            FriendImageCell.identifier,
+            OwnCallCell.identifier,
+            FriendCallCell.identifier
+        ].forEach { chatRoomTableView.zRegisterCellWithNib(identifier: $0, bundle: nil) }
     }
     
     private func setUI() {
@@ -196,12 +205,12 @@ class ChatRoomVC: UIViewController {
         moreOptionsButton.showsMenuAsPrimaryAction = true
         moreOptionsButton.menu =
         UIMenu(children: [
-            UIAction(title: "一鍵生氣", image: UIImage(named: "angry"), handler: { _ in
+            UIAction(title: "一鍵生氣", image: UIImage(named: "angry")) { _ in
                 self.angryClick()
-            }),
-            UIAction(title: "封鎖用戶", image: UIImage(named: "block"), handler: { _ in
+            },
+            UIAction(title: "封鎖用戶", image: UIImage(named: "block")) { _ in
                 self.block()
-            })
+            }
         ])
     }
     
@@ -210,18 +219,18 @@ class ChatRoomVC: UIViewController {
 
         if !isUserAngry {
             let message = AlertMessage(alertTitle: "很生氣？", alertSubTitle: "確定要讓對方感受您的憤怒嗎", isAngry: true)
-            ZAlertView.share.angryView(message: message, roomID: id)
+            ZAlertView.shared.angryView(message: message, roomID: id)
         } else {
             let message = AlertMessage(alertTitle: "氣消了？", alertSubTitle: "您已經消氣了嗎？", isAngry: false)
 
-            ZAlertView.share.angryView(message: message, roomID: id)
+            ZAlertView.shared.angryView(message: message, roomID: id)
         }
     }
     
     private func block() {
         let message = AlertMessage(alertTitle: "封鎖確認", alertSubTitle: "封鎖後將看不到此聊天室\r如需解封鎖請在設定頁面修改")
         
-        ZAlertView.share.blockView(message: message, roomID: id)
+        ZAlertView.shared.blockView(message: message, roomID: id)
     }
     
     @IBAction func openAlbum(_ sender: Any) {
@@ -249,6 +258,20 @@ class ChatRoomVC: UIViewController {
     }
 }
 
+extension ChatRoomVC {
+    func removeAccount(params: [String: String]) {
+        let token = UserUid.share.keychain.get("refreshToken")
+        
+        let headers: HTTPHeaders = ["content-type": "application/x-www-form-urlencoded"]
+
+        AF.request("https://appleid.apple.com/auth/revoke", method: .post, parameters: params, headers: headers).response { response in
+            if response.response?.statusCode == 200 {
+                print("SUCCESS!")
+            }
+        }
+    }
+}
+
 extension ChatRoomVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         message.count
@@ -256,66 +279,58 @@ extension ChatRoomVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var messageCell = UITableViewCell()
-        let isUser = message[indexPath.item].senderId == UserUid.share.getUid()
-        let isText = message[indexPath.item].type == MessageType.text.rawValue
-        let isCall = message[indexPath.item].type == MessageType.call.rawValue
-
-        if isUser {
-            if isText {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(OwnTextCell.self)", for: indexPath) as? OwnTextCell else {
-                    fatalError("DEBUG: Can not create OwnTextCell")
-                }
-                cell.setText(message: message[indexPath.item])
-                cell.userImage.loadImage(userData?.story)
-                messageCell = cell
-            } else if isCall {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(OwnCallCell.self)", for: indexPath) as? OwnCallCell else {
-                    fatalError("DEBUG: Can not create OwnTextCell")
-                }
-                cell.setText(message: message[indexPath.item])
-                cell.userImage.loadImage(userData?.story)
-                messageCell = cell
-            } else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(OwnImageCell.self)", for: indexPath) as? OwnImageCell else {
-                    fatalError("DEBUG: Can not create OwnTextCell")
-                }
-                cell.setup(message: message[indexPath.item])
-                cell.userImage.loadImage(userData?.story)
-                messageCell = cell
-            }
+        var messageType = MessageType.text
+        let message = message[indexPath.item]
+        let sender = message.senderId == UserUid.share.getUid() ? MessageSender.isFromUser : MessageSender.isFromFriend
+        let snderImage = message.senderId == UserUid.share.getUid() ? userData : friendData
+        let isText = message.type == MessageType.text.rawValue
+        let isImage = message.type == MessageType.image.rawValue
+        
+        if isText {
+            messageType = .text
+        } else if isImage {
+            messageType = .image
         } else {
-            if isText {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(FriendTextCell.self)", for: indexPath) as? FriendTextCell else {
-                    fatalError("DEBUG: Can not create FriendTextCell")
-                }
-                
-                cell.setText(message: message[indexPath.item])
-                cell.friendImageView.loadImage(friendData?.story)
-                messageCell = cell
-            } else if isCall {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(FriendCallCell.self)", for: indexPath) as? FriendCallCell else {
-                    fatalError("DEBUG: Can not create OwnTextCell")
-                }
-                cell.setText(message: message[indexPath.item])
-                cell.friendImageView.loadImage(friendData?.story)
-                messageCell = cell
-            } else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(FriendImageCell.self)", for: indexPath) as? FriendImageCell else {
-                    fatalError("DEBUG: Can not create FriendTextCell")
-                }
-                
-                cell.setup(message: message[indexPath.item])
-                cell.userImage.loadImage(friendData?.story)
-                messageCell = cell
-            }
+            messageType = .call
         }
         
+        let identifier = getCellIdentifier(sender: sender, type: messageType)
+
+        if
+            let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? CellConfiguraable,
+            let snderImage = snderImage
+        {
+            cell.setup(message: message, userData: snderImage)
+            messageCell = cell
+        }
         return messageCell
+    }
+    
+    private func getCellIdentifier(sender: MessageSender, type: MessageType) -> String {
+        switch (sender, type) {
+        case (.isFromUser, .text):
+            return OwnTextCell.identifier
+            
+        case (.isFromUser, .image):
+            return OwnImageCell.identifier
+            
+        case (.isFromUser, .call):
+            return OwnCallCell.identifier
+            
+        case (.isFromFriend, .text):
+            return FriendTextCell.identifier
+            
+        case (.isFromFriend, .image):
+            return FriendImageCell.identifier
+            
+        case (.isFromFriend, .call):
+            return FriendCallCell.identifier
+        }
     }
 }
 
 extension ChatRoomVC: PHPickerViewControllerDelegate {
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+    internal func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         guard let result = results.first else { return }
         let provider = result.itemProvider
@@ -342,13 +357,12 @@ extension ChatRoomVC: PHPickerViewControllerDelegate {
     private func dealWithVideo(_ result: PHPickerResult) {
         let movie = UTType.movie.identifier
         let provider = result.itemProvider
-        
+
         provider.loadFileRepresentation(forTypeIdentifier: movie) { url, error in
             if let error = error {
                 print(error)
             } else {
                 guard let url = url as? NSURL else { return }
-                print("===\(url)")
             }
         }
     }
