@@ -15,7 +15,6 @@ class ChatVC: UIViewController {
     var friendList: [User] = [] {
         didSet {
             chatTableView.reloadData()
-            print("===A\(friendList)")
         }
     }
     

@@ -85,7 +85,6 @@ class MatchVC: UIViewController {
         setAnimation()
         
         if !UserUid.share.getUid().isEmpty {
-            print("===\(UserUid.share.getUid())")
             fetchData()
         }
         

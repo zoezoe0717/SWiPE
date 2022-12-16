@@ -270,26 +270,6 @@ extension ChatRoomVC {
             }
         }
     }
-//    private func chatWithOpenAI() {
-//        guard let url = URL(string: "https://api.openai.com/v1/completions") else { return }
-//        let headers: HTTPHeaders = ["Content-Type"]
-//        var request = URLRequest(url: url)
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.setValue("Bearer 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", forHTTPHeaderField: "Authorization")
-//        let openAIBody = OpenAIBody(model: "text-davinci-003", prompt: "你好嗎？")
-//        request.httpBody = try? JSONEncoder().encode(openAIBody)
-//        request.httpMethod = "post"
-//        Task {
-//            do {
-//                let (data, _) = try await URLSession.shared.data(for: request)
-//                if let content = String(data: data, encoding: .utf8) {
-//                    print("===5566\(content)")
-//                }
-//            } catch {
-//                print(error)
-//            }
-//        }
-//    }
 }
 
 extension ChatRoomVC: UITableViewDelegate, UITableViewDataSource {
