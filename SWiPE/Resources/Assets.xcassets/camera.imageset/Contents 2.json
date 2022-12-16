@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "block.png",
+      "filename" : "camera.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "block@2x.png",
+      "filename" : "camera@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "block@3x.png",
+      "filename" : "camera@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
