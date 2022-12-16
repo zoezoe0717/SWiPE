@@ -34,6 +34,7 @@ class ProfileVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     private func setUI() {
@@ -43,9 +44,9 @@ class ProfileVC: UIViewController {
         [updatePhotoLabel, updateVideoLabel, settingLabel].forEach { label in
             label?.textColor = CustomColor.base.color
         }
-        updatePhotoLabel.text = ProfileString.updatePhoto.rawValue
-        updateVideoLabel.text = ProfileString.updateVideo.rawValue
-        settingLabel.text = ProfileString.setting.rawValue
+        updatePhotoLabel.text = Constants.ProfileString.updatePhoto
+        updateVideoLabel.text = Constants.ProfileString.updateVideo
+        settingLabel.text = Constants.ProfileString.setting
     }
     
     private func getUser() {
@@ -61,7 +62,7 @@ class ProfileVC: UIViewController {
     
     private func uploadData() {
         if let image = userImageView.image {
-            UploadStoryProvider.shared.uploadPhoto(image: image) { result in
+            UploadStoryProvider.shared.uploadImageWithImgur(image: image) { result in
                 switch result {
                 case .success(let url):
                     SignVC.userData.story = "\(url)"
@@ -95,7 +96,7 @@ class ProfileVC: UIViewController {
         if let controller = storyboard?.instantiateViewController(withIdentifier: "\(SettingVC.self)") as? SettingVC {
             controller.modalPresentationStyle = .fullScreen
             controller.user = user
-            present(controller, animated: true)
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
 }

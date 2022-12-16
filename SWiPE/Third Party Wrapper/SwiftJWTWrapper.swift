@@ -27,7 +27,6 @@ class ZSwiftJWT {
         
         do {
             let signedJWT = try jwt.sign(using: jwtSigner)
-            print("===---\(signedJWT)")
             
             let params = [
                 "client_id": AuthManager.share.claimsId,

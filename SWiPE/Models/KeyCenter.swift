@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct KeyCenter {
+enum KeyCenter {
     static let AppId: String = "87a971f652e3438eb546d45f1e02b23f"
 
     static let Certificate: String? = "23b1a871b36645b39fade5e9ea0970fb"

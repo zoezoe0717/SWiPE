@@ -805,6 +805,7 @@ PODS:
     - Libuv-gRPC (= 0.0.10)
   - gRPC-Core/Interface (1.44.0)
   - GTMSessionFetcher/Core (2.1.0)
+  - Hero (1.6.2)
   - IQKeyboardManagerSwift (6.5.10)
   - JGProgressHUD (2.2)
   - KeychainSwift (20.0.0)
@@ -852,6 +853,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseAnalytics
   - FirebaseFirestoreSwift
+  - Hero
   - IQKeyboardManagerSwift
   - JGProgressHUD
   - KeychainSwift (~> 20.0)
@@ -893,6 +895,7 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - Hero
     - IQKeyboardManagerSwift
     - JGProgressHUD
     - KeychainSwift
@@ -942,6 +945,7 @@ SPEC CHECKSUMS:
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
   GTMSessionFetcher: ffbb25ec00ebcb5201adab0a56d808f6f1902d9f
+  Hero: c69009dbc9e2f0472e081adc644dba05fcedae72
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   KeychainSwift: 0ce6a4d13f7228054d1a71bb1b500448fb2ab837
@@ -961,6 +965,6 @@ SPEC CHECKSUMS:
   SwiftLint: 32ee33ded0636d0905ef6911b2b67bbaeeedafa5
   YPImagePicker: f36043210c10b0783034eb1947d6e06e31c461e4
 
-PODFILE CHECKSUM: 6e093a84246439c4094c6a518794ded5430f9a5c
+PODFILE CHECKSUM: 26cd8cd0ac0e3be26d4e4740383681009e9dc964
 
 COCOAPODS: 1.11.3

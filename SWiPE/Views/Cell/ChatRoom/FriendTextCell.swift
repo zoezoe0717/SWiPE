@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FriendTextCell: UITableViewCell {
+class FriendTextCell: UITableViewCell, CellConfiguraable {
     @IBOutlet weak var friendImageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var timeLabel: UILabel!
@@ -28,6 +28,12 @@ class FriendTextCell: UITableViewCell {
     }
     
     func setText(message: Message) {
+        textView.text = message.message
+        timeLabel.text = Date.dateFormatter.string(from: Date(milliseconds: message.createdTime))
+    }
+    
+    func setup(message: Message, userData: User) {
+        friendImageView.loadImage(userData.story)
         textView.text = message.message
         timeLabel.text = Date.dateFormatter.string(from: Date(milliseconds: message.createdTime))
     }

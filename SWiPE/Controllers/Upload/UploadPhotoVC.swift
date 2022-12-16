@@ -60,7 +60,10 @@ class UploadPhotoVC: UploadVC {
     
     override func uploadData() {
         ProgressHUD.show()
-
+        
+        let group = DispatchGroup()
+        
+        group.enter()
         if let image = profileImagePhoto.image {
             UploadStoryProvider.shared.uploadImageWithImgur(image: image) { result in
                 switch result {
@@ -68,20 +71,32 @@ class UploadPhotoVC: UploadVC {
                     SignVC.userData.story = "\(url)"
                     FireBaseManager.shared.updateUserData(user: SignVC.userData, data: ["story": "\(url)"])
                     ProgressHUD.dismiss()
+                    group.leave()
                 case .failure(let failure):
                     print(failure)
                     ProgressHUD.dismiss()
+                    group.leave()
                 }
             }
         }
-
+        
+        group.notify(queue: .main) {
+            self.changePage()
+        }
+    }
+    
+    private func changePage() {
         if isNewUser {
             updateFirstIndex()
             if let controller = storyboard?.instantiateViewController(withIdentifier: "\(UploadVideoVC.self)") as? UploadVideoVC {
                 controller.modalPresentationStyle = .fullScreen
+                ProgressHUD.dismiss()
+
                 present(controller, animated: true)
             }
         } else {
+            ProgressHUD.dismiss()
+
             dismiss(animated: true)
         }
     }
@@ -96,14 +111,6 @@ class UploadPhotoVC: UploadVC {
                     self?.profileImagePhoto.image = photo.image
                     self?.profileImagePhoto.isHidden = false
                     self?.faceDetect(photo: photo.image)
-//                    UploadStoryProvider.shared.uploadImageWithImgur(image: photo.image) { result in
-//                        switch result {
-//                        case .success(let success):
-//                            print(success)
-//                        case .failure(let failure):
-//                            print(failure)
-//                        }
-//                    }
                 }
             }
             picker.dismiss(animated: true)
@@ -126,7 +133,13 @@ extension UploadPhotoVC {
             buttonSwitch(hasImage: true)
         } else {
             buttonSwitch(hasImage: false)
-            let alert = UIAlertController(title: "未偵測到臉部", message: "請重新選擇有臉部的照片喔！", preferredStyle: .alert)
+            
+            let alert = UIAlertController(
+                title: Constants.UploadPhotoStr.faceAlertTitle,
+                message: Constants.UploadPhotoStr.faceAlertMessage,
+                preferredStyle: .alert
+            )
+            
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             present(alert, animated: true)
         }

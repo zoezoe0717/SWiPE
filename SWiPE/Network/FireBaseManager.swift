@@ -324,13 +324,6 @@ class FireBaseManager {
             }
         }
         
-        document.getDocument { snapshot, error in
-            if let error = error {
-                print(error)
-            } else {
-                guard let snapshot = snapshot else { return }
-                snapshot.reference.delete()
-            }
-        }
+        document.delete()
     }
 }

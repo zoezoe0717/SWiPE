@@ -29,6 +29,59 @@ struct UserUid {
     }
 }
 
+enum Constants {
+    enum ChatVCString {
+        static let title = "Message"
+    }
+
+    enum SignVCString {
+        static let welcome = "歡迎來到SWiPE!"
+        
+        static let signup = "或是建立帳號"
+        
+        static let login = "登入"
+        
+        static let subTitle = "為了保障用戶權益，需登入過後才可以使用"
+    }
+
+    enum LottieString {
+        static let cardLoding = "CardLoding"
+        static let match = "Match"
+        static let signSheep = "SignSheep"
+        static let arrow = "Arrow"
+        static let backArrow = "BackArrow"
+        static let swimmingSheep = "SwimmingSheep"
+        static let calling = "Calling"
+    }
+
+    enum ProfileString {
+        static let updatePhoto = "更新頭貼"
+        static let updateVideo = "更新影片"
+        static let setting = "設定"
+    }
+    
+    enum AlertSrting {
+        static let confirm = "確定"
+        static let success = "成功"
+        static let error = "錯誤"
+        static let canael = "取消"
+        static let prosecution = "檢舉"
+        static let prosecutionSubTitle = "我們已收到您的檢舉。"
+        static let reportSubTitle = "此檢舉將會匿名，我們將會為您處理。"
+    }
+    
+    enum UploadVCString {
+        static let add = "點我新增"
+        static let confirm = "確定"
+        static let reselect = "重新選擇"
+    }
+    
+    enum UploadPhotoStr {
+        static let faceAlertTitle = "未偵測到臉部"
+        static let faceAlertMessage = "請重新選擇有臉部的照片喔！"
+    }
+}
+
 enum CustomColor {
     case base
     
@@ -53,31 +106,4 @@ enum CustomColor {
             return UIColor(named: "SecondaryColor") ?? .yellow
         }
     }
-}
-
-enum ChatVCString: String {
-    case title = "Message"
-}
-
-enum SignVCString: String {
-    case welcome = "歡迎來到SWiPE!"
-    case signup = "或是建立帳號"
-    case login = "登入"
-    case subTitle = "為了保障用戶權益，需登入過後才可以使用"
-}
-
-enum LottieString: String {
-    case cardLoding = "CardLoding"
-    case match = "Match"
-    case signSheep = "SignSheep"
-    case arrow = "Arrow"
-    case backArrow = "BackArrow"
-    case swimmingSheep = "SwimmingSheep"
-    case calling = "Calling"
-}
-
-enum ProfileString: String, CaseIterable {
-    case updatePhoto = "更新頭貼"
-    case updateVideo = "更新影片"
-    case setting = "設定"
 }

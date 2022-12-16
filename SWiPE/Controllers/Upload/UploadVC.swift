@@ -12,7 +12,7 @@ class UploadVC: UIViewController {
     
     lazy var createButton: UIButton = {
         let button = UIButton()
-        button.setTitle("點我新增", for: .normal)
+        button.setTitle(Constants.UploadVCString.add, for: .normal)
         button.backgroundColor = CustomColor.main.color
         button.layer.cornerRadius = 30
         button.layer.borderColor = CustomColor.text.color.cgColor
@@ -23,7 +23,7 @@ class UploadVC: UIViewController {
     
     lazy public var pushButton: UIButton = {
         let button = UIButton()
-        button.setTitle("確定", for: .normal)
+        button.setTitle(Constants.UploadVCString.confirm, for: .normal)
         button.backgroundColor = .gray
         button.addTarget(self, action: #selector(uploadData), for: .touchUpInside)
         return button
@@ -31,7 +31,7 @@ class UploadVC: UIViewController {
     
     lazy public var cancelButton: UIButton = {
         let button = UIButton()
-        button.setTitle("重新選擇", for: .normal)
+        button.setTitle(Constants.UploadVCString.reselect, for: .normal)
         button.backgroundColor = .gray
         button.addTarget(self, action: #selector(openCamera), for: .touchUpInside)
         return button

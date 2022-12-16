@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OwnCallCell: UITableViewCell {
+class OwnCallCell: UITableViewCell, CellConfiguraable {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -29,6 +29,12 @@ class OwnCallCell: UITableViewCell {
     }
     
     func setText(message: Message) {
+        phoneLabel.text = message.message
+        timeLabel.text = Date.dateFormatter.string(from: Date.init(milliseconds: message.createdTime))
+    }
+    
+    func setup(message: Message, userData: User) {
+        userImage.loadImage(userData.story)
         phoneLabel.text = message.message
         timeLabel.text = Date.dateFormatter.string(from: Date.init(milliseconds: message.createdTime))
     }

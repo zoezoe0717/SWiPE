@@ -13,43 +13,6 @@ import AVFoundation
 class UploadStoryProvider {
     static let shared = UploadStoryProvider()
     
-    func uploadPhoto(image: UIImage, completion: @escaping (Result<URL, Error>) -> Void) {
-        let fileReference = Storage.storage().reference().child(UUID().uuidString + ".jpg")
-        if let data = image.jpegData(compressionQuality: 0.1) {
-            fileReference.putData(data, metadata: nil) { result in
-                switch result {
-                case .success:
-                    fileReference.downloadURL(completion: completion)
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
-        }
-    }
-    
-    func uploadVideo(url: URL, completion: @escaping (Result<URL, Error>) -> Void) {
-        let videoName = NSUUID().uuidString
-        let fileReference = Storage.storage().reference().child("\(videoName).mov")
-        
-        fileReference.putFile(from: url, metadata: nil) { _, error in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                fileReference.downloadURL { url, error in
-                    if let error = error {
-                        completion(.failure(error))
-                    } else {
-                        if let url = url {
-                            completion(.success(url))
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-extension UploadStoryProvider {
     func uploadImageWithImgur(image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
         let headers: HTTPHeaders = ["Authorization": "Client-ID 977f389688519a1"]
         let urlString = "https://api.imgur.com/3/image"
@@ -69,10 +32,11 @@ extension UploadStoryProvider {
         }
     }
     
-    
     func uploadVideoWithImgur(url: URL, completion: @escaping (Result<URL, Error>) -> Void) {
-        guard let movData = try? Data(contentsOf: url) else { return }
-        let headers: HTTPHeaders = ["Authorization": "Client-ID 977f389688519a1"]
+        let headers: HTTPHeaders = [
+            "Authorization": "Client-ID 977f389688519a1"
+        ]
+        
         let urlString = "https://api.imgur.com/3/upload"
         
         AF.upload(multipartFormData: { data in
