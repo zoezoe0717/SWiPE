@@ -95,16 +95,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增介紹影片吧！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdP-YF-lOo">
-                                <rect key="frame" x="16" y="97" width="358" height="32"/>
+                                <rect key="frame" x="16" y="57" width="358" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PWb-gO-CKW">
-                                <rect key="frame" x="10" y="159" width="370" height="444"/>
+                                <rect key="frame" x="50" y="119" width="290" height="515.66666666666663"/>
                                 <color key="backgroundColor" name="BaseColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="PWb-gO-CKW" secondAttribute="height" multiplier="2.5:3" id="8Ey-zz-7Il"/>
+                                    <constraint firstAttribute="width" secondItem="PWb-gO-CKW" secondAttribute="height" multiplier="9:16" id="8Ey-zz-7Il"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -112,9 +112,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="PWb-gO-CKW" firstAttribute="top" secondItem="qdP-YF-lOo" secondAttribute="bottom" constant="30" id="36F-pH-fPV"/>
-                            <constraint firstItem="PWb-gO-CKW" firstAttribute="leading" secondItem="QhL-qo-oag" secondAttribute="leading" constant="10" id="Y3K-2U-PPt"/>
-                            <constraint firstItem="qdP-YF-lOo" firstAttribute="top" secondItem="QhL-qo-oag" secondAttribute="top" constant="50" id="eBb-xn-OG2"/>
-                            <constraint firstItem="QhL-qo-oag" firstAttribute="trailing" secondItem="PWb-gO-CKW" secondAttribute="trailing" constant="10" id="eIC-2w-72X"/>
+                            <constraint firstItem="PWb-gO-CKW" firstAttribute="leading" secondItem="QhL-qo-oag" secondAttribute="leading" constant="50" id="Y3K-2U-PPt"/>
+                            <constraint firstItem="qdP-YF-lOo" firstAttribute="top" secondItem="QhL-qo-oag" secondAttribute="top" constant="10" id="eBb-xn-OG2"/>
+                            <constraint firstItem="QhL-qo-oag" firstAttribute="trailing" secondItem="PWb-gO-CKW" secondAttribute="trailing" constant="50" id="eIC-2w-72X"/>
                             <constraint firstItem="qdP-YF-lOo" firstAttribute="leading" secondItem="QhL-qo-oag" secondAttribute="leading" constant="16" id="lUt-QU-jTy"/>
                             <constraint firstItem="QhL-qo-oag" firstAttribute="trailing" secondItem="qdP-YF-lOo" secondAttribute="trailing" constant="16" id="yan-uU-Ayi"/>
                         </constraints>

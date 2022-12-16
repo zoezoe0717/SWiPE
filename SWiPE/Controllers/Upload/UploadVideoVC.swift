@@ -55,12 +55,12 @@ class UploadVideoVC: UploadVC {
             createButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             createButton.heightAnchor.constraint(equalToConstant: 60),
 
-            pushButton.topAnchor.constraint(equalTo: videoView.bottomAnchor, constant: 40),
+            pushButton.bottomAnchor.constraint(equalTo: videoView.bottomAnchor, constant: 50),
             pushButton.rightAnchor.constraint(equalTo: videoView.rightAnchor),
             pushButton.heightAnchor.constraint(equalToConstant: 40),
             pushButton.widthAnchor.constraint(equalToConstant: 80),
             
-            cancelButton.topAnchor.constraint(equalTo: videoView.bottomAnchor, constant: 40),
+            cancelButton.bottomAnchor.constraint(equalTo: videoView.bottomAnchor, constant: 50),
             cancelButton.leftAnchor.constraint(equalTo: videoView.leftAnchor),
             cancelButton.heightAnchor.constraint(equalToConstant: 40),
             cancelButton.widthAnchor.constraint(equalToConstant: 80)

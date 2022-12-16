@@ -133,6 +133,7 @@
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nickname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nYT-ka-pWF">
                                                         <rect key="frame" x="0.0" y="25.333333333333371" width="293" height="50"/>
+                                                        <color key="backgroundColor" name="BaseColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="ZID-hD-JWE"/>
                                                         </constraints>
@@ -232,6 +233,7 @@
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="90y-8Q-ebj">
                                                         <rect key="frame" x="0.0" y="65.333333333333258" width="314.33333333333331" height="50"/>
+                                                        <color key="backgroundColor" name="BaseColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="B7e-MH-rCE"/>
                                                         </constraints>
@@ -251,6 +253,7 @@
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="klR-iA-UZS">
                                                         <rect key="frame" x="0.0" y="65.333333333333371" width="314.33333333333331" height="50"/>
+                                                        <color key="backgroundColor" name="BaseColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="RcV-QF-gvq"/>
                                                         </constraints>

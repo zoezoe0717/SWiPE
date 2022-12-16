@@ -34,6 +34,7 @@ class ProfileVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     private func setUI() {
@@ -95,7 +96,7 @@ class ProfileVC: UIViewController {
         if let controller = storyboard?.instantiateViewController(withIdentifier: "\(SettingVC.self)") as? SettingVC {
             controller.modalPresentationStyle = .fullScreen
             controller.user = user
-            present(controller, animated: true)
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
 }

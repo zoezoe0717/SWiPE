@@ -5,4 +5,10 @@
 //  Created by Zoe on 2022/12/15.
 //
 
-import Foundation
+import UIKit
+
+class PrivacyPolicyVC: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}

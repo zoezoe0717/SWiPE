@@ -22,6 +22,7 @@
 		C8573D0C29150CB00095601B /* OwnTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8573D0A29150CB00095601B /* OwnTextCell.xib */; };
 		C8573D11291516B40095601B /* FriendTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8573D0F291516B40095601B /* FriendTextCell.swift */; };
 		C8573D12291516B40095601B /* FriendTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8573D10291516B40095601B /* FriendTextCell.xib */; };
+		C860591E294B457C00F4BB8B /* PrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C860591D294B457C00F4BB8B /* PrivacyPolicyVC.swift */; };
 		C88946792913589F009A5BF3 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88946782913589F009A5BF3 /* ChatManager.swift */; };
 		C889467D29135AAF009A5BF3 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889467C29135AAF009A5BF3 /* ChatVC.swift */; };
 		C889468029135B28009A5BF3 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889467F29135B28009A5BF3 /* ChatCell.swift */; };
@@ -40,7 +41,6 @@
 		C8B090092940A261004DF3EF /* UIStoryboard+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B090082940A261004DF3EF /* UIStoryboard+Ext.swift */; };
 		C8B0900B2941790E004DF3EF /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B0900A2941790E004DF3EF /* UITableView+Ext.swift */; };
 		C8B09056294A1AB6004DF3EF /* OpenAIBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B09055294A1AB6004DF3EF /* OpenAIBody.swift */; };
-		C8B09058294ABB0B004DF3EF /* PrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B09057294ABB0B004DF3EF /* PrivacyPolicyVC.swift */; };
 		C8B0905C294B0293004DF3EF /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B0905B294B0293004DF3EF /* SignInVC.swift */; };
 		C8C77BEA291CE21F00A1675D /* UploadVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BE9291CE21F00A1675D /* UploadVideoVC.swift */; };
 		C8C77BEC291CE8DA00A1675D /* UploadPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C77BEB291CE8DA00A1675D /* UploadPhotoVC.swift */; };
@@ -105,6 +105,7 @@
 		C8573D0A29150CB00095601B /* OwnTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OwnTextCell.xib; sourceTree = "<group>"; };
 		C8573D0F291516B40095601B /* FriendTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTextCell.swift; sourceTree = "<group>"; };
 		C8573D10291516B40095601B /* FriendTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendTextCell.xib; sourceTree = "<group>"; };
+		C860591D294B457C00F4BB8B /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyVC.swift; sourceTree = "<group>"; };
 		C88946782913589F009A5BF3 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		C889467C29135AAF009A5BF3 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		C889467F29135B28009A5BF3 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
@@ -123,7 +124,6 @@
 		C8B090082940A261004DF3EF /* UIStoryboard+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Ext.swift"; sourceTree = "<group>"; };
 		C8B0900A2941790E004DF3EF /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		C8B09055294A1AB6004DF3EF /* OpenAIBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIBody.swift; sourceTree = "<group>"; };
-		C8B09057294ABB0B004DF3EF /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyVC.swift; sourceTree = "<group>"; };
 		C8B0905B294B0293004DF3EF /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		C8C77BE9291CE21F00A1675D /* UploadVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVideoVC.swift; sourceTree = "<group>"; };
 		C8C77BEB291CE8DA00A1675D /* UploadPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoVC.swift; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 			children = (
 				C889468A2914BB37009A5BF3 /* ProfileVC.swift */,
 				C8AA629C292DECD700D7E16C /* SettingVC.swift */,
-				C8B09057294ABB0B004DF3EF /* PrivacyPolicyVC.swift */,
+				C860591D294B457C00F4BB8B /* PrivacyPolicyVC.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -668,7 +668,6 @@
 				C824F21A293BF8CB0010C29E /* MainVC.swift in Sources */,
 				C8FC987E290FC0350028DE17 /* MatchVC.swift in Sources */,
 				C8894682291390DD009A5BF3 /* ChatRoom.swift in Sources */,
-				C8B09058294ABB0B004DF3EF /* PrivacyPolicyVC.swift in Sources */,
 				C808ED22292F6A2600BFF7A1 /* AuthClaims.swift in Sources */,
 				C889468B2914BB37009A5BF3 /* ProfileVC.swift in Sources */,
 				C850EE59293A257600D38742 /* UploadImageResult.swift in Sources */,
@@ -685,6 +684,7 @@
 				C824F21C293BFEC80010C29E /* MatchSuccessVC.swift in Sources */,
 				C8FC9876290FB9E10028DE17 /* SwipeCardView.swift in Sources */,
 				C8EEA63D2937956900E9B6E3 /* GlobalSetting.swift in Sources */,
+				C860591E294B457C00F4BB8B /* PrivacyPolicyVC.swift in Sources */,
 				C8FC98892910C7B50028DE17 /* FireBaseManager.swift in Sources */,
 				C8EEA64C29389A5D00E9B6E3 /* FriendCallCell.swift in Sources */,
 				C8FC9871290F78020028DE17 /* Constants.swift in Sources */,
@@ -894,7 +894,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.6;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SWiPE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -932,7 +932,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.6;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zoe.SWiPE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
