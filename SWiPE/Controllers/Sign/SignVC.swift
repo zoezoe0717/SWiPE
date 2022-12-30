@@ -30,8 +30,8 @@ class SignVC: UIViewController {
     @IBOutlet weak var signInStackView: UIStackView!
     @IBOutlet weak var topBackgroundView: UIView!
     @IBOutlet weak var bottomBackgroundView: UIView!
+    @IBOutlet weak var subTitleTextView: UITextView!
     @IBOutlet weak var welcomeLabel: UILabel!
-    @IBOutlet weak var subTitleLabel: UILabel!
     
     private var currentNonce: String?
     var userName: String?
@@ -89,12 +89,25 @@ class SignVC: UIViewController {
         welcomeLabel.textColor = CustomColor.text.color
         welcomeLabel.text = Constants.SignVCString.welcome
         
-        subTitleLabel.textColor = CustomColor.text.color
-        subTitleLabel.text = Constants.SignVCString.subTitle
+        let attributedString = NSMutableAttributedString(
+            string: Constants.SignVCString.subTitle,
+            attributes: [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
+                NSAttributedString.Key.foregroundColor: CustomColor.text.color
+            ]
+        )
+        
+        attributedString.addAttribute(
+            .link,
+            value: "https://privacy-policy-iwn932vpl-zoezoe0717.vercel.app",
+            range: NSRange(location: 14, length: 3)
+        )
+
+        subTitleTextView.attributedText = attributedString
     }
     
     private func setConstraints() {
-        [welcomeLabel, subTitleLabel, signCatAnimationView, signInStackView].forEach { subView in
+        [welcomeLabel, subTitleTextView, signCatAnimationView, signInStackView].forEach { subView in
             subView.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(subView)
         }
@@ -115,8 +128,6 @@ class SignVC: UIViewController {
             signInStackView.rightAnchor.constraint(equalTo: bottomBackgroundView.rightAnchor, constant: -20),
             signInStackView.heightAnchor.constraint(equalTo: bottomBackgroundView.heightAnchor, multiplier: 0.4),
             
-//            signInAppleButton.centerYAnchor.constraint(equalTo: bottomBackgroundView.centerYAnchor),
-//            signInAppleButton.centerXAnchor.constraint(equalTo: bottomBackgroundView.centerXAnchor),
             signInEmailButton.widthAnchor.constraint(equalTo: bottomBackgroundView.widthAnchor, multiplier: 0.8),
             signInEmailButton.heightAnchor.constraint(equalTo: bottomBackgroundView.heightAnchor, multiplier: 0.15),
             signInEmailButton.topAnchor.constraint(equalTo: signInAppleButton.bottomAnchor, constant: 10),
@@ -129,9 +140,11 @@ class SignVC: UIViewController {
             welcomeLabel.leftAnchor.constraint(equalTo: signInAppleButton.leftAnchor),
             welcomeLabel.topAnchor.constraint(equalTo: bottomBackgroundView.topAnchor, constant: 40),
             
-            subTitleLabel.leftAnchor.constraint(equalTo: signInAppleButton.leftAnchor),
-            subTitleLabel.bottomAnchor.constraint(equalTo: signInAppleButton.topAnchor, constant: -10),
-            subTitleLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 20)
+            subTitleTextView.leftAnchor.constraint(equalTo: signInAppleButton.leftAnchor),
+            subTitleTextView.bottomAnchor.constraint(equalTo: signInAppleButton.topAnchor, constant: -10),
+            subTitleTextView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 10),
+            subTitleTextView.heightAnchor.constraint(equalToConstant: 30),
+            subTitleTextView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 10)
         ])
     }
     
@@ -186,23 +199,37 @@ class SignVC: UIViewController {
         return hashString
     }
     
+    private func addActionController(compltion: @escaping () -> ()) {
+        let controller = UIAlertController(title: "隱私權保護提示", message: "我們非常重視您的隱私保護與個人信息保護，登入或註冊即代表您同意我們的隱私權條款。", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "同意", style: .default) { _ in
+            compltion()
+        }
+        let cancelAction = UIAlertAction(title: "暫不使用", style: .cancel)
+        [alertAction, cancelAction].forEach { controller.addAction($0) }
+        present(controller, animated: true)
+    }
+    
     @objc private func signInWithApple() {
-        let nonce = randomNonceString()
-        currentNonce = nonce
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-        request.nonce = sha256(nonce)
+        addActionController {
+            let nonce = self.randomNonceString()
+            self.currentNonce = nonce
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            let request = appleIDProvider.createRequest()
+            request.requestedScopes = [.fullName, .email]
+            request.nonce = self.sha256(nonce)
 
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-        authorizationController.delegate = self
-        authorizationController.presentationContextProvider = self
-        authorizationController.performRequests()
+            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+            authorizationController.delegate = self
+            authorizationController.presentationContextProvider = self
+            authorizationController.performRequests()
+        }
     }
     
     @objc private func signInWithEmail() {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "\(SignInVC.self)") as? SignInVC {
-            present(controller, animated: true)
+        addActionController {
+            if let controller = self.storyboard?.instantiateViewController(withIdentifier: "\(SignInVC.self)") as? SignInVC {
+                self.present(controller, animated: true)
+            }
         }
     }
 }

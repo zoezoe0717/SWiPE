@@ -11,12 +11,32 @@ import FirebaseAuth
 class SignInVC: UIViewController {
     @IBOutlet weak var topBackgroundView: UIView!
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var privacyPolicyTextView: UITextView!
     @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         topBackgroundView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         topBackgroundView.layer.cornerRadius = 20
+        setUI()
+    }
+    
+    private func setUI() {
+        let attributedString = NSMutableAttributedString(
+            string: Constants.SignVCString.subTitle,
+            attributes: [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
+                NSAttributedString.Key.foregroundColor: CustomColor.text.color
+            ]
+        )
+        
+        attributedString.addAttribute(
+            .link,
+            value: "https://privacy-policy-iwn932vpl-zoezoe0717.vercel.app",
+            range: NSRange(location: 14, length: 3)
+        )
+
+        privacyPolicyTextView.attributedText = attributedString
     }
     
     @IBAction func dismissPage(_ sender: Any) {

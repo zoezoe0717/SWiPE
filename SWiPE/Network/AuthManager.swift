@@ -32,7 +32,6 @@ class AuthManager {
             let decoder = JSONDecoder()
             if let result = reponse.data,
                 let token = try? decoder.decode(AppleAuthToken.self, from: result) {
-                
                 UserUid.share.keychain.set(token.refreshToken, forKey: "refreshToken")
                 }
         }
