@@ -66,7 +66,9 @@ enum FirestoreEndpoint {
 
 class FireBaseManager {
     static let shared = FireBaseManager()
-        
+    
+    private init () {}
+    
     private func parseDocument<T: Decodable>(snapshot: QuerySnapshot?, error: Error?) -> [T] {
         guard let snapshot = snapshot else {
             let error = error?.localizedDescription ?? ""

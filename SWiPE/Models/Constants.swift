@@ -40,8 +40,7 @@ enum Constants {
         static let signup = "或是建立帳號"
         
         static let login = "登入"
-        
-        static let subTitle = "為了保障用戶權益，需登入過後才可以使用"
+        static let subTitle = "點選「登入」代表你同意我們的隱私權政策"
     }
 
     enum LottieString {
@@ -66,8 +65,9 @@ enum Constants {
         static let error = "錯誤"
         static let canael = "取消"
         static let prosecution = "檢舉"
-        static let prosecutionSubTitle = "我們已收到您的檢舉。"
-        static let reportSubTitle = "此檢舉將會匿名，我們將會為您處理。"
+        static let prosecutionSubTitle = "您確定要檢舉嗎？"
+        static let reportDetail = "    我們已收到您的檢舉。工作人員會在24小時內檢視該問題，如該用戶有違規，我們將會懲處該用戶"
+        static let reportSubTitle = "此檢舉將會匿名，我們將會在24小時內為您處理。"
     }
     
     enum UploadVCString {
@@ -75,7 +75,8 @@ enum Constants {
         static let confirm = "確定"
         static let reselect = "重新選擇"
     }
-    
+    static let reportSubTitle = "此檢舉將會匿名，我們將會在24小時內為您處理。"
+
     enum UploadPhotoStr {
         static let faceAlertTitle = "未偵測到臉部"
         static let faceAlertMessage = "請重新選擇有臉部的照片喔！"

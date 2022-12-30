@@ -39,13 +39,13 @@
                                         <rect key="frame" x="16" y="94.333333333333371" width="361" height="184"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUh-3q-Zgi">
-                                        <rect key="frame" x="16" y="64" width="37.333333333333314" height="18"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Label" translatesAutoresizingMaskIntoConstraints="NO" id="RIc-Dk-JJW">
+                                        <rect key="frame" x="50" y="64" width="240" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <color key="textColor" name="TextColor"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" name="BaseColor"/>
                             </view>
@@ -71,7 +71,7 @@
                     <connections>
                         <outlet property="bottomBackgroundView" destination="1HR-nq-j1y" id="yS4-9x-RQm"/>
                         <outlet property="signInStackView" destination="vxA-Kl-xsD" id="SCk-Wh-3Ju"/>
-                        <outlet property="subTitleLabel" destination="pUh-3q-Zgi" id="eIP-ex-LpA"/>
+                        <outlet property="subTitleTextView" destination="RIc-Dk-JJW" id="CY2-rc-F6y"/>
                         <outlet property="topBackgroundView" destination="WHC-bN-tAb" id="Llz-6x-ZGe"/>
                         <outlet property="welcomeLabel" destination="GZb-l9-EBw" id="OOJ-Lw-ApJ"/>
                     </connections>
@@ -296,7 +296,7 @@
                                 <rect key="frame" x="0.0" y="383.33333333333331" width="393" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email登入" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Brb-vw-X1D">
-                                        <rect key="frame" x="19.999999999999993" y="74.333333333333371" width="122.33333333333331" height="33.666666666666657"/>
+                                        <rect key="frame" x="19.999999999999993" y="19.999999999999996" width="122.33333333333331" height="33.666666666666657"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -314,13 +314,23 @@
                                             <action selector="dismissPage:" destination="0jm-YI-Fxv" eventType="touchUpInside" id="bJh-P2-0Bk"/>
                                         </connections>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="TextView" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2d-99-LNu">
+                                        <rect key="frame" x="20" y="58.666666666666686" width="363" height="59.333333333333343"/>
+                                        <color key="textColor" name="TextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" name="BaseColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Brb-vw-X1D" secondAttribute="bottom" constant="20" id="14h-qQ-naP"/>
                                     <constraint firstItem="vXY-B7-PrK" firstAttribute="top" secondItem="ycO-4T-tp1" secondAttribute="top" constant="20" id="2T7-fU-CzT"/>
                                     <constraint firstAttribute="trailing" secondItem="vXY-B7-PrK" secondAttribute="trailing" constant="20" id="Bw5-lJ-0UQ"/>
+                                    <constraint firstItem="Brb-vw-X1D" firstAttribute="top" secondItem="ycO-4T-tp1" secondAttribute="top" constant="20" id="HEC-tR-1Ii"/>
                                     <constraint firstItem="Brb-vw-X1D" firstAttribute="leading" secondItem="ycO-4T-tp1" secondAttribute="leading" constant="20" id="NeJ-Gh-vIu"/>
+                                    <constraint firstItem="I2d-99-LNu" firstAttribute="leading" secondItem="Brb-vw-X1D" secondAttribute="leading" id="chj-vx-bzy"/>
+                                    <constraint firstAttribute="trailing" secondItem="I2d-99-LNu" secondAttribute="trailing" constant="10" id="swT-Ll-6ZC"/>
+                                    <constraint firstAttribute="bottom" secondItem="I2d-99-LNu" secondAttribute="bottom" constant="10" id="ybD-OH-BAT"/>
+                                    <constraint firstItem="I2d-99-LNu" firstAttribute="top" secondItem="Brb-vw-X1D" secondAttribute="bottom" constant="5" id="zYC-fO-O1X"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -342,6 +352,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="90y-8Q-ebj" id="QEi-QD-s7e"/>
                         <outlet property="passwordTextField" destination="klR-iA-UZS" id="bEn-DU-V4Y"/>
+                        <outlet property="privacyPolicyTextView" destination="I2d-99-LNu" id="FtC-rr-fBg"/>
                         <outlet property="topBackgroundView" destination="ycO-4T-tp1" id="vFn-f2-EHF"/>
                     </connections>
                 </viewController>
