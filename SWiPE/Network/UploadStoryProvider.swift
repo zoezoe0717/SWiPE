@@ -10,8 +10,10 @@ import Firebase
 import Alamofire
 import AVFoundation
 
-class UploadStoryProvider {
+final class UploadStoryProvider {
     static let shared = UploadStoryProvider()
+    
+    private init (){}
     
     func uploadImageWithImgur(image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
         let headers: HTTPHeaders = ["Authorization": "Client-ID 977f389688519a1"]

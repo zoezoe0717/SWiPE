@@ -148,14 +148,10 @@ extension SettingVC: UITableViewDelegate, UITableViewDataSource {
 
 extension SettingVC: SFSafariViewControllerDelegate {
     @objc func presentPrivacyPage() {
-//        if let url = URL(string: "https://www.privacypolicies.com/live/739f8e31-8ddf-4b6b-8ba2-0c4bcba24a63") {
-//            let safari = SFSafariViewController(url: url)
-//            safari.delegate = self
-//            present(safari, animated: true)
-//        }
-        
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "\(PrivacyPolicyVC.self)") as? PrivacyPolicyVC {
-            self.navigationController?.pushViewController(controller, animated: true)
+        if let url = URL(string: "https://privacy-policy-iwn932vpl-zoezoe0717.vercel.app") {
+            let safari = SFSafariViewController(url: url)
+            safari.delegate = self
+            present(safari, animated: true)
         }
     }
 }

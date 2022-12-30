@@ -313,7 +313,15 @@ class SwipeCardView: UIView {
     
     @objc func moreOption() {
         guard let id = dataSource?.id else { return }
-        ZAlertView.shared.showProsecute(id: id)
+        ZAlertView.shared.showProsecute(id: id) { [weak self] block in
+            guard let `self` = self else { return }
+            if block {
+                self.delegate?.swipeDidEnd(on: self)
+                UIView.animate(withDuration: 0.2) {
+                    self.alpha = 0
+                }
+            }
+        }
     }
     
     @objc func handleTapGesture(sender: UITapGestureRecognizer) {

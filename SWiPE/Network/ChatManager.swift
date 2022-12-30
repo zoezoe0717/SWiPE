@@ -23,7 +23,9 @@ enum MessageType: String {
 
 class ChatManager {
     static let shared = ChatManager()
-
+    
+    private init (){}
+    
     func addListener(id: String, completion: @escaping(Result<[Message], Error>) -> Void) {
         let document = FirestoreEndpoint.chatRoomsMessages(id).ref.order(by: "createdTime", descending: true)
         document.addSnapshotListener { snapshot, error in

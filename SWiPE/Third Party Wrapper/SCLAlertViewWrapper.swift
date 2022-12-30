@@ -75,22 +75,43 @@ class ZAlertView {
         )
     }
     
-    func showProsecute(id: String) {
+    func showProsecute(id: String, completion: @escaping ((Bool) -> Void)) {
         let alert = SCLAlertView()
         alert.addButton(Constants.AlertSrting.prosecution) {
             FireBaseManager.shared.addProsecute(id: id)
-            SCLAlertView().showSuccess(Constants.AlertSrting.success, subTitle: Constants.AlertSrting.prosecutionSubTitle)
+            SCLAlertView().showSuccess(Constants.AlertSrting.success, subTitle: Constants.AlertSrting.reportDetail)
+        }
+        alert.addButton("拉黑") {
+            completion(true)
+            SCLAlertView().showSuccess(Constants.AlertSrting.success, subTitle: "已成功將此用戶加入黑名單中，您在也無法看到該用戶的任何內容")
         }
         
         alert.showTitle(
-            Constants.AlertSrting.prosecutionSubTitle,
-            subTitle: Constants.AlertSrting.reportSubTitle,
+            "您想要做什麼呢？",
+            subTitle: "我們可以提供您以下協助",
             timeout: nil,
             completeText: Constants.AlertSrting.canael,
             style: .warning,
             colorStyle: 0xF1BF7F
         )
     }
+    
+//    func showProsecute(id: String) {
+//        let alert = SCLAlertView()
+//        alert.addButton(Constants.AlertSrting.prosecution) {
+//            FireBaseManager.shared.addProsecute(id: id)
+//            SCLAlertView().showSuccess(Constants.AlertSrting.success, subTitle: Constants.AlertSrting.reportDetail)
+//        }
+//
+//        alert.showTitle(
+//            Constants.AlertSrting.prosecutionSubTitle,
+//            subTitle: Constants.AlertSrting.reportSubTitle,
+//            timeout: nil,
+//            completeText: Constants.AlertSrting.canael,
+//            style: .warning,
+//            colorStyle: 0xF1BF7F
+//        )
+//    }
 }
 
 struct AlertMessage {
